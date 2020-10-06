@@ -39,13 +39,13 @@ set showcmd
 
 " Theme, color scheme
 syntax enable
-set background=light
+set background=dark
 set t_Co=256
 highlight Normal ctermbg=NONE
 highlight Normal guibg=NONE
-colorscheme Tomorrow
+colorscheme gruvbox
 let g:rehash256=1
-let g:airline_theme="tomorrow"
+let g:airline_theme="gruvbox"
 
 " Fixes common backspace problems
 set backspace=indent,eol,start
