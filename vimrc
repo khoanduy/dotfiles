@@ -5,7 +5,10 @@ set nocompatible
 
 "--------Load vim configuration files--------"
 source ~/.vim/plugins.vim
-source ~/.vim/configvim/plugins.conf.vim
+source ~/.vim/vimcfg/plugins.conf.vim
+source ~/.vim/vimcfg/cpp.conf.vim
+source ~/.vim/vimcfg/java.conf.vim
+source ~/.vim/vimcfg/python.conf.vim
 "--------End Load vim configuration files--------"
 
 "------General configuration------"
@@ -76,8 +79,7 @@ set encoding=utf-8
 :set guifont=Fira\ Code:h14
 
 " Cursor
-set guicursor+=n-v-c:blinkon0
-set guicursor+=i:blinkwait350
+set guicursor+=i:blinkwait700-blinkon400-blinkoff250
 
 " Highlight while searching
 set incsearch

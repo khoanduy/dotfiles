@@ -11,7 +11,6 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'tpope/vim-surround'
 Plug 'airblade/vim-gitgutter'
 Plug 'w0rp/ale'
-Plug 'sebdah/vim-delve'
 
 " Initialize plugin system
 call plug#end()
