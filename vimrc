@@ -6,8 +6,6 @@ set nocompatible
 "--------Load vim configuration files--------"
 source ~/.vim/plugins.vim
 source ~/.vim/configvim/plugins.conf.vim
-source ~/.vim/configvim/go.conf.vim
-source ~/.vim/configvim/web.conf.vim
 "--------End Load vim configuration files--------"
 
 "------General configuration------"
@@ -39,13 +37,11 @@ set showcmd
 
 " Theme, color scheme
 syntax enable
-set background=dark
+set background=light
 set t_Co=256
 highlight Normal ctermbg=NONE
 highlight Normal guibg=NONE
-colorscheme gruvbox
 let g:rehash256=1
-let g:airline_theme="gruvbox"
 
 " Fixes common backspace problems
 set backspace=indent,eol,start

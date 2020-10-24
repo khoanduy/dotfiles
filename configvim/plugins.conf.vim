@@ -27,15 +27,6 @@ let g:NERDTreeShowBookmarks=1
 let g:NERDSpaceDelims=1
 let g:NERDCompactSexyComs=1
 
-" YouCompleteMe
-nmap <leader>ym :YcmCompleter
-nmap <leader>yg :YcmCompleter GoToDefinition<CR>
-nmap <leader>yG :YcmCompleter GoToReferences<CR>
-nmap <leader>yf :YcmCompleter Format<CR>
-nmap <leader>yx :YcmCompleter FixIt<CR>
-let g:ycm_error_symbol='»'
-let g:ycm_warning_symbol='¤'
-
 " Get rid of scratch buffer
 set completeopt-=preview
 
@@ -61,6 +52,4 @@ let g:ale_sign_warning='¤'
 " Error lines limit
 let g:ale_list_window_size=6
 
-" Enable integration with airline.
-let g:airline#extensions#ale#enabled=1
 "------End plugins config------"
