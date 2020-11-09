@@ -40,11 +40,12 @@ set showcmd
 
 " Theme, color scheme
 syntax enable
-set background=light
+set background=dark
 set t_Co=256
 highlight Normal ctermbg=NONE
 highlight Normal guibg=NONE
 let g:rehash256=1
+colorscheme xcodedark
 
 " Fixes common backspace problems
 set backspace=indent,eol,start
