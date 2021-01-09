@@ -4,11 +4,19 @@
 set nocompatible
 
 "--------Load vim configuration files--------"
-source ~/.vim/plugins.vim
-source ~/.vim/vimcfg/plugins.conf.vim
-source ~/.vim/vimcfg/cpp.conf.vim
-source ~/.vim/vimcfg/java.conf.vim
-source ~/.vim/vimcfg/python.conf.vim
+if has("win64") || has("win32")
+  source ~/vimfiles/plugins.vim
+  source ~/vimfiles/vimcfg/plugins.conf.vim
+  source ~/vimfiles/vimcfg/cpp.conf.vim
+  source ~/vimfiles/vimcfg/java.conf.vim
+  source ~/vimfiles/vimcfg/python.conf.vim
+else
+  source ~/.vim/plugins.vim
+  source ~/.vim/vimcfg/plugins.conf.vim
+  source ~/.vim/vimcfg/cpp.conf.vim
+  source ~/.vim/vimcfg/java.conf.vim
+  source ~/.vim/vimcfg/python.conf.vim
+endif
 "--------End Load vim configuration files--------"
 
 "------General configuration------"
@@ -40,12 +48,11 @@ set showcmd
 
 " Theme, color scheme
 syntax enable
-set background=dark
+set background=light
 set t_Co=256
 highlight Normal ctermbg=NONE
 highlight Normal guibg=NONE
 let g:rehash256=1
-colorscheme xcodedark
 
 " Fixes common backspace problems
 set backspace=indent,eol,start
@@ -77,7 +84,11 @@ set ruler
 set encoding=utf-8
 
 " Font
-:set guifont=Fira\ Code:h14
+if has("win64") || has("win32")
+  :set guifont=Fixedsys:h14
+else
+  :set guifont=Monospace:h14
+endif
 
 " Cursor
 set guicursor+=i:blinkwait700-blinkon400-blinkoff250
