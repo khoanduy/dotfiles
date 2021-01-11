@@ -90,6 +90,9 @@ else
   :set guifont=Monospace:h14
 endif
 
+" Belloff
+:set belloff=all
+
 " Cursor
 set guicursor+=i:blinkwait700-blinkon400-blinkoff250
 
