@@ -48,7 +48,7 @@ set showcmd
 
 " Theme, color scheme
 syntax enable
-set background=light
+set background=dark
 set t_Co=256
 highlight Normal ctermbg=NONE
 highlight Normal guibg=NONE
@@ -87,7 +87,7 @@ set encoding=utf-8
 if has("win64") || has("win32")
   :set guifont=Fixedsys:h14
 else
-  :set guifont=Monospace:h14
+  :set guifont=Fira\ Code:h14
 endif
 
 " Belloff
