@@ -48,7 +48,7 @@ set showcmd
 
 " Theme, color scheme
 syntax enable
-set background=dark
+set background=light
 set t_Co=256
 highlight Normal ctermbg=NONE
 highlight Normal guibg=NONE
