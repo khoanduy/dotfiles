@@ -87,7 +87,7 @@ set encoding=utf-8
 if has("win64") || has("win32")
   :set guifont=Fixedsys:h14
 else
-  :set guifont=Fira\ Code:h14
+  :set guifont=Ubuntu\ Mono:h14
 endif
 
 " Belloff
