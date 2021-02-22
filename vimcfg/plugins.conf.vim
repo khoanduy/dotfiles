@@ -37,7 +37,7 @@ let g:ctrlp_map='<leader>ff'
 let g:ctrlp_cmd='CtrlP'
 " Default search in current dir CtrlP
 let g:ctrlp_working_path_mode='ra'
-let g:ctrlp_custom_ignore='__pycache__\|node_modules\|.DS_Store\|.git\|images\|*.png\|*.jpg\|*.svg'
+let g:ctrlp_custom_ignore='build\|target\|__pycache__\|node_modules\|.DS_Store\|.git\|images\'
 let g:ctrlp_max_files=20000
 
 " CtrlSF
@@ -51,4 +51,7 @@ let g:ale_sign_warning='¤'
 " Error lines limit
 let g:ale_list_window_size=6
 
+" Deoplete
+let g:deoplete#enable_at_startup=1
+let g:ale_completion_enabled=1
 "------End plugins config------"

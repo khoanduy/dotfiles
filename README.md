@@ -8,6 +8,8 @@ $ git clone https://github.com/knguyenc/vimrc.git ~/.vim/
 $ vim ~/.vim/plugins.vim
 :PlugInstall
 ```
+### NOTES
+If you want to use tagging system, install ctags and remember to create a ctags database by running `ctags -R` at your project root in terminal.
 
 ## References
 [Vim](https://www.vim.org/)\

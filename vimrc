@@ -87,6 +87,9 @@ set encoding=utf-8
 " Belloff
 set belloff=all
 
+" Use tags
+set tags=tags
+
 " Highlight while searching
 set incsearch
 set hlsearch
