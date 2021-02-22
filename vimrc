@@ -4,7 +4,7 @@
 set nocompatible
 
 "--------Load vim configuration files--------"
-if has("win64") || has("win32")
+if has('win64') || has('win32')
   source ~/vimfiles/plugins.vim
   source ~/vimfiles/vimcfg/plugins.conf.vim
   source ~/vimfiles/vimcfg/cc.conf.vim
@@ -28,7 +28,7 @@ filetype off
 filetype plugin indent on
 
 " Set leader key
-let mapleader=","
+let mapleader=','
 
 " Turn on syntax highlighting
 syntax on
@@ -53,6 +53,7 @@ set t_Co=256
 highlight Normal ctermbg=NONE
 highlight Normal guibg=NONE
 let g:rehash256=1
+let g:airline_theme='simple'
 
 " Fixes common backspace problems
 set backspace=indent,eol,start
@@ -94,14 +95,14 @@ set hlsearch
 set matchpairs+=<:>
 
 " GUI settings
-if has("gui_running")
+if has('gui_running')
   " Cursor
   set guicursor+=i:blinkwait700-blinkon400-blinkoff250
   set guioptions-=T
-  if has("win64") || has("win32")
+  if has('win64') || has('win32')
     set guifont=Fixedsys:h14
   else
-    set guifont=Ubuntu\ Mono\ 12
+    set guifont=Ubuntu\ Mono\ 11
   endif
 endif
 "------End general configuration------"

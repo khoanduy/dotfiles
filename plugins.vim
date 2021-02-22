@@ -1,5 +1,5 @@
 " Specify a directory for plugins
-if has("win64") || has("win32")
+if has('win64') || has('win32')
   call plug#begin('~/vimfiles/plugged')
 else
   call plug#begin('~/.vim/plugged')
@@ -8,6 +8,8 @@ endif
 " Make sure you use single quotes
 Plug 'scrooloose/nerdtree'
 Plug 'scrooloose/nerdcommenter'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 Plug 'tpope/vim-fugitive'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'dyng/ctrlsf.vim'

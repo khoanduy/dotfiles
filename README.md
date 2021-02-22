@@ -12,4 +12,4 @@ $ vim ~/.vim/plugins.vim
 ## References
 [Vim](https://www.vim.org/)\
 [vim-plug](https://github.com/junegunn/vim-plug)\
-[Vimawesome](https://vimawesome.com/)
+[VimAwesome](https://vimawesome.com/)
