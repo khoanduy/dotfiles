@@ -7,13 +7,13 @@ set nocompatible
 if has("win64") || has("win32")
   source ~/vimfiles/plugins.vim
   source ~/vimfiles/vimcfg/plugins.conf.vim
-  source ~/vimfiles/vimcfg/cpp.conf.vim
+  source ~/vimfiles/vimcfg/cc.conf.vim
   source ~/vimfiles/vimcfg/java.conf.vim
   source ~/vimfiles/vimcfg/python.conf.vim
 else
   source ~/.vim/plugins.vim
   source ~/.vim/vimcfg/plugins.conf.vim
-  source ~/.vim/vimcfg/cpp.conf.vim
+  source ~/.vim/vimcfg/cc.conf.vim
   source ~/.vim/vimcfg/java.conf.vim
   source ~/.vim/vimcfg/python.conf.vim
 endif
@@ -83,18 +83,8 @@ set ruler
 " Encoding
 set encoding=utf-8
 
-" Font
-if has("win64") || has("win32")
-  :set guifont=Fixedsys:h14
-else
-  :set guifont=Ubuntu\ Mono:h14
-endif
-
 " Belloff
-:set belloff=all
-
-" Cursor
-set guicursor+=i:blinkwait700-blinkon400-blinkoff250
+set belloff=all
 
 " Highlight while searching
 set incsearch
@@ -102,5 +92,17 @@ set hlsearch
 
 " Highlight matching pairs of brackets. Use the '%' character to jump between them.
 set matchpairs+=<:>
+
+" GUI settings
+if has("gui_running")
+  " Cursor
+  set guicursor+=i:blinkwait700-blinkon400-blinkoff250
+  set guioptions-=T
+  if has("win64") || has("win32")
+    set guifont=Fixedsys:h14
+  else
+    set guifont=Ubuntu\ Mono\ 12
+  endif
+endif
 "------End general configuration------"
 
