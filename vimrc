@@ -103,7 +103,7 @@ if has('gui_running')
   set guicursor+=i:blinkwait700-blinkon400-blinkoff250
   set guioptions-=T
   if has('win64') || has('win32')
-    set guifont=Fixedsys:h14
+    set guifont=Consolas:h10
   else
     set guifont=Ubuntu\ Mono\ 11
   endif
