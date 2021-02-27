@@ -35,7 +35,7 @@ let g:gitgutter_max_signs=2000
 " CtrlP
 let g:ctrlp_map='<leader>ff'
 let g:ctrlp_cmd='CtrlP'
-" Default search in current dir CtrlP
+" Default search in current directory CtrlP
 let g:ctrlp_working_path_mode='ra'
 let g:ctrlp_custom_ignore='build\|target\|__pycache__\|node_modules\|.DS_Store\|.git\|images\'
 let g:ctrlp_max_files=20000

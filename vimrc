@@ -6,16 +6,16 @@ set nocompatible
 "--------Load vim configuration files--------"
 if has('win64') || has('win32')
   source ~/vimfiles/plugins.vim
-  source ~/vimfiles/vimcfg/plugins.conf.vim
-  source ~/vimfiles/vimcfg/cc.conf.vim
-  source ~/vimfiles/vimcfg/java.conf.vim
-  source ~/vimfiles/vimcfg/python.conf.vim
+  source ~/vimfiles/confv/plugins.conf.vim
+  source ~/vimfiles/confv/cc.conf.vim
+  source ~/vimfiles/confv/java.conf.vim
+  source ~/vimfiles/confv/python.conf.vim
 else
   source ~/.vim/plugins.vim
-  source ~/.vim/vimcfg/plugins.conf.vim
-  source ~/.vim/vimcfg/cc.conf.vim
-  source ~/.vim/vimcfg/java.conf.vim
-  source ~/.vim/vimcfg/python.conf.vim
+  source ~/.vim/confv/plugins.conf.vim
+  source ~/.vim/confv/cc.conf.vim
+  source ~/.vim/confv/java.conf.vim
+  source ~/.vim/confv/python.conf.vim
 endif
 "--------End Load vim configuration files--------"
 
@@ -35,7 +35,7 @@ syntax on
 set hidden
 set nowrap
 set showmatch
-set nobackup
+set nobackup nowritebackup
 set noswapfile
 
 " Set modifiable
@@ -48,17 +48,18 @@ set showcmd
 
 " Theme, color scheme
 syntax enable
-set background=light
+set background=dark cursorline termguicolors
 set t_Co=256
 highlight Normal ctermbg=NONE
 highlight Normal guibg=NONE
 let g:rehash256=1
-let g:airline_theme='simple'
+colorscheme gruvbox
+let g:airline_theme='gruvbox'
 
 " Fixes common backspace problems
 set backspace=indent,eol,start
 
-" Set autoindent
+" Set indentation
 set autoindent
 set smartindent
 set copyindent
@@ -80,11 +81,13 @@ set relativenumber
 
 " Show file stats
 set ruler
+set splitbelow splitright
 
 " Encoding
 set encoding=utf-8
+set spell spelllang=en_us
 
-" Belloff
+" Bell off
 set belloff=all
 
 " Use tags
@@ -96,6 +99,20 @@ set hlsearch
 
 " Highlight matching pairs of brackets. Use the '%' character to jump between them.
 set matchpairs+=<:>
+
+" Re-map some key bindings
+nnoremap <leader>mh <C-W>h
+nnoremap <leader>mj <C-W>j
+nnoremap <leader>mk <C-W>k
+nnoremap <leader>ml <C-W>l
+nnoremap <leader>sv <C-W>v
+nnoremap <leader>sh <C-W>s
+
+" Re-size split windows using arrow keys
+nnoremap <Up> :resize +2<CR>
+nnoremap <Down> :resize -2<CR>
+nnoremap <Left> :vertical resize +2<CR>
+nnoremap <Right> :vertical resize -2<CR>
 
 " GUI settings
 if has('gui_running')
