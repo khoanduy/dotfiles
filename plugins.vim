@@ -21,6 +21,8 @@ Plug 'w0rp/ale'
 Plug 'Shougo/deoplete.nvim'
 Plug 'roxma/nvim-yarp'
 Plug 'roxma/vim-hug-neovim-rpc'
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'"
 
 " Initialize plugin system
 call plug#end()
