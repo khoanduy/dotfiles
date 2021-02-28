@@ -101,10 +101,10 @@ set hlsearch
 set matchpairs+=<:>
 
 " Re-map some key bindings
-nnoremap <leader>mh <C-W>h
-nnoremap <leader>mj <C-W>j
-nnoremap <leader>mk <C-W>k
-nnoremap <leader>ml <C-W>l
+nnoremap <leader>hh <C-W>h
+nnoremap <leader>jj <C-W>j
+nnoremap <leader>kk <C-W>k
+nnoremap <leader>ll <C-W>l
 nnoremap <leader>sv <C-W>v
 nnoremap <leader>sh <C-W>s
 
