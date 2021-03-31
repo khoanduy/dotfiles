@@ -1,7 +1,5 @@
 # vimscript
-NOTED:
-These are my personal configuration files, which could be changed as I develop my environment across multiple systems.
-If you want to use a tagging system, install ctags and remember to create a ctags database by running `ctags -R` at your project root in the terminal.
+NOTED: These are my personal configuration files, which could be changed as I develop my environment across multiple systems.
 
 ## Installation
 Make sure `vim` is installed. Clone repository to `~/.vim/` then open `plugins.vim` (ignore all the errors) and run `:PlugInstall`
@@ -16,8 +14,8 @@ Firstly, make sure `pip` is installed:
 ```shell script
 $ python -m pip --version
 ```
-If you see something like `pip X.Y.Z from .../pip (python A.B)` then skip this step, otherwise you have to install it.
-To manually install `pip`, securely download [get-pip.py](https://bootstrap.pypa.io/get-pip.py) or alternatively, use `curl`.
+If you see something like `pip X.Y.Z from .../pip (python A.B)` then skip this step, otherwise you have to install `pip` manually.
+To install `pip`, securely download [get-pip.py](https://bootstrap.pypa.io/get-pip.py) or alternatively, use `curl`.
 Then run the script by `python` command:
 ```shell script
 $ curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
@@ -27,6 +25,9 @@ After successfully installed `pip`, use it to install `pynvim` and you're good t
 ```shell script
 $ pip install pynvim
 ```
+
+## Additional options
+If you want to use a tagging system, install `ctags` and remember to create a ctags database by running `ctags -R` at your project root in the terminal.
 
 ## References
 [Vim](https://www.vim.org/)\
