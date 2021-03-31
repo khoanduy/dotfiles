@@ -21,10 +21,17 @@ let g:NERDDefaultAlign='left'
 let g:NERDCustomDelimiters={ 'c': { 'left': '/**','right': '*/' } }
 let g:NERDTreeChDirMode=2
 let g:NERDTreeShowBookmarks=1
+let g:NERDTreeWinPos='right'
 
 " NERDTree Commenter
 let g:NERDSpaceDelims=1
 let g:NERDCompactSexyComs=1
+
+" vim airline
+let g:airline#extensions#tabline#enabled=1
+let g:airline#extensions#tabline#left_sep=' '
+let g:airline#extensions#tabline#left_alt_sep='|'
+let g:airline#extensions#tabline#formatter='default'
 
 " Get rid of scratch buffer
 set completeopt-=preview
