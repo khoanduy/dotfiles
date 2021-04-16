@@ -100,19 +100,14 @@ set hlsearch
 " Highlight matching pairs of brackets. Use the '%' character to jump between them.
 set matchpairs+=<:>
 
-" Re-map some key bindings
-nnoremap <leader>hh <C-W>h
-nnoremap <leader>jj <C-W>j
-nnoremap <leader>kk <C-W>k
-nnoremap <leader>ll <C-W>l
-nnoremap <leader>sv <C-W>v
-nnoremap <leader>sh <C-W>s
-
 " Re-size split windows using arrow keys
 nnoremap <Up> :resize +2<CR>
 nnoremap <Down> :resize -2<CR>
 nnoremap <Left> :vertical resize +2<CR>
 nnoremap <Right> :vertical resize -2<CR>
+
+" set default python version
+let g:syntastic_python_python_exec='python3'
 
 " GUI settings
 if has('gui_running')
@@ -122,7 +117,7 @@ if has('gui_running')
   if has('win64') || has('win32')
     set guifont=Consolas:h10
   else
-    set guifont=Ubuntu\ Mono\ 11
+    set guifont=Fira\ Code:h14
   endif
 endif
 "------End general configuration------"

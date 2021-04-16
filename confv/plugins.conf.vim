@@ -21,7 +21,7 @@ let g:NERDDefaultAlign='left'
 let g:NERDCustomDelimiters={ 'c': { 'left': '/**','right': '*/' } }
 let g:NERDTreeChDirMode=2
 let g:NERDTreeShowBookmarks=1
-let g:NERDTreeWinPos='right'
+let g:NERDTreeWinPos='left'
 
 " NERDTree Commenter
 let g:NERDSpaceDelims=1
