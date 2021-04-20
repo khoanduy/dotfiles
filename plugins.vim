@@ -8,7 +8,6 @@ endif
 " Make sure you use single quotes
 Plug 'scrooloose/nerdtree'
 Plug 'scrooloose/nerdcommenter'
-Plug 'morhetz/gruvbox'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'tpope/vim-fugitive'
@@ -23,7 +22,6 @@ Plug 'roxma/nvim-yarp'
 Plug 'roxma/vim-hug-neovim-rpc'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
-Plug 'rust-lang/rust.vim'
 
 " Initialize plugin system
 call plug#end()
