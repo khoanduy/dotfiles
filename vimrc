@@ -47,13 +47,14 @@ set showmode
 set showcmd
 
 " Theme, color scheme
-" set background=light cursorline termguicolors
+set background=dark cursorline
 syntax enable
 set t_Co=256
 highlight Normal ctermbg=NONE
 highlight Normal guibg=NONE
+colorscheme gruvbox
 let g:rehash256=1
-let g:airline_theme='sol'
+let g:airline_theme='gruvbox'
 
 " Fixes common backspace problems
 set backspace=indent,eol,start
