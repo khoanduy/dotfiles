@@ -47,6 +47,7 @@ set showmode
 set showcmd
 
 " Theme, color scheme
+" set termguicolors
 set background=dark cursorline
 syntax enable
 set t_Co=256
@@ -101,8 +102,8 @@ set hlsearch
 set matchpairs+=<:>
 
 " Re-size split windows using arrow keys
-nnoremap <Up> :resize +2<CR>
-nnoremap <Down> :resize -2<CR>
+nnoremap <Up> :resize -2<CR>
+nnoremap <Down> :resize +2<CR>
 nnoremap <Left> :vertical resize +2<CR>
 nnoremap <Right> :vertical resize -2<CR>
 
