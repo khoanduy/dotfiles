@@ -107,6 +107,12 @@ nnoremap <Down> :resize +2<CR>
 nnoremap <Left> :vertical resize +2<CR>
 nnoremap <Right> :vertical resize -2<CR>
 
+" Remap switch buffers keys
+nmap <leader>bn :bn<CR>
+nmap <leader>bp :bp<CR>
+nmap <leader>bd :bd<CR>
+nmap <leader>bb :buffers<CR>:b<space>
+
 " set default python version
 let g:syntastic_python_python_exec='python3'
 
