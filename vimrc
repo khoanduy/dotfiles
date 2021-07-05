@@ -113,6 +113,9 @@ nmap <leader>bp :bp<CR>
 nmap <leader>bd :bd<CR>
 nmap <leader>bb :buffers<CR>:b<space>
 
+" Search current marked text
+vnoremap // y/\V<C-R>=escape(@",'/\')<CR><CR>
+
 " set default python version
 let g:syntastic_python_python_exec='python3'
 
