@@ -11,11 +11,11 @@ if has('win64') || has('win32')
   source ~/vimfiles/confv/java.conf.vim
   source ~/vimfiles/confv/python.conf.vim
 else
-  source ~/.vim/plugins.vim
-  source ~/.vim/confv/plugins.conf.vim
-  source ~/.vim/confv/cc.conf.vim
-  source ~/.vim/confv/java.conf.vim
-  source ~/.vim/confv/python.conf.vim
+  source ~/.config/nvim/plugins.vim
+  source ~/.config/nvim/confv/plugins.conf.vim
+  source ~/.config/nvim/confv/cc.conf.vim
+  source ~/.config/nvim/confv/java.conf.vim
+  source ~/.config/nvim/confv/python.conf.vim
 endif
 "--------End Load vim configuration files--------"
 
