@@ -69,4 +69,10 @@ let g:UltiSnipsExpandTrigger="<tab>"
 " let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 " If you want :UltiSnipsEdit to split your window.
 let g:UltiSnipsEditSplit="vertical""
+
+" Jedi-vim
+" Disable autocompletion, because we use deoplete for completion
+let g:jedi#completions_enabled=0
+" Open the go-to function in split, not another buffer
+let g:jedi#use_splits_not_buffers = "right"
 "------End plugins config------"

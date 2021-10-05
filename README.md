@@ -26,6 +26,13 @@ After successfully installed `pip`, use it to install `pynvim` and you're good t
 $ pip install pynvim
 ```
 
+## Language-specific settings
+Python essential packages:
+```shell script
+$ pip install jedi
+$ pip install yapf
+```
+
 ## Additional options
 If you want to use a tagging system, install `ctags` and remember to create a ctags database by running `ctags -R` at your project root in the terminal.
 
