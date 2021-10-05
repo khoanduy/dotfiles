@@ -1,9 +1,5 @@
 " Specify a directory for plugins
-if has('win64') || has('win32')
-  call plug#begin('~/vimfiles/plugged')
-else
-  call plug#begin('~/.vim/plugged')
-endif
+call plug#begin('~/.vim/plugged')
 
 " Make sure you use single quotes
 Plug 'scrooloose/nerdtree'

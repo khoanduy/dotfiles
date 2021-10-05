@@ -4,19 +4,11 @@
 set nocompatible
 
 "--------Load vim configuration files--------"
-if has('win64') || has('win32')
-  source ~/vimfiles/plugins.vim
-  source ~/vimfiles/confv/plugins.conf.vim
-  source ~/vimfiles/confv/cc.conf.vim
-  source ~/vimfiles/confv/java.conf.vim
-  source ~/vimfiles/confv/python.conf.vim
-else
-  source ~/.config/nvim/plugins.vim
-  source ~/.config/nvim/confv/plugins.conf.vim
-  source ~/.config/nvim/confv/cc.conf.vim
-  source ~/.config/nvim/confv/java.conf.vim
-  source ~/.config/nvim/confv/python.conf.vim
-endif
+source ~/.config/nvim/plugins.vim
+source ~/.config/nvim/confv/plugins.conf.vim
+source ~/.config/nvim/confv/cc.conf.vim
+source ~/.config/nvim/confv/java.conf.vim
+source ~/.config/nvim/confv/python.conf.vim
 "--------End Load vim configuration files--------"
 
 "------General configuration------"
@@ -124,11 +116,7 @@ if has('gui_running')
   " Cursor
   set guicursor+=i:blinkwait700-blinkon400-blinkoff250
   set guioptions-=T
-  if has('win64') || has('win32')
-    set guifont=Consolas:h10
-  else
-    set guifont=Fira\ Code:h14
-  endif
+  set guifont=Fira\ Code:h14
 endif
 "------End general configuration------"
 
