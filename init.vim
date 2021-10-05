@@ -101,6 +101,7 @@ nnoremap <Right> :vertical resize -2<CR>
 nmap <leader>bn :bn<CR>
 nmap <leader>bp :bp<CR>
 nmap <leader>bd :bd<CR>
+nmap <leader>bw :bw<CR>
 nmap <leader>bb :buffers<CR>:b<space>
 
 " Search current marked text
