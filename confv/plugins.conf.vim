@@ -75,4 +75,7 @@ let g:UltiSnipsEditSplit="vertical""
 let g:jedi#completions_enabled=0
 " Open the go-to function in split, not another buffer
 let g:jedi#use_splits_not_buffers = "right"
+
+" Vim auto format
+noremap <leader>af :Autoformat<CR>
 "------End plugins config------"
