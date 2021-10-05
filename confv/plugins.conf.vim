@@ -39,14 +39,6 @@ set completeopt-=preview
 " GitGutter
 let g:gitgutter_max_signs=2000
 
-" CtrlP
-let g:ctrlp_map='<leader>ff'
-let g:ctrlp_cmd='CtrlP'
-" Default search in current directory CtrlP
-let g:ctrlp_working_path_mode='ra'
-let g:ctrlp_custom_ignore='build\|target\|__pycache__\|node_modules\|.DS_Store\|.git\|images\'
-let g:ctrlp_max_files=20000
-
 " UltiSnips
 " Trigger configuration.
 let g:UltiSnipsExpandTrigger="<tab>"
@@ -55,8 +47,17 @@ let g:UltiSnipsExpandTrigger="<tab>"
 " If you want :UltiSnipsEdit to split your window.
 let g:UltiSnipsEditSplit="vertical""
 
+" Floatterm
+let g:floaterm_keymap_new='<leader>tc'
+let g:floaterm_keymap_prev='<leader>tp'
+let g:floaterm_keymap_next='<leader>tn'
+let g:floaterm_keymap_toggle='<leader>tt'
+let g:floaterm_width=0.8
+let g:floaterm_height=0.8
+
 " fzf
 noremap <leader>fa :Ag<CR>
+noremap <leader>ff :FZF<CR>
 
 " CoC
 let g:coc_global_extensions=['coc-python', 'coc-java', 'coc-sql', 'coc-tslint-plugin', 'coc-tsserver', 'coc-css', 'coc-html', 'coc-json', 'coc-prettier']
