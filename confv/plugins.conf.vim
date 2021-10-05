@@ -51,17 +51,6 @@ let g:ctrlp_max_files=20000
 nmap <leader>fa <Plug>CtrlSFPrompt
 vmap <leader>fa <Plug>CtrlSFVwordPath
 
-" Ale
-" Error and warning signs.
-let g:ale_sign_error='»'
-let g:ale_sign_warning='¤'
-" Error lines limit
-let g:ale_list_window_size=6
-
-" Deoplete
-let g:deoplete#enable_at_startup=1
-let g:ale_completion_enabled=1
-
 " UltiSnips
 " Trigger configuration.
 let g:UltiSnipsExpandTrigger="<tab>"
@@ -70,12 +59,28 @@ let g:UltiSnipsExpandTrigger="<tab>"
 " If you want :UltiSnipsEdit to split your window.
 let g:UltiSnipsEditSplit="vertical""
 
-" Jedi-vim
-" Disable autocompletion, because we use deoplete for completion
-let g:jedi#completions_enabled=0
-" Open the go-to function in split, not another buffer
-let g:jedi#use_splits_not_buffers = "right"
+" CoC
+let g:coc_global_extensions=['coc-python', 'coc-tslint-plugin', 'coc-tsserver', 'coc-css', 'coc-html', 'coc-json', 'coc-prettier']
+inoremap <silent><expr> <C-space> coc#refresh()
 
-" Vim auto format
-noremap <leader>af :Autoformat<CR>
+nmap <silent> [c <Plug>(coc-diagnostic-prev)
+nmap <silent> ]c <Plug>(coc-diagnostic-next)
+
+nmap <silent> gd :call CocActionAsync('jumpDefinition', 'vsplit')<CR>
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
+nmap <leader>fb <Plug>(coc-format)
+vmap <leader>fb <Plug>(coc-format-selected)
+
+nnoremap <leader>doc :call <SID>show_documentation()<CR>
+
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
 "------End plugins config------"
