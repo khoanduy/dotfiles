@@ -47,10 +47,6 @@ let g:ctrlp_working_path_mode='ra'
 let g:ctrlp_custom_ignore='build\|target\|__pycache__\|node_modules\|.DS_Store\|.git\|images\'
 let g:ctrlp_max_files=20000
 
-" CtrlSF
-nmap <leader>fa <Plug>CtrlSFPrompt
-vmap <leader>fa <Plug>CtrlSFVwordPath
-
 " UltiSnips
 " Trigger configuration.
 let g:UltiSnipsExpandTrigger="<tab>"
@@ -58,6 +54,9 @@ let g:UltiSnipsExpandTrigger="<tab>"
 " let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 " If you want :UltiSnipsEdit to split your window.
 let g:UltiSnipsEditSplit="vertical""
+
+" fzf
+noremap <leader>fa :Ag<CR>
 
 " CoC
 let g:coc_global_extensions=['coc-python', 'coc-java', 'coc-sql', 'coc-tslint-plugin', 'coc-tsserver', 'coc-css', 'coc-html', 'coc-json', 'coc-prettier']

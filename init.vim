@@ -3,13 +3,11 @@
 " Don't try to be vi compatible
 set nocompatible
 
-"--------Load vim configuration files--------"
+"--------Load nvim configuration files--------"
 source ~/.config/nvim/plugins.vim
 source ~/.config/nvim/confv/plugins.conf.vim
-source ~/.config/nvim/confv/cc.conf.vim
-source ~/.config/nvim/confv/java.conf.vim
-source ~/.config/nvim/confv/python.conf.vim
-"--------End Load vim configuration files--------"
+source ~/.config/nvim/confv/language.conf.vim
+"--------End Load nvim configuration files--------"
 
 "------General configuration------"
 

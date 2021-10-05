@@ -11,6 +11,7 @@ $ nvim ~/.config/nvim/plugins.vim
 
 ## Additional options
 If you want to use a tagging system, install `ctags` and remember to create a ctags database by running `ctags -R` at your project root in the terminal.
+You might need to install these packages as well: [The Silver Searcher (ag)](https://github.com/ggreer/the_silver_searcher), [bat](https://github.com/sharkdp/bat)
 
 ## References
 [Neovim](https://neovim.io/)\
