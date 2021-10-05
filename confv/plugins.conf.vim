@@ -60,7 +60,7 @@ let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsEditSplit="vertical""
 
 " CoC
-let g:coc_global_extensions=['coc-python', 'coc-tslint-plugin', 'coc-tsserver', 'coc-css', 'coc-html', 'coc-json', 'coc-prettier']
+let g:coc_global_extensions=['coc-python', 'coc-java', 'coc-sql', 'coc-tslint-plugin', 'coc-tsserver', 'coc-css', 'coc-html', 'coc-json', 'coc-prettier']
 inoremap <silent><expr> <C-space> coc#refresh()
 
 nmap <silent> [c <Plug>(coc-diagnostic-prev)
