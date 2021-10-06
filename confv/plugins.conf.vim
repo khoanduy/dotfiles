@@ -39,14 +39,6 @@ set completeopt-=preview
 " GitGutter
 let g:gitgutter_max_signs=2000
 
-" UltiSnips
-" Trigger configuration.
-let g:UltiSnipsExpandTrigger="<tab>"
-" let g:UltiSnipsJumpForwardTrigger="<c-b>"
-" let g:UltiSnipsJumpBackwardTrigger="<c-z>"
-" If you want :UltiSnipsEdit to split your window.
-let g:UltiSnipsEditSplit="vertical""
-
 " Floatterm
 let g:floaterm_keymap_new='<leader>tc'
 let g:floaterm_keymap_prev='<leader>tp'

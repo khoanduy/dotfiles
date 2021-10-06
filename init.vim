@@ -91,6 +91,8 @@ set hlsearch
 " Highlight matching pairs of brackets. Use the '%' character to jump between them.
 set matchpairs+=<:>
 
+nnoremap <leader>w <C-w>
+
 " Re-size split windows using arrow keys
 nnoremap <Up> :resize -2<CR>
 nnoremap <Down> :resize +2<CR>
