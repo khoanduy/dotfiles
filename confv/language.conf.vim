@@ -11,4 +11,6 @@ autocmd FileType java setlocal tabstop=4 shiftwidth=4 softtabstop=4 shiftwidth=4
 autocmd FileType javascript setlocal tabstop=2 shiftwidth=2 softtabstop=2 shiftwidth=2 et
 autocmd FileType html setlocal tabstop=2 shiftwidth=2 softtabstop=2 shiftwidth=2 et
 autocmd FileType css setlocal tabstop=2 shiftwidth=2 softtabstop=2 shiftwidth=2 et
+
+autocmd FileType rust nnoremap <leader>fb :RustFmt<CR>
 "------End language-specific configuration------"
