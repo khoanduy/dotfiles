@@ -6,6 +6,7 @@ Make sure `neovim` is installed. Clone repository to `~/.config/nvim` then open 
 ```shell script
 $ git clone https://github.com/larrng/vimrc.git ~/.config/nvim
 $ nvim ~/.config/nvim/plugins.vim
+$ cp -r ~/.config/nvim/autoload ~/.vim/plugged
 :PlugInstall
 ```
 
