@@ -1,5 +1,5 @@
 " Specify a directory for plugins
-call plug#begin('~/.vim/plugged')
+call plug#begin()
 
 " Make sure you use single quotes
 Plug 'scrooloose/nerdtree'
