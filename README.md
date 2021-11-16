@@ -4,7 +4,7 @@ NOTED: These are my personal configuration files, which could be changed as I de
 ## Installation
 Make sure `neovim` is installed. Clone repository to `~/.config/nvim` then open `plugins.vim` (ignore all the errors) and run `:PlugInstall`
 ```shell script
-$ git clone https://github.com/larrng/vimrc.git ~/.config/nvim
+$ git clone https://github.com/khoadnse/vimrc.git ~/.config/nvim
 $ nvim ~/.config/nvim/plugins.vim
 :PlugInstall
 ```
