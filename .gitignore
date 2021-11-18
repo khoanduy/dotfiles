@@ -1,3 +1,18 @@
-.DS_Store
-plugged/
-.netrwhist
+# Ignore everything
+*
+
+# Repository files
+!.gitignore
+!README.md
+!LICENSE
+
+# ZSH
+!.zshrc
+
+# Alacritty and NeoVim
+!.config/alacritty/
+!.config/nvim/
+.config/nvim/plugged
+
+# tmux
+!.tmux.conf

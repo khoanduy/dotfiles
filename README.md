@@ -1,10 +1,10 @@
-# vimscript
+# dotfiles
 NOTED: These are my personal configuration files, which could be changed as I develop my environment across multiple systems.
 
 ## Installation
-Make sure `neovim` is installed. Clone repository to `~/.config/nvim` then open `plugins.vim` (ignore all the errors) and run `:PlugInstall`
+Make sure `neovim`, `alacritty` and `tmux` are installed. Clone repository to `~/.config` then open `~/.config/nvim/plugins.vim` (ignore all the errors) and run `:PlugInstall`
 ```shell script
-$ git clone https://github.com/knasync/vimrc.git ~/.config/nvim
+$ git clone https://github.com/knasync/dotfiles.git ~/.config
 $ nvim ~/.config/nvim/plugins.vim
 :PlugInstall
 ```
@@ -14,6 +14,8 @@ If you want to use a tagging system, install `ctags` and remember to create a ct
 You might need to install these packages as well: [The Silver Searcher (ag)](https://github.com/ggreer/the_silver_searcher), [bat](https://github.com/sharkdp/bat)
 
 ## References
+[Alacritty](https://github.com/alacritty/alacritty)\
+[tmux](https://github.com/tmux/tmux)\
 [Neovim](https://neovim.io/)\
 [vim-plug](https://github.com/junegunn/vim-plug)\
 [VimAwesome](https://vimawesome.com/)
