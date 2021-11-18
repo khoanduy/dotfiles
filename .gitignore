@@ -1,5 +1,6 @@
 # Ignore everything
 *
+# except
 
 # Repository files
 !.gitignore
@@ -9,10 +10,8 @@
 # ZSH
 !.zshrc
 
-# Alacritty and NeoVim
-!.config/alacritty/
-!.config/nvim/
-.config/nvim/plugged
+# .config
+!/.config/
 
 # tmux
 !.tmux.conf
