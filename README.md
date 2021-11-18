@@ -2,9 +2,11 @@
 NOTED: These are my personal configuration files, which could be changed as I develop my environment across multiple systems.
 
 ## Installation
-Make sure `neovim`, `alacritty` and `tmux` are installed. Clone repository to `~` then open `~/.config/nvim/plugins.vim` (ignore all the errors) and run `:PlugInstall`
+Make sure `neovim`, `alacritty` and `tmux` are installed. Clone repository and copy all files to your home folder then open `~/.config/nvim/plugins.vim` (ignore all the errors) and run `:PlugInstall`
 ```shell script
-$ git clone https://github.com/knasync/dotfiles.git ~
+$ git clone https://github.com/knasync/dotfiles.git
+$ cp -R ~/dotfiles/* ~
+$ cp -R ~/dotfiles/.* ~
 $ nvim ~/.config/nvim/plugins.vim
 :PlugInstall
 ```
