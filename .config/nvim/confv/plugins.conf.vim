@@ -80,4 +80,12 @@ endfunction
 " vimspector
 let g:vimspector_enable_mappings='HUMAN'
 let g:vimspector_bottombar_height=10
+
+nmap <leader>dl :call vimspector#Launch()<CR>
+nmap <leader>dx :VimspectorReset<CR>
+nmap <leader>de :VimspectorEval
+nmap <leader>dw :VimspectorWatch
+nmap <leader>do :VimspectorShowOutput
+
+let g:vimspector_install_gadgets = ['debugpy', 'CodeLLDB', 'vscode-cpptools', 'vscode-java-debug']
 "------End plugins config------"
