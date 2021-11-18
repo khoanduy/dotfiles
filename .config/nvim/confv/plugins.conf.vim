@@ -50,6 +50,7 @@ let g:floaterm_height=0.8
 " fzf
 noremap <leader>fa :Ag<CR>
 noremap <leader>ff :GFiles<CR>
+noremap <leader>fz :FZF<CR>
 
 " CoC
 let g:coc_global_extensions=['coc-rust-analyzer', 'coc-python', 'coc-java', 'coc-sql', 'coc-tslint-plugin', 'coc-tsserver', 'coc-css', 'coc-html', 'coc-json', 'coc-prettier']
@@ -75,4 +76,7 @@ function! s:show_documentation()
     call CocAction('doHover')
   endif
 endfunction
+
+" vimspector
+let g:vimspector_enable_mappings='HUMAN'
 "------End plugins config------"
