@@ -2,5 +2,7 @@
   "diagnostic.errorSign": "✘",
   "diagnostic.warningSign": "»",
   "diagnostic.infoSign": "¤",
-  "diagnostic.checkCurrentLine": true
+  "diagnostic.checkCurrentLine": true,
+  "rust-analyzer.debug.runtime": "vimspector",
+  "rust-analyzer.debug.vimspector.configuration.name": "rust-lldb"
 }
