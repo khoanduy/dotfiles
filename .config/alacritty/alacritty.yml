@@ -14,10 +14,10 @@ scrolling:
 
 font:
   normal:
-    family: "Source Code Pro"
+    family: "Ubuntu Mono"
     style: Regular
 
-  size: 14
+  size: 12
 
   offset:
     x: 0
