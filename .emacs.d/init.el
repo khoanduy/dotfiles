@@ -1,5 +1,5 @@
 ;;; init.el -- My Emacs configuration
-;-*-Emacs-Lisp-*-
+                                        ;-*-Emacs-Lisp-*-
 
 ;;; Commentary:
 ;;
@@ -46,9 +46,10 @@
   (scroll-bar-mode -1))
 
 (show-paren-mode 1)
-(setq show-paren-delay 0)
+(global-hl-line-mode t)
 
 (setq-default indent-tabs-mode nil)
+(setq frame-title-format "%f")
 
 (setq tab-width 4)
 (setq make-backup-files nil)
@@ -60,6 +61,13 @@
   :ensure t
   :config
   (load-theme 'gruvbox-dark-medium t))
+
+(use-package exec-path-from-shell
+  :ensure t
+  :defer t
+  :config
+  (when (memq window-system '(mac ns))
+    (exec-path-from-shell-initialize)))
 
 (use-package which-key
   :ensure t
@@ -79,14 +87,14 @@
          ("C-x C-f" . helm-find-files)
          ("C-x b" . helm-mini)
          :map helm-map
-           ("<tab>" . helm-execute-persistent-action)
-           ("C-i" . helm-execute-persistent-action)
-           ("C-z" . helm-select-action))
+         ("<tab>" . helm-execute-persistent-action)
+         ("C-i" . helm-execute-persistent-action)
+         ("C-z" . helm-select-action))
   :config
   (setq helm-buffers-fuzzy-matching t)
   (setq helm-M-x-fuzzy-match t)
   (setq helm-recentf-fuzzy-match t)
-  (setq helm-split-window-in-side-p t)
+  (setq helm-split-window-inside-p t)
   (setq helm-move-to-line-cycle-in-source t)
   (setq helm-ff-file-name-history-use-recentf t)
   (setq helm-ff-search-library-in-sexp t)
@@ -164,16 +172,5 @@
   :ensure t
   :config (minions-mode 1))
 
-; (use-package dap-gdb-lldb
-;   :ensure t)
-
-; (use-package dap-java
-;   :ensure t)
-
-; (use-package dap-go
-;   :ensure t)
-
-; (use-package dap-python
-;   :ensure t)
-
+(provide 'init)
 ;;; init.el ends here
