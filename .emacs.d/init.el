@@ -34,6 +34,8 @@
 (set-face-attribute 'default nil :font "Ubuntu Mono-12")
 
 ;; Essential settings
+(add-to-list 'default-frame-alist '(fullscreen . maximized))
+
 (setq inhibit-splash-screen t
       inhibit-startup-message t
       inhibit-startup-echo-area-message t)
@@ -46,18 +48,24 @@
 (global-hl-line-mode t)
 
 (setq-default indent-tabs-mode nil)
-(setq frame-title-format "%f")
+(setq frame-title-format `(,(user-login-name) "@" ,(system-name) " - " global-mode-string "%f" ))
 
 (setq tab-width 4)
 (setq make-backup-files nil)
 
+(setq visible-bell 1)
 (global-display-line-numbers-mode)
 
 ;; Packages configuration
-(use-package gruvbox-theme
+(use-package doom-themes
   :ensure t
   :config
-  (load-theme 'gruvbox-dark-medium t))
+  (setq doom-themes-enable-bold t
+        doom-themes-enable-italic nil)
+  (load-theme 'doom-gruvbox t)
+  (doom-themes-visual-bell-config)
+  (doom-themes-treemacs-config)
+  (setq doom-themes-treemacs-enable-variable-pitch nil))
 
 (use-package exec-path-from-shell
   :ensure t
@@ -71,6 +79,34 @@
   :defer t
   :config
   (which-key-mode t))
+
+(use-package all-the-icons
+  :if (display-graphic-p))
+
+(use-package all-the-icons-dired
+  :if (display-graphic-p))
+
+(use-package doom-modeline
+  :ensure t
+  :init (doom-modeline-mode 1)
+  :custom
+  (doom-modeline-height 20)
+  (doom-modeline-bar-width 1)
+  (doom-modeline-icon t)
+  (doom-modeline-project-detection 'auto)
+  (doom-modeline-buffer-file-name-style 'truncate-upto-project)
+  (doom-modeline-icon (display-graphic-p))
+  (doom-modeline-major-mode-icon t)
+  (doom-modeline-major-mode-color-icon t)
+  (doom-modeline-buffer-state-icon t)
+  (doom-modeline-buffer-modification-icon t)
+  (doom-modeline-minor-modes nil)
+  (doom-modeline-buffer-encoding t)
+  (doom-modeline-checker-simple-format t)
+  (doom-modeline-vcs-max-length 12)
+  (doom-modeline-env-version t)
+  (doom-modeline-irc-stylize 'identity)
+  (doom-modeline-indent-info t))
 
 (use-package treemacs
   :ensure t
@@ -237,6 +273,8 @@
          (java-mode . lsp-deferred)
          (lsp-mode . lsp-enable-which-key-integration))
   :commands (lsp lsp-deferred)
+  :custom
+  (lsp-headerline-breadcrumb-enable nil)
   :config
   (setq lsp-idle-delay 0.1)
   (setq lsp-modeline-diagnostics-enable t)
@@ -270,10 +308,6 @@
   (dap-tooltip-mode 1)
   (tooltip-mode 1)
   (dap-ui-controls-mode 1))
-
-(use-package mood-line
-  :ensure t
-  :config (mood-line-mode))
 
 (use-package minions
   :ensure t
