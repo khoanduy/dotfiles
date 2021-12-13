@@ -93,7 +93,7 @@
   (all-the-icons-scale-factor 1)
   (doom-modeline-icon t)
   (doom-modeline-project-detection 'auto)
-  (doom-modeline-buffer-file-name-style 'truncate-upto-project)
+  (doom-modeline-buffer-file-name-style 'truncate-with-project)
   (doom-modeline-icon (display-graphic-p))
   (doom-modeline-major-mode-icon t)
   (doom-modeline-major-mode-color-icon t)
