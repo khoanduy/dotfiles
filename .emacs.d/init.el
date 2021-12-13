@@ -70,6 +70,7 @@
   :ensure t
   :if (memq window-system '(mac ns))
   :config
+  (setq exec-path-from-shell-shell-name "zsh")
   (setq exec-path-from-shell-variables '("PATH"))
   (exec-path-from-shell-initialize))
 
@@ -77,6 +78,11 @@
   :ensure t
   :config
   (which-key-mode))
+
+(use-package recentf
+  :ensure t
+  :config
+  (recentf-mode t))
 
 (use-package all-the-icons
   :if (display-graphic-p))
@@ -307,7 +313,9 @@
   :defer t
   :commands lsp-ui-mode
   :custom
-  lsp-ui-sideline-enable nil)
+  (lsp-ui-peek-always-show t)
+  (lsp-ui-sideline-show-hover t)
+  (lsp-ui-sideline-enable nil))
 
 (use-package helm-lsp
   :ensure t
