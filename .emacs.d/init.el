@@ -60,12 +60,11 @@
 (use-package doom-themes
   :ensure t
   :config
-  (setq doom-themes-enable-bold t
-        doom-themes-enable-italic nil)
-  (load-theme 'doom-gruvbox t)
+  (load-theme 'doom-vibrant t)
   (doom-themes-visual-bell-config)
-  (doom-themes-treemacs-config)
-  (setq doom-themes-treemacs-enable-variable-pitch nil))
+  :custom
+  (doom-themes-enable-bold t)
+  (doom-themes-enable-italic nil))
 
 (use-package exec-path-from-shell
   :ensure t
@@ -90,8 +89,8 @@
   :ensure t
   :init (doom-modeline-mode 1)
   :custom
-  (doom-modeline-height 20)
-  (doom-modeline-bar-width 1)
+  (doom-modeline-height 26)
+  (all-the-icons-scale-factor 1)
   (doom-modeline-icon t)
   (doom-modeline-project-detection 'auto)
   (doom-modeline-buffer-file-name-style 'truncate-upto-project)
@@ -181,12 +180,13 @@
     (treemacs-hide-gitignored-files-mode nil))
   :bind
   (:map global-map
-        ("M-0"       . treemacs-select-window)
-        ("C-x t 1"   . treemacs-delete-other-windows)
-        ("C-x t t"   . treemacs)
-        ("C-x t B"   . treemacs-bookmark)
-        ("C-x t C-t" . treemacs-find-file)
-        ("C-x t M-t" . treemacs-find-tag)))
+        ("C-c t s"   . treemacs-select-window)
+        ("C-c t 1"   . treemacs-delete-other-windows)
+        ("C-c t t"   . treemacs)
+        ("C-c t p"   . treemacs-display-current-project-exclusively)
+        ("C-c t b"   . treemacs-bookmark)
+        ("C-c t C-f" . treemacs-find-file)
+        ("C-c t C-t" . treemacs-find-tag)))
 
 (use-package treemacs-projectile
   :after (treemacs projectile)
@@ -264,6 +264,9 @@
   (define-key company-active-map (kbd "C-p") 'company-select-previous)
   (global-company-mode))
 
+(use-package lsp-java
+  :ensure t)
+
 (use-package lsp-mode
   :ensure t
   :init
@@ -296,6 +299,7 @@
 (use-package lsp-treemacs
   :ensure t
   :defer t
+  :commands lsp-treemacs-errors-list
   :config (lsp-treemacs-sync-mode 1))
 
 (use-package dap-mode
@@ -303,6 +307,7 @@
   :defer t
   :config
   (require 'dap-cpptools)
+  (require 'dap-java)
   (dap-mode 1)
   (dap-ui-mode 1)
   (dap-tooltip-mode 1)
