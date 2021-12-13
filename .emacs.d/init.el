@@ -48,7 +48,7 @@
 (global-hl-line-mode t)
 
 (setq-default indent-tabs-mode nil)
-(setq frame-title-format `(,(user-login-name) "@" ,(system-name) " - " global-mode-string "%f" ))
+(setq frame-title-format "%f")
 
 (setq tab-width 4)
 (setq make-backup-files nil)
