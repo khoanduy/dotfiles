@@ -10,8 +10,8 @@
 # ZSH
 !.zshrc
 
-# .config
-!/.config/
+# VIM config
+!.vimrc
 
 # tmux
 !.tmux.conf

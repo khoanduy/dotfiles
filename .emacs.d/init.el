@@ -264,6 +264,10 @@
   (define-key company-active-map (kbd "C-p") 'company-select-previous)
   (global-company-mode))
 
+(use-package yaml-mode
+  :ensure t
+  :mode "\\(?:\\(?:\\.y\\(?:a?ml\\)\\)\\)\\'")
+
 (use-package lsp-java
   :ensure t)
 

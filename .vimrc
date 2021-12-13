@@ -3,12 +3,6 @@
 " Don't try to be vi compatible
 set nocompatible
 
-"--------Load nvim configuration files--------"
-source ~/.config/nvim/plugins.vim
-source ~/.config/nvim/confv/plugins.conf.vim
-source ~/.config/nvim/confv/language.conf.vim
-"--------End Load nvim configuration files--------"
-
 "------General configuration------"
 
 " Helps force plug-ins to load correctly when it is turned back on below.
@@ -43,9 +37,7 @@ syntax enable
 set t_Co=256
 highlight Normal ctermbg=NONE
 highlight Normal guibg=NONE
-colorscheme gruvbox
 let g:rehash256=1
-let g:airline_theme='gruvbox'
 
 " Fixes common backspace problems
 set backspace=indent,eol,start
@@ -109,15 +101,15 @@ nmap <leader>bb :buffers<CR>:b<space>
 " Search current marked text
 vnoremap // y/\V<C-R>=escape(@",'/\')<CR><CR>
 
-" set default python version
-let g:syntastic_python_python_exec='python3'
+autocmd FileType c setlocal tabstop=2 shiftwidth=2 softtabstop=2 shiftwidth=2 et
+autocmd FileType cpp setlocal tabstop=2 shiftwidth=2 softtabstop=2 shiftwidth=2 et
 
-" GUI settings
-if has('gui_running')
-  " Cursor
-  set guicursor+=i:blinkwait700-blinkon400-blinkoff250
-  set guioptions-=T
-  set guifont=Fira\ Code:h14
-endif
+autocmd FileType java setlocal tabstop=4 shiftwidth=4 softtabstop=4 shiftwidth=4 et
+autocmd FileType go setlocal tabstop=4 shiftwidth=4 softtabstop=4 shiftwidth=4 et
+autocmd FileType python setlocal tabstop=4 shiftwidth=4 softtabstop=4 shiftwidth=4 et
+
+autocmd FileType javascript setlocal tabstop=2 shiftwidth=2 softtabstop=2 shiftwidth=2 et
+autocmd FileType html setlocal tabstop=2 shiftwidth=2 softtabstop=2 shiftwidth=2 et
+autocmd FileType css setlocal tabstop=2 shiftwidth=2 softtabstop=2 shiftwidth=2 et
 "------End general configuration------"
 
