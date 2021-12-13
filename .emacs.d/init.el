@@ -68,10 +68,10 @@
 
 (use-package exec-path-from-shell
   :ensure t
-  :defer t
+  :if (memq window-system '(mac ns))
   :config
-  (when (memq window-system '(mac ns))
-    (exec-path-from-shell-initialize)))
+  (setq exec-path-from-shell-variables '("PATH"))
+  (exec-path-from-shell-initialize))
 
 (use-package which-key
   :ensure t
