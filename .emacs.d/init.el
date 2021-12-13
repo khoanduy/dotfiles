@@ -90,7 +90,7 @@
   :init (doom-modeline-mode 1)
   :custom
   (doom-modeline-height 26)
-  (all-the-icons-scale-factor 0.9)
+  (all-the-icons-scale-factor 1)
   (doom-modeline-icon t)
   (doom-modeline-project-detection 'auto)
   (doom-modeline-buffer-file-name-style 'truncate-upto-project)
@@ -267,6 +267,16 @@
 (use-package lsp-java
   :ensure t)
 
+(use-package go-mode
+  :ensure t
+  :mode "\\.go\\'")
+
+(use-package elpy
+  :ensure t
+  :defer t
+  :init
+  (advice-add 'python-mode :before 'elpy-enable))
+
 (use-package lsp-mode
   :ensure t
   :init
@@ -274,6 +284,7 @@
   :hook ((c-mode . lsp-deferred)
          (c++-mode . lsp-deferred)
          (java-mode . lsp-deferred)
+         (go-mode . lsp-deferred)
          (lsp-mode . lsp-enable-which-key-integration))
   :commands (lsp lsp-deferred)
   :custom
