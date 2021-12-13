@@ -75,22 +75,22 @@
 
 (use-package which-key
   :ensure t
-  :defer t
   :config
-  (which-key-mode t))
+  (which-key-mode))
 
 (use-package all-the-icons
   :if (display-graphic-p))
 
 (use-package all-the-icons-dired
-  :if (display-graphic-p))
+  :if (display-graphic-p)
+  :hook ((dired-mode . all-the-icons-dired-mode)))
 
 (use-package doom-modeline
   :ensure t
   :init (doom-modeline-mode 1)
   :custom
   (doom-modeline-height 26)
-  (all-the-icons-scale-factor 1)
+  (all-the-icons-scale-factor 0.9)
   (doom-modeline-icon t)
   (doom-modeline-project-detection 'auto)
   (doom-modeline-buffer-file-name-style 'truncate-upto-project)
