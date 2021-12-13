@@ -248,6 +248,9 @@
   :config
   (helm-projectile-on))
 
+(use-package helm-ag
+  :ensure t)
+
 (use-package flycheck
   :ensure t
   :init (global-flycheck-mode))
