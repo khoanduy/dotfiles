@@ -33,9 +33,10 @@
 ;; Font
 (set-face-attribute 'default nil :font "Ubuntu Mono-12")
 
-;; Essential settings
+;; Make emacs fullscreen on startup
 (add-to-list 'default-frame-alist '(fullscreen . maximized))
 
+;; Remove unnecessary toolbars
 (setq inhibit-splash-screen t
       inhibit-startup-message t
       inhibit-startup-echo-area-message t)
@@ -44,19 +45,23 @@
 (when (boundp 'scroll-bar-mode)
   (scroll-bar-mode -1))
 
+;; Highlight line and parenthesis
 (show-paren-mode 1)
 (global-hl-line-mode t)
 
+;; Indent setting
 (setq-default indent-tabs-mode nil)
-(setq frame-title-format "%f")
-
 (setq tab-width 4)
+
+;; No backup files
+(setq frame-title-format "%f")
 (setq make-backup-files nil)
 
+;; Line numbers and disable bell
 (setq visible-bell 1)
 (global-display-line-numbers-mode)
 
-;; Packages configuration
+;; Load theme and mode line theme
 (use-package doom-themes
   :ensure t
   :config
@@ -65,24 +70,6 @@
   :custom
   (doom-themes-enable-bold t)
   (doom-themes-enable-italic nil))
-
-(use-package exec-path-from-shell
-  :ensure t
-  :if (memq window-system '(mac ns))
-  :config
-  (setq exec-path-from-shell-shell-name "zsh")
-  (setq exec-path-from-shell-variables '("PATH"))
-  (exec-path-from-shell-initialize))
-
-(use-package which-key
-  :ensure t
-  :config
-  (which-key-mode))
-
-(use-package recentf
-  :ensure t
-  :config
-  (recentf-mode t))
 
 (use-package all-the-icons
   :if (display-graphic-p))
@@ -113,6 +100,34 @@
   (doom-modeline-irc-stylize 'identity)
   (doom-modeline-indent-info t))
 
+(use-package minions
+  :ensure t
+  :config (minions-mode 1))
+
+;; Utility packages
+(use-package exec-path-from-shell
+  :ensure t
+  :if (memq window-system '(mac ns))
+  :config
+  (setq exec-path-from-shell-shell-name "zsh")
+  (setq exec-path-from-shell-variables '("PATH"))
+  (exec-path-from-shell-initialize))
+
+(use-package which-key
+  :ensure t
+  :config
+  (which-key-mode))
+
+(use-package recentf
+  :ensure t
+  :config
+  (recentf-mode t))
+
+(use-package magit
+  :ensure t
+  :defer t)
+
+;; Project explorer packages
 (use-package treemacs
   :ensure t
   :defer t
@@ -206,10 +221,6 @@
   :after (treemacs magit)
   :ensure t)
 
-(use-package magit
-  :ensure t
-  :defer t)
-
 (use-package helm
   :ensure t
   :demand t
@@ -257,6 +268,7 @@
 (use-package helm-ag
   :ensure t)
 
+;; Syntax checking and auto complete packages
 (use-package flycheck
   :ensure t
   :init (global-flycheck-mode))
@@ -273,6 +285,7 @@
   (define-key company-active-map (kbd "C-p") 'company-select-previous)
   (global-company-mode))
 
+;; Language specific packages
 (use-package yaml-mode
   :ensure t
   :mode "\\(?:\\(?:\\.y\\(?:a?ml\\)\\)\\)\\'")
@@ -339,10 +352,6 @@
   (dap-tooltip-mode 1)
   (tooltip-mode 1)
   (dap-ui-controls-mode 1))
-
-(use-package minions
-  :ensure t
-  :config (minions-mode 1))
 
 (provide 'init)
 ;;; init.el ends here
