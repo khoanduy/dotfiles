@@ -2,11 +2,16 @@
 NOTED: These are my personal configuration files, which could be changed as I develop my environment across multiple systems.
 
 ## Installation
-Make sure `emacs`, `vim` and `tmux` are installed. Clone repository and copy all files to your home folder
+Make sure `alacritty`, `neovim` and `tmux` are installed. Clone repository and copy all files to your home folder
 ```shell script
 $ git clone https://github.com/khoarx/dotfiles.git
 $ cp -R ~/dotfiles/* ~
 $ cp -R ~/dotfiles/.* ~
+```
+Open `~/.config/nvim/plugin.conf.nvim` and execute `:PlugInstall` to install all VIM's plugins:
+```shell script
+$ vim ~/.config/nvim/plugin.conf.nvim
+:PlugInstall
 ```
 
 ## Additional options
@@ -15,5 +20,4 @@ You might need to install these packages as well: [The Silver Searcher (ag)](htt
 
 ## References
 [tmux](https://github.com/tmux/tmux)\
-[emacs](https://www.gnu.org/software/emacs/)\
 [vim](https://www.vim.org/)
