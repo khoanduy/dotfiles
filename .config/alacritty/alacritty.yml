@@ -1,0 +1,82 @@
+live_config_reload: true
+
+shell:
+  program: /usr/bin/zsh
+  args:
+    - -l
+    - -c
+    - "tmux attach || tmux"
+
+window:
+  padding:
+    x: 0
+    y: 0
+  dynamic_padding: true
+  decorations: full
+  startup_mode: Windowed
+
+scrolling:
+  history: 10000
+  multiplier: 5
+
+font:
+  normal:
+    family: "Ubuntu Mono"
+    style: Regular
+
+  size: 12
+
+  offset:
+    x: 0
+    y: 0
+
+  glyph_offset:
+    x: 0
+    y: 0
+
+colors:
+  primary:
+    background: '0x272822'
+    foreground: '0xf8f8f2'
+
+  cursor:
+    text: '0x272822'
+    cursor: '0xf8f8f2'
+
+  normal:
+    black:   '0x272822'
+    red:     '0xf92672'
+    green:   '0xa6e22e'
+    yellow:  '0xf4bf75'
+    blue:    '0x66d9ef'
+    magenta: '0xae81ff'
+    cyan:    '0xa1efe4'
+    white:   '0xf8f8f2'
+
+  bright:
+    black:   '0x75715e'
+    red:     '0xf92672'
+    green:   '0xa6e22e'
+    yellow:  '0xf4bf75'
+    blue:    '0x66d9ef'
+    magenta: '0xae81ff'
+    cyan:    '0xa1efe4'
+    white:   '0xf9f8f5'
+
+  indexed_colors:
+    - { index: 16, color: '0xfd971f' }
+    - { index: 17, color: '0xcc6633' }
+    - { index: 18, color: '0x383830' }
+    - { index: 19, color: '0x49483e' }
+    - { index: 20, color: '0xa59f85' }
+    - { index: 21, color: '0xf5f4f1' }
+
+selection:
+  semantic_escape_chars: ',│`|:"'' ()[]{}<>'
+  save_to_clipboard: false
+
+cursor:
+  style: Block
+  unfocused_hollow: true
+
+alt_send_esc: true

@@ -3,6 +3,10 @@
 " Don't try to be vi compatible
 set nocompatible
 
+"--------Load nvim configuration files--------"
+source ~/.config/nvim/plugin.conf.vim
+"--------End Load nvim configuration files--------"
+
 "------General configuration------"
 
 " Helps force plug-ins to load correctly when it is turned back on below.
@@ -32,7 +36,10 @@ set showcmd
 
 " Theme, color scheme
 syntax enable
-set background=dark
+set termguicolors
+let base16colorspace=256
+colorscheme base16-monokai
+let g:airline_theme='base16'
 
 " Fixes common backspace problems
 set backspace=indent,eol,start
@@ -94,16 +101,5 @@ nmap <leader>bb :buffers<CR>:b<space>
 
 " Search current marked text
 vnoremap // y/\V<C-R>=escape(@",'/\')<CR><CR>
-
-autocmd FileType c setlocal tabstop=2 shiftwidth=2 softtabstop=2 shiftwidth=2 et
-autocmd FileType cpp setlocal tabstop=2 shiftwidth=2 softtabstop=2 shiftwidth=2 et
-
-autocmd FileType java setlocal tabstop=4 shiftwidth=4 softtabstop=4 shiftwidth=4 et
-autocmd FileType go setlocal tabstop=4 shiftwidth=4 softtabstop=4 shiftwidth=4 noet
-autocmd FileType python setlocal tabstop=4 shiftwidth=4 softtabstop=4 shiftwidth=4 et
-
-autocmd FileType javascript setlocal tabstop=2 shiftwidth=2 softtabstop=2 shiftwidth=2 et
-autocmd FileType html setlocal tabstop=2 shiftwidth=2 softtabstop=2 shiftwidth=2 et
-autocmd FileType css setlocal tabstop=2 shiftwidth=2 softtabstop=2 shiftwidth=2 et
 "------End general configuration------"
 
