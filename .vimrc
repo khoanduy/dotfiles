@@ -31,13 +31,8 @@ set showmode
 set showcmd
 
 " Theme, color scheme
-" set termguicolors
-set background=dark cursorline
 syntax enable
-set t_Co=256
-highlight Normal ctermbg=NONE
-highlight Normal guibg=NONE
-let g:rehash256=1
+set background=dark
 
 " Fixes common backspace problems
 set backspace=indent,eol,start
@@ -60,7 +55,7 @@ autocmd BufWritePre * %s/\s\+$//e
 
 " Show line numbers
 set number
-set relativenumber
+set cursorline
 
 " Show file stats
 set ruler
@@ -68,7 +63,6 @@ set splitbelow splitright
 
 " Encoding
 set encoding=utf-8
-set spell spelllang=en_us
 
 " Bell off
 set belloff=all
@@ -105,7 +99,7 @@ autocmd FileType c setlocal tabstop=2 shiftwidth=2 softtabstop=2 shiftwidth=2 et
 autocmd FileType cpp setlocal tabstop=2 shiftwidth=2 softtabstop=2 shiftwidth=2 et
 
 autocmd FileType java setlocal tabstop=4 shiftwidth=4 softtabstop=4 shiftwidth=4 et
-autocmd FileType go setlocal tabstop=4 shiftwidth=4 softtabstop=4 shiftwidth=4 et
+autocmd FileType go setlocal tabstop=4 shiftwidth=4 softtabstop=4 shiftwidth=4 noet
 autocmd FileType python setlocal tabstop=4 shiftwidth=4 softtabstop=4 shiftwidth=4 et
 
 autocmd FileType javascript setlocal tabstop=2 shiftwidth=2 softtabstop=2 shiftwidth=2 et
