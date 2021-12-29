@@ -38,7 +38,7 @@ set showcmd
 syntax enable
 set termguicolors
 let base16colorspace=256
-colorscheme base16-monokai
+colorscheme base16-tomorrow
 let g:airline_theme='base16'
 
 " Fixes common backspace problems

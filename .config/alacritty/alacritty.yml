@@ -36,40 +36,40 @@ font:
 
 colors:
   primary:
-    background: '0x272822'
-    foreground: '0xf8f8f2'
+    background: '0xffffff'
+    foreground: '0x4d4d4c'
 
   cursor:
-    text: '0x272822'
-    cursor: '0xf8f8f2'
+    text: '0xffffff'
+    cursor: '0x4d4d4c'
 
   normal:
-    black:   '0x272822'
-    red:     '0xf92672'
-    green:   '0xa6e22e'
-    yellow:  '0xf4bf75'
-    blue:    '0x66d9ef'
-    magenta: '0xae81ff'
-    cyan:    '0xa1efe4'
-    white:   '0xf8f8f2'
+    black:   '0xffffff'
+    red:     '0xc82829'
+    green:   '0x718c00'
+    yellow:  '0xeab700'
+    blue:    '0x4271ae'
+    magenta: '0x8959a8'
+    cyan:    '0x3e999f'
+    white:   '0x4d4d4c'
 
   bright:
-    black:   '0x75715e'
-    red:     '0xf92672'
-    green:   '0xa6e22e'
-    yellow:  '0xf4bf75'
-    blue:    '0x66d9ef'
-    magenta: '0xae81ff'
-    cyan:    '0xa1efe4'
-    white:   '0xf9f8f5'
+    black:   '0x8e908c'
+    red:     '0xc82829'
+    green:   '0x718c00'
+    yellow:  '0xeab700'
+    blue:    '0x4271ae'
+    magenta: '0x8959a8'
+    cyan:    '0x3e999f'
+    white:   '0x1d1f21'
 
   indexed_colors:
-    - { index: 16, color: '0xfd971f' }
-    - { index: 17, color: '0xcc6633' }
-    - { index: 18, color: '0x383830' }
-    - { index: 19, color: '0x49483e' }
-    - { index: 20, color: '0xa59f85' }
-    - { index: 21, color: '0xf5f4f1' }
+    - { index: 16, color: '0xf5871f' }
+    - { index: 17, color: '0xa3685a' }
+    - { index: 18, color: '0xe0e0e0' }
+    - { index: 19, color: '0xd6d6d6' }
+    - { index: 20, color: '0x969896' }
+    - { index: 21, color: '0x282a2e' }
 
 selection:
   semantic_escape_chars: ',│`|:"'' ()[]{}<>'
