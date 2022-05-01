@@ -37,9 +37,8 @@ set showcmd
 " Theme, color scheme
 syntax enable
 set termguicolors
-let base16colorspace=256
-colorscheme base16-monokai
-let g:airline_theme='base16'
+colorscheme gruvbox
+let g:airline_theme='gruvbox'
 
 " Fixes common backspace problems
 set backspace=indent,eol,start

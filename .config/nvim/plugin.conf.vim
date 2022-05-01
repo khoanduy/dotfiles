@@ -6,7 +6,7 @@ call plug#begin()
 " Make sure you use single quotes
 Plug 'scrooloose/nerdtree'
 Plug 'scrooloose/nerdcommenter'
-Plug 'chriskempson/base16-vim'
+Plug 'morhetz/gruvbox'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'voldikss/vim-floaterm'
@@ -16,7 +16,6 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'jiangmiao/auto-pairs'
 Plug 'airblade/vim-gitgutter'
-Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 
 " Initialize plugin system
 call plug#end()
@@ -75,7 +74,7 @@ noremap <leader>ff :GFiles<CR>
 noremap <leader>fz :FZF<CR>
 
 " CoC
-let g:coc_global_extensions=['coc-go', 'coc-rust-analyzer', 'coc-python', 'coc-java', 'coc-sql', 'coc-tslint-plugin', 'coc-tsserver', 'coc-css', 'coc-html', 'coc-json', 'coc-prettier']
+let g:coc_global_extensions=['coc-rust-analyzer', 'coc-python', 'coc-sql', 'coc-tslint-plugin', 'coc-tsserver', 'coc-css', 'coc-html', 'coc-json', 'coc-prettier']
 inoremap <silent><expr> <C-space> coc#refresh()
 
 nmap <silent> [c <Plug>(coc-diagnostic-prev)
