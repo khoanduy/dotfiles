@@ -74,7 +74,7 @@ noremap <leader>ff :GFiles<CR>
 noremap <leader>fz :FZF<CR>
 
 " CoC
-let g:coc_global_extensions=['coc-rust-analyzer', 'coc-pyright', 'coc-sql', 'coc-tslint-plugin', 'coc-tsserver', 'coc-css', 'coc-html', 'coc-json', 'coc-prettier']
+let g:coc_global_extensions=['coc-docker', 'coc-rust-analyzer', 'coc-pyright', 'coc-sql', 'coc-tslint-plugin', 'coc-tsserver', 'coc-css', 'coc-html', 'coc-json', 'coc-prettier']
 inoremap <silent><expr> <C-space> coc#refresh()
 
 nmap <silent> [c <Plug>(coc-diagnostic-prev)
