@@ -5,6 +5,7 @@ set nocompatible
 
 "--------Load nvim configuration files--------"
 source ~/.config/nvim/plugin.conf.vim
+source ~/.config/nvim/neovide.conf.vim
 "--------End Load nvim configuration files--------"
 
 "------General configuration------"
@@ -97,6 +98,9 @@ nmap <leader>bp :bp<CR>
 nmap <leader>bd :bd<CR>
 nmap <leader>bw :bw<CR>
 nmap <leader>bb :buffers<CR>:b<space>
+
+" Remap terminal escape key
+tnoremap <leader>t[ <C-\><C-n>
 
 " Search current marked text
 vnoremap // y/\V<C-R>=escape(@",'/\')<CR><CR>
