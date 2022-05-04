@@ -37,6 +37,7 @@ set showcmd
 
 " Theme, color scheme
 syntax enable
+set background=dark
 set termguicolors
 colorscheme gruvbox
 let g:airline_theme='gruvbox'
