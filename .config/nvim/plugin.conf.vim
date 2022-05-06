@@ -32,7 +32,8 @@ noremap <leader>nm :NERDTreeMirror<CR>
 noremap <leader>nf :NERDTreeFind<CR>
 " Open NERDTree when nvim starts up on opening a directory
 autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc()==1 && isdirectory(argv()[0]) && !exists('s:std_in') | exe 'NERDTree' argv()[0] | wincmd p | ene | endif
+autocmd VimEnter * if argc()==1 && isdirectory(argv()[0]) &&
+  \ !exists('s:std_in') | exe 'NERDTree' argv()[0] | wincmd p | ene | endif
 let g:NERDTreeWinSize=35
 let g:NERDTreePatternMatchHighlightFullName=1
 let NERDTreeAutoDeleteBuffer=1
@@ -74,7 +75,9 @@ noremap <leader>ff :GFiles<CR>
 noremap <leader>fz :FZF<CR>
 
 " CoC
-let g:coc_global_extensions=['coc-docker', 'coc-rust-analyzer', 'coc-pyright', 'coc-sql', 'coc-tslint-plugin', 'coc-tsserver', 'coc-css', 'coc-html', 'coc-json', 'coc-prettier']
+let g:coc_global_extensions=[ 'coc-docker', 'coc-rust-analyzer', 'coc-pyright',
+  \ 'coc-sql', 'coc-tslint-plugin', 'coc-tsserver', 'coc-css', 'coc-html', 'coc-json',
+  \ 'coc-prettier']
 inoremap <silent><expr> <C-space> coc#refresh()
 
 nmap <silent> [c <Plug>(coc-diagnostic-prev)
