@@ -73,6 +73,7 @@ set splitbelow splitright
 set encoding=utf-8
 set termencoding=utf-8
 set fileencodings=utf-8
+lang en_US.UTF-8
 
 " Bell off
 set belloff=all
