@@ -16,6 +16,7 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'jiangmiao/auto-pairs'
 Plug 'airblade/vim-gitgutter'
+Plug 'rust-lang/rust.vim'
 
 " Initialize plugin system
 call plug#end()
@@ -100,4 +101,7 @@ function! s:show_documentation()
     call CocAction('doHover')
   endif
 endfunction
+
+" Rust vim
+let g:rustfmt_autosave=1
 "------End plugins config------"
