@@ -7,6 +7,8 @@
   :config
   (setq py-autopep8-options '("--max-line-length=80")))
 
+(use-package pyvenv)
+
 (use-package elpy
   :init
   (elpy-enable)

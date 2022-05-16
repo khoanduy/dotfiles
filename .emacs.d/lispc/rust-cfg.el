@@ -8,8 +8,6 @@
   :config
   (setq rust-format-on-save t)
   (setq lsp-rust-server 'rust-analyzer)
-  (setq lsp-enable-completion-at-point t)
-  (setq lsp-enable-imenu t)
   :custom
   (lsp-rust-analyzer-cargo-watch-command "clippy")
   (lsp-eldoc-render-all t)
