@@ -20,10 +20,6 @@
          ("M-p" . term-send-up)
          ("M-n" . term-send-down)))
 
-;; Icons
-(use-package all-the-icons
-  :if (display-graphic-p))
-
 ;; Theme
 (use-package kaolin-themes
   :config

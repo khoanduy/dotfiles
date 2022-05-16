@@ -20,7 +20,10 @@
 ;; Highlight current line and disable word wrap
 (global-hl-line-mode t)
 (setq-default truncate-lines 1)
+
+;; Highlight and auto close parens
 (show-paren-mode 1)
+(electric-pair-mode 1)
 
 ;; No backup no autosave files
 (setq make-backup-files nil)
