@@ -20,17 +20,25 @@
          ("M-p" . term-send-up)
          ("M-n" . term-send-down)))
 
+;; Icons
+(use-package all-the-icons
+  :if (display-graphic-p))
+
+;; Theme
+(use-package kaolin-themes
+  :config
+  (load-theme 'kaolin-light t))
+
 ;; Projectile
 (use-package projectile
   :init
-  (projectile-global-mode +1)
+  (projectile-mode +1)
   :bind (:map projectile-mode-map
               ("C-c p" . projectile-command-map)))
 
 ;; Helm
 (use-package helm
   :demand t
-  :after projectile
   :init
   (setq helm-command-prefix-key "C-c h")
   :bind (("M-x" . helm-M-x)
@@ -61,13 +69,52 @@
 
 ;; Helm Projectile
 (use-package helm-projectile
-  :after helm
+  :after (helm projectile)
   :config
   (helm-projectile-on))
+
+;; Which key
+(use-package which-key
+  :config
+  (which-key-mode 1))
 
 ;; Magit
 (use-package magit
   :bind (("C-x g" . magit)))
+
+;; Flycheck
+(use-package flycheck
+  :init (global-flycheck-mode))
+
+;; Company
+(use-package company
+  :bind (:map company-active-map
+         ("C-n" . company-select-next)
+         ("C-p" . company-select-previous))
+  :config
+  (setq company-idle-delay 0.2)
+  (global-company-mode t))
+
+;; Recentf
+(use-package recentf
+  :config
+  (setq recentf-auto-cleanup 'never
+        recentf-max-saved-items 1000
+        recentf-save-file (concat user-emacs-directory ".recentf"))
+  (recentf-mode t)
+  :diminish nil)
+
+;; LSP
+(use-package lsp-mode
+  :init
+  (setq lsp-keymap-prefix "C-c l")
+  :hook ((lsp-mode . lsp-enable-which-key-integration))
+  :commands lsp)
+
+;; Helm LSP
+(use-package helm-lsp
+  :after (helm lsp-mode)
+  :commands helm-lsp-workspace-symbol)
 
 (provide 'util-cfg)
 ;;; util-cfg.el ends here

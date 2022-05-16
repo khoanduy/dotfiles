@@ -1,4 +1,12 @@
 !*
+
 /elpa*/
 /auto-save-list/
+/transient/
+
+/elpy/
+/snippets/
+
 projectile-bookmarks.eld
+.recentf
+.lsp-session-*

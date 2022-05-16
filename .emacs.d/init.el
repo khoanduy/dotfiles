@@ -13,9 +13,16 @@
 (scroll-bar-mode -1)
 (tool-bar-mode -1)
 
-;; Disable or enable some utils
+;; Disable startup screen and show line numbers
 (setq inhibit-startup-screen t)
 (global-display-line-numbers-mode)
+
+;; Highlight current line and disable word wrap
+(global-hl-line-mode t)
+(setq-default truncate-lines 1)
+(show-paren-mode 1)
+
+;; No backup no autosave files
 (setq make-backup-files nil)
 (setq auto-save-default nil)
 
@@ -25,5 +32,9 @@
 ;; Load config files
 (require 'elpa-cfg)
 (require 'util-cfg)
+
+;; Load language specific config
+(require 'python-cfg)
+(require 'rust-cfg)
 
 ;;; init.el ends here

@@ -18,6 +18,12 @@ $ vim ~/.config/nvim/plugin.conf.nvim
 If you want to use a tagging system, install `ctags` and remember to create a ctags database by running `ctags -R` at your project root in the terminal.
 You might need to install these packages as well: [The Silver Searcher (ag)](https://github.com/ggreer/the_silver_searcher).
 
+Remember to install `rust-analyzer` by the following command:
+```shell script
+$ curl -L https://github.com/rust-analyzer/rust-analyzer/releases/latest/download/rust-analyzer-x86_64-unknown-linux-gnu.gz | gunzip -c - > ~/.local/bin/rust-analyzer
+$ chmod +x ~/.local/bin/rust-analyzer
+```
+
 ## References
 [tmux](https://github.com/tmux/tmux)\
 [emacs](https://www.gnu.org/software/emacs/)\
