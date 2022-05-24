@@ -6,20 +6,12 @@
   :mode
   (("\\.js\\'" . js2-mode)
    ("\\.jsx\\'" . js2-jsx-mode))
-  :custom
-  (js2-include-node-externs t)
-  (js2-highlight-level 3)
-  (js2r-prefer-let-over-var t)
-  (js2r-prefered-quote-type 2)
-  (js-indent-align-list-continuation t)
-  (global-auto-highlight-symbol-mode t)
-  :hook ((js2-mode . company-mode)
-         (js2-mode . flycheck-mode))
+  :hook ((js2-mode . lsp))
+  :bind (:map js2-mode-map
+	 ("M-." . lsp-find-definition))
   :config
   (setq js-indent-level 2)
   (setq js2-basic-offset 2))
-
-(add-to-list 'interpreter-mode-alist (cons "node" 'js2-mode))
 
 (use-package json-mode
   :custom
@@ -32,7 +24,9 @@
          :map json-mode-map
          ("C-M \\" . json-mode-beautify)))
 
-(use-package typescript-mode)
+(use-package typescript-mode
+  :hook ((typescript-mode . lsp))
+  :bind (("M-." . lsp-find-definition)))
 
 (use-package prettier-js)
 

@@ -99,7 +99,8 @@
 (use-package company
   :bind (:map company-active-map
          ("C-n" . company-select-next)
-         ("C-p" . company-select-previous))
+         ("C-p" . company-select-previous)
+	 ("<tab>" . company-complete-selection))
   :config
   (setq company-idle-delay 0.2)
   (global-company-mode t))

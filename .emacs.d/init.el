@@ -14,11 +14,14 @@
 (tool-bar-mode -1)
 
 ;; Disable startup screen and show line numbers
-(setq frame-title-format "emacs")
 (setq inhibit-startup-screen t)
+(global-display-line-numbers-mode)
+
+;; Init buffer and cursor shape
+(setq-default cursor-type 'bar)
+(setq frame-title-format "emacs")
 (setq initial-major-mode 'markdown-mode)
 (setq initial-scratch-message "Hi there :D")
-(global-display-line-numbers-mode)
 
 ;; Highlight current line and disable word wrap
 (global-hl-line-mode t)
