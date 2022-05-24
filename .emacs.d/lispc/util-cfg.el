@@ -25,6 +25,14 @@
   :config
   (load-theme 'kaolin-light t))
 
+;; Sublimity
+(use-package sublimity
+  :config
+  (require 'sublimity-scroll)
+  (require 'sublimity-attractive)
+  (sublimity-mode 1)
+  )
+
 ;; Projectile
 (use-package projectile
   :init
@@ -63,6 +71,11 @@
   (helm-autoresize-mode 1)
   (helm-mode 1))
 
+;; Helm Ag
+(use-package helm-ag
+  :bind (("C-c p s i" . helm-grep-do-git-grep)
+         ("C-c p s a" . helm-do-grep-ag)))
+
 ;; Helm Projectile
 (use-package helm-projectile
   :after (helm projectile)
@@ -90,6 +103,12 @@
   :config
   (setq company-idle-delay 0.2)
   (global-company-mode t))
+
+;; Company quickhelp
+(use-package company-quickhelp
+  :after company
+  :config
+  (company-quickhelp-mode t))
 
 ;; Recentf
 (use-package recentf

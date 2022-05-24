@@ -14,11 +14,15 @@
 (tool-bar-mode -1)
 
 ;; Disable startup screen and show line numbers
+(setq frame-title-format "emacs")
 (setq inhibit-startup-screen t)
+(setq initial-major-mode 'markdown-mode)
+(setq initial-scratch-message "Hi there :D")
 (global-display-line-numbers-mode)
 
 ;; Highlight current line and disable word wrap
 (global-hl-line-mode t)
+(global-visual-line-mode t)
 (setq-default truncate-lines 1)
 
 ;; Highlight and auto close parens
@@ -30,7 +34,7 @@
 (setq auto-save-default nil)
 
 ;; Font and theme
-(set-face-attribute 'default nil :height 110)
+(set-face-attribute 'default nil :height 110 :weight 'normal :width 'normal)
 
 ;; Load config files
 (require 'elpa-cfg)
@@ -39,5 +43,17 @@
 ;; Load language specific config
 (require 'python-cfg)
 (require 'rust-cfg)
+
+;; Move between windows
+(global-set-key (kbd "C-c <left>")  'windmove-left)
+(global-set-key (kbd "C-c <right>") 'windmove-right)
+(global-set-key (kbd "C-c <up>")    'windmove-up)
+(global-set-key (kbd "C-c <down>")  'windmove-down)
+
+;; Resize windows
+(global-set-key (kbd "C-s-<left>") 'shrink-window-horizontally)
+(global-set-key (kbd "C-s-<right>") 'enlarge-window-horizontally)
+(global-set-key (kbd "C-s-<down>") 'shrink-window)
+(global-set-key (kbd "C-s-<up>") 'enlarge-window)
 
 ;;; init.el ends here

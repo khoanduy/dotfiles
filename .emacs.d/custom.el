@@ -4,7 +4,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(cmake-mode which-key use-package toml-mode rust-mode py-autopep8 magit kaolin-themes helm-projectile helm-lsp flycheck exec-path-from-shell elpy cargo)))
+   '(company-quickhelp cmake-mode which-key use-package toml-mode sublimity rust-mode py-autopep8 magit kaolin-themes json-mode helm-projectile helm-lsp helm-ag flycheck exec-path-from-shell elpy cargo)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
