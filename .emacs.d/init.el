@@ -43,6 +43,7 @@
 ;; Load language specific config
 (require 'python-cfg)
 (require 'rust-cfg)
+(require 'javascript-cfg)
 
 ;; Move between windows
 (global-set-key (kbd "C-c <left>")  'windmove-left)
