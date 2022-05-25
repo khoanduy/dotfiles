@@ -5,6 +5,7 @@ set nocompatible
 
 "--------Load nvim configuration files--------"
 source ~/.config/nvim/plugin.conf.vim
+source ~/.config/nvim/neovide.conf.vim
 "--------End Load nvim configuration files--------"
 
 "------General configuration------"
