@@ -38,7 +38,7 @@ set showcmd
 " Theme, color scheme
 syntax enable
 set background=dark
-colorscheme gruvbox
+colorscheme kanagawa
 if !has('mac')
   set termguicolors
 endif

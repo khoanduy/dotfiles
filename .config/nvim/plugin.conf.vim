@@ -6,8 +6,8 @@ call plug#begin()
 " Make sure you use single quotes
 Plug 'scrooloose/nerdtree'
 Plug 'scrooloose/nerdcommenter'
-Plug 'morhetz/gruvbox'
-Plug 'itchyny/lightline.vim'
+Plug 'rebelot/kanagawa.nvim'
+Plug 'nvim-lualine/lualine.nvim'
 Plug 'voldikss/vim-floaterm'
 Plug 'tpope/vim-fugitive'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -108,4 +108,37 @@ let g:rustfmt_autosave=1
 " WhichKey
 nnoremap <silent> <leader> :WhichKey '<leader>'<CR>
 set timeoutlen=500
+
+" lualine
+lua << END
+require('lualine').setup {
+  options = {
+    icons_enabled = false,
+    theme = 'auto',
+    component_separators = { left = '|', right = '|'},
+    section_separators = { left = '::', right = '- '},
+    disabled_filetypes = {},
+    always_divide_middle = true,
+    globalstatus = false,
+  },
+  sections = {
+    lualine_a = {'mode'},
+    lualine_b = {'branch', 'diff', 'diagnostics'},
+    lualine_c = {'filename'},
+    lualine_x = {'encoding', 'fileformat', 'filetype'},
+    lualine_y = {'progress'},
+    lualine_z = {'location'}
+  },
+  inactive_sections = {
+    lualine_a = {},
+    lualine_b = {},
+    lualine_c = {'filename'},
+    lualine_x = {'location'},
+    lualine_y = {},
+    lualine_z = {}
+  },
+  tabline = {},
+  extensions = {}
+}
+END
 "------End plugins config------"
