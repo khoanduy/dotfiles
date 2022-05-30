@@ -16,6 +16,7 @@ Plug 'junegunn/fzf.vim'
 Plug 'jiangmiao/auto-pairs'
 Plug 'airblade/vim-gitgutter'
 Plug 'rust-lang/rust.vim'
+Plug 'liuchengxu/vim-which-key'
 
 " Initialize plugin system
 call plug#end()
@@ -103,4 +104,8 @@ endfunction
 
 " Rust vim
 let g:rustfmt_autosave=1
+
+" WhichKey
+nnoremap <silent> <leader> :WhichKey '<leader>'<CR>
+set timeoutlen=500
 "------End plugins config------"

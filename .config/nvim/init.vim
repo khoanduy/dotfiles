@@ -103,6 +103,7 @@ nmap <leader>bp :bp<CR>
 nmap <leader>bd :bd<CR>
 nmap <leader>bw :bw<CR>
 nmap <leader>bb :buffers<CR>:b<space>
+nmap <leader>bl :Buffers<CR>
 
 " Remap terminal escape key
 tnoremap <leader>t[ <C-\><C-n>
