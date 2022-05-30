@@ -1,5 +1,9 @@
 "------Neovide config------"
-set guifont=Ubuntu\ Mono:h11
+if has('mac')
+  set guifont=Fira\ Code:h13
+else
+  set guifont=Ubuntu\ Mono:h11
+endif
 
 let g:neovide_refresh_rate=120
 let g:neovide_fullscreen=v:false
