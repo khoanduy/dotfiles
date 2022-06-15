@@ -16,7 +16,3 @@ HYPHEN_INSENSITIVE="true"
 plugins=(git)
 
 source $ZSH/oh-my-zsh.sh
-
-# User configuration
-alias ovim=vim
-alias vim=nvim

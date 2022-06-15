@@ -9,7 +9,7 @@ packer_bootstrap = vim.fn.system({'git', 'clone', '--depth', '1', packer_url, de
 vim.cmd([[
   augroup packer_user_config
     autocmd!
-    autocmd BufWritePost plugin.lua source <afile> | PackerInstall
+    autocmd BufWritePost plugin.lua source <afile> | PackerCompile
   augroup end
 ]])
 
@@ -33,14 +33,6 @@ return require('packer').startup(function()
     tag = 'v1.*',
     config = function()
       require('toggleterm').setup()
-    end
-  }
-
-  use {
-    'folke/trouble.nvim',
-    requires = 'kyazdani42/nvim-web-devicons',
-    config = function()
-      require('trouble').setup {}
     end
   }
 
@@ -84,5 +76,5 @@ return require('packer').startup(function()
       }
     end
   }
-
 end)
+--------End plugins config--------

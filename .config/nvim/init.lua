@@ -2,19 +2,20 @@
 
 -- Load configuration files-----
 require('plugin')
+require('mapping')
+require('command')
 -----End load configuration files-----
 
 -- Variables
 local g = vim.g
 local opt = vim.opt
 local cmd = vim.cmd
-local fn = vim.fn
 
 g.diagnostics_enabled = true
 
 -- Encoding
 opt.encoding = 'utf-8'
-vim.cmd([[
+cmd([[
   set termencoding=utf-8
   set fileencodings=utf-8
   lang en_US.UTF-8
@@ -54,12 +55,12 @@ opt.splitright = true
 -- Searching
 opt.incsearch = true
 opt.hlsearch = true
-vim.cmd([[
+cmd([[
   set matchpairs+=<:>
 ]])
 
 -- UI
-vim.cmd([[
+cmd([[
   set ma
   set mouse=a
   syntax enable

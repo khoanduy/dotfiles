@@ -2,16 +2,17 @@
 NOTED: These are my personal configuration files, which could be changed as I develop my environment across multiple systems.
 
 ## Installation
-Make sure `neovim` and `tmux` are installed. Clone repository and copy all files to your home folder
+Make sure `neovim`, `tmux` and `alacritty` are installed. Clone repository and copy all files to your home folder
 ```shell script
 $ git clone https://github.com/khoarx/dotfiles.git
 $ cp -R ~/dotfiles/* ~
 $ cp -R ~/dotfiles/.* ~
 ```
-Open `~/.config/nvim/plugin.conf.nvim` and execute `:PlugInstall` to install all VIM's plugins:
+Open `~/.config/nvim/plugin.lua` and execute `:PackerInstall` to install all neovim's plugins:
 ```shell script
-$ vim ~/.config/nvim/plugin.conf.nvim
-:PlugInstall
+$ vim ~/.config/nvim/plugin.lua
+:PackerInstall
+:PackerSync
 ```
 
 ## Additional options
