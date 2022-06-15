@@ -16,7 +16,7 @@ Plug 'junegunn/fzf.vim'
 Plug 'jiangmiao/auto-pairs'
 Plug 'airblade/vim-gitgutter'
 Plug 'rust-lang/rust.vim'
-Plug 'liuchengxu/vim-which-key'
+Plug 'folke/which-key.nvim'
 
 " Initialize plugin system
 call plug#end()
@@ -105,10 +105,10 @@ endfunction
 " Rust vim
 let g:rustfmt_autosave=1
 
-" WhichKey
-nnoremap <silent> <leader> :WhichKey '<leader>'<CR>
-set timeoutlen=500
-
+" Which key
+lua << EOF
+require("which-key").setup {}
+EOF
 " lualine
 lua << END
 require('lualine').setup {

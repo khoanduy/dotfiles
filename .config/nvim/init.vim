@@ -5,6 +5,8 @@ set nocompatible
 
 "--------Load nvim configuration files--------"
 source ~/.config/nvim/plugin.conf.vim
+source ~/.config/nvim/mapping.conf.vim
+source ~/.config/nvim/command.conf.vim
 "--------End Load nvim configuration files--------"
 
 "------General configuration------"
@@ -15,16 +17,15 @@ filetype off
 " For plug-ins to load correctly.
 filetype plugin indent on
 
-" Set leader key
-let mapleader=','
-
-" Turn on syntax highlighting
-syntax on
+" Syntax highlighting, no temporary files and no bell
+syntax enable
 set hidden
 set nowrap
 set showmatch
-set nobackup nowritebackup
+set nobackup
+set nowritebackup
 set noswapfile
+set belloff=all
 
 " Set modifiable
 set ma
@@ -34,8 +35,7 @@ set mouse=a
 set showmode
 set showcmd
 
-" Theme, color scheme
-syntax enable
+" Interface
 set background=dark
 colorscheme kanagawa
 if !has('mac')
@@ -45,38 +45,31 @@ endif
 " Fixes common backspace problems
 set backspace=indent,eol,start
 
-" Set indentation
+" Indentation
 set autoindent
 set smartindent
 set copyindent
 
-" Set default indentation
+" Default indentation
+set expandtab
 set tabstop=2
 set shiftwidth=2
 set softtabstop=2
 set shiftwidth=2
 set shiftround
-set expandtab
-
-" Auto remove trailing spaces
-autocmd BufWritePre * %s/\s\+$//e
-
-" Show line numbers
-set number
-set cursorline
 
 " Show file stats
+set number
+set cursorline
 set ruler
-set splitbelow splitright
+set splitbelow
+set splitright
 
 " Encoding
 set encoding=utf-8
 set termencoding=utf-8
 set fileencodings=utf-8
 lang en_US.UTF-8
-
-" Bell off
-set belloff=all
 
 " Use tags
 set tags=tags
@@ -87,27 +80,4 @@ set hlsearch
 
 " Highlight matching pairs of brackets. Use the '%' character to jump between them.
 set matchpairs+=<:>
-
-nnoremap <leader>w <C-w>
-
-" Re-size split windows using arrow keys
-nnoremap <Up> :resize -2<CR>
-nnoremap <Down> :resize +2<CR>
-nnoremap <Left> :vertical resize +2<CR>
-nnoremap <Right> :vertical resize -2<CR>
-
-" Remap switch buffers keys
-nmap <leader>bn :bn<CR>
-nmap <leader>bp :bp<CR>
-nmap <leader>bd :bd<CR>
-nmap <leader>bw :bw<CR>
-nmap <leader>bb :buffers<CR>:b<space>
-nmap <leader>bl :Buffers<CR>
-
-" Remap terminal escape key
-tnoremap <leader>t[ <C-\><C-n>
-
-" Search current marked text
-vnoremap // y/\V<C-R>=escape(@",'/\')<CR><CR>
 "------End general configuration------"
-
