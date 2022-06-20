@@ -4,7 +4,7 @@ NOTED: These are my personal configuration files, which could be changed as I de
 ## Installation
 Make sure `neovim`, `tmux` and `alacritty` are installed. Clone repository and copy all files to your home folder
 ```shell script
-$ git clone https://github.com/khoadc/dotfiles.git
+$ git clone https://github.com/khoarx/dotfiles.git
 $ cp -R ~/dotfiles/* ~
 $ cp -R ~/dotfiles/.* ~
 ```
