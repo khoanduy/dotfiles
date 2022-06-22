@@ -2,22 +2,24 @@
 NOTED: These are my personal configuration files, which could be changed as I develop my environment across multiple systems.
 
 ## Installation
-Make sure `neovim`, `tmux` and `alacritty` are installed. Clone repository and copy all files to your home folder
+Clone repository and run the setup script (you have to run `chmod +x` in able to execute it)
 ```shell script
 $ git clone https://github.com/khoarx/dotfiles.git
-$ cp -R ~/dotfiles/* ~
-$ cp -R ~/dotfiles/.* ~
+$ cd dotfiles
+$ chmod +x ./setup_tilde.sh
+$ ./setup_tilde.sh
 ```
-Open `~/.config/nvim/plugin.lua` and execute `:PackerInstall` to install all neovim's plugins:
+Open `~/.config/nvim/plugin.conf.vim` and install all neovim's plugins:
 ```shell script
-$ vim ~/.config/nvim/plugin.lua
-:PackerInstall
-:PackerSync
+$ nvim ~/.config/nvim/plugin.conf.vim
+:PlugClean
+:PlugInstall
 ```
 
 ## Additional options
-If you want to use a tagging system, install `ctags` and remember to create a ctags database by running `ctags -R` at your project root in the terminal.
-You might need to install these packages as well: [The Silver Searcher (ag)](https://github.com/ggreer/the_silver_searcher).
+You might want to install these packages as well:
+1. [Alacritty](https://github.com/alacritty/alacritty)
+2. [Lazygit](https://github.com/jesseduffield/lazygit)
 
 ## References
 [tmux](https://github.com/tmux/tmux)\
