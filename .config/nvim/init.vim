@@ -71,9 +71,6 @@ set termencoding=utf-8
 set fileencodings=utf-8
 lang en_US.UTF-8
 
-" Use tags
-set tags=tags
-
 " Highlight while searching
 set incsearch
 set hlsearch
