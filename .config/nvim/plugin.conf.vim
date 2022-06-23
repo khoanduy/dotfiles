@@ -10,6 +10,7 @@ Plug 'rebelot/kanagawa.nvim'
 Plug 'nvim-lualine/lualine.nvim'
 Plug 'voldikss/vim-floaterm'
 Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-surround'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
@@ -17,6 +18,7 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'airblade/vim-gitgutter'
 Plug 'rust-lang/rust.vim'
 Plug 'folke/which-key.nvim'
+Plug 'github/copilot.vim'
 
 " Initialize plugin system
 call plug#end()
