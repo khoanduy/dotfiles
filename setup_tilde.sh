@@ -28,6 +28,12 @@ else
   exit
 fi
 
+if ! hash rustc &> /dev/null; then
+  echo "Installing Rust"
+  sh -c "$(curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh)"
+  source $HOME/.cargo/env
+fi
+
 if [[ ! -d ~/.oh-my-zsh ]]; then
   echo "Installing Oh My Zsh"
   sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
