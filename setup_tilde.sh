@@ -40,5 +40,4 @@ if [[ $PWD != $HOME ]]; then
   cp -R ./.* ~
 fi
 
-source ~/.zshrc
-echo "Setup completed."
+echo "Setup done. Run `source ~/.zshrc` to refresh shell config"
