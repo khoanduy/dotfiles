@@ -6,7 +6,7 @@ call plug#begin()
 " Make sure you use single quotes
 Plug 'scrooloose/nerdtree'
 Plug 'scrooloose/nerdcommenter'
-Plug 'rebelot/kanagawa.nvim'
+Plug 'catppuccin/nvim', {'as': 'catppuccin'}
 Plug 'nvim-lualine/lualine.nvim'
 Plug 'voldikss/vim-floaterm'
 Plug 'tpope/vim-fugitive'
@@ -111,6 +111,17 @@ let g:rustfmt_autosave=1
 lua << EOF
 require("which-key").setup {}
 EOF
+
+" Catppuccin
+lua << EOF
+local catppuccin = require("catppuccin")
+catppuccin.setup({
+  term_colors = true
+})
+EOF
+let g:catppuccin_flavour = "latte" " latte, frappe, macchiato, mocha
+colorscheme catppuccin
+
 " lualine
 lua << END
 require('lualine').setup {

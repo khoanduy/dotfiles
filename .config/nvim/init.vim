@@ -36,8 +36,6 @@ set showmode
 set showcmd
 
 " Interface
-set background=dark
-colorscheme kanagawa
 if !has('mac')
   set termguicolors
 endif
