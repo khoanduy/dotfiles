@@ -25,7 +25,6 @@ api.nvim_set_keymap('n', '<leader>bn', ':bn<CR>', {expr = false, noremap = false
 api.nvim_set_keymap('n', '<leader>bp', ':bp<CR>', {expr = false, noremap = false})
 api.nvim_set_keymap('n', '<leader>bd', ':bd<CR>', {expr = false, noremap = false})
 api.nvim_set_keymap('n', '<leader>bw', ':bw<CR>', {expr = false, noremap = false})
-api.nvim_set_keymap('n', '<leader>bb', ':buffers<CR>:b<space>', {expr = false, noremap = false})
 
 -- Remap terminal escape key
 api.nvim_set_keymap('t', '<leader>e', [[<C-\><C-n>]], {expr = false, noremap = true})
@@ -56,7 +55,7 @@ vim.api.nvim_set_keymap('n', '<leader>g', '<cmd>lua _lazygit_toggle()<CR>', {nor
 api.nvim_set_keymap('n', '<leader>fF', ':Telescope find_files<CR>', {expr = false, noremap = true})
 api.nvim_set_keymap('n', '<leader>ff', ':Telescope git_files<CR>', {expr = false, noremap = true})
 api.nvim_set_keymap('n', '<leader>fa', ':Telescope live_grep<CR>', {expr = false, noremap = true})
-api.nvim_set_keymap('n', '<leader>fb', ':Telescope buffers<CR>', {expr = false, noremap = true})
-api.nvim_set_keymap('n', '<leader>fc', ':Telescope current_buffer_fuzzy_find<CR>', {expr = false, noremap = true})
-api.nvim_set_keymap('n', '<leader>fh', ':Telescope help_tags<CR>', {expr = false, noremap = true})
+api.nvim_set_keymap('n', '<leader>bb', ':Telescope buffers<CR>', {expr = false, noremap = true})
+api.nvim_set_keymap('n', '<leader>fb', ':Telescope current_buffer_fuzzy_find<CR>', {expr = false, noremap = true})
+api.nvim_set_keymap('n', '<leader>hf', ':Telescope help_tags<CR>', {expr = false, noremap = true})
 --------End mappings config--------
