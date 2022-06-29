@@ -16,3 +16,6 @@ HYPHEN_INSENSITIVE="true"
 plugins=(git)
 
 source $ZSH/oh-my-zsh.sh
+
+# Alias
+alias lg=lazygit
