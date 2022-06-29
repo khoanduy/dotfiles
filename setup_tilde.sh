@@ -13,11 +13,11 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
 
   echo "Installing some essentials..."
   brew update
-  brew install git neovim zsh tmux curl wget the_silver_searcher node
+  brew install git neovim zsh tmux curl wget the_silver_searcher node cmake
 elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
   echo "Installing some essentials..."
   sudo apt-get update
-  sudo apt-get install -y git vim zsh tmux curl wget silversearcher-ag build-essential
+  sudo apt-get install -y git vim zsh tmux curl wget silversearcher-ag cmake build-essential
 
   if ! hash node &> /dev/null; then
     curl -fsSL https://deb.nodesource.com/setup_lts.x | sudo -E bash -

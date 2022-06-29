@@ -20,7 +20,6 @@ api.nvim_set_keymap('n', '<leader>bp', ':bp<CR>', {expr = false, noremap = false
 api.nvim_set_keymap('n', '<leader>bd', ':bd<CR>', {expr = false, noremap = false})
 api.nvim_set_keymap('n', '<leader>bw', ':bw<CR>', {expr = false, noremap = false})
 api.nvim_set_keymap('n', '<leader>bb', ':buffers<CR>:b<space>', {expr = false, noremap = false})
-api.nvim_set_keymap('n', '<leader>bl', ':Buffers<CR>', {expr = false, noremap = false})
 
 -- Remap terminal escape key
 api.nvim_set_keymap('t', '<leader>te', [[<C-\><C-n>]], {expr = false, noremap = true})
@@ -41,16 +40,25 @@ api.nvim_set_keymap('n', '<leader>ts', ':ToggleTermSendCurrentLine<CR>', {expr =
 api.nvim_set_keymap('v', '<leader>ts', ':ToggleTermSendVisualSelection<CR>', {expr = false, noremap = true})
 
 -- CoC
-api.nvim_set_keymap('i', '<silent> <C-space>', 'coc#refresh()', {expr = true, noremap = true})
+api.nvim_set_keymap('i', '<C-space>', 'coc#refresh()', {expr = true, noremap = true, silent = true})
 
-api.nvim_set_keymap('n', '<silent> [c', '<Plug>(coc-diagnostic-prev)', {expr = false, noremap = false})
-api.nvim_set_keymap('n', '<silent> ]c', '<Plug>(coc-diagnostic-next)', {expr = false, noremap = false})
+api.nvim_set_keymap('n', '[l', '<Plug>(coc-diagnostic-prev)', {expr = false, noremap = false, silent = true})
+api.nvim_set_keymap('n', ']l', '<Plug>(coc-diagnostic-next)', {expr = false, noremap = false, silent = true})
 
-api.nvim_set_keymap('n', '<silent> gd', ':call CocActionAsync("jumpDefinition", "vsplit")<CR>', {expr = false, noremap = false})
-api.nvim_set_keymap('n', '<silent> gy', '<Plug>(coc-type-definition)', {expr = false, noremap = false})
-api.nvim_set_keymap('n', '<silent> gi', '<Plug>(coc-implementation)', {expr = false, noremap = false})
-api.nvim_set_keymap('n', '<silent> gr', '<Plug>(coc-references)', {expr = false, noremap = false})
+api.nvim_set_keymap('n', 'gd', ':call CocActionAsync("jumpDefinition", "vsplit")<CR>', {expr = false, noremap = false, silent = true})
+api.nvim_set_keymap('n', 'gy', '<Plug>(coc-type-definition)', {expr = false, noremap = false, silent = true})
+api.nvim_set_keymap('n', 'gi', '<Plug>(coc-implementation)', {expr = false, noremap = false, silent = true})
+api.nvim_set_keymap('n', 'gr', '<Plug>(coc-references)', {expr = false, noremap = false, silent = true})
 
-api.nvim_set_keymap('n', '<leader>fb', '<Plug>(coc-format)', {expr = false, noremap = false})
-api.nvim_set_keymap('v', '<leader>fb', '<Plug>(coc-format-selected)', {expr = false, noremap = false})
+api.nvim_set_keymap('n', '<leader>lf', '<Plug>(coc-format)', {expr = false, noremap = false})
+api.nvim_set_keymap('v', '<leader>lf', '<Plug>(coc-format-selected)', {expr = false, noremap = false})
+
+-- Telescope
+api.nvim_set_keymap('n', '<leader>ff', ':Telescope find_files<CR>', {expr = false, noremap = true})
+api.nvim_set_keymap('n', '<leader>fg', ':Telescope git_files<CR>', {expr = false, noremap = true})
+api.nvim_set_keymap('n', '<leader>fp', ':Telescope live_grep<CR>', {expr = false, noremap = true})
+api.nvim_set_keymap('n', '<leader>fb', ':Telescope buffers<CR>', {expr = false, noremap = true})
+api.nvim_set_keymap('n', '<leader>fc', ':Telescope current_buffer_fuzzy_find<CR>', {expr = false, noremap = true})
+api.nvim_set_keymap('n', '<leader>fz', ':Telescope fzf<CR>', {expr = false, noremap = true})
+api.nvim_set_keymap('n', '<leader>fh', ':Telescope help_tags<CR>', {expr = false, noremap = true})
 --------End mappings config--------

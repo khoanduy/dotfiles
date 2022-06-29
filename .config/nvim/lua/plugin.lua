@@ -43,15 +43,15 @@ return require('packer').startup(function()
   use {
     'kyazdani42/nvim-tree.lua',
     config = function()
+      vim.g.nvim_tree_show_icons = {
+        folders = 0,
+        files = 0,
+        git = 0,
+        folder_arrows = 0,
+      }
       require('nvim-tree').setup {
-        sort_by = 'case_sensitive',
         view = {
           adaptive_size = true,
-          mappings = {
-            list = {
-              { key = 'u', action = 'dir_up' },
-            },
-          },
         },
         renderer = {
           group_empty = true,
@@ -59,12 +59,38 @@ return require('packer').startup(function()
         filters = {
           dotfiles = false,
         },
+        update_focused_file = {
+          enable = 1,
+        },
       }
     end
   }
 
+  use {
+    'nvim-telescope/telescope.nvim',
+    requires = {
+      'nvim-lua/plenary.nvim',
+      { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' },
+    },
+    config = function()
+      require('telescope').setup {
+        extensions = {
+          fzf = {
+            fuzzy = true,
+            override_generic_sorter = true,
+            override_file_sorter = true,
+            case_mode = 'smart_case',
+          }
+        }
+      }
+      require('telescope').load_extension('fzf')
+    end
+  }
+
   use { 'tpope/vim-fugitive' }
+
   use { 'tpope/vim-surround' }
+
   use { 'jiangmiao/auto-pairs' }
 
   use {
