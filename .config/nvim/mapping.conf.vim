@@ -20,7 +20,7 @@ nmap <leader>bb :buffers<CR>:b<space>
 nmap <leader>bl :Buffers<CR>
 
 " Remap terminal escape key
-tnoremap <leader>t[ <C-\><C-n>
+tnoremap <leader>te <C-\><C-n>
 
 " Search current marked text
 vnoremap // y/\V<C-R>=escape(@",'/\')<CR><CR>

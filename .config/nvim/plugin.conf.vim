@@ -8,7 +8,7 @@ Plug 'scrooloose/nerdtree'
 Plug 'scrooloose/nerdcommenter'
 Plug 'catppuccin/nvim', {'as': 'catppuccin'}
 Plug 'nvim-lualine/lualine.nvim'
-Plug 'voldikss/vim-floaterm'
+Plug 'akinsho/toggleterm.nvim'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -64,13 +64,28 @@ set completeopt-=preview
 " GitGutter
 let g:gitgutter_max_signs=2000
 
-" Floatterm
-let g:floaterm_keymap_new='<leader>tc'
-let g:floaterm_keymap_prev='<leader>tp'
-let g:floaterm_keymap_next='<leader>tn'
-let g:floaterm_keymap_toggle='<leader>tt'
-let g:floaterm_width=0.8
-let g:floaterm_height=0.8
+" Toggleterm
+lua << END
+require('toggleterm').setup {
+  -- size can be a number or function which is passed the current terminal
+  size = 20,
+  hide_numbers = true, -- hide the number column in toggleterm buffers
+  shade_filetypes = {},
+  shade_terminals = true, -- NOTE: this option takes priority over highlights specified so if you specify Normal highlights you should set this to false
+  shading_factor = '3', -- the degree by which to darken to terminal colour, default: 1 for dark backgrounds, 3 for light
+  start_in_insert = true,
+  insert_mappings = true, -- whether or not the open mapping applies in insert mode
+  terminal_mappings = true, -- whether or not the open mapping applies in the opened terminals
+  persist_size = true,
+  persist_mode = true, -- if set to true (default) the previous terminal mode will be remembered
+  direction = 'horizontal',
+  close_on_exit = true, -- close the terminal window when the process exits
+}
+END
+nnoremap <leader>tt :ToggleTerm<CR>
+tnoremap <leader>tt <C-\><C-n>:ToggleTerm<CR>
+nnoremap <leader>tsc :ToggleTermSendCurrentLine<CR>
+vnoremap <leader>tss :ToggleTermSendVisualSelection<CR>
 
 " fzf
 noremap <leader>fa :Ag<CR>
