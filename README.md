@@ -15,6 +15,7 @@ $ nvim ~/.config/nvim/lua/plugin.lua
 :source %
 :PackerClean
 :PackerInstall
+:PackerCompile
 ```
 
 ## Additional options

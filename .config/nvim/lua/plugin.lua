@@ -139,7 +139,7 @@ return require('packer').startup(function()
       require('catppuccin').setup{
         term_colors = true
       }
-      vim.g.catppuccin_flavour = 'latte'
+      vim.g.catppuccin_flavour = 'latte' -- latte, frappe, macchiato, mocha
       vim.cmd([[ colorscheme catppuccin ]])
     end
   }
