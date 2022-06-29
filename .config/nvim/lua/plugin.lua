@@ -67,22 +67,9 @@ return require('packer').startup(function()
 
   use {
     'nvim-telescope/telescope.nvim',
-    requires = {
-      'nvim-lua/plenary.nvim',
-      { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' },
-    },
+    requires = { 'nvim-lua/plenary.nvim' },
     config = function()
-      require('telescope').setup {
-        extensions = {
-          fzf = {
-            fuzzy = true,
-            override_generic_sorter = true,
-            override_file_sorter = true,
-            case_mode = 'smart_case',
-          }
-        }
-      }
-      require('telescope').load_extension('fzf')
+      require('telescope').setup {}
     end
   }
 
@@ -110,6 +97,23 @@ return require('packer').startup(function()
   }
 
   -- Programming language
+  use {
+    'nvim-treesitter/nvim-treesitter',
+    run = ':TSUpdate',
+    config = function()
+      require('nvim-treesitter.configs').setup {
+        ensure_installed = { 'rust', 'lua', 'python', 'javascript', 'toml',
+          'html', 'css', 'json', 'yaml', 'typescript', 'c', 'dockerfile',
+          'proto', 'markdown' },
+        sync_install = false,
+        highlight = {
+          enable = true,
+          additional_vim_regex_highlighting = false,
+        },
+      }
+    end
+  }
+
   use {
     'rust-lang/rust.vim',
     config = function()

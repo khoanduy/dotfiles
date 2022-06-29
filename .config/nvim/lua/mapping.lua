@@ -63,9 +63,8 @@ api.nvim_set_keymap('v', '<leader>lf', '<Plug>(coc-format-selected)', {expr = fa
 -- Telescope
 api.nvim_set_keymap('n', '<leader>ff', ':Telescope find_files<CR>', {expr = false, noremap = true})
 api.nvim_set_keymap('n', '<leader>fg', ':Telescope git_files<CR>', {expr = false, noremap = true})
-api.nvim_set_keymap('n', '<leader>fp', ':Telescope live_grep<CR>', {expr = false, noremap = true})
+api.nvim_set_keymap('n', '<leader>fa', ':Telescope live_grep<CR>', {expr = false, noremap = true})
 api.nvim_set_keymap('n', '<leader>fb', ':Telescope buffers<CR>', {expr = false, noremap = true})
 api.nvim_set_keymap('n', '<leader>fc', ':Telescope current_buffer_fuzzy_find<CR>', {expr = false, noremap = true})
-api.nvim_set_keymap('n', '<leader>fz', ':Telescope fzf<CR>', {expr = false, noremap = true})
 api.nvim_set_keymap('n', '<leader>fh', ':Telescope help_tags<CR>', {expr = false, noremap = true})
 --------End mappings config--------
