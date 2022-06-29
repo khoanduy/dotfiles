@@ -5,8 +5,8 @@ local lspconfig = require('lspconfig')
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 
 vim.keymap.set('n', '<leader>ld', vim.diagnostic.open_float, {noremap = true, silent = true})
-vim.keymap.set('n', '[l', vim.diagnostic.goto_prev, {noremap = true, silent = true})
-vim.keymap.set('n', ']l', vim.diagnostic.goto_next, {noremap = true, silent = true})
+vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, {noremap = true, silent = true})
+vim.keymap.set('n', ']d', vim.diagnostic.goto_next, {noremap = true, silent = true})
 vim.keymap.set('n', '<leader>lD', vim.diagnostic.setloclist, {noremap = true, silent = true})
 
 local on_attach = function(client, bufnr)
