@@ -22,7 +22,7 @@ api.nvim_set_keymap('n', '<leader>bw', ':bw<CR>', {expr = false, noremap = false
 api.nvim_set_keymap('n', '<leader>bb', ':buffers<CR>:b<space>', {expr = false, noremap = false})
 
 -- Remap terminal escape key
-api.nvim_set_keymap('t', '<leader>te', [[<C-\><C-n>]], {expr = false, noremap = true})
+api.nvim_set_keymap('t', '<leader>e', [[<C-\><C-n>]], {expr = false, noremap = true})
 
 -- Search current marked text
 api.nvim_set_keymap('v', '//', [[y/\V<C-R>=escape(@",'/\')<CR><CR>]], {expr = false, noremap = true})
