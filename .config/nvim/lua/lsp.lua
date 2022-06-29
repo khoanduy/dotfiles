@@ -4,10 +4,10 @@ local servers = { 'rust_analyzer', 'pyright', 'tsserver' }
 local lspconfig = require('lspconfig')
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 
-vim.keymap.set('n', '<leader>lo', vim.diagnostic.open_float, {noremap = true, silent = true})
+vim.keymap.set('n', '<leader>ld', vim.diagnostic.open_float, {noremap = true, silent = true})
 vim.keymap.set('n', '[l', vim.diagnostic.goto_prev, {noremap = true, silent = true})
 vim.keymap.set('n', ']l', vim.diagnostic.goto_next, {noremap = true, silent = true})
-vim.keymap.set('n', '<leader>lq', vim.diagnostic.setloclist, {noremap = true, silent = true})
+vim.keymap.set('n', '<leader>lD', vim.diagnostic.setloclist, {noremap = true, silent = true})
 
 local on_attach = function(client, bufnr)
   -- Enable completion triggered by <c-x><c-o>

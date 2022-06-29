@@ -35,8 +35,8 @@ api.nvim_set_keymap('v', '//', [[y/\V<C-R>=escape(@",'/\')<CR><CR>]], {expr = fa
 
 -- NVIM tree
 api.nvim_set_keymap('n', '<leader>nt', ':NvimTreeToggle<CR>', {expr = false, noremap = true})
-api.nvim_set_keymap('n', '<leader>ns', ':NvimTreeFocus<CR>', {expr = false, noremap = true})
-api.nvim_set_keymap('n', '<leader>nf', ':NvimTreeFindFile<CR>', {expr = false, noremap = true})
+api.nvim_set_keymap('n', '<leader>nf', ':NvimTreeFocus<CR>', {expr = false, noremap = true})
+api.nvim_set_keymap('n', '<leader>nF', ':NvimTreeFindFile<CR>', {expr = false, noremap = true})
 api.nvim_set_keymap('n', '<leader>nc', ':NvimTreeCollapse<CR>', {expr = false, noremap = true})
 
 -- Toggleterm
