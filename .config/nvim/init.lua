@@ -10,7 +10,9 @@ require('command')
 local g = vim.g
 local opt = vim.opt
 local cmd = vim.cmd
+local api = vim.api
 
+api.nvim_command('set nocompatible')
 g.diagnostics_enabled = true
 
 -- Encoding
@@ -64,11 +66,11 @@ cmd([[
   set ma
   set mouse=a
   syntax enable
-  set background=dark
-  colorscheme kanagawa
   if !has('mac')
     set termguicolors
   endif
 ]])
 
+-- Get rid of scratch buffer
+cmd([[ set completeopt-=preview ]])
 ---------End configuration---------
