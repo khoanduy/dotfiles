@@ -9,11 +9,12 @@ $ cd dotfiles
 $ chmod +x ./setup_tilde.sh
 $ ./setup_tilde.sh
 ```
-Open `~/.config/nvim/plugin.conf.vim` and install all neovim's plugins:
+Open `~/.config/nvim/lua/plugin.lua`, ignore all errors and install all neovim's plugins:
 ```shell script
-$ nvim ~/.config/nvim/plugin.conf.vim
-:PlugClean
-:PlugInstall
+$ nvim ~/.config/nvim/lua/plugin.lua
+:source %
+:PackerClean
+:PackerInstall
 ```
 
 ## Additional options
