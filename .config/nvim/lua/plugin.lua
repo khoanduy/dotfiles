@@ -42,24 +42,26 @@ return require('packer').startup(function()
   use {
     'kyazdani42/nvim-tree.lua',
     config = function()
-      vim.g.nvim_tree_show_icons = {
-        folders = 0,
-        files = 0,
-        git = 0,
-        folder_arrows = 0,
-      }
       require('nvim-tree').setup {
         view = {
-          adaptive_size = true,
+          adaptive_size = false,
         },
         renderer = {
           group_empty = true,
+          icons = {
+            show = {
+              file = false,
+              folder = false,
+              git = false,
+              folder_arrow = false,
+            }
+          }
         },
         filters = {
           dotfiles = false,
         },
         update_focused_file = {
-          enable = 1,
+          enable = true,
         },
       }
     end
@@ -74,9 +76,7 @@ return require('packer').startup(function()
   }
 
   use { 'tpope/vim-fugitive' }
-
   use { 'tpope/vim-surround' }
-
   use { 'jiangmiao/auto-pairs' }
 
   use {
@@ -122,15 +122,11 @@ return require('packer').startup(function()
   }
 
   -- Language Server Protocol
-  use {
-    'neoclide/coc.nvim',
-    branch = 'release',
-    config = function()
-      vim.g.coc_global_extensions = { 'coc-docker', 'coc-rust-analyzer', 'coc-pyright',
-        'coc-sql', 'coc-tslint-plugin', 'coc-tsserver', 'coc-css', 'coc-html', 'coc-json',
-        'coc-prettier'}
-    end
-  }
+  use { 'neovim/nvim-lspconfig' }
+  use { 'hrsh7th/nvim-cmp' }
+  use { 'hrsh7th/cmp-nvim-lsp' }
+  use { 'saadparwaiz1/cmp_luasnip' }
+  use { 'L3MON4D3/LuaSnip' }
 
   -- UI
   use {
