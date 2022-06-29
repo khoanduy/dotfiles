@@ -39,6 +39,13 @@ api.nvim_set_keymap('t', '<leader>tt', [[<C-\><C-n>:ToggleTerm<CR>]], {expr = fa
 api.nvim_set_keymap('n', '<leader>ts', ':ToggleTermSendCurrentLine<CR>', {expr = false, noremap = true})
 api.nvim_set_keymap('v', '<leader>ts', ':ToggleTermSendVisualSelection<CR>', {expr = false, noremap = true})
 
+local Terminal  = require('toggleterm.terminal').Terminal
+local lazygit = Terminal:new({ cmd = 'lazygit', hidden = true, direction = 'float' })
+function _lazygit_toggle()
+  lazygit:toggle()
+end -- lazygit terminal
+vim.api.nvim_set_keymap('n', '<leader>g', '<cmd>lua _lazygit_toggle()<CR>', {noremap = true, silent = false})
+
 -- CoC
 api.nvim_set_keymap('i', '<C-space>', 'coc#refresh()', {expr = true, noremap = true, silent = true})
 

@@ -25,7 +25,6 @@ return require('packer').startup(function()
       vim.g.NERDCompactSexyComs = 1
     end
   }
-
   use {
     'airblade/vim-gitgutter',
     config = function()
@@ -97,16 +96,14 @@ return require('packer').startup(function()
     'akinsho/toggleterm.nvim',
     config = function()
       require('toggleterm').setup {
-        size = 20,
         hide_numbers = true,
         shade_terminals = true,
-        shading_factor = '3',
         start_in_insert = true,
         insert_mappings = true,
         terminal_mappings = true,
         persist_size = true,
         persist_mode = true,
-        direction = 'horizontal',
+        direction = 'float',
         close_on_exit = true,
       }
     end
