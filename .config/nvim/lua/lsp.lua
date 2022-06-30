@@ -4,10 +4,9 @@ local servers = { 'rust_analyzer', 'pyright', 'tsserver' }
 local lspconfig = require('lspconfig')
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 
-vim.keymap.set('n', '<leader>ld', vim.diagnostic.open_float, {noremap = true, silent = true})
+vim.keymap.set('n', '<leader>d', vim.diagnostic.open_float, {noremap = true, silent = true})
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, {noremap = true, silent = true})
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next, {noremap = true, silent = true})
-vim.keymap.set('n', '<leader>lD', vim.diagnostic.setloclist, {noremap = true, silent = true})
 
 local on_attach = function(client, bufnr)
   -- Enable completion triggered by <c-x><c-o>
@@ -18,7 +17,7 @@ local on_attach = function(client, bufnr)
   local bufopts = { noremap=true, silent=true, buffer=bufnr }
   vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
   vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
-  vim.keymap.set('n', '<leader>bh', vim.lsp.buf.hover, bufopts)
+  vim.keymap.set('n', '<M-h>', vim.lsp.buf.hover, bufopts)
   vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, bufopts)
   vim.keymap.set('n', '<leader>hb', vim.lsp.buf.signature_help, bufopts)
   vim.keymap.set('n', '<leader>ba', vim.lsp.buf.add_workspace_folder, bufopts)
@@ -30,7 +29,7 @@ local on_attach = function(client, bufnr)
   vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, bufopts)
   vim.keymap.set('n', '<leader>ac', vim.lsp.buf.code_action, bufopts)
   vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
-  vim.keymap.set('n', '<leader>fo', vim.lsp.buf.formatting, bufopts)
+  vim.keymap.set('n', '<leader>fm', vim.lsp.buf.formatting, bufopts)
 end
 
 capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
@@ -52,8 +51,8 @@ cmp.setup {
     end,
   },
   mapping = cmp.mapping.preset.insert({
-    ['<C-d>'] = cmp.mapping.scroll_docs(-5),
-    ['<C-f>'] = cmp.mapping.scroll_docs(5),
+    ['<M-k>'] = cmp.mapping.scroll_docs(-5),
+    ['<M-j>'] = cmp.mapping.scroll_docs(5),
     ['<C-Space>'] = cmp.mapping.complete(),
     ['<Tab>'] = cmp.mapping.confirm {
       behavior = cmp.ConfirmBehavior.Replace,
