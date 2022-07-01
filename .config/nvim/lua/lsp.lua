@@ -17,7 +17,7 @@ local on_attach = function(client, bufnr)
   local bufopts = { noremap=true, silent=true, buffer=bufnr }
   vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
   vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
-  vim.keymap.set('n', '<M-h>', vim.lsp.buf.hover, bufopts)
+  vim.keymap.set('n', [[C-\]], vim.lsp.buf.hover, bufopts)
   vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, bufopts)
   vim.keymap.set('n', '<leader>hb', vim.lsp.buf.signature_help, bufopts)
   vim.keymap.set('n', '<leader>ba', vim.lsp.buf.add_workspace_folder, bufopts)
@@ -51,8 +51,8 @@ cmp.setup {
     end,
   },
   mapping = cmp.mapping.preset.insert({
-    ['<M-k>'] = cmp.mapping.scroll_docs(-5),
-    ['<M-j>'] = cmp.mapping.scroll_docs(5),
+    ['<C-d>'] = cmp.mapping.scroll_docs(-5),
+    ['<C-f>'] = cmp.mapping.scroll_docs(5),
     ['<C-Space>'] = cmp.mapping.complete(),
     ['<Tab>'] = cmp.mapping.confirm {
       behavior = cmp.ConfirmBehavior.Replace,

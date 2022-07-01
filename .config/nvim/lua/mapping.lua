@@ -36,7 +36,7 @@ api.nvim_set_keymap('n', '<leader>bW', ':bw!<CR>', nenrs)
 api.nvim_set_keymap('t', '<Esc>', [[<C-\><C-n>]], ners)
 
 -- No highlight
-api.nvim_set_keymap('n', '<M-l>', ':noh<CR>', nenrs)
+api.nvim_set_keymap('n', '|', ':noh<CR>', nenrs)
 api.nvim_set_keymap('n', '<leader>r', ':e<CR>', nenrs)
 
 -- Search current marked text
@@ -51,8 +51,9 @@ api.nvim_set_keymap('n', '<leader>nc', ':NvimTreeCollapse<CR>', nenrs)
 -- Toggleterm
 api.nvim_set_keymap('n', '<C-t>', ':ToggleTerm<CR>', nenrs)
 api.nvim_set_keymap('t', '<C-t>', [[<C-\><C-n>:ToggleTerm<CR>]], nenrs)
-api.nvim_set_keymap('n', '<M-t>', ':ToggleTermToggleAll<CR>', nenrs)
-api.nvim_set_keymap('t', '<M-t>', [[<C-\><C-n>:ToggleTermToggleAll<CR>]], nenrs)
+api.nvim_set_keymap('n', '<leader>tt', ':ToggleTermToggleAll<CR>', nenrs)
+api.nvim_set_keymap('t', '<leader>tt', [[<C-\><C-n>:ToggleTermToggleAll<CR>]], nenrs)
+
 api.nvim_set_keymap('n', '<leader>ts', ':ToggleTermSendCurrentLine<CR>', nenrns)
 api.nvim_set_keymap('v', '<leader>ts', ':ToggleTermSendVisualSelection<CR>', nenrns)
 
