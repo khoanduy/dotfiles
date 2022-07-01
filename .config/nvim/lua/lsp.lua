@@ -28,8 +28,10 @@ local on_attach = function(client, bufnr)
   vim.keymap.set('n', 'gy', vim.lsp.buf.type_definition, bufopts)
   vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, bufopts)
   vim.keymap.set('n', [[C-\]], vim.lsp.buf.code_action, bufopts)
+  vim.keymap.set('v', [[C-\]], vim.lsp.buf.range_code_action, bufopts)
   vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
   vim.keymap.set('n', '<leader>fm', vim.lsp.buf.formatting, bufopts)
+  vim.keymap.set('v', '<leader>fm', vim.lsp.buf.range_formatting, bufopts)
 end
 
 capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
