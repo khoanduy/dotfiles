@@ -25,5 +25,4 @@ You might want to install these packages as well:
 
 ## References
 [tmux](https://github.com/tmux/tmux)\
-[vim](https://www.vim.org/)\
 [neovim](https://neovim.io/)
