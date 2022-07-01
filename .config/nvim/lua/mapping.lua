@@ -37,7 +37,7 @@ api.nvim_set_keymap('t', '<Esc>', [[<C-\><C-n>]], ners)
 
 -- No highlight
 api.nvim_set_keymap('n', '|', ':noh<CR>', nenrs)
-api.nvim_set_keymap('n', '<leader>r', ':e<CR>', nenrs)
+api.nvim_set_keymap('n', '<leader>rr', ':e<CR>', nenrs)
 
 -- Search current marked text
 api.nvim_set_keymap('v', '//', [[y/\V<C-R>=escape(@",'/\')<CR><CR>]], nenrs)
@@ -77,5 +77,5 @@ api.nvim_set_keymap('n', '<leader>fa', ':Telescope live_grep<CR>', nenrs)
 api.nvim_set_keymap('n', '<leader>fb', ':Telescope current_buffer_fuzzy_find<CR>', nenrs)
 api.nvim_set_keymap('n', '<leader>fc', ':Telescope ', nenrns)
 api.nvim_set_keymap('n', '<leader>hh', ':Telescope help_tags<CR>', nenrs)
-api.nvim_set_keymap('n', '<C-a>', ':Telescope buffers<CR>', nenrs)
+api.nvim_set_keymap('n', '<leader>bb', ':Telescope buffers<CR>', nenrs)
 --------End mappings config--------
