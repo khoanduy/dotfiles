@@ -6,8 +6,9 @@ Clone repository and run the setup script (you have to run `chmod +x` in able to
 ```shell script
 $ git clone https://github.com/khoarx/dotfiles.git
 $ cd dotfiles
-$ chmod +x ./setup_tilde.sh
+$ chmod +x setup_tilde.sh
 $ ./setup_tilde.sh
+$ source ~/.zshrc
 ```
 Open `~/.config/nvim/lua/plugin.lua`, ignore all errors and install all neovim's plugins:
 ```shell script
