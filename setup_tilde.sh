@@ -46,4 +46,5 @@ if [[ $PWD != $HOME ]]; then
   cp -R ./.* ~
 fi
 
+chsh -s $(which zsh)
 echo "Setup done. Run \`source ~/.zshrc\` to refresh shell config"
