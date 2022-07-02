@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 # Install essential tools for my development environment
 
 # Install essential packages
@@ -30,13 +30,13 @@ fi
 
 if ! hash rustc &> /dev/null; then
   echo "Installing Rust"
-  sh -c "$(curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh)"
+  sh -c "$(curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y)"
   sh -c "$(source $HOME/.cargo/env)"
 fi
 
 if [[ ! -d ~/.oh-my-zsh ]]; then
   echo "Installing Oh My Zsh"
-  sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
+  sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
 fi
 
 # $HOME become repo's root
