@@ -33,7 +33,7 @@ api.nvim_set_keymap('n', '<leader>bw', ':bw<CR>', nenrs)
 api.nvim_set_keymap('n', '<leader>bW', ':bw!<CR>', nenrs)
 
 -- Remap terminal escape key
-api.nvim_set_keymap('t', '<Esc>', [[<C-\><C-n>]], ners)
+api.nvim_set_keymap('t', '<leader>e', [[<C-\><C-n>]], ners)
 
 -- No highlight
 api.nvim_set_keymap('n', '|', ':noh<CR>', nenrs)
