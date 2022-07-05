@@ -14,8 +14,7 @@ vim.cmd([[
 ]])
 
 -- List plugins
-return require('packer').startup(function()
-  use { 'wbthomason/packer.nvim' }
+return require('packer').startup(function() use { 'wbthomason/packer.nvim' }
 
   -- Utilities
   use {
@@ -78,6 +77,18 @@ return require('packer').startup(function()
   use { 'tpope/vim-fugitive' }
   use { 'tpope/vim-surround' }
   use { 'jiangmiao/auto-pairs' }
+  use { 'tpope/vim-dadbod' }
+  use { 'kristijanhusak/vim-dadbod-ui' }
+  use {
+    'kristijanhusak/vim-dadbod-completion',
+    config = function()
+      require('telescope').setup {}
+      vim.cmd([[
+        autocmd FileType sql setlocal omnifunc=vim_dadbod_completion#omni
+        autocmd FileType sql,mysql,plsql lua require('cmp').setup.buffer({ sources = {{ name = 'vim-dadbod-completion' }} })
+      ]])
+    end
+  }
 
   use {
     'akinsho/toggleterm.nvim',
@@ -116,12 +127,7 @@ return require('packer').startup(function()
     end
   }
 
-  use {
-    'rust-lang/rust.vim',
-    config = function()
-      vim.g.rustfmt_autosave = 1
-    end
-  }
+  use { 'rust-lang/rust.vim'  }
 
   -- Language Server Protocol
   use { 'neovim/nvim-lspconfig' }

@@ -78,4 +78,8 @@ api.nvim_set_keymap('n', '<leader>fb', ':Telescope current_buffer_fuzzy_find<CR>
 api.nvim_set_keymap('n', '<leader>fc', ':Telescope ', nenrns)
 api.nvim_set_keymap('n', '<leader>hh', ':Telescope help_tags<CR>', nenrs)
 api.nvim_set_keymap('n', '<leader>bb', ':Telescope buffers<CR>', nenrs)
+
+-- Dadbod UI
+api.nvim_set_keymap('n', '<leader>db', ':DBUIToggle<CR>', nenrs)
+api.nvim_set_keymap('n', '<leader>da', ':DBUIAddConnection<CR>', nenrs)
 --------End mappings config--------
