@@ -27,14 +27,14 @@ scrolling:
 
 font:
   normal:
-    family: Cascadia Mono
-    style: Regular
+    family: SauceCodePro Nerd Font
+    style: Medium
   bold:
-    family: Cascadia Mono
+    family: SauceCodePro Nerd Font
     style: Bold
   italic:
-    family: Cascadia Mono
-    style: Italic
+    family: SauceCodePro Nerd Font
+    style: Medium Italic
   size: 13.0
 
 # Catppuccin
@@ -363,4 +363,4 @@ color_schemes:
       - { index: 16, color: '#FAB387' }
       - { index: 17, color: '#F5E0DC' }
 
-colors: *mocha
+colors: *latte

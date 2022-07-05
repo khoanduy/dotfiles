@@ -40,6 +40,7 @@ return require('packer').startup(function() use { 'wbthomason/packer.nvim' }
 
   use {
     'kyazdani42/nvim-tree.lua',
+    requires = { 'kyazdani42/nvim-web-devicons' },
     config = function()
       require('nvim-tree').setup {
         view = {
@@ -49,10 +50,10 @@ return require('packer').startup(function() use { 'wbthomason/packer.nvim' }
           group_empty = true,
           icons = {
             show = {
-              file = false,
-              folder = false,
-              git = false,
-              folder_arrow = false,
+              file = true,
+              folder = true,
+              git = true,
+              folder_arrow = true,
             }
           }
         },
@@ -112,7 +113,6 @@ return require('packer').startup(function() use { 'wbthomason/packer.nvim' }
   -- Programming language
   use {
     'nvim-treesitter/nvim-treesitter',
-    run = ':TSUpdate',
     config = function()
       require('nvim-treesitter.configs').setup {
         ensure_installed = { 'rust', 'lua', 'python', 'javascript', 'toml',
@@ -144,7 +144,7 @@ return require('packer').startup(function() use { 'wbthomason/packer.nvim' }
       require('catppuccin').setup{
         term_colors = true
       }
-      vim.g.catppuccin_flavour = 'mocha' -- latte, frappe, macchiato, mocha
+      vim.g.catppuccin_flavour = 'latte' -- latte, frappe, macchiato, mocha
       vim.cmd([[ colorscheme catppuccin ]])
     end
   }
@@ -156,8 +156,8 @@ return require('packer').startup(function() use { 'wbthomason/packer.nvim' }
         options = {
           icons_enabled = false,
           theme = 'auto',
-          component_separators = { left = '|', right = '|'},
-          section_separators = { left = '::', right = '- '},
+          component_separators = { left = '»', right = '🐧'},
+          section_separators = { left = '⇻', right = '↯ '},
           disabled_filetypes = {},
           always_divide_middle = true,
           globalstatus = false,
