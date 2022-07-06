@@ -156,7 +156,7 @@ return require('packer').startup(function() use { 'wbthomason/packer.nvim' }
         options = {
           icons_enabled = false,
           theme = 'auto',
-          component_separators = { left = '»', right = '🦦'},
+          component_separators = { left = '»', right = '🐧'},
           section_separators = { left = '⇻', right = '↯ '},
           disabled_filetypes = {},
           always_divide_middle = true,
