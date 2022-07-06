@@ -16,6 +16,7 @@ HYPHEN_INSENSITIVE="true"
 plugins=(git)
 
 source $ZSH/oh-my-zsh.sh
+source $HOME/.profile
 
 # Alias
 alias lg=lazygit
