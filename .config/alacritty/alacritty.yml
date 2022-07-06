@@ -2,8 +2,7 @@ env:
   TERM: alacritty
 
 window:
-  decorations: None
-  startup_mode: Maximized
+  decorations: Full
   dimensions:
     columns: 0
     lines: 0
