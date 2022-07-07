@@ -19,6 +19,11 @@ api.nvim_set_keymap('n', '<C-j>', '<C-w>j', nenrs)
 api.nvim_set_keymap('n', '<C-k>', '<C-w>k', nenrs)
 api.nvim_set_keymap('n', '<C-l>', '<C-w>l', nenrs)
 
+api.nvim_set_keymap('t', '<C-h>', [[<C-\><C-n><C-w>h]], nenrs)
+api.nvim_set_keymap('t', '<C-j>', [[<C-\><C-n><C-w>j]], nenrs)
+api.nvim_set_keymap('t', '<C-k>', [[<C-\><C-n><C-w>k]], nenrs)
+api.nvim_set_keymap('t', '<C-l>', [[<C-\><C-n><C-w>l]], nenrs)
+
 -- Re-size split windows using arrow keys
 api.nvim_set_keymap('n', '<Up>', ':resize -2<CR>', nenrns)
 api.nvim_set_keymap('n', '<Down>', ':resize +2<CR>', nenrns)
@@ -26,21 +31,21 @@ api.nvim_set_keymap('n', '<Left>', ':vertical resize +2<CR>', nenrns)
 api.nvim_set_keymap('n', '<Right>', ':vertical resize -2<CR>', nenrns)
 
 -- Remap switch buffers keys
-api.nvim_set_keymap('n', '<leader>bn', ':bn<CR>', nenrs)
-api.nvim_set_keymap('n', '<leader>bN', ':bp<CR>', nenrs)
-api.nvim_set_keymap('n', '<leader>bd', ':bd<CR>', nenrs)
-api.nvim_set_keymap('n', '<leader>bw', ':bw<CR>', nenrs)
-api.nvim_set_keymap('n', '<leader>bW', ':bw!<CR>', nenrs)
+api.nvim_set_keymap('n', '<leader>bn', ':bn<CR>', nenrns)
+api.nvim_set_keymap('n', '<leader>bN', ':bp<CR>', nenrns)
+api.nvim_set_keymap('n', '<leader>bd', ':bd<CR>', nenrns)
+api.nvim_set_keymap('n', '<leader>bw', ':bw<CR>', nenrns)
+api.nvim_set_keymap('n', '<leader>bW', ':bw!<CR>', nenrns)
 
 -- Remap terminal escape key
 api.nvim_set_keymap('t', '<leader>e', [[<C-\><C-n>]], ners)
 
 -- No highlight
 api.nvim_set_keymap('n', '|', ':noh<CR>', nenrs)
-api.nvim_set_keymap('n', '<leader>rr', ':e<CR>', nenrs)
+api.nvim_set_keymap('n', '<leader>rr', ':e<CR>', nenrns)
 
 -- Search current marked text
-api.nvim_set_keymap('v', '//', [[y/\V<C-R>=escape(@",'/\')<CR><CR>]], nenrs)
+api.nvim_set_keymap('v', '//', [[y/\V<C-R>=escape(@",'/\')<CR><CR>]], nenrns)
 
 -- NVIM tree
 api.nvim_set_keymap('n', '<C-y>', ':NvimTreeToggle<CR>', nenrs)
@@ -81,5 +86,5 @@ api.nvim_set_keymap('n', '<leader>bb', ':Telescope buffers<CR>', nenrs)
 
 -- Dadbod UI
 api.nvim_set_keymap('n', '<leader>db', ':DBUIToggle<CR>', nenrs)
-api.nvim_set_keymap('n', '<leader>da', ':DBUIAddConnection<CR>', nenrs)
+api.nvim_set_keymap('n', '<leader>da', ':DBUIAddConnection<CR>', nenrns)
 --------End mappings config--------

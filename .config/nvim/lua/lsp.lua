@@ -4,9 +4,9 @@ local servers = { 'rust_analyzer', 'pyright', 'tsserver' }
 local lspconfig = require('lspconfig')
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 
-vim.keymap.set('n', '<leader>d', vim.diagnostic.open_float, {noremap = true, silent = true})
-vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, {noremap = true, silent = true})
-vim.keymap.set('n', ']d', vim.diagnostic.goto_next, {noremap = true, silent = true})
+vim.keymap.set('n', '<leader>d', vim.diagnostic.open_float, {noremap = true, silent = false})
+vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, {noremap = true, silent = false})
+vim.keymap.set('n', ']d', vim.diagnostic.goto_next, {noremap = true, silent = false})
 
 local on_attach = function(client, bufnr)
   -- Enable completion triggered by <c-x><c-o>
@@ -14,7 +14,7 @@ local on_attach = function(client, bufnr)
 
   -- Mappings.
   -- See `:help vim.lsp.*` for documentation on any of the below functions
-  local bufopts = { noremap=true, silent=true, buffer=bufnr }
+  local bufopts = { noremap=true, silent=false, buffer=bufnr }
   vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
   vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
   vim.keymap.set('n', '<leader>hv', vim.lsp.buf.hover, bufopts)
