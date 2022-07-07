@@ -138,9 +138,14 @@ return require('packer').startup(function() use { 'wbthomason/packer.nvim' }
 
   -- UI
   use {
-    'rebelot/kanagawa.nvim',
+    'catppuccin/nvim',
+    as = 'catppuccin',
     config = function()
-      vim.cmd([[ colorscheme kanagawa ]])
+      require('catppuccin').setup{
+        term_colors = true
+      }
+      vim.g.catppuccin_flavour = 'latte' -- latte, frappe, macchiato, mocha
+      vim.cmd([[ colorscheme catppuccin ]])
     end
   }
 
@@ -151,7 +156,7 @@ return require('packer').startup(function() use { 'wbthomason/packer.nvim' }
         options = {
           icons_enabled = false,
           theme = 'auto',
-          component_separators = { left = '✦', right = '🔥'},
+          component_separators = { left = '✦', right = '🐧'},
           section_separators = { left = '↯', right = '» '},
           disabled_filetypes = {},
           always_divide_middle = true,
