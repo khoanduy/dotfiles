@@ -138,14 +138,9 @@ return require('packer').startup(function() use { 'wbthomason/packer.nvim' }
 
   -- UI
   use {
-    'catppuccin/nvim',
-    as = 'catppuccin',
+    'rebelot/kanagawa.nvim',
     config = function()
-      require('catppuccin').setup{
-        term_colors = true
-      }
-      vim.g.catppuccin_flavour = 'latte' -- latte, frappe, macchiato, mocha
-      vim.cmd([[ colorscheme catppuccin ]])
+      vim.cmd([[ colorscheme kanagawa ]])
     end
   }
 
@@ -156,8 +151,8 @@ return require('packer').startup(function() use { 'wbthomason/packer.nvim' }
         options = {
           icons_enabled = false,
           theme = 'auto',
-          component_separators = { left = '»', right = '🐧'},
-          section_separators = { left = '⇻', right = '↯ '},
+          component_separators = { left = '⇻', right = '🍣'},
+          section_separators = { left = '↯', right = '» '},
           disabled_filetypes = {},
           always_divide_middle = true,
           globalstatus = false,
@@ -165,8 +160,8 @@ return require('packer').startup(function() use { 'wbthomason/packer.nvim' }
         sections = {
           lualine_a = {'mode'},
           lualine_b = {'branch', 'diff', 'diagnostics'},
-          lualine_c = {'filename'},
-          lualine_x = {'encoding', 'fileformat', 'filetype'},
+          lualine_c = {'fileformat', 'filename'},
+          lualine_x = {'encoding', 'filetype'},
           lualine_y = {'progress'},
           lualine_z = {'location'}
         },
