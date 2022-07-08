@@ -43,10 +43,22 @@ return require('packer').startup(function() use { 'wbthomason/packer.nvim' }
     requires = { 'kyazdani42/nvim-web-devicons' },
     config = function()
       require('nvim-tree').setup {
+        auto_reload_on_write = true,
+        update_cwd = true,
         view = {
           adaptive_size = false,
+          number = false,
+          relativenumber = false,
         },
         renderer = {
+          indent_markers = {
+            enable = true,
+            icons = {
+              corner = "└ ",
+              edge = "│ ",
+              none = "  ",
+            },
+          },
           group_empty = true,
           icons = {
             show = {
@@ -61,7 +73,7 @@ return require('packer').startup(function() use { 'wbthomason/packer.nvim' }
           dotfiles = false,
         },
         update_focused_file = {
-          enable = true,
+          enable = false,
         },
       }
     end
@@ -156,19 +168,19 @@ return require('packer').startup(function() use { 'wbthomason/packer.nvim' }
         options = {
           icons_enabled = false,
           theme = 'auto',
-          component_separators = { left = '✦', right = '🐧'},
+          component_separators = { left = '🐧', right = '⤳'},
           section_separators = { left = '↯', right = '» '},
-          disabled_filetypes = {},
+          disabled_filetypes = { 'packer', 'NvimTree' },
           always_divide_middle = true,
           globalstatus = false,
         },
         sections = {
           lualine_a = {'mode'},
-          lualine_b = {'branch', 'diff', 'diagnostics'},
-          lualine_c = {'filename'},
-          lualine_x = {'encoding', 'fileformat', 'filetype'},
-          lualine_y = {'progress'},
-          lualine_z = {'location'}
+          lualine_b = {'branch'},
+          lualine_c = {'filename', 'diagnostics'},
+          lualine_x = {'diff', 'fileformat', 'encoding', 'filetype'},
+          lualine_y = {'location'},
+          lualine_z = {'progress'}
         },
         inactive_sections = {
           lualine_a = {},
