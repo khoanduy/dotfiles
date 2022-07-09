@@ -46,7 +46,7 @@ return require('packer').startup(function() use { 'wbthomason/packer.nvim' }
         auto_reload_on_write = true,
         update_cwd = true,
         view = {
-          adaptive_size = false,
+          adaptive_size = true,
           number = false,
           relativenumber = false,
         },
@@ -150,14 +150,9 @@ return require('packer').startup(function() use { 'wbthomason/packer.nvim' }
 
   -- UI
   use {
-    'catppuccin/nvim',
-    as = 'catppuccin',
+    'rebelot/kanagawa.nvim',
     config = function()
-      require('catppuccin').setup{
-        term_colors = true
-      }
-      vim.g.catppuccin_flavour = 'latte' -- latte, frappe, macchiato, mocha
-      vim.cmd([[ colorscheme catppuccin ]])
+      vim.cmd([[ colorscheme kanagawa ]])
     end
   }
 
@@ -168,7 +163,7 @@ return require('packer').startup(function() use { 'wbthomason/packer.nvim' }
         options = {
           icons_enabled = false,
           theme = 'auto',
-          component_separators = { left = '🐧', right = '⤳'},
+          component_separators = { left = '🍣', right = '⤳'},
           section_separators = { left = '↯', right = '» '},
           disabled_filetypes = { 'packer', 'NvimTree' },
           always_divide_middle = true,
