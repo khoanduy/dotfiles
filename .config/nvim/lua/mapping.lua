@@ -40,6 +40,9 @@ api.nvim_set_keymap('n', '<leader>bW', ':bw!<CR>', nenrns)
 -- Remap terminal escape key
 api.nvim_set_keymap('t', '<leader>e', [[<C-\><C-n>]], ners)
 
+-- Show current file path
+api.nvim_set_keymap('n', '<leader>cd', ':echo @%<CR>', ners)
+
 -- No highlight
 api.nvim_set_keymap('n', '|', ':noh<CR>', nenrs)
 api.nvim_set_keymap('n', '<leader>rr', ':e<CR>', nenrns)
@@ -48,16 +51,16 @@ api.nvim_set_keymap('n', '<leader>rr', ':e<CR>', nenrns)
 api.nvim_set_keymap('v', '//', [[y/\V<C-R>=escape(@",'/\')<CR><CR>]], nenrns)
 
 -- NVIM tree
-api.nvim_set_keymap('n', '<C-y>', ':NvimTreeToggle<CR>', nenrs)
+api.nvim_set_keymap('n', '<leader>nt', ':NvimTreeToggle<CR>', nenrs)
 api.nvim_set_keymap('n', '<leader>nf', ':NvimTreeFocus<CR>', nenrs)
 api.nvim_set_keymap('n', '<leader>nF', ':NvimTreeFindFile<CR>', nenrs)
 api.nvim_set_keymap('n', '<leader>nc', ':NvimTreeCollapse<CR>', nenrs)
 
 -- Toggleterm
-api.nvim_set_keymap('n', '<C-t>', ':ToggleTerm<CR>', nenrs)
-api.nvim_set_keymap('t', '<C-t>', [[<C-\><C-n>:ToggleTerm<CR>]], nenrs)
-api.nvim_set_keymap('n', '<leader>tt', ':ToggleTermToggleAll<CR>', nenrs)
-api.nvim_set_keymap('t', '<leader>tt', [[<C-\><C-n>:ToggleTermToggleAll<CR>]], nenrs)
+api.nvim_set_keymap('n', '<leader>tt', ':ToggleTerm<CR>', nenrs)
+api.nvim_set_keymap('t', '<leader>tt', [[<C-\><C-n>:ToggleTerm<CR>]], nenrs)
+api.nvim_set_keymap('n', '<leader>tT', ':ToggleTermToggleAll<CR>', nenrs)
+api.nvim_set_keymap('t', '<leader>tT', [[<C-\><C-n>:ToggleTermToggleAll<CR>]], nenrs)
 
 api.nvim_set_keymap('n', '<leader>ts', ':ToggleTermSendCurrentLine<CR>', nenrns)
 api.nvim_set_keymap('v', '<leader>ts', ':ToggleTermSendVisualSelection<CR>', nenrns)
