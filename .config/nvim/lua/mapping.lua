@@ -58,7 +58,6 @@ api.nvim_set_keymap('n', '<space>p', '"+p', nenrns)
 
 -- Remap write and quit
 api.nvim_set_keymap('n', '<space>q', ':q<CR>', nenrns)
-api.nvim_set_keymap('n', '<space>Q', ':qa<CR>', nenrns)
 api.nvim_set_keymap('n', '<space>w', ':w<CR>', nenrns)
 
 -- Remap split

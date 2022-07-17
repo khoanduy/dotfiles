@@ -17,7 +17,7 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
 elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
   echo "[-] Installing some essentials packages [-]"
   sudo apt-get update
-  sudo apt-get install -y git vim zsh tmux curl wget cmake python3 ripgrep build-essential
+  sudo apt-get install -y git vim zsh tmux curl wget cmake python3 python3-pip ripgrep build-essential
 
   if ! hash node &> /dev/null; then
     curl -fsSL https://deb.nodesource.com/setup_lts.x | sudo -E bash -
