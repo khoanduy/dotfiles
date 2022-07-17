@@ -62,10 +62,10 @@ return require('packer').startup(function() use { 'wbthomason/packer.nvim' }
           group_empty = true,
           icons = {
             show = {
-              file = false,
-              folder = false,
-              git = false,
-              folder_arrow = false,
+              file = true,
+              folder = true,
+              git = true,
+              folder_arrow = true,
             }
           }
         },
@@ -74,6 +74,10 @@ return require('packer').startup(function() use { 'wbthomason/packer.nvim' }
         },
         update_focused_file = {
           enable = false,
+        },
+        git = {
+          enable = true,
+          ignore = false,
         },
       }
     end
@@ -153,6 +157,7 @@ return require('packer').startup(function() use { 'wbthomason/packer.nvim' }
     'folke/tokyonight.nvim',
     config = function()
       vim.g.tokyonight_style = 'storm'
+      vim.g.tokyonight_lualine_bold = true
       vim.cmd([[ colorscheme tokyonight ]])
     end
   }
@@ -164,7 +169,7 @@ return require('packer').startup(function() use { 'wbthomason/packer.nvim' }
         options = {
           icons_enabled = false,
           theme = 'auto',
-          component_separators = { left = '🍣', right = '⤳'},
+          component_separators = { left = '🔥', right = '⤳'},
           section_separators = { left = '↯', right = '» '},
           disabled_filetypes = { 'packer', 'NvimTree' },
           always_divide_middle = true,
