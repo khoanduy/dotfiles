@@ -1,5 +1,32 @@
 --------LSP config--------
-local servers = { 'rust_analyzer', 'pyright', 'tsserver' }
+local servers = {
+  'rust_analyzer',
+  'pyright',
+  'tsserver',
+  'sqls',
+  'bashls',
+  'clangd',
+  'dockerls',
+  'sumneko_lua',
+  'html',
+  'cssls',
+  'jsonls',
+  'taplo',
+  'yamlls',
+  'zk',
+  'lemminx'
+}
+
+require('nvim-lsp-installer').setup {
+  automatic_installation = true,
+  ui = {
+    icons = {
+      server_installed = '✔',
+      server_pending = '➜',
+      server_uninstalled = '✗'
+    }
+  }
+}
 
 local lspconfig = require('lspconfig')
 local capabilities = vim.lsp.protocol.make_client_capabilities()

@@ -164,6 +164,7 @@ return require('packer').startup(function() use { 'wbthomason/packer.nvim' }
   use { 'rust-lang/rust.vim'  }
 
   -- Language Server Protocol
+  use { 'williamboman/nvim-lsp-installer' }
   use { 'neovim/nvim-lspconfig' }
   use { 'hrsh7th/nvim-cmp' }
   use { 'hrsh7th/cmp-nvim-lsp' }
