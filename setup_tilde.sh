@@ -55,7 +55,7 @@ if [[ $PWD != $HOME ]]; then
   cp -R ./.* ~
 fi
 
-echo "[-] Installing Alacritty [-]"
+echo "[-] Clone Alacritty repository [-]"
 mkdir ~/open-source
 git clone https://github.com/alacritty/alacritty.git ~/open-source
 
@@ -65,16 +65,8 @@ rustup update stable
 cd ~/open-source/alacritty
 if [[ "$OSTYPE" == "darwin"* ]]; then
   rustup target add x86_64-apple-darwin aarch64-apple-darwin
-  make app-universal
 elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
   sudo apt-get install -y pkg-config libfreetype6-dev libfontconfig1-dev libxcb-xfixes0-dev libxkbcommon-dev
-  cargo build --release
-  sudo tic -xe alacritty,alacritty-direct extra/alacritty.info
-
-  sudo cp target/release/alacritty /usr/local/bin
-  sudo cp extra/logo/alacritty-term.svg /usr/share/pixmaps/Alacritty.svg
-  sudo desktop-file-install extra/linux/Alacritty.desktop
-  sudo update-desktop-database
 fi
 
 chsh -s $(which zsh)
