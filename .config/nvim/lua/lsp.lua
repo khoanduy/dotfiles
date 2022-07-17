@@ -13,7 +13,7 @@ local servers = {
   'jsonls',
   'taplo',
   'yamlls',
-  'zk',
+  'marksman',
   'lemminx'
 }
 
