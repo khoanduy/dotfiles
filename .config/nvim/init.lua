@@ -67,9 +67,7 @@ cmd([[
   set ma
   set mouse=a
   syntax enable
-  if !has('mac')
-    set termguicolors
-  endif
+  set termguicolors
 ]])
 
 -- Get rid of scratch buffer
