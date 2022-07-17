@@ -57,22 +57,21 @@ fi
 
 echo "[-] Installing Alacritty [-]"
 mkdir ~/open-source
-git clone https://github.com/alacritty/alacritty.git ~/open-source
+git clone https://github.com/alacritty/alacritty.git ~/open-source/
 
 rustup override set stable
 rustup update stable
 
-cd ~/open-source/alacritty
 if [[ "$OSTYPE" == "darwin"* ]]; then
   rustup target add x86_64-apple-darwin aarch64-apple-darwin
-  make app-universal
+  make -C ~/open-source/alacritty/ app-universal
 elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
   sudo apt-get install -y pkg-config libfreetype6-dev libfontconfig1-dev libxcb-xfixes0-dev libxkbcommon-dev
-  cargo build --release
+  cargo build --release --manifest-path ~/open-source/alacritty/
   sudo tic -xe alacritty,alacritty-direct extra/alacritty.info
 
-  sudo cp target/release/alacritty /usr/local/bin
-  sudo cp extra/logo/alacritty-term.svg /usr/share/pixmaps/Alacritty.svg
+  sudo cp ~/open-source/target/release/alacritty /usr/local/bin
+  sudo cp ~/open-source/extra/logo/alacritty-term.svg /usr/share/pixmaps/Alacritty.svg
   sudo desktop-file-install extra/linux/Alacritty.desktop
   sudo update-desktop-database
 fi
