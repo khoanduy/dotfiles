@@ -27,6 +27,7 @@ elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
   wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/SourceCodePro.zip
   unzip SourceCodePro.zip -d ~/.fonts
   fc-cache -fv
+  rm -rf SourceCodePro.zip
 
   if ! hash node &> /dev/null; then
     curl -fsSL https://deb.nodesource.com/setup_lts.x | sudo -E bash -
@@ -55,7 +56,7 @@ if [[ $PWD != $HOME ]]; then
   cp -R ./.* ~
 fi
 
-echo "[-] Clone Alacritty repository [-]"
+echo "[-] Installing Alacritty [-]"
 mkdir ~/open-source
 git clone https://github.com/alacritty/alacritty.git ~/open-source/alacritty
 
@@ -65,14 +66,15 @@ rustup update stable
 if [[ "$OSTYPE" == "darwin"* ]]; then
   rustup target add x86_64-apple-darwin aarch64-apple-darwin
   make -C ~/open-source/alacritty/ app-universal
+  cp -r ~/open-source/alacritty/target/release/osx/Alacritty.app /Applications/
 elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
   sudo apt-get install -y pkg-config libfreetype6-dev libfontconfig1-dev libxcb-xfixes0-dev libxkbcommon-dev
-  cargo build --release --manifest-path ~/open-source/alacritty/
-  sudo tic -xe alacritty,alacritty-direct extra/alacritty.info
+  cargo build --release --manifest-path ~/open-source/alacritty/Cargo.toml
+  sudo tic -xe alacritty,alacritty-direct ~/open-source/alacritty/extra/alacritty.info
 
-  sudo cp ~/open-source/target/release/alacritty /usr/local/bin
-  sudo cp ~/open-source/extra/logo/alacritty-term.svg /usr/share/pixmaps/Alacritty.svg
-  sudo desktop-file-install extra/linux/Alacritty.desktop
+  sudo cp ~/open-source/alacritty/target/release/alacritty /usr/local/bin
+  sudo cp ~/open-source/alacritty/extra/logo/alacritty-term.svg /usr/share/pixmaps/Alacritty.svg
+  sudo desktop-file-install ~/open-source/alacritty/extra/linux/Alacritty.desktop
   sudo update-desktop-database
 fi
 
