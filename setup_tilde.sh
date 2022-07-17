@@ -55,9 +55,9 @@ if [[ $PWD != $HOME ]]; then
   cp -R ./.* ~
 fi
 
-echo "[-] Installing Alacritty [-]"
+echo "[-] Clone Alacritty repository [-]"
 mkdir ~/open-source
-git clone https://github.com/alacritty/alacritty.git ~/open-source/
+git clone https://github.com/alacritty/alacritty.git ~/open-source/alacritty
 
 rustup override set stable
 rustup update stable
