@@ -40,7 +40,6 @@ return require('packer').startup(function() use { 'wbthomason/packer.nvim' }
 
   use {
     'kyazdani42/nvim-tree.lua',
-    requires = { 'kyazdani42/nvim-web-devicons' },
     config = function()
       require('nvim-tree').setup {
         auto_reload_on_write = true,
@@ -54,18 +53,18 @@ return require('packer').startup(function() use { 'wbthomason/packer.nvim' }
           indent_markers = {
             enable = true,
             icons = {
-              corner = "└ ",
-              edge = "│ ",
-              none = "  ",
+              corner = "└",
+              edge = "│",
+              none = " ",
             },
           },
           group_empty = true,
           icons = {
             show = {
-              file = true,
-              folder = true,
-              git = true,
-              folder_arrow = true,
+              file = false,
+              folder = false,
+              git = false,
+              folder_arrow = false,
             }
           }
         },
@@ -122,6 +121,25 @@ return require('packer').startup(function() use { 'wbthomason/packer.nvim' }
         persist_mode = true,
         direction = 'horizontal',
         close_on_exit = true,
+      }
+    end
+  }
+
+  use {
+    'folke/trouble.nvim',
+    config = function()
+      require('trouble').setup {
+        icons = false,
+        fold_open = '⦣',
+        fold_closed = '⦢',
+        indent_lines = false,
+        signs = {
+            error = '✘',
+            warning = '❢',
+            hint = '✔',
+            information = '✦'
+        },
+        use_diagnostic_signs = false
       }
     end
   }
