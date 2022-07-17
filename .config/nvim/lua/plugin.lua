@@ -62,10 +62,10 @@ return require('packer').startup(function() use { 'wbthomason/packer.nvim' }
           group_empty = true,
           icons = {
             show = {
-              file = true,
-              folder = true,
-              git = true,
-              folder_arrow = true,
+              file = false,
+              folder = false,
+              git = false,
+              folder_arrow = false,
             }
           }
         },
@@ -150,9 +150,10 @@ return require('packer').startup(function() use { 'wbthomason/packer.nvim' }
 
   -- UI
   use {
-    'rebelot/kanagawa.nvim',
+    'folke/tokyonight.nvim',
     config = function()
-      vim.cmd([[ colorscheme kanagawa ]])
+      vim.g.tokyonight_style = 'storm'
+      vim.cmd([[ colorscheme tokyonight ]])
     end
   }
 
