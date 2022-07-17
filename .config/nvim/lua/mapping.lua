@@ -37,18 +37,33 @@ api.nvim_set_keymap('n', '<leader>bd', ':bd<CR>', nenrns)
 api.nvim_set_keymap('n', '<leader>bw', ':bw<CR>', nenrns)
 api.nvim_set_keymap('n', '<leader>bW', ':bw!<CR>', nenrns)
 
+api.nvim_set_keymap('t', '<leader>bw', [[<C-\><C-n>:bw!<CR>]], nenrns)
+
 -- Remap terminal escape key
 api.nvim_set_keymap('t', '<leader>e', [[<C-\><C-n>]], ners)
 
--- Show current file path
-api.nvim_set_keymap('n', '<leader>cd', ':echo @%<CR>', ners)
+-- Show current file path and open file
+api.nvim_set_keymap('n', '<space>d', ':echo @%<CR>', ners)
 
 -- No highlight
 api.nvim_set_keymap('n', '|', ':noh<CR>', nenrs)
-api.nvim_set_keymap('n', '<leader>rr', ':e<CR>', nenrns)
+api.nvim_set_keymap('n', '<space>r', ':e<CR>', nenrns)
 
 -- Search current marked text
 api.nvim_set_keymap('v', '//', [[y/\V<C-R>=escape(@",'/\')<CR><CR>]], nenrns)
+
+-- Copy marked text/paste to/from global register
+api.nvim_set_keymap('v', '<space>y', '"+y', nenrns)
+api.nvim_set_keymap('n', '<space>p', '"+p', nenrns)
+
+-- Remap write and quit
+api.nvim_set_keymap('n', '<space>q', ':q<CR>', nenrns)
+api.nvim_set_keymap('n', '<space>Q', ':qa<CR>', nenrns)
+api.nvim_set_keymap('n', '<space>w', ':w<CR>', nenrns)
+
+-- Remap split
+api.nvim_set_keymap('n', '<space>;', '<C-w>v', nenrs)
+api.nvim_set_keymap('n', '<space>:', '<C-w>s', nenrs)
 
 -- NVIM tree
 api.nvim_set_keymap('n', '<leader>nt', ':NvimTreeToggle<CR>', nenrs)
@@ -56,11 +71,14 @@ api.nvim_set_keymap('n', '<leader>nf', ':NvimTreeFocus<CR>', nenrs)
 api.nvim_set_keymap('n', '<leader>nF', ':NvimTreeFindFile<CR>', nenrs)
 api.nvim_set_keymap('n', '<leader>nc', ':NvimTreeCollapse<CR>', nenrs)
 
+-- Trouble
+api.nvim_set_keymap('n', '<leader>x', ':TroubleToggle<CR>', nenrs)
+
 -- Toggleterm
-api.nvim_set_keymap('n', '<leader>tt', ':ToggleTerm<CR>', nenrs)
-api.nvim_set_keymap('t', '<leader>tt', [[<C-\><C-n>:ToggleTerm<CR>]], nenrs)
-api.nvim_set_keymap('n', '<leader>tT', ':ToggleTermToggleAll<CR>', nenrs)
-api.nvim_set_keymap('t', '<leader>tT', [[<C-\><C-n>:ToggleTermToggleAll<CR>]], nenrs)
+api.nvim_set_keymap('n', '<leader>T', ':ToggleTerm<CR>', nenrs)
+api.nvim_set_keymap('t', '<leader>T', [[<C-\><C-n>:ToggleTerm<CR>]], nenrs)
+api.nvim_set_keymap('n', '<leader>tt', ':ToggleTermToggleAll<CR>', nenrs)
+api.nvim_set_keymap('t', '<leader>tt', [[<C-\><C-n>:ToggleTermToggleAll<CR>]], nenrs)
 
 api.nvim_set_keymap('n', '<leader>ts', ':ToggleTermSendCurrentLine<CR>', nenrns)
 api.nvim_set_keymap('v', '<leader>ts', ':ToggleTermSendVisualSelection<CR>', nenrns)

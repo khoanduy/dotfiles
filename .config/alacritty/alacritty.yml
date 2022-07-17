@@ -38,7 +38,7 @@ font:
   italic:
     family: Cascadia Mono
     style: Italic
-  size: 13.0
+  size: 12
 
 # TokyoNight Alacritty Colors
 colors:
