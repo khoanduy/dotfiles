@@ -31,13 +31,13 @@ scrolling:
 font:
   normal:
     family: SauceCodePro Nerd Font
-    style: Medium
+    style: Regular
   bold:
     family: SauceCodePro Nerd Font
     style: Bold
   italic:
     family: SauceCodePro Nerd Font
-    style: Medium Italic
+    style: Italic
   size: 13
 
 # TokyoNight Alacritty Colors
