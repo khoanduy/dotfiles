@@ -40,6 +40,7 @@ return require('packer').startup(function() use { 'wbthomason/packer.nvim' }
 
   use {
     'kyazdani42/nvim-tree.lua',
+    requires = { 'kyazdani42/nvim-web-devicons' },
     config = function()
       require('nvim-tree').setup {
         auto_reload_on_write = true,
@@ -61,10 +62,10 @@ return require('packer').startup(function() use { 'wbthomason/packer.nvim' }
           group_empty = true,
           icons = {
             show = {
-              file = false,
-              folder = false,
-              git = false,
-              folder_arrow = false,
+              file = true,
+              folder = true,
+              git = true,
+              folder_arrow = true,
             }
           }
         },
@@ -186,10 +187,10 @@ return require('packer').startup(function() use { 'wbthomason/packer.nvim' }
     config = function()
       require('lualine').setup {
         options = {
-          icons_enabled = false,
+          icons_enabled = true,
           theme = 'auto',
-          component_separators = { left = '🔥', right = '⤳'},
-          section_separators = { left = '↯', right = '» '},
+          component_separators = { left = '🔥', right = '↯'},
+          section_separators = { left = '', right = '» '},
           disabled_filetypes = { 'packer', 'NvimTree' },
           always_divide_middle = true,
           globalstatus = false,

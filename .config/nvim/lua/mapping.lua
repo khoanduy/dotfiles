@@ -61,8 +61,8 @@ api.nvim_set_keymap('n', '<space>q', ':q<CR>', nenrns)
 api.nvim_set_keymap('n', '<space>w', ':w<CR>', nenrns)
 
 -- Remap split
-api.nvim_set_keymap('n', '<space>;', '<C-w>v', nenrs)
-api.nvim_set_keymap('n', '<space>:', '<C-w>s', nenrs)
+api.nvim_set_keymap('n', '<space>v', '<C-w>v', nenrs)
+api.nvim_set_keymap('n', '<space>h', '<C-w>s', nenrs)
 
 -- NVIM tree
 api.nvim_set_keymap('n', '<leader>nt', ':NvimTreeToggle<CR>', nenrs)

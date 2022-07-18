@@ -14,10 +14,20 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
   echo "[-] Installing some essentials packages [-]"
   brew update
   brew install git neovim zsh tmux curl wget node cmake ripgrep
+
+  echo "[-] Downloading font SauceCodePro NF [-]"
+  brew tap homebrew/cask-fonts
+  brew install --cask font-sauce-code-pro-nerd-font
 elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
   echo "[-] Installing some essentials packages [-]"
   sudo apt-get update
   sudo apt-get install -y git vim zsh tmux curl wget cmake python3 python3-pip ripgrep build-essential libssl-dev
+
+  echo "[-] Downloading font SauceCodePro NF [-]"
+  wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/SourceCodePro.zip
+  unzip SourceCodePro.zip -d ~/.fonts
+  fc-cache -fv
+  rm -rf SourceCodePro.zip
 
   if ! hash node &> /dev/null; then
     curl -fsSL https://deb.nodesource.com/setup_lts.x | sudo -E bash -
