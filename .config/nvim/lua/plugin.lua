@@ -189,8 +189,8 @@ return require('packer').startup(function() use { 'wbthomason/packer.nvim' }
         options = {
           icons_enabled = true,
           theme = 'auto',
-          component_separators = { left = '🔥', right = '↯'},
-          section_separators = { left = '', right = '» '},
+          component_separators = { left = '🔥', right = '»'},
+          section_separators = { left = '', right = '↯'},
           disabled_filetypes = { 'packer', 'NvimTree' },
           always_divide_middle = true,
           globalstatus = false,
@@ -199,7 +199,7 @@ return require('packer').startup(function() use { 'wbthomason/packer.nvim' }
           lualine_a = {'mode'},
           lualine_b = {'branch'},
           lualine_c = {'filename', 'diagnostics'},
-          lualine_x = {'diff', 'fileformat', 'encoding', 'filetype'},
+          lualine_x = {'diff', 'encoding', 'filetype'},
           lualine_y = {'location'},
           lualine_z = {'progress'}
         },
