@@ -13,7 +13,7 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
 
   echo "[-] Installing some essentials packages [-]"
   brew update
-  brew install git neovim zsh tmux curl wget node cmake ripgrep
+  brew install git neovim zsh tmux curl wget node cmake ripgrep go lazygit
 
   echo "[-] Downloading font SauceCodePro NF [-]"
   brew tap homebrew/cask-fonts
@@ -22,6 +22,12 @@ elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
   echo "[-] Installing some essentials packages [-]"
   sudo apt-get update
   sudo apt-get install -y git vim zsh tmux curl wget cmake python3 python3-pip ripgrep build-essential libssl-dev
+
+  sudo add-apt-repository ppa:longsleep/golang-backports
+  sudo apt update
+  sudo apt install -y golang-go
+
+  go install github.com/jesseduffield/lazygit@latest
 
   echo "[-] Downloading font SauceCodePro NF [-]"
   wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/SourceCodePro.zip
