@@ -177,7 +177,7 @@ return require('packer').startup(function() use { 'wbthomason/packer.nvim' }
     'folke/tokyonight.nvim',
     config = function()
       vim.g.tokyonight_style = 'storm'
-      vim.g.tokyonight_lualine_bold = true
+      vim.g.tokyonight_lualine_bold = false
       vim.cmd([[ colorscheme tokyonight ]])
     end
   }
