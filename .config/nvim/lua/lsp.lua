@@ -6,6 +6,8 @@ local servers = {
   'sqls',
   'bashls',
   'clangd',
+  'gopls',
+  'jdtls',
   'dockerls',
   'sumneko_lua',
   'html',
