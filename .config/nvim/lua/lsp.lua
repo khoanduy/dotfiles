@@ -11,6 +11,7 @@ local servers = {
   'html',
   'cssls',
   'jsonls',
+  'sumneko_lua',
   'taplo',
   'yamlls',
   'lemminx'
@@ -66,6 +67,9 @@ for _, lsp in ipairs(servers) do
   lspconfig[lsp].setup {
     on_attach = on_attach,
     capabilities = capabilities,
+    root_dir = function()
+      return vim.fn.getcwd()
+    end,
   }
 end
 
