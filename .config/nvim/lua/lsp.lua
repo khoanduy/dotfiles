@@ -7,15 +7,12 @@ local servers = {
   'bashls',
   'clangd',
   'gopls',
-  'jdtls',
   'dockerls',
-  'sumneko_lua',
   'html',
   'cssls',
   'jsonls',
   'taplo',
   'yamlls',
-  'marksman',
   'lemminx'
 }
 
