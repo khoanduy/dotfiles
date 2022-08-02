@@ -54,7 +54,7 @@ return require('packer').startup(function() use { 'wbthomason/packer.nvim' }
           indent_markers = {
             enable = true,
             icons = {
-              corner = '└ ',
+              corner = '└',
               edge = '│',
               none = ' ',
             },
