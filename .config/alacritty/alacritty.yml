@@ -2,7 +2,7 @@ env:
   TERM: alacritty
 
 window:
-  decorations: Full
+  decorations: full
   dimensions:
     columns: 0
     lines: 0
@@ -29,6 +29,7 @@ scrolling:
   multiplier: 2
 
 font:
+  scale_with_dpi: true
   normal:
     family: SauceCodePro Nerd Font
     style: Regular
