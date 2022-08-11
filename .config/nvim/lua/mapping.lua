@@ -109,6 +109,12 @@ api.nvim_set_keymap('n', '<leader>bb', ':Telescope buffers<CR>', nenrs)
 cmd[[imap <silent><script><expr> <C-A> copilot#Accept("\<CR>")]]
 g.copilot_no_tab_map = true
 
+-- nvim-dap
+api.nvim_set_keymap('n', '<leader>dp', [[:lua require'dap'.toggle_breakpoint()<CR>]], nenrns)
+api.nvim_set_keymap('n', '<leader>dc', [[:lua require'dap'.continue()<CR>]], nenrns)
+api.nvim_set_keymap('n', '<leader>ds', [[:lua require'dap'.step_over()<CR>]], nenrns)
+api.nvim_set_keymap('n', '<leader>dS', [[:lua require'dap'.step_into()<CR>]], nenrns)
+
 -- Dadbod UI
 api.nvim_set_keymap('n', '<leader>db', ':DBUIToggle<CR>', nenrs)
 api.nvim_set_keymap('n', '<leader>da', ':DBUIAddConnection<CR>', nenrns)

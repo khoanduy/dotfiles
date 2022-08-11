@@ -217,6 +217,8 @@ return require('packer').startup(function() use { 'wbthomason/packer.nvim' }
     end
   }
 
+  use { 'mfussenegger/nvim-dap' }
+
   -- Bot
   use { 'github/copilot.vim' }
 end)
