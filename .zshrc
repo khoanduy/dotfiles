@@ -21,3 +21,4 @@ source $HOME/.profile
 # Alias
 alias lg=lazygit
 alias v=nvim
+alias vc="nvim ."
