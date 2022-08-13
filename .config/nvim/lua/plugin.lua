@@ -2,8 +2,8 @@
 
 -- Install Packer
 local packer_url = 'https://github.com/wbthomason/packer.nvim'
-local dest_path = os.getenv('HOME')..'/.local/share/nvim/site/pack/packer/start/packer.nvim'
-packer_bootstrap = vim.fn.system({'git', 'clone', '--depth', '1', packer_url, dest_path})
+local dest_path = os.getenv('HOME') .. '/.local/share/nvim/site/pack/packer/start/packer.nvim'
+packer_bootstrap = vim.fn.system({ 'git', 'clone', '--depth', '1', packer_url, dest_path })
 
 -- Plugin autocompile
 vim.cmd([[
@@ -83,11 +83,15 @@ return require('packer').startup(function() use { 'wbthomason/packer.nvim' }
     end
   }
 
+  use { 'mfussenegger/nvim-dap' }
+  use { 'nvim-telescope/telescope-dap.nvim' }
+
   use {
     'nvim-telescope/telescope.nvim',
     requires = { 'nvim-lua/plenary.nvim' },
     config = function()
       require('telescope').setup {}
+      require('telescope').load_extension('dap')
     end
   }
 
@@ -135,10 +139,10 @@ return require('packer').startup(function() use { 'wbthomason/packer.nvim' }
         fold_closed = '⦢',
         indent_lines = false,
         signs = {
-            error = '✘',
-            warning = '❢',
-            hint = '✔',
-            information = '✦'
+          error = '✘',
+          warning = '❢',
+          hint = '✔',
+          information = '✦'
         },
         use_diagnostic_signs = false
       }
@@ -162,7 +166,7 @@ return require('packer').startup(function() use { 'wbthomason/packer.nvim' }
     end
   }
 
-  use { 'rust-lang/rust.vim'  }
+  use { 'rust-lang/rust.vim' }
 
   -- Language Server Protocol
   use { 'williamboman/nvim-lsp-installer' }
@@ -189,25 +193,25 @@ return require('packer').startup(function() use { 'wbthomason/packer.nvim' }
         options = {
           icons_enabled = true,
           theme = 'auto',
-          component_separators = { left = '🔥', right = '»'},
-          section_separators = { left = '', right = '↯'},
+          component_separators = { left = '🔥', right = '»' },
+          section_separators = { left = '', right = '↯' },
           disabled_filetypes = { 'packer', 'NvimTree' },
           always_divide_middle = true,
           globalstatus = false,
         },
         sections = {
-          lualine_a = {'mode'},
-          lualine_b = {'branch'},
-          lualine_c = {'filename', 'diagnostics'},
-          lualine_x = {'diff', 'encoding', 'filetype'},
-          lualine_y = {'location'},
-          lualine_z = {'progress'}
+          lualine_a = { 'mode' },
+          lualine_b = { 'branch' },
+          lualine_c = { 'filename', 'diagnostics' },
+          lualine_x = { 'diff', 'encoding', 'filetype' },
+          lualine_y = { 'location' },
+          lualine_z = { 'progress' }
         },
         inactive_sections = {
           lualine_a = {},
           lualine_b = {},
-          lualine_c = {'filename'},
-          lualine_x = {'location'},
+          lualine_c = { 'filename' },
+          lualine_x = { 'location' },
           lualine_y = {},
           lualine_z = {}
         },
@@ -216,8 +220,6 @@ return require('packer').startup(function() use { 'wbthomason/packer.nvim' }
       }
     end
   }
-
-  use { 'mfussenegger/nvim-dap' }
 
   -- Bot
   use { 'github/copilot.vim' }
