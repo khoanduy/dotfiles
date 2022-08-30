@@ -46,7 +46,7 @@ return require('packer').startup(function() use { 'wbthomason/packer.nvim' }
         auto_reload_on_write = true,
         update_cwd = true,
         view = {
-          adaptive_size = true,
+          adaptive_size = false,
           number = false,
           relativenumber = false,
         },
