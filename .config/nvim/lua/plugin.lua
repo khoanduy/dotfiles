@@ -14,7 +14,8 @@ vim.cmd([[
 ]])
 
 -- List plugins
-return require('packer').startup(function() use { 'wbthomason/packer.nvim' }
+return require('packer').startup(function()
+  use { 'wbthomason/packer.nvim' }
 
   -- Utilities
   use {
@@ -40,7 +41,6 @@ return require('packer').startup(function() use { 'wbthomason/packer.nvim' }
 
   use {
     'kyazdani42/nvim-tree.lua',
-    requires = { 'kyazdani42/nvim-web-devicons' },
     config = function()
       require('nvim-tree').setup {
         auto_reload_on_write = true,
@@ -62,10 +62,10 @@ return require('packer').startup(function() use { 'wbthomason/packer.nvim' }
           group_empty = true,
           icons = {
             show = {
-              file = true,
-              folder = true,
+              file = false,
+              folder = false,
               git = true,
-              folder_arrow = true,
+              folder_arrow = false,
             }
           }
         },
@@ -178,11 +178,9 @@ return require('packer').startup(function() use { 'wbthomason/packer.nvim' }
 
   -- UI
   use {
-    'folke/tokyonight.nvim',
+    'bluz71/vim-moonfly-colors',
     config = function()
-      vim.g.tokyonight_style = 'storm'
-      vim.g.tokyonight_lualine_bold = false
-      vim.cmd([[ colorscheme tokyonight ]])
+      vim.cmd([[ colorscheme moonfly ]])
     end
   }
 
@@ -191,7 +189,7 @@ return require('packer').startup(function() use { 'wbthomason/packer.nvim' }
     config = function()
       require('lualine').setup {
         options = {
-          icons_enabled = true,
+          icons_enabled = false,
           theme = 'auto',
           component_separators = { left = '🔥', right = '»' },
           section_separators = { left = '', right = '↯' },
