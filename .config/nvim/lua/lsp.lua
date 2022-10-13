@@ -2,6 +2,7 @@
 local servers = {
   'rust_analyzer',
   'pyright',
+  'jdtls',
   'tsserver',
   'sqls',
   'bashls',
