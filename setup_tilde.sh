@@ -18,10 +18,11 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
   echo "[-] Downloading font SauceCodePro NF [-]"
   brew tap homebrew/cask-fonts
   brew install --cask font-sauce-code-pro-nerd-font
+  brew install --cask emacs
 elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
   echo "[-] Installing some essentials packages [-]"
   sudo apt-get update
-  sudo apt-get install -y git vim zsh tmux curl wget cmake python3 python3-pip ripgrep build-essential libssl-dev
+  sudo apt-get install -y git emacs vim zsh tmux curl wget cmake python3 python3-pip ripgrep build-essential libssl-dev
 
   sudo add-apt-repository ppa:longsleep/golang-backports
   sudo apt update
