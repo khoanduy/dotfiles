@@ -13,6 +13,9 @@
 # zshrc
 !.zshrc
 
+# emacs
+!/.emacs.d/
+
 # Config
 !/.config/
 
