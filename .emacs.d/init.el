@@ -51,7 +51,7 @@
 (when (boundp 'scroll-bar-mode)
   (scroll-bar-mode -1))
 
-(set-frame-font "FiraCode 11" nil t)
+(set-frame-font "JetBrainsMono 10" nil t)
 (setq backup-inhibited t)
 (setq auto-save-default nil)
 
@@ -72,6 +72,7 @@
 
 ;; Essential packages
 (require 'utils-init)
+(require 'lang-init)
 (require 'evil-init)
 
 ;;; init.el ends here

@@ -4,12 +4,16 @@
 (defun rx-config-evil-leader ()
   (evil-leader/set-leader ",")
   (evil-leader/set-key
-    "bb" 'helm-mini
-    "d"  'kill-this-buffer
+    "fb" 'helm-mini
+    "ff" 'helm-projectile-find-file
+    "fF" 'helm-find-files
+    "fa" 'helm-projectile-rg
+    "sp" 'helm-projectile-switch-project
+    "kb" 'kill-this-buffer
+    "do" 'delete-other-windows
     "g"  'magit-status
     "w"  'save-buffer
-    "x"  'helm-M-x
-    "y"  'yank-to-x-clipboard))
+    "x"  'helm-M-x))
 
 (use-package evil
   :ensure t

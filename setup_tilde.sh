@@ -15,10 +15,6 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
   brew update
   brew install git neovim zsh tmux curl wget node cmake ripgrep go lazygit
 
-  echo "[-] Downloading font SauceCodePro NF [-]"
-  brew tap homebrew/cask-fonts
-  brew install --cask font-sauce-code-pro-nerd-font
-  brew install --cask emacs
 elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
   echo "[-] Installing some essentials packages [-]"
   sudo apt-get update
@@ -30,11 +26,11 @@ elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
 
   go install github.com/jesseduffield/lazygit@latest
 
-  echo "[-] Downloading font SauceCodePro NF [-]"
-  wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/SourceCodePro.zip
-  unzip SourceCodePro.zip -d ~/.fonts
+  echo "[-] Downloading font JetBrains Mono [-]"
+  wget https://download.jetbrains.com/fonts/JetBrainsMono-2.242.zip
+  unzip JetBrainsMono-2.242.zip -d ~/.fonts
   fc-cache -fv
-  rm -rf SourceCodePro.zip
+  rm -rf JetBrainsMono-2.242.zip
 
   if ! hash node &> /dev/null; then
     curl -fsSL https://deb.nodesource.com/setup_lts.x | sudo -E bash -
