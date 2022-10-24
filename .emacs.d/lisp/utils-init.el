@@ -3,20 +3,28 @@
 ;;; Code:
 (global-set-key (kbd "<escape>") 'keyboard-escape-quit)
 
+;; Tree sitter
+; (use-package tree-sitter-langs
+  ; :ensure t)
+
+; (use-package tree-sitter
+  ; :ensure t
+  ; :config
+  ; (global-tree-sitter-mode))
+
+(use-package exec-path-from-shell
+  :ensure t
+  :config
+  (when (memq window-system '(mac ns x))
+    (exec-path-from-shell-initialize)))
+
 (use-package all-the-icons
   :ensure t
-  :if (display-graphic-p))
+  :defer t)
 
 (use-package all-the-icons-dired
   :ensure t
-  :defer t
-  :if (display-graphic-p))
-
-(use-package kaolin-themes
-  :ensure t
-  :config
-  (load-theme 'kaolin-galaxy t)
-  (kaolin-treemacs-theme))
+  :defer t)
 
 (use-package smart-mode-line
   :ensure t
