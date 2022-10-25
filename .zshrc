@@ -18,6 +18,9 @@ plugins=(git)
 source $ZSH/oh-my-zsh.sh
 source $HOME/.profile
 
+# doom emacs
+export DOOMDIR="$HOME/.doom.d"
+
 # Alias
 alias lg=lazygit
 alias v=nvim
