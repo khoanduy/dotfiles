@@ -18,7 +18,7 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
 elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
   echo "[-] Installing some essentials packages [-]"
   sudo apt-get update
-  sudo apt-get install -y git emacs vim zsh tmux curl wget cmake python3 python3-pip ripgrep build-essential libssl-dev
+  sudo apt-get install -y git vim zsh tmux curl wget cmake python3 python3-pip ripgrep build-essential libssl-dev
 
   sudo add-apt-repository ppa:longsleep/golang-backports
   sudo apt update

@@ -7,34 +7,34 @@ local servers = {
   'sqls',
   'bashls',
   'clangd',
-  'gopls',
   'dockerls',
-  'html',
-  'cssls',
   'jsonls',
   'sumneko_lua',
   'taplo',
   'yamlls',
-  'lemminx'
 }
 
-require('nvim-lsp-installer').setup {
-  automatic_installation = true,
+require('mason').setup({
   ui = {
     icons = {
       server_installed = '✔',
       server_pending = '➜',
       server_uninstalled = '✗'
     }
-  }
+  },
+})
+
+require('mason-lspconfig').setup {
+  ensure_installed = servers,
+  automatic_installation = true,
 }
 
 local lspconfig = require('lspconfig')
-local capabilities = vim.lsp.protocol.make_client_capabilities()
+local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
-vim.keymap.set('n', '<leader>d', vim.diagnostic.open_float, {noremap = true, silent = false})
-vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, {noremap = true, silent = false})
-vim.keymap.set('n', ']d', vim.diagnostic.goto_next, {noremap = true, silent = false})
+vim.keymap.set('n', '<leader>d', vim.diagnostic.open_float, { noremap = true, silent = false })
+vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { noremap = true, silent = false })
+vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { noremap = true, silent = false })
 
 local on_attach = function(client, bufnr)
   -- Enable completion triggered by <c-x><c-o>
@@ -42,7 +42,7 @@ local on_attach = function(client, bufnr)
 
   -- Mappings.
   -- See `:help vim.lsp.*` for documentation on any of the below functions
-  local bufopts = { noremap=true, silent=false, buffer=bufnr }
+  local bufopts = { noremap = true, silent = false, buffer = bufnr }
   vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
   vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
   vim.keymap.set('n', '<leader>hv', vim.lsp.buf.hover, bufopts)
@@ -61,8 +61,6 @@ local on_attach = function(client, bufnr)
   vim.keymap.set('n', '<leader>fm', vim.lsp.buf.formatting, bufopts)
   vim.keymap.set('v', '<leader>fm', vim.lsp.buf.range_formatting, bufopts)
 end
-
-capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
 
 for _, lsp in ipairs(servers) do
   lspconfig[lsp].setup {
@@ -116,4 +114,3 @@ cmp.setup {
   },
 }
 --------End LSP config--------
-

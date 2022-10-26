@@ -1,7 +1,7 @@
 # Ignore everything
 *
-# except
-
+# Except
+# ------
 # Repository files
 !.gitignore
 !README.md
@@ -12,9 +12,6 @@
 
 # zshrc
 !.zshrc
-
-# emacs
-!/.doom.d/
 
 # Config
 !/.config/

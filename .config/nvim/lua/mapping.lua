@@ -83,18 +83,8 @@ api.nvim_set_keymap('t', '<leader>tt', [[<C-\><C-n>:ToggleTermToggleAll<CR>]], n
 api.nvim_set_keymap('n', '<leader>ts', ':ToggleTermSendCurrentLine<CR>', nenrns)
 api.nvim_set_keymap('v', '<leader>ts', ':ToggleTermSendVisualSelection<CR>', nenrns)
 
-local Terminal  = require('toggleterm.terminal').Terminal
-local lazygit = Terminal:new({
-  id = 999,
-  cmd = 'lazygit',
-  hidden = true,
-  direction = 'float',
-  close_on_exit = true,
-})
-function _lazygit_toggle()
-  lazygit:toggle()
-end -- lazygit terminal
-vim.api.nvim_set_keymap('n', '<leader>g', '<cmd>lua _lazygit_toggle()<CR>', nenrns)
+-- LazyGit
+api.nvim_set_keymap('n', '<leader>g', ':LazyGit<CR>', nenrs)
 
 -- Telescope
 api.nvim_set_keymap('n', '<leader>fF', ':Telescope find_files<CR>', nenrs)

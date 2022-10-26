@@ -83,16 +83,17 @@ return require('packer').startup(function()
     end
   }
 
-  use { 'mfussenegger/nvim-dap' }
-  use { 'nvim-telescope/telescope-dap.nvim' }
-
   use {
     'nvim-telescope/telescope.nvim',
     requires = { 'nvim-lua/plenary.nvim' },
     config = function()
       require('telescope').setup {}
-      require('telescope').load_extension('dap')
     end
+  }
+
+  use {
+    'nvim-telescope/telescope-dap.nvim',
+    requires = { 'mfussenegger/nvim-dap' },
   }
 
   use { 'tpope/vim-fugitive' }
@@ -103,7 +104,6 @@ return require('packer').startup(function()
   use {
     'kristijanhusak/vim-dadbod-completion',
     config = function()
-      require('telescope').setup {}
       vim.cmd([[
         autocmd FileType sql setlocal omnifunc=vim_dadbod_completion#omni
         autocmd FileType sql,mysql,plsql lua require('cmp').setup.buffer({ sources = {{ name = 'vim-dadbod-completion' }} })
@@ -168,13 +168,25 @@ return require('packer').startup(function()
 
   use { 'rust-lang/rust.vim' }
 
-  -- Language Server Protocol
-  use { 'williamboman/nvim-lsp-installer' }
-  use { 'neovim/nvim-lspconfig' }
-  use { 'hrsh7th/nvim-cmp' }
-  use { 'hrsh7th/cmp-nvim-lsp' }
-  use { 'saadparwaiz1/cmp_luasnip' }
-  use { 'L3MON4D3/LuaSnip' }
+  -- LSP and DAP
+  use {
+    'williamboman/mason.nvim',
+    'williamboman/mason-lspconfig.nvim',
+    'neovim/nvim-lspconfig',
+  }
+  use {
+    'hrsh7th/nvim-cmp',
+    'hrsh7th/cmp-nvim-lsp',
+    'saadparwaiz1/cmp_luasnip',
+    'L3MON4D3/LuaSnip',
+  }
+  use {
+    'jose-elias-alvarez/null-ls.nvim',
+    requires = { 'nvim-lua/plenary.nvim' },
+    config = function()
+      require('null-ls').setup {}
+    end,
+  }
 
   -- UI
   use {
@@ -191,7 +203,7 @@ return require('packer').startup(function()
         options = {
           icons_enabled = false,
           theme = 'auto',
-          component_separators = { left = '🔥', right = '»' },
+          component_separators = { left = '🌴', right = '»' },
           section_separators = { left = '', right = '-' },
           disabled_filetypes = { 'packer', 'NvimTree' },
           always_divide_middle = true,
@@ -218,5 +230,7 @@ return require('packer').startup(function()
       }
     end
   }
+
+  use { 'kdheepak/lazygit.nvim' }
 end)
 --------End plugins config--------
