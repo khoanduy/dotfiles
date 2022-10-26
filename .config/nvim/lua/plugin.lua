@@ -178,9 +178,9 @@ return require('packer').startup(function()
 
   -- UI
   use {
-    'bluz71/vim-moonfly-colors',
+    'folke/tokyonight.nvim',
     config = function()
-      vim.cmd([[ colorscheme moonfly ]])
+      vim.cmd([[ colorscheme tokyonight-moon ]])
     end
   }
 
@@ -192,7 +192,7 @@ return require('packer').startup(function()
           icons_enabled = false,
           theme = 'auto',
           component_separators = { left = '🔥', right = '»' },
-          section_separators = { left = '', right = '↯' },
+          section_separators = { left = '', right = '-' },
           disabled_filetypes = { 'packer', 'NvimTree' },
           always_divide_middle = true,
           globalstatus = false,
@@ -218,8 +218,5 @@ return require('packer').startup(function()
       }
     end
   }
-
-  -- Bot
-  use { 'github/copilot.vim' }
 end)
 --------End plugins config--------
