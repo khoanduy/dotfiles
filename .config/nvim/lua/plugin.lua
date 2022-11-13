@@ -154,9 +154,10 @@ return require('packer').startup(function()
     'nvim-treesitter/nvim-treesitter',
     config = function()
       require('nvim-treesitter.configs').setup {
-        ensure_installed = { 'rust', 'lua', 'python', 'javascript', 'toml',
-          'html', 'css', 'json', 'yaml', 'typescript', 'c', 'dockerfile',
-          'proto', 'markdown', 'http' },
+        ensure_installed = { 'c', 'cpp', 'rust', 'lua', 'python', 'java',
+          'toml', 'html', 'css', 'javascript', 'json', 'yaml', 'dockerfile',
+          'proto', 'markdown', 'http', 'c_sharp', 'cmake', 'make', 'go',
+          'gitignore', 'sql', 'vim'},
         sync_install = false,
         highlight = {
           enable = true,
@@ -190,9 +191,9 @@ return require('packer').startup(function()
 
   -- UI
   use {
-    'rebelot/kanagawa.nvim',
+    'folke/tokyonight.nvim',
     config = function()
-      vim.cmd([[ colorscheme kanagawa ]])
+      vim.cmd([[ colorscheme tokyonight-moon ]])
     end
   }
 
@@ -203,11 +204,10 @@ return require('packer').startup(function()
         options = {
           icons_enabled = false,
           theme = 'auto',
-          component_separators = { left = '🌴', right = '»' },
+          component_separators = { left = '🔥', right = '»' },
           section_separators = { left = '', right = '-' },
-          disabled_filetypes = { 'packer', 'NvimTree' },
           always_divide_middle = true,
-          globalstatus = false,
+          globalstatus = true,
         },
         sections = {
           lualine_a = { 'mode' },
