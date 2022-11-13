@@ -157,7 +157,7 @@ return require('packer').startup(function()
         ensure_installed = { 'c', 'cpp', 'rust', 'lua', 'python', 'java',
           'toml', 'html', 'css', 'javascript', 'json', 'yaml', 'dockerfile',
           'proto', 'markdown', 'http', 'c_sharp', 'cmake', 'make', 'go',
-          'gitignore', 'sql', 'vim'},
+          'sql', 'vim'},
         sync_install = false,
         highlight = {
           enable = true,
