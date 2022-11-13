@@ -156,8 +156,7 @@ return require('packer').startup(function()
       require('nvim-treesitter.configs').setup {
         ensure_installed = { 'c', 'cpp', 'rust', 'lua', 'python', 'java',
           'toml', 'html', 'css', 'javascript', 'json', 'yaml', 'dockerfile',
-          'proto', 'markdown', 'http', 'c_sharp', 'cmake', 'make', 'go',
-          'sql', 'vim'},
+          'proto', 'markdown', 'http', 'cmake', 'make', 'go', 'sql', 'vim'},
         sync_install = false,
         highlight = {
           enable = true,
