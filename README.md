@@ -4,7 +4,7 @@ NOTED: These are my personal configuration files, which could be changed as I de
 ## Installation
 Clone repository and run the setup script (you have to run `chmod +x` in able to execute it)
 ```shell script
-$ git clone https://github.com/khoadnr/dotfiles.git
+$ git clone https://github.com/knasync/dotfiles.git
 $ cd dotfiles
 $ chmod +x setup_tilde.sh
 $ ./setup_tilde.sh
