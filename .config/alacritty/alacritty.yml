@@ -31,13 +31,13 @@ scrolling:
 font:
   scale_with_dpi: true
   normal:
-    family: SauceCodePro Nerd Font
+    family: JetBrains Mono NL
     style: Regular
   bold:
-    family: SauceCodePro Nerd Font
+    family: JetBrains Mono NL
     style: Bold
   italic:
-    family: SauceCodePro Nerd Font
+    family: JetBrains Mono NL
     style: Italic
   size: 13
 
