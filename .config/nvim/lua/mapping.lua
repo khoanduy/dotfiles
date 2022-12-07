@@ -1,7 +1,7 @@
 --------Mappings config--------
 
 -- Set leader key
-g.mapleader = ','
+vim.g.mapleader = ','
 
 -- Mapping options
 local nenrs = { expr = false, noremap = true, silent = true }

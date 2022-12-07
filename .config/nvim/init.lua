@@ -12,7 +12,7 @@ vim.api.nvim_command('set nocompatible')
 vim.g.diagnostics_enabled = true
 
 -- Encoding
-opt.encoding = 'utf-8'
+vim.opt.encoding = 'utf-8'
 vim.cmd([[
   set termencoding=utf-8
   set fileencodings=utf-8
