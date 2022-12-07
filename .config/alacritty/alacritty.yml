@@ -31,13 +31,13 @@ scrolling:
 font:
   scale_with_dpi: true
   normal:
-    family: JetBrains Mono NL
+    family: Source Code Pro
     style: Regular
   bold:
-    family: JetBrains Mono NL
+    family: Source Code Pro
     style: Bold
   italic:
-    family: JetBrains Mono NL
+    family: Source Code Pro
     style: Italic
   size: 13
 

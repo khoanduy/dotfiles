@@ -1,4 +1,4 @@
-vim.opt.guifont = { "JetBrains Mono NL", "h13" }
+vim.opt.guifont = { "Source Code Pro", "h13" }
 vim.cmd([[
   if exists("g:neovide")
     let g:neovide_hide_mouse_when_typing = v:false
