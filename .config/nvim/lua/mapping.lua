@@ -1,7 +1,4 @@
 --------Mappings config--------
-local g = vim.g
-local api = vim.api
-local cmd = vim.cmd
 
 -- Set leader key
 g.mapleader = ','
@@ -12,100 +9,100 @@ local nenrns = { expr = false, noremap = true, silent = false }
 local ners = { expr = false, noremap = false, silent = true }
 
 -- Remap C-w prefix
-api.nvim_set_keymap('n', '<leader>w', '<C-w>', nenrs)
+vim.api.nvim_set_keymap('n', '<leader>w', '<C-w>', nenrs)
 
 -- Remap switch region keys
-api.nvim_set_keymap('n', '<C-h>', '<C-w>h', nenrs)
-api.nvim_set_keymap('n', '<C-j>', '<C-w>j', nenrs)
-api.nvim_set_keymap('n', '<C-k>', '<C-w>k', nenrs)
-api.nvim_set_keymap('n', '<C-l>', '<C-w>l', nenrs)
+vim.api.nvim_set_keymap('n', '<C-h>', '<C-w>h', nenrs)
+vim.api.nvim_set_keymap('n', '<C-j>', '<C-w>j', nenrs)
+vim.api.nvim_set_keymap('n', '<C-k>', '<C-w>k', nenrs)
+vim.api.nvim_set_keymap('n', '<C-l>', '<C-w>l', nenrs)
 
-api.nvim_set_keymap('t', '<C-h>', [[<C-\><C-n><C-w>h]], nenrs)
-api.nvim_set_keymap('t', '<C-j>', [[<C-\><C-n><C-w>j]], nenrs)
-api.nvim_set_keymap('t', '<C-k>', [[<C-\><C-n><C-w>k]], nenrs)
-api.nvim_set_keymap('t', '<C-l>', [[<C-\><C-n><C-w>l]], nenrs)
+vim.api.nvim_set_keymap('t', '<C-h>', [[<C-\><C-n><C-w>h]], nenrs)
+vim.api.nvim_set_keymap('t', '<C-j>', [[<C-\><C-n><C-w>j]], nenrs)
+vim.api.nvim_set_keymap('t', '<C-k>', [[<C-\><C-n><C-w>k]], nenrs)
+vim.api.nvim_set_keymap('t', '<C-l>', [[<C-\><C-n><C-w>l]], nenrs)
 
 -- Re-size split windows using arrow keys
-api.nvim_set_keymap('n', '<Up>', ':resize -2<CR>', nenrns)
-api.nvim_set_keymap('n', '<Down>', ':resize +2<CR>', nenrns)
-api.nvim_set_keymap('n', '<Left>', ':vertical resize +2<CR>', nenrns)
-api.nvim_set_keymap('n', '<Right>', ':vertical resize -2<CR>', nenrns)
+vim.api.nvim_set_keymap('n', '<Up>', ':resize -2<CR>', nenrns)
+vim.api.nvim_set_keymap('n', '<Down>', ':resize +2<CR>', nenrns)
+vim.api.nvim_set_keymap('n', '<Left>', ':vertical resize +2<CR>', nenrns)
+vim.api.nvim_set_keymap('n', '<Right>', ':vertical resize -2<CR>', nenrns)
 
 -- Remap switch buffers keys
-api.nvim_set_keymap('n', '<leader>bn', ':bn<CR>', nenrns)
-api.nvim_set_keymap('n', '<leader>bN', ':bp<CR>', nenrns)
-api.nvim_set_keymap('n', '<leader>bd', ':bd<CR>', nenrns)
-api.nvim_set_keymap('n', '<leader>bw', ':bw<CR>', nenrns)
-api.nvim_set_keymap('n', '<leader>bW', ':bw!<CR>', nenrns)
+vim.api.nvim_set_keymap('n', '<leader>bn', ':bn<CR>', nenrns)
+vim.api.nvim_set_keymap('n', '<leader>bN', ':bp<CR>', nenrns)
+vim.api.nvim_set_keymap('n', '<leader>bd', ':bd<CR>', nenrns)
+vim.api.nvim_set_keymap('n', '<leader>bw', ':bw<CR>', nenrns)
+vim.api.nvim_set_keymap('n', '<leader>bW', ':bw!<CR>', nenrns)
 
-api.nvim_set_keymap('t', '<leader>bw', [[<C-\><C-n>:bw!<CR>]], nenrns)
+vim.api.nvim_set_keymap('t', '<leader>bw', [[<C-\><C-n>:bw!<CR>]], nenrns)
 
 -- Remap terminal escape key
-api.nvim_set_keymap('t', '<leader>e', [[<C-\><C-n>]], ners)
+vim.api.nvim_set_keymap('t', '<leader>e', [[<C-\><C-n>]], ners)
 
 -- Show current file path and open file
-api.nvim_set_keymap('n', '<space>d', ':echo @%<CR>', ners)
+vim.api.nvim_set_keymap('n', '<space>d', ':echo @%<CR>', ners)
 
 -- No highlight
-api.nvim_set_keymap('n', '|', ':noh<CR>', nenrs)
-api.nvim_set_keymap('n', '<space>r', ':e<CR>', nenrns)
+vim.api.nvim_set_keymap('n', '|', ':noh<CR>', nenrs)
+vim.api.nvim_set_keymap('n', '<space>r', ':e<CR>', nenrns)
 
 -- Search current marked text
-api.nvim_set_keymap('v', '//', [[y/\V<C-R>=escape(@",'/\')<CR><CR>]], nenrns)
+vim.api.nvim_set_keymap('v', '//', [[y/\V<C-R>=escape(@",'/\')<CR><CR>]], nenrns)
 
 -- Copy marked text/paste to/from global register
-api.nvim_set_keymap('v', '<space>y', '"+y', nenrns)
-api.nvim_set_keymap('n', '<space>p', '"+p', nenrns)
+vim.api.nvim_set_keymap('v', '<space>y', '"+y', nenrns)
+vim.api.nvim_set_keymap('n', '<space>p', '"+p', nenrns)
 
 -- Remap write and quit
-api.nvim_set_keymap('n', '<space>q', ':q<CR>', nenrns)
-api.nvim_set_keymap('n', '<space>w', ':w<CR>', nenrns)
+vim.api.nvim_set_keymap('n', '<space>q', ':q<CR>', nenrns)
+vim.api.nvim_set_keymap('n', '<space>w', ':w<CR>', nenrns)
 
 -- Remap split
-api.nvim_set_keymap('n', '<space>v', '<C-w>v', nenrs)
-api.nvim_set_keymap('n', '<space>h', '<C-w>s', nenrs)
+vim.api.nvim_set_keymap('n', '<space>v', '<C-w>v', nenrs)
+vim.api.nvim_set_keymap('n', '<space>h', '<C-w>s', nenrs)
 
 -- NVIM tree
-api.nvim_set_keymap('n', '<leader>nt', ':NvimTreeToggle<CR>', nenrs)
-api.nvim_set_keymap('n', '<leader>nf', ':NvimTreeFocus<CR>', nenrs)
-api.nvim_set_keymap('n', '<leader>nF', ':NvimTreeFindFile<CR>', nenrs)
-api.nvim_set_keymap('n', '<leader>nc', ':NvimTreeCollapse<CR>', nenrs)
+vim.api.nvim_set_keymap('n', '<leader>nt', ':NvimTreeToggle<CR>', nenrs)
+vim.api.nvim_set_keymap('n', '<leader>nf', ':NvimTreeFocus<CR>', nenrs)
+vim.api.nvim_set_keymap('n', '<leader>nF', ':NvimTreeFindFile<CR>', nenrs)
+vim.api.nvim_set_keymap('n', '<leader>nc', ':NvimTreeCollapse<CR>', nenrs)
 
 -- Trouble
-api.nvim_set_keymap('n', '<leader>x', ':TroubleToggle<CR>', nenrs)
+vim.api.nvim_set_keymap('n', '<leader>x', ':TroubleToggle<CR>', nenrs)
 
 -- Toggleterm
-api.nvim_set_keymap('n', '<leader>T', ':ToggleTerm<CR>', nenrs)
-api.nvim_set_keymap('t', '<leader>T', [[<C-\><C-n>:ToggleTerm<CR>]], nenrs)
-api.nvim_set_keymap('n', '<leader>tt', ':ToggleTermToggleAll<CR>', nenrs)
-api.nvim_set_keymap('t', '<leader>tt', [[<C-\><C-n>:ToggleTermToggleAll<CR>]], nenrs)
+vim.api.nvim_set_keymap('n', '<leader>T', ':ToggleTerm<CR>', nenrs)
+vim.api.nvim_set_keymap('t', '<leader>T', [[<C-\><C-n>:ToggleTerm<CR>]], nenrs)
+vim.api.nvim_set_keymap('n', '<leader>tt', ':ToggleTermToggleAll<CR>', nenrs)
+vim.api.nvim_set_keymap('t', '<leader>tt', [[<C-\><C-n>:ToggleTermToggleAll<CR>]], nenrs)
 
-api.nvim_set_keymap('n', '<leader>ts', ':ToggleTermSendCurrentLine<CR>', nenrns)
-api.nvim_set_keymap('v', '<leader>ts', ':ToggleTermSendVisualSelection<CR>', nenrns)
+vim.api.nvim_set_keymap('n', '<leader>ts', ':ToggleTermSendCurrentLine<CR>', nenrns)
+vim.api.nvim_set_keymap('v', '<leader>ts', ':ToggleTermSendVisualSelection<CR>', nenrns)
 
 -- LazyGit
-api.nvim_set_keymap('n', '<leader>g', ':LazyGit<CR>', nenrs)
+vim.api.nvim_set_keymap('n', '<leader>g', ':LazyGit<CR>', nenrs)
 
 -- Telescope
-api.nvim_set_keymap('n', '<leader>fF', ':Telescope find_files<CR>', nenrs)
-api.nvim_set_keymap('n', '<leader>ff', ':Telescope git_files<CR>', nenrs)
-api.nvim_set_keymap('n', '<leader>fa', ':Telescope live_grep<CR>', nenrs)
-api.nvim_set_keymap('n', '<leader>fb', ':Telescope current_buffer_fuzzy_find<CR>', nenrs)
-api.nvim_set_keymap('n', '<leader>fc', ':Telescope ', nenrns)
-api.nvim_set_keymap('n', '<leader>hh', ':Telescope help_tags<CR>', nenrs)
-api.nvim_set_keymap('n', '<leader>bb', ':Telescope buffers<CR>', nenrs)
+vim.api.nvim_set_keymap('n', '<leader>fF', ':Telescope find_files<CR>', nenrs)
+vim.api.nvim_set_keymap('n', '<leader>ff', ':Telescope git_files<CR>', nenrs)
+vim.api.nvim_set_keymap('n', '<leader>fa', ':Telescope live_grep<CR>', nenrs)
+vim.api.nvim_set_keymap('n', '<leader>fb', ':Telescope current_buffer_fuzzy_find<CR>', nenrs)
+vim.api.nvim_set_keymap('n', '<leader>fc', ':Telescope ', nenrns)
+vim.api.nvim_set_keymap('n', '<leader>hh', ':Telescope help_tags<CR>', nenrs)
+vim.api.nvim_set_keymap('n', '<leader>bb', ':Telescope buffers<CR>', nenrs)
 
 -- Github Copilot
-cmd[[imap <silent><script><expr> <C-A> copilot#Accept("\<CR>")]]
-g.copilot_no_tab_map = true
+vim.cmd[[imap <silent><script><expr> <C-A> copilot#Accept("\<CR>")]]
+vim.g.copilot_no_tab_map = true
 
 -- nvim-dap
-api.nvim_set_keymap('n', '<leader>dp', [[:lua require'dap'.toggle_breakpoint()<CR>]], nenrns)
-api.nvim_set_keymap('n', '<leader>dc', [[:lua require'dap'.continue()<CR>]], nenrns)
-api.nvim_set_keymap('n', '<leader>ds', [[:lua require'dap'.step_over()<CR>]], nenrns)
-api.nvim_set_keymap('n', '<leader>dS', [[:lua require'dap'.step_into()<CR>]], nenrns)
+vim.api.nvim_set_keymap('n', '<leader>dp', [[:lua require'dap'.toggle_breakpoint()<CR>]], nenrns)
+vim.api.nvim_set_keymap('n', '<leader>dc', [[:lua require'dap'.continue()<CR>]], nenrns)
+vim.api.nvim_set_keymap('n', '<leader>ds', [[:lua require'dap'.step_over()<CR>]], nenrns)
+vim.api.nvim_set_keymap('n', '<leader>dS', [[:lua require'dap'.step_into()<CR>]], nenrns)
 
 -- Dadbod UI
-api.nvim_set_keymap('n', '<leader>db', ':DBUIToggle<CR>', nenrs)
-api.nvim_set_keymap('n', '<leader>da', ':DBUIAddConnection<CR>', nenrns)
+vim.api.nvim_set_keymap('n', '<leader>db', ':DBUIToggle<CR>', nenrs)
+vim.api.nvim_set_keymap('n', '<leader>da', ':DBUIAddConnection<CR>', nenrns)
 --------End mappings config--------

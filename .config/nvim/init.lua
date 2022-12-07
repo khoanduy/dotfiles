@@ -5,65 +5,60 @@ require('plugin')
 require('mapping')
 require('command')
 require('lsp')
+require('neovide')
 -----End load configuration files-----
 
--- Variables
-local g = vim.g
-local opt = vim.opt
-local cmd = vim.cmd
-local api = vim.api
-
-api.nvim_command('set nocompatible')
-g.diagnostics_enabled = true
+vim.api.nvim_command('set nocompatible')
+vim.g.diagnostics_enabled = true
 
 -- Encoding
 opt.encoding = 'utf-8'
-cmd([[
+vim.cmd([[
   set termencoding=utf-8
   set fileencodings=utf-8
   lang en_US.UTF-8
 ]])
 
 -- No temporary files
-opt.smartcase = true
-opt.swapfile = false
-opt.backup = false
-opt.writebackup = false
-opt.wrap = false
-opt.errorbells = false
+vim.opt.smartcase = true
+vim.opt.swapfile = false
+vim.opt.backup = false
+vim.opt.writebackup = false
+vim.opt.wrap = false
+vim.opt.errorbells = false
 
 -- Display options
-opt.showmode = true
-opt.showcmd = true
+vim.opt.showmode = true
+vim.opt.showcmd = true
 
 -- Indentation
-opt.autoindent = true
-opt.smartindent = true
-opt.copyindent = true
+vim.opt.autoindent = true
+vim.opt.smartindent = true
+vim.opt.copyindent = true
 
 -- Default indentation
-opt.expandtab = true
-opt.tabstop = 2
-opt.shiftwidth = 2
-opt.softtabstop = 2
-opt.shiftround = true
+vim.opt.expandtab = true
+vim.opt.tabstop = 2
+vim.opt.shiftwidth = 2
+vim.opt.softtabstop = 2
+vim.opt.shiftround = true
 
 -- File stats
-opt.number = true
-opt.cursorline = true
-opt.ruler = true
-opt.splitbelow = true
-opt.splitright = true
+vim.opt.number = true
+vim.opt.cursorline = true
+vim.opt.ruler = true
+vim.opt.splitbelow = true
+vim.opt.splitright = true
 
 -- Searching
-opt.incsearch = true
-opt.hlsearch = true
-cmd([[
+vim.opt.incsearch = true
+vim.opt.hlsearch = true
+vim.cmd([[
   set matchpairs+=<:>
 ]])
 
 -- UI
-cmd([[
+vim.cmd([[
   set ma
   set mouse=a
   syntax enable
@@ -71,5 +66,5 @@ cmd([[
 ]])
 
 -- Get rid of scratch buffer
-cmd([[ set completeopt-=preview ]])
+vim.cmd([[ set completeopt-=preview ]])
 ---------End configuration---------
