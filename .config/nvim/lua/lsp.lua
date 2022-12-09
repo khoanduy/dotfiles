@@ -1,6 +1,7 @@
 --------LSP config--------
 local servers = {
   'rust_analyzer',
+  'gopls',
   'pyright',
   'jdtls',
   'tsserver',
@@ -58,8 +59,8 @@ local on_attach = function(client, bufnr)
   vim.keymap.set('n', '<C-a>', vim.lsp.buf.code_action, bufopts)
   vim.keymap.set('v', '<C-a>', vim.lsp.buf.range_code_action, bufopts)
   vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
-  vim.keymap.set('n', '<leader>fm', vim.lsp.buf.formatting, bufopts)
-  vim.keymap.set('v', '<leader>fm', vim.lsp.buf.range_formatting, bufopts)
+  vim.keymap.set('n', '<leader>fm', vim.lsp.buf.format, bufopts)
+  vim.keymap.set('v', '<leader>fm', vim.lsp.buf.format, bufopts)
 end
 
 for _, lsp in ipairs(servers) do
