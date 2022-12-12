@@ -18,11 +18,11 @@ After script execution finish, reload your zsh config file:
 ```shell script
 $ source ~/.zshrc
 ```
-Open `~/.config/nvim/lua/plugin.lua`:
+Open `neovim` plugin config file:
 ```shell script
 $ nvim ~/.config/nvim/lua/plugin.lua
 ```
-Ignore all errors and install all neovim's plugins:
+Ignore all errors and install all plugins:
 ```vim
 :source %
 :PackerClean
