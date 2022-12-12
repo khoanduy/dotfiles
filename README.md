@@ -14,10 +14,11 @@ $ ./setup_tilde.sh
 ```
 This might take quite a while as it needs to download and install several tools.
 
-After script execution finish, reload your zsh config file:
+After script execution finish, reload your `zsh` config file:
 ```shell script
 $ source ~/.zshrc
 ```
+
 Open `neovim` plugin config file:
 ```shell script
 $ nvim ~/.config/nvim/lua/plugin.lua
