@@ -31,13 +31,13 @@ scrolling:
 font:
   scale_with_dpi: true
   normal:
-    family: Source Code Pro
+    family: SauceCodePro Nerd Font
     style: Regular
   bold:
-    family: Source Code Pro
+    family: SauceCodePro Nerd Font
     style: Bold
   italic:
-    family: Source Code Pro
+    family: SauceCodePro Nerd Font
     style: Italic
   size: 13
 
