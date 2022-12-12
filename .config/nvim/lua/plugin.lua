@@ -76,7 +76,7 @@ return require('packer').startup(function()
           dotfiles = false,
         },
         update_focused_file = {
-          enable = true,
+          enable = false,
         },
         git = {
           enable = true,
