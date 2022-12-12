@@ -31,7 +31,7 @@ Ignore all errors and install all neovim's plugins:
 ```
 
 ## Additional options
-You might want to install these packages as well:
+You might want to install these packages if they are not there yet:
 1. [Alacritty](https://github.com/alacritty/alacritty)
 2. [Lazygit](https://github.com/jesseduffield/lazygit)
 
