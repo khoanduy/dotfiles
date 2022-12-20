@@ -11,14 +11,15 @@
 (set-face-attribute 'fixed-pitch nil :family "SauceCodePro Nerd Font")
 (set-face-attribute 'variable-pitch nil :family "SauceCodePro Nerd Font")
 
-;; Packages
+;; Install packages
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
+(package-initialize)
 
 (setq package-selected-packages
-      '(which-key rg vterm magit magit-todos yasnippet markdown-mode
-        clang-format cmake-mode rust-mode cargo toml-mode yaml-mode
-        git-modes pdf-tools))
+      '(evil which-key rg vterm magit magit-todos yasnippet
+        markdown-mode clang-format cmake-mode rust-mode cargo
+        toml-mode yaml-mode git-modes pdf-tools))
 
 (setq package-native-compile t
       native-comp-async-report-warnings-errors nil
@@ -57,9 +58,6 @@
       create-lockfiles nil
       custom-file null-device)
 
-;; Disable overwriting of system clipboard with selection
-(setq select-enable-clipboard nil)
-
 ;; Update files modified on disk
 (setq global-auto-revert-non-file-buffers t)
 
@@ -71,5 +69,9 @@
 
 (global-auto-revert-mode)
 (global-display-line-numbers-mode)
+
+;; Enable Evil
+(require 'evil)
+(evil-mode 1)
 
 ;;; init.el ends here
