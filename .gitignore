@@ -13,8 +13,11 @@
 # zshrc
 !.zshrc
 
-# Config
+# emacs
+!/.emacs.d/
+
+# config
 !/.config/
 
-# Setup file
+# setup file
 !setup_tilde.sh

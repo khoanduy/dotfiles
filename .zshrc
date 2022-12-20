@@ -22,3 +22,5 @@ source $HOME/.profile
 alias lg=lazygit
 alias v=nvim
 alias vc="nvim ."
+alias e="emacs -nw"
+alias ec="emacs -nw ."

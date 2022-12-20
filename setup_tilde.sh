@@ -15,6 +15,8 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
   brew update
   brew install git neovim zsh tmux curl wget node cmake ripgrep go lazygit
 
+  echo "[-] Installing Emacs [-]"
+  brew install --cask emacs
 
   echo "[-] Installing SauceCodePro Nerd Font [-]"
   brew tap homebrew/cask-fonts
