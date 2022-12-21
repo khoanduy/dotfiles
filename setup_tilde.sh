@@ -13,7 +13,7 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
 
   echo "[-] Installing some essentials packages [-]"
   brew update
-  brew install git neovim zsh tmux curl wget node cmake ripgrep go lazygit
+  brew install git neovim zsh tmux curl wget node cmake ripgrep fzf go lazygit
 
   echo "[-] Installing Emacs [-]"
   brew install --cask emacs

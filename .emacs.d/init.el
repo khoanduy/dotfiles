@@ -19,10 +19,11 @@
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
 
 (setq package-selected-packages
-      '(gcmh evil which-key rg vterm magit magit-todos yasnippet
-        markdown-mode clang-format cmake-mode rust-mode cargo
-        toml-mode yaml-mode git-modes pdf-tools mood-line
-        nord-theme all-the-icons))
+      '(gcmh ivy evil which-key rg vterm magit magit-todos
+        yasnippet markdown-mode clang-format cmake-mode
+        rust-mode cargo toml-mode yaml-mode git-modes
+        pdf-tools mood-line nord-theme all-the-icons corfu
+        swiper counsel))
 
 (setq package-native-compile t
       native-comp-async-report-warnings-errors nil
@@ -78,6 +79,30 @@
   "Remove display for minor mode MODE from the mode line or set to VALUE."
   (setf (alist-get mode minor-mode-alist) (list value)))
 
+;; Ivy
+(ivy-mode)
+(setq ivy-use-virtual-buffers t
+      enable-recursive-minibuffers t)
+(global-set-key "\C-s" 'swiper)
+(global-set-key (kbd "M-x") 'counsel-M-x)
+(global-set-key (kbd "C-x C-f") 'counsel-find-file)
+(global-set-key (kbd "<f1> f") 'counsel-describe-function)
+(global-set-key (kbd "<f1> v") 'counsel-describe-variable)
+(global-set-key (kbd "<f1> o") 'counsel-describe-symbol)
+(global-set-key (kbd "<f1> l") 'counsel-find-library)
+(global-set-key (kbd "<f2> i") 'counsel-info-lookup-symbol)
+(global-set-key (kbd "<f2> u") 'counsel-unicode-char)
+(global-set-key (kbd "C-c g") 'counsel-git)
+(global-set-key (kbd "C-c j") 'counsel-git-grep)
+(global-set-key (kbd "C-c k") 'counsel-rg)
+(global-set-key (kbd "C-c n") 'counsel-fzf)
+(global-set-key (kbd "C-x l") 'counsel-locate)
+(global-set-key (kbd "C-c J") 'counsel-file-jump)
+(global-set-key (kbd "C-x b") 'ivy-switch-buffer)
+(global-set-key (kbd "C-c v") 'ivy-push-view)
+(global-set-key (kbd "C-c V") 'ivy-pop-view)
+(define-key minibuffer-local-map (kbd "C-r") 'counsel-minibuffer-history)
+
 ;; Which-key
 (setq which-key-idle-delay 0.5
       which-key-show-early-on-C-h t
@@ -94,7 +119,7 @@
 (load-theme 'nord t)
 
 ;; Mood line
-(mood-line-mode 1)
+(mood-line-mode)
 
 ;; Flymake
 (setq flymake-mode-line-format nil
@@ -133,6 +158,13 @@
 ;; Evil mode
 (require 'evil)
 (evil-mode 1)
+
+;; Corfu
+(setq tab-always-indent 'complete
+      corfu-cycle t
+      corfu-auto t)
+
+(global-corfu-mode)
 
 ;; Python
 (add-hook 'python-mode-hook #'enable-eglot)
