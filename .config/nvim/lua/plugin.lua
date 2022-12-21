@@ -194,9 +194,9 @@ return require('packer').startup(function()
 
   -- UI
   use {
-    'rebelot/kanagawa.nvim',
+    'arcticicestudio/nord-vim',
     config = function()
-      vim.cmd([[ colorscheme kanagawa ]])
+      vim.cmd([[ colorscheme nord ]])
     end
   }
 

@@ -11,15 +11,18 @@
 (set-face-attribute 'fixed-pitch nil :family "SauceCodePro Nerd Font")
 (set-face-attribute 'variable-pitch nil :family "SauceCodePro Nerd Font")
 
+;; Add dirs to load path
+(add-to-list 'custom-theme-load-path (expand-file-name "~/.emacs.d/themes/"))
+
 ;; Install packages
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
-(package-initialize)
 
 (setq package-selected-packages
-      '(evil which-key rg vterm magit magit-todos yasnippet
+      '(gcmh evil which-key rg vterm magit magit-todos yasnippet
         markdown-mode clang-format cmake-mode rust-mode cargo
-        toml-mode yaml-mode git-modes pdf-tools))
+        toml-mode yaml-mode git-modes pdf-tools mood-line
+        nord-theme all-the-icons))
 
 (setq package-native-compile t
       native-comp-async-report-warnings-errors nil
@@ -51,12 +54,12 @@
       enable-local-variables :safe
       disabled-command-function nil)
 
-;; Disable litter files
-(setq auto-save-file-name-transforms
-      `((".*" ,(file-name-concat user-emacs-directory "auto-save/") t))
-      make-backup-files nil
+;; Get rid of litter files
+(setq make-backup-files nil
       create-lockfiles nil
       custom-file null-device)
+
+(auto-save-mode -1)
 
 ;; Update files modified on disk
 (setq global-auto-revert-non-file-buffers t)
@@ -70,8 +73,77 @@
 (global-auto-revert-mode)
 (global-display-line-numbers-mode)
 
-;; Enable Evil
+;; Config functions
+(defun hide-minor-mode (mode &optional value)
+  "Remove display for minor mode MODE from the mode line or set to VALUE."
+  (setf (alist-get mode minor-mode-alist) (list value)))
+
+;; Which-key
+(setq which-key-idle-delay 0.5
+      which-key-show-early-on-C-h t
+      which-key-compute-remaps t
+      which-key-sort-order 'which-key-local-then-key-order
+      which-key-sort-uppercase-first nil
+      which-key-unicode-correction 0
+      which-key-side-window-max-height 0.5)
+
+(which-key-mode)
+(hide-minor-mode 'which-key-mode)
+
+;; Theme
+(load-theme 'nord t)
+
+;; Mood line
+(mood-line-mode 1)
+
+;; Flymake
+(setq flymake-mode-line-format nil
+      flymake-suppress-zero-counters t)
+
+(defun enable-flymake-in-buffer ()
+  (unless buffer-read-only
+    (flymake-mode)))
+
+(defun enable-flymake ()
+  "Enable `flymake-mode' if buffer is modifiable."
+  (add-hook 'enable-flymake-hook
+            #'enable-flymake-in-buffer
+            nil t))
+
+;; Eglot
+(setq eglot-stay-out-of '(eldoc-documentation-strategy)
+      eglot-autoshutdown t)
+
+(advice-add #'eglot-completion-at-point
+            :before-until #'inside-program-text-p)
+
+(with-eval-after-load 'yasnippet
+  (hide-minor-mode 'yas-minor-mode)
+  (setq yas-minor-mode-map (make-sparse-keymap)))
+
+(defun enable-eglot()
+  "Enable eglot and its dependencies"
+  (yas-minor-mode)
+  (require 'eglot)
+  (add-hook 'enable-eglot-hook #'eglot-ensure nil t))
+
+;; This stops eglot from logging the json events of lsp server
+(setq eglot-events-buffer-size 0)
+
+;; Evil mode
 (require 'evil)
 (evil-mode 1)
 
+;; Python
+(add-hook 'python-mode-hook #'enable-eglot)
+
+;; Garbage collect when idle
+(setq gcmh-idle-delay 'auto
+      gcmh-auto-idle-delay-factor 10
+      gcmh-high-cons-threshold (* 32 1024 1024))
+
+(gcmh-mode)
+(hide-minor-mode 'gcmh-mode)
+
+(provide 'init)
 ;;; init.el ends here
