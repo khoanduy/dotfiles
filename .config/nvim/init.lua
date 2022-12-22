@@ -5,7 +5,6 @@ require('plugin')
 require('mapping')
 require('command')
 require('lsp')
-require('neovide')
 -----End load configuration files-----
 
 vim.api.nvim_command('set nocompatible')

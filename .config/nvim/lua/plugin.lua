@@ -94,25 +94,9 @@ return require('packer').startup(function()
     end
   }
 
-  use {
-    'nvim-telescope/telescope-dap.nvim',
-    requires = { 'mfussenegger/nvim-dap' },
-  }
-
   use { 'tpope/vim-fugitive' }
   use { 'tpope/vim-surround' }
   use { 'jiangmiao/auto-pairs' }
-  use { 'tpope/vim-dadbod' }
-  use { 'kristijanhusak/vim-dadbod-ui' }
-  use {
-    'kristijanhusak/vim-dadbod-completion',
-    config = function()
-      vim.cmd([[
-        autocmd FileType sql setlocal omnifunc=vim_dadbod_completion#omni
-        autocmd FileType sql,mysql,plsql lua require('cmp').setup.buffer({ sources = {{ name = 'vim-dadbod-completion' }} })
-      ]])
-    end
-  }
 
   use {
     'akinsho/toggleterm.nvim',
@@ -190,7 +174,6 @@ return require('packer').startup(function()
       require('null-ls').setup {}
     end,
   }
-  use { 'mfussenegger/nvim-jdtls' }
 
   -- UI
   use {

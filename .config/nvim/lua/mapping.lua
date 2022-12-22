@@ -88,17 +88,9 @@ vim.api.nvim_set_keymap('n', '<leader>fc', ':Telescope ', nenrns)
 vim.api.nvim_set_keymap('n', '<leader>hh', ':Telescope help_tags<CR>', nenrs)
 vim.api.nvim_set_keymap('n', '<leader>bb', ':Telescope buffers<CR>', nenrs)
 
--- Github Copilot
-vim.cmd[[imap <silent><script><expr> <C-A> copilot#Accept("\<CR>")]]
-vim.g.copilot_no_tab_map = true
-
 -- nvim-dap
 vim.api.nvim_set_keymap('n', '<leader>dp', [[:lua require'dap'.toggle_breakpoint()<CR>]], nenrns)
 vim.api.nvim_set_keymap('n', '<leader>dc', [[:lua require'dap'.continue()<CR>]], nenrns)
 vim.api.nvim_set_keymap('n', '<leader>ds', [[:lua require'dap'.step_over()<CR>]], nenrns)
 vim.api.nvim_set_keymap('n', '<leader>dS', [[:lua require'dap'.step_into()<CR>]], nenrns)
-
--- Dadbod UI
-vim.api.nvim_set_keymap('n', '<leader>db', ':DBUIToggle<CR>', nenrs)
-vim.api.nvim_set_keymap('n', '<leader>da', ':DBUIAddConnection<CR>', nenrns)
 --------End mappings config--------
