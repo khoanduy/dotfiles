@@ -89,20 +89,7 @@
 (map! :leader :desc "Uncomment region" :v "c O" #'uncomment-region)
 
 ;; Remap switch pane keys
-(map! :desc "Evil window left" :n "M-h" #'evil-window-left)
-(map! :desc "Evil window down" :n "M-j" #'evil-window-down)
-(map! :desc "Evil window up" :n "M-k" #'evil-window-up)
-(map! :desc "Evil window right" :n "M-l" #'evil-window-right)
-
-;; Magit
-(map! :leader :desc "Magit" :v "m g" #'magit)
-
-;; Treemacs
-(map! :leader :desc "Treemacs" :v "e m" #'treemacs)
-(map! :leader :desc "Treemacs find file" :v "e f" #'treemacs-find-file)
-(map! :leader :desc "Treemacs create dir" :v "e a d" #'treemacs-create-dir)
-(map! :leader :desc "Treemacs create file" :v "e a f" #'treemacs-create-file)
-(map! :leader :desc "Treemacs create file" :v "e r" #'treemacs-rename-file)
-(map! :leader :desc "Treemacs create file" :v "e d" #'treemacs-delete-file)
-(map! :leader :desc "Treemacs create file" :v "e c" #'treemacs-copy-file)
-(map! :leader :desc "Treemacs create file" :v "e c" #'treemacs-)
+(map! :desc "Evil window left" :n "C-h" #'evil-window-left)
+(map! :desc "Evil window down" :n "C-j" #'evil-window-down)
+(map! :desc "Evil window up" :n "C-k" #'evil-window-up)
+(map! :desc "Evil window right" :n "C-l" #'evil-window-right)
