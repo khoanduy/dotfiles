@@ -14,7 +14,7 @@
 !.zshrc
 
 # emacs
-!/.emacs.d/
+!/.doom.d/
 
 # config
 !/.config/

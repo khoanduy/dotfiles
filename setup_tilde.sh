@@ -13,7 +13,7 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
 
   echo "[-] Installing some essentials packages [-]"
   brew update
-  brew install git neovim zsh tmux curl wget node cmake ripgrep fzf go lazygit
+  brew install git neovim zsh tmux curl wget node cmake ripgrep fzf go lazygit coreutils fd
 
   echo "[-] Installing Emacs [-]"
   brew install --cask emacs
@@ -25,7 +25,7 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
 elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
   echo "[-] Installing some essentials packages [-]"
   sudo apt-get update
-  sudo apt-get install -y git vim zsh tmux curl wget cmake python3 python3-pip ripgrep build-essential libssl-dev
+  sudo apt-get install -y git vim emacs zsh tmux curl wget cmake python3 python3-pip ripgrep build-essential libssl-dev fd-find
 
   sudo add-apt-repository ppa:longsleep/golang-backports
   sudo apt update
@@ -87,6 +87,10 @@ elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
   sudo desktop-file-install ~/open-source/alacritty/extra/linux/Alacritty.desktop
   sudo update-desktop-database
 fi
+
+echo "[-] Installing Doom Emacs [-]"
+git clone https://github.com/hlissner/doom-emacs ~/.emacs.d
+~/.emacs.d/bin/doom install
 
 chsh -s $(which zsh)
 echo "[-] Setup done. Run \`source ~/.zshrc\` to refresh shell config [-]"

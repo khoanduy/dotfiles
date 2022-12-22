@@ -18,6 +18,9 @@ plugins=(git)
 source $ZSH/oh-my-zsh.sh
 source $HOME/.profile
 
+# Doom Emacs
+export PATH="$HOME/.emacs.d/bin:$PATH"
+
 # Alias
 alias lg=lazygit
 alias v=nvim
