@@ -54,10 +54,6 @@ vim.api.nvim_set_keymap('v', '//', [[y/\V<C-R>=escape(@",'/\')<CR><CR>]], nenrns
 vim.api.nvim_set_keymap('v', '<space>y', '"+y', nenrns)
 vim.api.nvim_set_keymap('n', '<space>p', '"+p', nenrns)
 
--- Remap write and quit
-vim.api.nvim_set_keymap('n', '<space>q', ':q<CR>', nenrns)
-vim.api.nvim_set_keymap('n', '<space>w', ':w<CR>', nenrns)
-
 -- Remap split
 vim.api.nvim_set_keymap('n', '<space>v', '<C-w>v', nenrs)
 vim.api.nvim_set_keymap('n', '<space>h', '<C-w>s', nenrs)
