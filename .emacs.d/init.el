@@ -45,6 +45,7 @@
 
 ;; Default to UTF-8
 (set-default-coding-systems 'utf-8)
+(setq frame-title-format "%b")
 
 ;; Reduce confirmations
 (setq use-short-answers t
@@ -93,13 +94,17 @@
 ;; Start maximize
 (add-to-list 'initial-frame-alist '(fullscreen . maximized))
 
-;; Fun stuff
+;; Elcord
 (use-package elcord
   :straight t
   :custom
   (elcord-editor-icon 'emacs_material_icon)
   :config
   (elcord-mode))
+
+;; All the icons
+(use-package all-the-icons
+  :straight t)
 
 ;; Which-key
 (use-package which-key
@@ -118,14 +123,44 @@
 (defun khoarx/conf-evil ()
   "Configure evil mode"
 
-  ;; Make escape quit everything
-  (define-key evil-normal-state-map [escape] 'keyboard-escape-quit)
-  (define-key evil-visual-state-map [escape] 'keyboard-quit)
-  (define-key minibuffer-local-map [escape] 'minibuffer-keyboard-quit)
-  (define-key minibuffer-local-ns-map [escape] 'minibuffer-keyboard-quit)
-  (define-key minibuffer-local-completion-map [escape] 'minibuffer-keyboard-quit)
-  (define-key minibuffer-local-must-match-map [escape] 'minibuffer-keyboard-quit)
-  (define-key minibuffer-local-isearch-map [escape] 'minibuffer-keyboard-quit)
+  ;; Utils mappings
+  (evil-define-key 'normal global-map (kbd ",:") 'eval-expression)
+  (evil-define-key 'normal global-map (kbd ",cc") 'comment-line)
+  (evil-define-key 'visual global-map (kbd ",cc") 'comment-or-uncomment-region)
+
+  ;; Project mappings
+  (evil-define-key 'normal global-map (kbd ",pp") 'project-switch-project)
+  (evil-define-key 'normal global-map (kbd ",pf") 'project-find-file)
+  (evil-define-key 'normal global-map (kbd ",pb") 'project-switch-to-buffer)
+  (evil-define-key 'normal global-map (kbd ",pd") 'project-find-dir)
+  (evil-define-key 'normal global-map (kbd ",pD") 'project-dired)
+
+  ;; Dired mappings
+  (evil-define-key 'normal global-map (kbd ",dd") 'dired)
+  (evil-define-key 'normal global-map (kbd ",dj") 'dired-jump)
+
+  ;; File mappings
+  (evil-define-key 'normal global-map (kbd ",ff") 'find-file)
+
+  ;; Buffer mappings
+  (evil-define-key 'normal global-map (kbd ",bb") 'switch-to-buffer)
+  (evil-define-key 'normal global-map (kbd ",bp") 'previous-buffer)
+  (evil-define-key 'normal global-map (kbd ",bn") 'next-buffer)
+  (evil-define-key 'normal global-map (kbd ",bk") 'kill-this-buffer)
+
+  ;; Magit mappings
+  (evil-define-key 'normal global-map (kbd ",gg") 'magit-status)
+
+  ;; Window
+  (evil-define-key 'normal global-map (kbd ",wv") 'evil-window-vsplit)
+  (evil-define-key 'normal global-map (kbd ",ws") 'evil-window-split)
+  (evil-define-key 'normal global-map (kbd ",wb") 'balance-windows)
+  (evil-define-key 'normal global-map (kbd ",wd") 'delete-window)
+  (evil-define-key 'normal global-map (kbd ",wo") 'delete-other-windows)
+
+  ;; Terminal
+  (evil-define-key 'normal global-map (kbd ",tt") 'vterm-toggle)
+  (evil-define-key 'normal global-map (kbd ",tT") 'vterm-toggle-cd)
 
   ;; Remap key to move between panes
   (evil-define-key 'normal global-map (kbd "C-h") 'evil-window-left)
@@ -133,36 +168,30 @@
   (evil-define-key 'normal global-map (kbd "C-k") 'evil-window-up)
   (evil-define-key 'normal global-map (kbd "C-l") 'evil-window-right))
 
-(defun khoarx/conf-evil-leader ()
-  "Configure evil leader mode"
-  (evil-leader/set-leader ",")
-  (evil-leader/set-key
-    ":"  'eval-expression
-    "bd"  'kill-this-buffer
-    "gg"  'magit-status
-    "wv"  'evil-window-vsplit
-    "ws"  'evil-window-split
-    ))
+;; Undo fu
+(use-package undo-fu
+  :straight t)
 
 (use-package evil
   :straight t
+  :init
+  (setq evil-want-keybinding nil)
+  (setq evil-undo-system 'undo-fu)
   :config
   (add-hook 'evil-mode-hook 'khoarx/conf-evil)
-  (evil-mode)
+  (evil-mode))
 
-  (use-package evil-leader
-    :straight t
-    :config
-    (global-evil-leader-mode)
-    (khoarx/conf-evil-leader))
+(use-package evil-collection
+  :after evil
+  :straight t
+  :config
+  (evil-collection-init))
 
-  (use-package evil-surround
-    :straight t
-    :config
-    (global-evil-surround-mode))
-
-  (use-package evil-indent-textobject
-    :straight t))
+(use-package evil-surround
+  :after evil
+  :straight t
+  :config
+  (global-evil-surround-mode))
 
 ;; vterm
 (use-package vterm
@@ -173,68 +202,106 @@
   (package-quickstart t)
   (vterm-always-compile-module t))
 
-;; ripgrep
+(use-package vterm-toggle
+  :straight t
+  :config
+  (setq vterm-toggle-scope 'project)
+  (setq vterm-toggle-fullscreen-p nil))
+
+;; Ripgrep
 (use-package rg
   :straight t)
 
-;; magit
+;; Vertico
+(use-package vertico
+  :straight t
+  :init
+  (vertico-mode)
+  (setq vertico-cycle t))
+
+(use-package savehist
+  :straight t
+  :init
+  (savehist-mode))
+
+(use-package orderless
+  :straight t
+  :init
+  (setq completion-styles '(substring orderless basic)
+        completion-category-defaults nil
+        completion-category-overrides '((file (styles partial-completion)))))
+
+(use-package emacs
+  :init
+  (defun crm-indicator (args)
+    (cons (format "[CRM%s] %s"
+                  (replace-regexp-in-string
+                   "\\`\\[.*?]\\*\\|\\[.*?]\\*\\'" ""
+                   crm-separator)
+                  (car args))
+          (cdr args)))
+  (advice-add #'completing-read-multiple :filter-args #'crm-indicator)
+
+  (setq minibuffer-prompt-properties
+        '(read-only t cursor-intangible t face minibuffer-prompt))
+  (add-hook 'minibuffer-setup-hook #'cursor-intangible-mode)
+
+  (setq read-extended-command-predicate
+        #'command-completion-default-include-p)
+
+  (setq enable-recursive-minibuffers t))
+
+;; Magit
 (use-package magit
   :straight t
   :defer t
   :hook
   (git-commit-mode . evil-insert-state))
 
-(use-package evil-magit
+;; Eglot
+(use-package eglot
   :straight t)
 
-;; Config functions
-(defun hide-minor-mode (mode &optional value)
-  "Remove display for minor mode MODE from the mode line or set to VALUE."
-  (setf (alist-get mode minor-mode-alist) (list value)))
-
-;; Mood line
-; (mood-line-mode)
-
 ;; Flymake
-; (setq flymake-mode-line-format nil
-      ; flymake-suppress-zero-counters t)
+(use-package flymake
+    :custom
+    (flymake-mode-line-format nil)
+    (flymake-suppress-zero-counters t))
 
-; (defun enable-flymake-in-buffer ()
-  ; (unless buffer-read-only
-    ; (flymake-mode)))
+(defun enable-flymake-in-buffer ()
+  (unless buffer-read-only
+    (flymake-mode)))
 
-; (defun enable-flymake ()
-  ; "Enable `flymake-mode' if buffer is modifiable."
-  ; (add-hook 'enable-flymake-hook
-            ; #'enable-flymake-in-buffer
-            ; nil t))
-
-;; Eglot
-; (setq eglot-stay-out-of '(eldoc-documentation-strategy)
-      ; eglot-autoshutdown t)
-
-; (advice-add #'eglot-completion-at-point
-            ; :before-until #'inside-program-text-p)
-
-; (with-eval-after-load 'yasnippet
-  ; (hide-minor-mode 'yas-minor-mode)
-  ; (setq yas-minor-mode-map (make-sparse-keymap)))
-
-; (defun enable-eglot()
-  ; "Enable eglot and its dependencies"
-  ; (yas-minor-mode)
-  ; (require 'eglot)
-  ; (add-hook 'enable-eglot-hook #'eglot-ensure nil t))
-
-;; This stops eglot from logging the json events of lsp server
-; (setq eglot-events-buffer-size 0)
+(defun enable-flymake ()
+  "Enable `flymake-mode' if buffer is modifiable."
+  (add-hook 'enable-flymake-hook
+            #'enable-flymake-in-buffer
+            nil t))
 
 ;; Corfu
-; (setq tab-always-indent 'complete
-      ; corfu-cycle t
-      ; corfu-auto t)
+(use-package corfu
+  :straight t
+  :config
+  (setq tab-always-indent 'complete
+        corfu-cycle t
+        corfu-auto t)
+  (global-corfu-mode))
 
-; (global-corfu-mode)
+;; Python
+(use-package lsp-pyright
+  :straight t
+  :hook
+  (python-mode . (lambda ()
+                    (require 'lsp-pyright)
+                    (eglot-ensure)))
+  :custom
+  (python-shell-interpreter "python3"))
+
+;; DOOM Modeline
+(use-package doom-modeline
+  :straight t
+  :init
+  (doom-modeline-mode 1))
 
 ;; Garbage collect when idle
 (use-package gcmh
@@ -244,8 +311,7 @@
         gcmh-auto-idle-delay-factor 10
         gcmh-high-cons-threshold (* 32 1024 1024))
 
-  (gcmh-mode)
-  (hide-minor-mode 'gcmh-mode))
+  (gcmh-mode))
 
 (provide 'init)
 ;;; init.el ends here
