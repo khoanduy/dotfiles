@@ -86,6 +86,84 @@
   :config
   (load-theme 'nord t))
 
+;; MacOS option as meta and esc as C-g
+(setq mac-command-modifier 'super
+      mac-option-modifier 'meta)
+
+;; Start maximize
+(add-to-list 'initial-frame-alist '(fullscreen . maximized))
+
+;; Fun stuff
+(use-package elcord
+  :straight t
+  :custom
+  (elcord-editor-icon 'emacs_material_icon)
+  :config
+  (elcord-mode))
+
+;; Which-key
+(use-package which-key
+  :straight t
+  :custom
+  (which-key-idle-delay 0.5)
+  (which-key-compute-remaps t)
+  (which-key-sort-order 'which-key-local-then-key-order)
+  (which-key-sort-uppercase-first nil)
+  (which-key-unicode-correction 0)
+  (which-key-side-window-max-height 0.5)
+  :config
+  (which-key-mode))
+
+;; Evil everywhere
+(defun khoarx/conf-evil ()
+  "Configure evil mode"
+
+  ;; Make escape quit everything
+  (define-key evil-normal-state-map [escape] 'keyboard-escape-quit)
+  (define-key evil-visual-state-map [escape] 'keyboard-quit)
+  (define-key minibuffer-local-map [escape] 'minibuffer-keyboard-quit)
+  (define-key minibuffer-local-ns-map [escape] 'minibuffer-keyboard-quit)
+  (define-key minibuffer-local-completion-map [escape] 'minibuffer-keyboard-quit)
+  (define-key minibuffer-local-must-match-map [escape] 'minibuffer-keyboard-quit)
+  (define-key minibuffer-local-isearch-map [escape] 'minibuffer-keyboard-quit)
+
+  ;; Remap key to move between panes
+  (evil-define-key 'normal global-map (kbd "C-h") 'evil-window-left)
+  (evil-define-key 'normal global-map (kbd "C-j") 'evil-window-down)
+  (evil-define-key 'normal global-map (kbd "C-k") 'evil-window-up)
+  (evil-define-key 'normal global-map (kbd "C-l") 'evil-window-right))
+
+(defun khoarx/conf-evil-leader ()
+  "Configure evil leader mode"
+  (evil-leader/set-leader ",")
+  (evil-leader/set-key
+    ":"  'eval-expression
+    "bd"  'kill-this-buffer
+    "gg"  'magit-status
+    "wv"  'evil-window-vsplit
+    "ws"  'evil-window-split
+    ))
+
+(use-package evil
+  :straight t
+  :config
+  (add-hook 'evil-mode-hook 'khoarx/conf-evil)
+  (evil-mode)
+
+  (use-package evil-leader
+    :straight t
+    :config
+    (global-evil-leader-mode)
+    (khoarx/conf-evil-leader))
+
+  (use-package evil-surround
+    :straight t
+    :config
+    (global-evil-surround-mode))
+
+  (use-package evil-indent-textobject
+    :straight t))
+
 ;; vterm
 (use-package vterm
   :straight t
@@ -95,58 +173,24 @@
   (package-quickstart t)
   (vterm-always-compile-module t))
 
-; (setq package-selected-packages
-      ; '(gcmh ivy evil which-key rg vterm magit magit-todos
-        ; yasnippet markdown-mode clang-format cmake-mode
-        ; rust-mode cargo toml-mode yaml-mode git-modes
-        ; pdf-tools mood-line nord-theme all-the-icons corfu
-        ; swiper counsel))
+;; ripgrep
+(use-package rg
+  :straight t)
 
+;; magit
+(use-package magit
+  :straight t
+  :defer t
+  :hook
+  (git-commit-mode . evil-insert-state))
 
-; (unless (seq-every-p #'package-installed-p package-selected-packages)
-  ; (package-refresh-contents)
-  ; (package-install-selected-packages t))
+(use-package evil-magit
+  :straight t)
 
 ;; Config functions
 (defun hide-minor-mode (mode &optional value)
   "Remove display for minor mode MODE from the mode line or set to VALUE."
   (setf (alist-get mode minor-mode-alist) (list value)))
-
-;; Ivy
-; (ivy-mode)
-; (setq ivy-use-virtual-buffers t
-      ; enable-recursive-minibuffers t)
-; (global-set-key "\C-s" 'swiper)
-; (global-set-key (kbd "M-x") 'counsel-M-x)
-; (global-set-key (kbd "C-x C-f") 'counsel-find-file)
-; (global-set-key (kbd "<f1> f") 'counsel-describe-function)
-; (global-set-key (kbd "<f1> v") 'counsel-describe-variable)
-; (global-set-key (kbd "<f1> o") 'counsel-describe-symbol)
-; (global-set-key (kbd "<f1> l") 'counsel-find-library)
-; (global-set-key (kbd "<f2> i") 'counsel-info-lookup-symbol)
-; (global-set-key (kbd "<f2> u") 'counsel-unicode-char)
-; (global-set-key (kbd "C-c g") 'counsel-git)
-; (global-set-key (kbd "C-c j") 'counsel-git-grep)
-; (global-set-key (kbd "C-c k") 'counsel-rg)
-; (global-set-key (kbd "C-c n") 'counsel-fzf)
-; (global-set-key (kbd "C-x l") 'counsel-locate)
-; (global-set-key (kbd "C-c J") 'counsel-file-jump)
-; (global-set-key (kbd "C-x b") 'ivy-switch-buffer)
-; (global-set-key (kbd "C-c v") 'ivy-push-view)
-; (global-set-key (kbd "C-c V") 'ivy-pop-view)
-; (define-key minibuffer-local-map (kbd "C-r") 'counsel-minibuffer-history)
-
-;; Which-key
-; (setq which-key-idle-delay 0.5
-      ; which-key-show-early-on-C-h t
-      ; which-key-compute-remaps t
-      ; which-key-sort-order 'which-key-local-then-key-order
-      ; which-key-sort-uppercase-first nil
-      ; which-key-unicode-correction 0
-      ; which-key-side-window-max-height 0.5)
-
-; (which-key-mode)
-; (hide-minor-mode 'which-key-mode)
 
 ;; Mood line
 ; (mood-line-mode)
@@ -185,19 +229,12 @@
 ;; This stops eglot from logging the json events of lsp server
 ; (setq eglot-events-buffer-size 0)
 
-;; Evil mode
-; (require 'evil)
-; (evil-mode 1)
-
 ;; Corfu
 ; (setq tab-always-indent 'complete
       ; corfu-cycle t
       ; corfu-auto t)
 
 ; (global-corfu-mode)
-
-;; Python
-; (add-hook 'python-mode-hook #'enable-eglot)
 
 ;; Garbage collect when idle
 (use-package gcmh
