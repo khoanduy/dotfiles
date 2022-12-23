@@ -75,16 +75,25 @@
 ;; You can also try 'gd' (or 'C-c c d') to jump to their definition and see how
 ;; they are implemented.
 
-;; elcord mode
+
+;;----------------------------------Personal----------------------------------;;
+;; Font
+(setq doom-font (font-spec :family "SauceCodePro Nerd Font" :size 13 :weight 'normal)
+      doom-variable-pitch-font (font-spec :family "SauceCodePro Nerd Font" :size 13))
+
+;; Start maximize
+(add-to-list 'initial-frame-alist '(fullscreen . maximized))
+
+;;----------------------------------------------------------------------------;;
+
+;; Elcord mode
 (use-package! elcord
   :custom
   (elcord-editor-icon 'emacs_material_icon)
   :config
   (elcord-mode))
 
-;; Font
-(setq doom-font (font-spec :family "SauceCodePro Nerd Font" :size 13 :weight 'normal)
-      doom-variable-pitch-font (font-spec :family "SauceCodePro Nerd Font" :size 13))
+;;----------------------------------------------------------------------------;;
 
 ;; Comment mapping
 (map! :leader :desc "Comment region" :v "c o" #'comment-region)
@@ -95,3 +104,11 @@
 (map! :desc "Evil window down" :n "C-j" #'evil-window-down)
 (map! :desc "Evil window up" :n "C-k" #'evil-window-up)
 (map! :desc "Evil window right" :n "C-l" #'evil-window-right)
+
+;;----------------------------------------------------------------------------;;
+
+;; Tweak LSP performance
+(after! lsp-mode
+  (setq lsp-idle-delay 1.0
+        lsp-log-io nil
+        gc-cons-threshold (* 1024 1024 100))) ;; 100MiB
