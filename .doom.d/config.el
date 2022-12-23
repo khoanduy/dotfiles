@@ -77,6 +77,8 @@
 
 ;; elcord mode
 (use-package! elcord
+  :custom
+  (elcord-editor-icon 'emacs_material_icon)
   :config
   (elcord-mode))
 
