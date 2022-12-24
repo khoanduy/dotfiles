@@ -98,12 +98,6 @@
   :config
   (load-theme 'nord t))
 
-;; DOOM Modeline
-;; (use-package doom-modeline
-;;   :straight t
-;;   :init
-;;   (doom-modeline-mode 1))
-
 ;; MacOS option as meta and esc as C-g
 (setq mac-command-modifier 'super
       mac-option-modifier 'meta)
