@@ -291,6 +291,15 @@
   :hook
   (git-commit-mode . evil-insert-state))
 
+;; Tree sitter
+(use-package tree-sitter
+  :straight t
+  :config
+  (global-tree-sitter-mode))
+
+(use-package tree-sitter-langs
+  :straight t)
+
 ;; Eglot
 (use-package eglot
   :straight t)
@@ -325,7 +334,8 @@
   (python-shell-interpreter "python3")
   :hook
   (python-mode . khoarx/enable-flymake)
-  (python-mode . eglot-ensure))
+  (python-mode . eglot-ensure)
+  (python-mode . tree-sitter-hl-mode))
 
 ;; Garbage collect when idle
 (use-package gcmh
