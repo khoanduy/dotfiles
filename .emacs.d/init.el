@@ -56,11 +56,10 @@
       disabled-command-function nil)
 
 ;; Get rid of litter files
-(setq make-backup-files nil
-      create-lockfiles nil
-      custom-file null-device)
-
-(auto-save-mode -1)
+(setq auto-save-file-name-transforms
+        `((".*" "~/.auto-saves/" t))
+      make-backup-files nil
+      create-lockfiles nil)
 
 ;; Update files modified on disk
 (setq global-auto-revert-non-file-buffers t)
@@ -77,6 +76,18 @@
 ;; Install use-package
 (straight-use-package 'use-package)
 
+;; Hide minor mode function
+(defun khoarx/hide-mode (mode &optional value)
+  "Remove display for mode MODE from the mode line or set to VALUE."
+  (setf (alist-get mode minor-mode-alist) (list value)))
+
+;; exec-path-from-shell
+(use-package exec-path-from-shell
+  :straight t
+  :if (eq system-type 'darwin)
+  :config
+  (exec-path-from-shell-initialize))
+
 ;; Fonts and theme
 (set-face-attribute 'default nil :height 130 :family "SauceCodePro Nerd Font")
 (set-face-attribute 'fixed-pitch nil :family "SauceCodePro Nerd Font")
@@ -87,12 +98,33 @@
   :config
   (load-theme 'nord t))
 
+;; DOOM Modeline
+;; (use-package doom-modeline
+;;   :straight t
+;;   :init
+;;   (doom-modeline-mode 1))
+
 ;; MacOS option as meta and esc as C-g
 (setq mac-command-modifier 'super
       mac-option-modifier 'meta)
 
 ;; Start maximize
 (add-to-list 'initial-frame-alist '(fullscreen . maximized))
+(global-visual-line-mode 1)
+
+;; Git gutter
+(use-package git-gutter
+  :straight t
+  :config
+  (global-git-gutter-mode)
+  (khoarx/hide-mode 'git-gutter-mode))
+
+(use-package git-gutter-fringe
+  :straight t
+  :config
+  (define-fringe-bitmap 'git-gutter-fr:added [224] nil nil '(center repeated))
+  (define-fringe-bitmap 'git-gutter-fr:modified [224] nil nil '(center repeated))
+  (define-fringe-bitmap 'git-gutter-fr:deleted [128 192 224 240] nil nil 'bottom))
 
 ;; Elcord
 (use-package elcord
@@ -100,7 +132,8 @@
   :custom
   (elcord-editor-icon 'emacs_material_icon)
   :config
-  (elcord-mode))
+  (elcord-mode)
+  (khoarx/hide-mode 'elcord-mode))
 
 ;; All the icons
 (use-package all-the-icons
@@ -117,7 +150,8 @@
   (which-key-unicode-correction 0)
   (which-key-side-window-max-height 0.5)
   :config
-  (which-key-mode))
+  (which-key-mode)
+  (khoarx/hide-mode 'which-key-mode))
 
 ;; Evil everywhere
 (defun khoarx/conf-evil ()
@@ -125,15 +159,16 @@
 
   ;; Utils mappings
   (evil-define-key 'normal global-map (kbd ",:") 'eval-expression)
-  (evil-define-key 'normal global-map (kbd ",cc") 'comment-line)
-  (evil-define-key 'visual global-map (kbd ",cc") 'comment-or-uncomment-region)
+  (evil-define-key 'normal global-map (kbd ",cc") 'evil-commentary-line)
+  (evil-define-key 'visual global-map (kbd ",cc") 'evil-commentary)
 
   ;; Project mappings
-  (evil-define-key 'normal global-map (kbd ",pp") 'project-switch-project)
-  (evil-define-key 'normal global-map (kbd ",pf") 'project-find-file)
-  (evil-define-key 'normal global-map (kbd ",pb") 'project-switch-to-buffer)
-  (evil-define-key 'normal global-map (kbd ",pd") 'project-find-dir)
-  (evil-define-key 'normal global-map (kbd ",pD") 'project-dired)
+  (evil-define-key 'normal global-map (kbd ",pp") 'projectile-switch-project)
+  (evil-define-key 'normal global-map (kbd ",pf") 'projectile-find-file)
+  (evil-define-key 'normal global-map (kbd ",pb") 'projectile-switch-to-buffer)
+  (evil-define-key 'normal global-map (kbd ",pd") 'projectile-find-dir)
+  (evil-define-key 'normal global-map (kbd ",pD") 'projectile-dired)
+  (evil-define-key 'normal global-map (kbd ",ps") 'projectile-ripgrep)
 
   ;; Dired mappings
   (evil-define-key 'normal global-map (kbd ",dd") 'dired)
@@ -185,13 +220,21 @@
   :after evil
   :straight t
   :config
-  (evil-collection-init))
+  (evil-collection-init)
+  (khoarx/hide-mode 'evil-collection-unimpaired-mode))
 
 (use-package evil-surround
   :after evil
   :straight t
   :config
   (global-evil-surround-mode))
+
+(use-package evil-commentary
+  :after evil
+  :straight t
+  :config
+  (evil-commentary-mode)
+  (khoarx/hide-mode 'evil-commentary-mode))
 
 ;; vterm
 (use-package vterm
@@ -208,48 +251,38 @@
   (setq vterm-toggle-scope 'project)
   (setq vterm-toggle-fullscreen-p nil))
 
+;; Ivy
+(use-package ivy
+  :straight t
+  :diminish
+  :custom
+  (ivy-count-format "(%d/%d) ")
+  (ivy-use-virtual-buffers t)
+  :config
+  (ivy-mode)
+  (khoarx/hide-mode 'ivy-mode))
+
+(use-package counsel
+  :after ivy
+  :straight t
+  :config
+  (counsel-mode)
+  (khoarx/hide-mode 'counsel-mode))
+
+(use-package swiper
+  :after ivy
+  :straight t)
+
+;; Projectile
+(use-package projectile
+  :straight t
+  :config
+  (setq projectile-completion-system 'ivy)
+  (projectile-mode))
+
 ;; Ripgrep
 (use-package rg
   :straight t)
-
-;; Vertico
-(use-package vertico
-  :straight t
-  :init
-  (vertico-mode)
-  (setq vertico-cycle t))
-
-(use-package savehist
-  :straight t
-  :init
-  (savehist-mode))
-
-(use-package orderless
-  :straight t
-  :init
-  (setq completion-styles '(substring orderless basic)
-        completion-category-defaults nil
-        completion-category-overrides '((file (styles partial-completion)))))
-
-(use-package emacs
-  :init
-  (defun crm-indicator (args)
-    (cons (format "[CRM%s] %s"
-                  (replace-regexp-in-string
-                   "\\`\\[.*?]\\*\\|\\[.*?]\\*\\'" ""
-                   crm-separator)
-                  (car args))
-          (cdr args)))
-  (advice-add #'completing-read-multiple :filter-args #'crm-indicator)
-
-  (setq minibuffer-prompt-properties
-        '(read-only t cursor-intangible t face minibuffer-prompt))
-  (add-hook 'minibuffer-setup-hook #'cursor-intangible-mode)
-
-  (setq read-extended-command-predicate
-        #'command-completion-default-include-p)
-
-  (setq enable-recursive-minibuffers t))
 
 ;; Magit
 (use-package magit
@@ -268,40 +301,31 @@
     (flymake-mode-line-format nil)
     (flymake-suppress-zero-counters t))
 
-(defun enable-flymake-in-buffer ()
+(defun khoarx/enable-flymake-in-buffer ()
   (unless buffer-read-only
     (flymake-mode)))
 
-(defun enable-flymake ()
+(defun khoarx/enable-flymake ()
   "Enable `flymake-mode' if buffer is modifiable."
   (add-hook 'enable-flymake-hook
-            #'enable-flymake-in-buffer
+            #'khoarx/enable-flymake-in-buffer
             nil t))
 
 ;; Corfu
 (use-package corfu
   :straight t
   :config
-  (setq tab-always-indent 'complete
-        corfu-cycle t
+  (setq corfu-cycle t
         corfu-auto t)
   (global-corfu-mode))
 
 ;; Python
-(use-package lsp-pyright
-  :straight t
-  :hook
-  (python-mode . (lambda ()
-                    (require 'lsp-pyright)
-                    (eglot-ensure)))
+(use-package python
   :custom
-  (python-shell-interpreter "python3"))
-
-;; DOOM Modeline
-(use-package doom-modeline
-  :straight t
-  :init
-  (doom-modeline-mode 1))
+  (python-shell-interpreter "python3")
+  :hook
+  (python-mode . khoarx/enable-flymake)
+  (python-mode . eglot-ensure))
 
 ;; Garbage collect when idle
 (use-package gcmh
@@ -311,7 +335,8 @@
         gcmh-auto-idle-delay-factor 10
         gcmh-high-cons-threshold (* 32 1024 1024))
 
-  (gcmh-mode))
+  (gcmh-mode)
+  (khoarx/hide-mode 'gcmh-mode))
 
 (provide 'init)
 ;;; init.el ends here
