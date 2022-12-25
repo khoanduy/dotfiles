@@ -92,10 +92,18 @@
 (set-face-attribute 'fixed-pitch nil :family "SauceCodePro Nerd Font")
 (set-face-attribute 'variable-pitch nil :family "SauceCodePro Nerd Font")
 
-(use-package nord-theme
+(use-package doom-themes
   :straight t
   :config
-  (load-theme 'nord t))
+  (setq doom-themes-enable-bold t
+        doom-themes-enable-italic nil)
+  (load-theme 'doom-nord t))
+
+;; Modeline
+(use-package doom-modeline
+  :straight t
+  :init
+  (doom-modeline-mode))
 
 ;; MacOS option as meta and esc as C-g
 (setq mac-command-modifier 'super
@@ -104,7 +112,7 @@
 ;; Start maximize
 (add-to-list 'initial-frame-alist '(fullscreen . maximized))
 (global-visual-line-mode 1)
-(global-set-key (kbd "C-?") 'help-command)
+(global-set-key (kbd "C-H") 'help-command)
 
 ;; Git gutter
 (use-package git-gutter
