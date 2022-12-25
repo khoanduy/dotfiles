@@ -56,9 +56,8 @@
       disabled-command-function nil)
 
 ;; Get rid of litter files
-(setq auto-save-file-name-transforms
-        `((".*" "~/.auto-saves/" t))
-      make-backup-files nil
+(setq make-backup-files nil
+      auto-save-default nil
       create-lockfiles nil)
 
 ;; Update files modified on disk
@@ -105,6 +104,7 @@
 ;; Start maximize
 (add-to-list 'initial-frame-alist '(fullscreen . maximized))
 (global-visual-line-mode 1)
+(global-set-key (kbd "C-?") 'help-command)
 
 ;; Git gutter
 (use-package git-gutter
