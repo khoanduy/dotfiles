@@ -15,9 +15,6 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
   brew update
   brew install git neovim zsh tmux curl wget node cmake ripgrep fzf go lazygit coreutils fd
 
-  echo "[-] Installing Emacs [-]"
-  brew install --cask emacs
-
   echo "[-] Installing SauceCodePro Nerd Font [-]"
   brew tap homebrew/cask-fonts
   brew install --cask font-sauce-code-pro-nerd-font
@@ -25,7 +22,7 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
 elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
   echo "[-] Installing some essentials packages [-]"
   sudo apt-get update
-  sudo apt-get install -y git vim emacs zsh tmux curl wget cmake python3 python3-pip ripgrep build-essential libssl-dev fd-find
+  sudo apt-get install -y git vim zsh tmux curl wget cmake python3 python3-pip ripgrep build-essential libssl-dev fd-find
 
   sudo add-apt-repository ppa:longsleep/golang-backports
   sudo apt update
@@ -89,7 +86,7 @@ elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
 fi
 
 echo "[-] Installing Doom Emacs [-]"
-git clone https://github.com/hlissner/doom-emacs ~/.emacs.d
+git clone --depth 1 https://github.com/doomemacs/doomemacs ~/.emacs.d
 ~/.emacs.d/bin/doom install
 
 chsh -s $(which zsh)
