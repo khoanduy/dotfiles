@@ -20,6 +20,7 @@ source $HOME/.profile
 
 # Doom Emacs
 export PATH="$HOME/.emacs.d/bin:$PATH"
+export LSP_USE_PLISTS=true
 
 # Alias
 alias lg=lazygit

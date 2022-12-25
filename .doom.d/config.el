@@ -84,6 +84,20 @@
 ;; Start maximize
 (add-to-list 'initial-frame-alist '(fullscreen . maximized))
 
+;; Welcome screen
+(setq inhibit-startup-screen t
+      initial-scratch-message ";; This buffer is for Lisp evaluation that is not saved.\n"
+      server-client-instructions nil
+      inhibit-startup-echo-area-message t)
+
+;; Get rid of litter files
+(setq make-backup-files nil
+      auto-save-default nil
+      create-lockfiles nil)
+
+;; Update files modified on disk
+(setq global-auto-revert-non-file-buffers t)
+
 ;;----------------------------------------------------------------------------;;
 
 ;; Elcord mode
@@ -93,11 +107,18 @@
   :config
   (elcord-mode))
 
+;; Git gutter fringe
+(use-package! git-gutter-fringe
+  :config
+  (define-fringe-bitmap 'git-gutter-fr:added [224] nil nil '(center repeated))
+  (define-fringe-bitmap 'git-gutter-fr:modified [224] nil nil '(center repeated))
+  (define-fringe-bitmap 'git-gutter-fr:deleted [128 192 224 240] nil nil 'bottom))
+
 ;;----------------------------------------------------------------------------;;
 
 ;; Comment mapping
-(map! :leader :desc "Comment region" :v "c o" #'comment-region)
-(map! :leader :desc "Uncomment region" :v "c O" #'uncomment-region)
+(map! :leader :desc "Toggle comment region" :v "c o" #'comment-or-uncomment-region)
+(map! :leader :desc "Toggle comment line" :n "c o" #'comment-line)
 
 ;; Remap switch pane keys
 (map! :desc "Evil window left" :n "C-h" #'evil-window-left)
