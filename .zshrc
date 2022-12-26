@@ -9,7 +9,7 @@ source ~/Git/zsh-snap/znap.zsh  # Start Znap
 znap prompt sindresorhus/pure
 
 # `znap source` automatically downloads and starts your plugins.
-znap source marlonrichert/zsh-autocomplete
+znap source zsh-users/zsh-autosuggestions
 znap source zsh-users/zsh-syntax-highlighting
 
 # `znap function` lets you lazy-load features you don't always need.
@@ -25,7 +25,6 @@ export LSP_USE_PLISTS=true
 
 # Alias
 alias lg=lazygit
+alias ls=exa
 alias v=nvim
 alias vc="nvim ."
-alias e="emacs -nw"
-alias ec="emacs -nw ."

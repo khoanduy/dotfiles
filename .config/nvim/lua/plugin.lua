@@ -25,6 +25,7 @@ return require('packer').startup(function()
       vim.g.NERDCompactSexyComs = 1
     end
   }
+
   use {
     'airblade/vim-gitgutter',
     config = function()
@@ -36,61 +37,6 @@ return require('packer').startup(function()
     'folke/which-key.nvim',
     config = function()
       require('which-key').setup {}
-    end
-  }
-
-  use {
-    'nvim-tree/nvim-tree.lua',
-    requires = {
-      'nvim-tree/nvim-web-devicons',
-    },
-    config = function()
-      require('nvim-tree').setup {
-        auto_reload_on_write = true,
-        update_cwd = true,
-        view = {
-          adaptive_size = false,
-          number = false,
-          relativenumber = false,
-        },
-        renderer = {
-          indent_markers = {
-            enable = true,
-            icons = {
-              corner = '└',
-              edge = '│',
-              none = ' ',
-            },
-          },
-          group_empty = true,
-          icons = {
-            show = {
-              file = true,
-              folder = true,
-              git = true,
-              folder_arrow = false,
-            }
-          }
-        },
-        filters = {
-          dotfiles = false,
-        },
-        update_focused_file = {
-          enable = false,
-        },
-        git = {
-          enable = true,
-          ignore = false,
-        },
-      }
-    end
-  }
-
-  use {
-    'nvim-telescope/telescope.nvim',
-    requires = { 'nvim-lua/plenary.nvim' },
-    config = function()
-      require('telescope').setup {}
     end
   }
 
@@ -161,12 +107,14 @@ return require('packer').startup(function()
     'williamboman/mason-lspconfig.nvim',
     'neovim/nvim-lspconfig',
   }
+
   use {
     'hrsh7th/nvim-cmp',
     'hrsh7th/cmp-nvim-lsp',
     'saadparwaiz1/cmp_luasnip',
     'L3MON4D3/LuaSnip',
   }
+
   use {
     'jose-elias-alvarez/null-ls.nvim',
     requires = { 'nvim-lua/plenary.nvim' },
@@ -180,6 +128,60 @@ return require('packer').startup(function()
     'arcticicestudio/nord-vim',
     config = function()
       vim.cmd([[ colorscheme nord ]])
+    end
+  }
+
+  use {
+    'nvim-tree/nvim-web-devicons',
+    config = function()
+      require('which-key').setup {
+        color_icons = true,
+        default = true
+      }
+    end
+  }
+
+  use {
+    'nvim-telescope/telescope.nvim',
+    requires = {
+      'nvim-lua/plenary.nvim',
+      'nvim-telescope/telescope-ui-select.nvim',
+      'nvim-telescope/telescope-file-browser.nvim',
+      'nvim-telescope/telescope-project.nvim'
+    },
+    config = function()
+      require('telescope').setup {
+        ['ui-select'] = {
+          require('telescope.themes').get_cursor {}
+        },
+        pickers = {
+          find_files = {
+            theme = 'dropdown'
+          },
+          git_files = {
+            theme = 'dropdown'
+          },
+          buffers = {
+            theme = 'dropdown'
+          }
+        },
+        extensions = {
+          file_browser = {
+            hijack_netrw = true,
+            theme = 'ivy',
+          },
+          project = {
+            hidden_files = true,
+            theme = 'dropdown',
+            order_by = 'asc',
+            search_by = 'title',
+            sync_with_nvim_tree = true,
+          }
+        }
+      }
+      require('telescope').load_extension('ui-select')
+      require('telescope').load_extension('file_browser')
+      require('telescope').load_extension('project')
     end
   }
 
@@ -222,5 +224,32 @@ return require('packer').startup(function()
   }
 
   use { 'kdheepak/lazygit.nvim' }
+
+  -- Fun stuff
+  use {
+    'andweeb/presence.nvim',
+    config = function()
+      require('presence'):setup({
+        auto_update        = true,
+        neovim_image_text  = 'The One True Text Editor',
+        main_image         = 'neovim',
+        log_level          = nil,
+        debounce_timeout   = 10,
+        enable_line_number = true,
+        blacklist          = {},
+        buttons            = true,
+        file_assets        = {},
+        show_time          = true,
+
+        editing_text        = 'Editing %s',
+        file_explorer_text  = 'Browsing %s',
+        git_commit_text     = 'Committing changes',
+        plugin_manager_text = 'Managing plugins',
+        reading_text        = 'Reading %s',
+        workspace_text      = 'Working on %s',
+        line_number_text    = 'Line %s out of %s',
+      })
+    end
+  }
 end)
 --------End plugins config--------

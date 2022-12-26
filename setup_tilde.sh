@@ -13,7 +13,7 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
 
   echo "[-] Installing some essentials packages [-]"
   brew update
-  brew install git neovim zsh tmux curl wget node cmake ripgrep fzf go lazygit
+  brew install git neovim zsh tmux curl wget node cmake ripgrep fzf go lazygit coreutils fd ncdu exa
 
   echo "[-] Installing SauceCodePro Nerd Font [-]"
   brew tap homebrew/cask-fonts
@@ -22,7 +22,7 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
 elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
   echo "[-] Installing some essentials packages [-]"
   sudo apt-get update
-  sudo apt-get install -y git vim zsh tmux curl wget cmake python3 python3-pip ripgrep build-essential libssl-dev
+  sudo apt-get install -y git vim zsh tmux curl wget cmake python3 python3-pip ripgrep build-essential libssl-dev fd-find ncdu exa
 
   sudo add-apt-repository ppa:longsleep/golang-backports
   sudo apt update
