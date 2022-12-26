@@ -13,10 +13,6 @@
 # zshrc
 !.zshrc
 
-# emacs
-!/.doom.d/
-!/.emacs.d/
-
 # config
 !/.config/
 
