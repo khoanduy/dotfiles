@@ -40,6 +40,53 @@ return require('packer').startup(function()
     end
   }
 
+  use {
+    'nvim-tree/nvim-tree.lua',
+    requires = {
+      'nvim-tree/nvim-web-devicons',
+    },
+    config = function()
+      require('nvim-tree').setup {
+        auto_reload_on_write = true,
+        update_cwd = true,
+        view = {
+          adaptive_size = false,
+          number = false,
+          relativenumber = false,
+        },
+        renderer = {
+          indent_markers = {
+            enable = true,
+            icons = {
+              corner = '└',
+              edge = '│',
+              none = ' ',
+            },
+          },
+          group_empty = true,
+          icons = {
+            show = {
+              file = true,
+              folder = true,
+              git = true,
+              folder_arrow = false,
+            }
+          }
+        },
+        filters = {
+          dotfiles = false,
+        },
+        update_focused_file = {
+          enable = false,
+        },
+        git = {
+          enable = true,
+          ignore = false,
+        },
+      }
+    end
+  }
+
   use { 'tpope/vim-fugitive' }
   use { 'tpope/vim-surround' }
   use { 'jiangmiao/auto-pairs' }
@@ -132,21 +179,10 @@ return require('packer').startup(function()
   }
 
   use {
-    'nvim-tree/nvim-web-devicons',
-    config = function()
-      require('which-key').setup {
-        color_icons = true,
-        default = true
-      }
-    end
-  }
-
-  use {
     'nvim-telescope/telescope.nvim',
     requires = {
       'nvim-lua/plenary.nvim',
       'nvim-telescope/telescope-ui-select.nvim',
-      'nvim-telescope/telescope-file-browser.nvim',
       'nvim-telescope/telescope-project.nvim'
     },
     config = function()
@@ -156,20 +192,23 @@ return require('packer').startup(function()
         },
         pickers = {
           find_files = {
-            theme = 'dropdown'
+            theme = 'ivy'
           },
           git_files = {
-            theme = 'dropdown'
+            theme = 'ivy'
           },
           buffers = {
-            theme = 'dropdown'
+            theme = 'ivy'
+          },
+          live_grep = {
+            theme = 'ivy'
+          },
+          current_buffer_fuzzy_find = {
+            theme = 'ivy'
           }
+
         },
         extensions = {
-          file_browser = {
-            hijack_netrw = true,
-            theme = 'ivy',
-          },
           project = {
             hidden_files = true,
             theme = 'dropdown',
@@ -180,7 +219,6 @@ return require('packer').startup(function()
         }
       }
       require('telescope').load_extension('ui-select')
-      require('telescope').load_extension('file_browser')
       require('telescope').load_extension('project')
     end
   }

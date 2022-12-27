@@ -63,6 +63,12 @@ vim.keymap.set('n', '<space>p', '"+p', nenrns)
 vim.keymap.set('n', '<space>v', '<C-w>v', nenrs)
 vim.keymap.set('n', '<space>h', '<C-w>s', nenrs)
 
+-- NVIM tree
+vim.keymap.set('n', '<leader>nt', ':NvimTreeToggle<CR>', nenrs)
+vim.keymap.set('n', '<leader>nf', ':NvimTreeFocus<CR>', nenrs)
+vim.keymap.set('n', '<leader>nF', ':NvimTreeFindFile<CR>', nenrs)
+vim.keymap.set('n', '<leader>nc', ':NvimTreeCollapse<CR>', nenrs)
+
 -- Trouble
 vim.keymap.set('n', '<leader>x', ':TroubleToggle<CR>', nenrs)
 
@@ -86,7 +92,6 @@ vim.keymap.set('n', '<leader>fa', require('telescope.builtin').live_grep, nenrns
 vim.keymap.set('n', '<leader>fb', require('telescope.builtin').current_buffer_fuzzy_find, nenrns)
 vim.keymap.set('n', '<leader>ht', require('telescope.builtin').help_tags, nenrns)
 vim.keymap.set('n', '<leader>bb', require('telescope.builtin').buffers, nenrns)
-vim.keymap.set('n', '<leader>ft', require('telescope').extensions.file_browser.file_browser, nenrns)
 vim.keymap.set('n', '<leader>pp', require('telescope').extensions.project.project, nenrns)
 
 -- nvim-dap

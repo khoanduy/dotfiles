@@ -13,7 +13,7 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
 
   echo "[-] Installing some essentials packages [-]"
   brew update
-  brew install git neovim zsh tmux curl wget node cmake ripgrep fzf go lazygit coreutils fd ncdu exa
+  brew install git neovim zsh tmux curl wget node cmake ripgrep fzf go lazygit coreutils fd ncdu exa httpie
 
   echo "[-] Installing SauceCodePro Nerd Font [-]"
   brew tap homebrew/cask-fonts
