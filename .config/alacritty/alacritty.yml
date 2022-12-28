@@ -41,6 +41,9 @@ font:
     style: Italic
   size: 13
 
+key_bindings:
+  - { key: Space, mods: Shift|Command, mode: ~Search, action: ToggleViMode }
+
 colors:
   primary:
     background: '#2e3440'
