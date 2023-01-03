@@ -19,17 +19,16 @@ return require('packer').startup(function()
 
   -- Utilities
   use {
-    'preservim/nerdcommenter',
+    'numToStr/Comment.nvim',
     config = function()
-      vim.g.NERDSpaceDelims = 1
-      vim.g.NERDCompactSexyComs = 1
+      require('Comment').setup()
     end
   }
 
   use {
-    'airblade/vim-gitgutter',
+    'lewis6991/gitsigns.nvim',
     config = function()
-      vim.g.gitgutter_max_signs = 2000
+      require('gitsigns').setup()
     end
   }
 
@@ -37,6 +36,15 @@ return require('packer').startup(function()
     'folke/which-key.nvim',
     config = function()
       require('which-key').setup {}
+    end
+  }
+
+  use {
+    'chipsenkbeil/distant.nvim',
+    config = function()
+      require('distant').setup {
+        ['*'] = require('distant.settings').chip_default()
+      }
     end
   }
 
@@ -87,9 +95,19 @@ return require('packer').startup(function()
     end
   }
 
-  use { 'tpope/vim-fugitive' }
-  use { 'tpope/vim-surround' }
-  use { 'jiangmiao/auto-pairs' }
+  use {
+    'kylechui/nvim-surround',
+    config = function()
+      require("nvim-surround").setup {}
+    end
+  }
+
+  use {
+    'windwp/nvim-autopairs',
+    config = function()
+      require('nvim-autopairs').setup {}
+    end
+  }
 
   use {
     'akinsho/toggleterm.nvim',
