@@ -14,7 +14,10 @@
 !.zshrc
 
 # config
-!/.config/
+!.config/
+
+# sublime text
+!.sublime-text/
 
 # setup file
 !setup_tilde.sh
