@@ -5,10 +5,6 @@
 	],
 	"installed_packages":
 	[
-		"Discord Rich Presence",
-		"LSP",
-		"LSP-pylsp",
-		"LSP-rust-analyzer",
 		"Package Control",
 		"Rust Enhanced",
 	],
