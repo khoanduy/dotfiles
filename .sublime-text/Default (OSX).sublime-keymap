@@ -1,3 +1,4 @@
 [
-	{ "keys": ["super+alt+l"], "command": "lsp_format_document" },
+	{ "keys": ["super+alt+L"], "command": "lsp_format_document" },
+	{ "keys": ["super+alt+l"], "command": "lsp_format_document_range" },
 ]
