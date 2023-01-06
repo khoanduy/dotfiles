@@ -51,16 +51,24 @@ if ! hash rustc &> /dev/null; then
   sh -c "$(source $HOME/.cargo/env)"
 fi
 
-if [[ ! -d ~/.oh-my-zsh ]]; then
-  echo "[-] Installing Oh My Zsh [-]"
-  sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
+if [[ ! -d ~/zsh-snap ]]; then
+  echo "[-] Installing Znap (zsh-snap) [-]"
+  git clone --depth 1 -- https://github.com/marlonrichert/zsh-snap.git
+  source zsh-snap/install.zsh
 fi
 
 # $HOME become repo's root
 if [[ $PWD != $HOME ]]; then
-  echo "[-] Make your home directory a repository [-]"
-  cp -R ./* ~
-  cp -R ./.* ~
+  echo "[-] Link configuration files [-]"
+  ln -s ./.zshrc ~/.zshrc
+  ln -s ./.tmux.conf ~/.tmux.conf
+  ln -s ./.config/alacritty/alacritty.yml ~/.config/alacritty/alacritty.yml
+
+  ln -s ./.config/nvim/init.lua ~/.config/nvim/init.lua
+  ln -s ./.config/nvim/lua/plugin.lua ~/.config/nvim/lua/plugin.lua
+  ln -s ./.config/nvim/lua/mapping.lua ~/.config/nvim/lua/mapping.lua
+  ln -s ./.config/nvim/lua/lsp.lua ~/.config/nvim/lua/lsp.lua
+  ln -s ./.config/nvim/lua/command.lua ~/.config/nvim/lua/command.lua
 fi
 
 echo "[-] Installing Alacritty [-]"

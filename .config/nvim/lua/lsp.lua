@@ -2,16 +2,16 @@
 local servers = {
   'rust_analyzer',
   'gopls',
-  'pyright',
+  'pylsp',
   'jdtls',
   'tsserver',
   'sqls',
   'bashls',
   'clangd',
-  'dockerls',
+  'cmake',
+  'omnisharp',
   'jsonls',
   'sumneko_lua',
-  'taplo',
   'yamlls',
 }
 
