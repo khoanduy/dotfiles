@@ -35,15 +35,6 @@ Ignore all errors and install all plugins:
 You might want to install these packages if they are not there yet:
 1. [Alacritty](https://github.com/alacritty/alacritty)
 2. [Lazygit](https://github.com/jesseduffield/lazygit)
-3. [Sublime Text](https://www.sublimetext.com/)
-
-And link files in _.sublime-text/_ folder to _~/Library/Application Support/Sublime Text/Packages/User/_
-```shell script
-$ ln -s ~/.sublime-text/Preferences.sublime-settings ~/Library/Application\ Support/Sublime\ Text/Packages/User/Preferences.sublime-settings
-$ ln -s ~/.sublime-text/Package\ Control.sublime-settings ~/Library/Application\ Support/Sublime\ Text/Packages/User/Package\ Control.sublime-settings
-$ ln -s ~/.sublime-text/Default\ \(OSX\).sublime-keymap ~/Library/Application\ Support/Sublime\ Text/Packages/User/Default\ \(OSX\).sublime-keymap
-$ ln -s ~/.sublime-text/Default\ \(OSX\).sublime-mousemap ~/Library/Application\ Support/Sublime\ Text/Packages/User/Default\ \(OSX\).sublime-mousemap
-```
 
 ## References
 [tmux](https://github.com/tmux/tmux)\
