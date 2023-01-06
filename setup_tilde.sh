@@ -59,16 +59,9 @@ fi
 
 # $HOME become repo's root
 if [[ $PWD != $HOME ]]; then
-  echo "[-] Link configuration files [-]"
-  ln -s ./.zshrc ~/.zshrc
-  ln -s ./.tmux.conf ~/.tmux.conf
-  ln -s ./.config/alacritty/alacritty.yml ~/.config/alacritty/alacritty.yml
-
-  ln -s ./.config/nvim/init.lua ~/.config/nvim/init.lua
-  ln -s ./.config/nvim/lua/plugin.lua ~/.config/nvim/lua/plugin.lua
-  ln -s ./.config/nvim/lua/mapping.lua ~/.config/nvim/lua/mapping.lua
-  ln -s ./.config/nvim/lua/lsp.lua ~/.config/nvim/lua/lsp.lua
-  ln -s ./.config/nvim/lua/command.lua ~/.config/nvim/lua/command.lua
+  echo "[-] Make your home directory a repository [-]"
+  cp -R ./* ~
+  cp -R ./.* ~
 fi
 
 echo "[-] Installing Alacritty [-]"
