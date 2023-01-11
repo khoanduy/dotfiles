@@ -36,6 +36,11 @@ You might want to install these packages if they are not there yet:
 1. [Alacritty](https://github.com/alacritty/alacritty)
 2. [Lazygit](https://github.com/jesseduffield/lazygit)
 
+If you want to use Sublime Text from terminal in macOS:
+```shell script
+ ln -s /Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl /usr/local/bin/subl
+```
+
 ## References
 [tmux](https://github.com/tmux/tmux)\
 [neovim](https://neovim.io/)
