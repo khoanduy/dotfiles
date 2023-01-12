@@ -190,9 +190,9 @@ return require('packer').startup(function()
 
   -- UI
   use {
-    'rebelot/kanagawa.nvim',
+    'ellisonleao/gruvbox.nvim',
     config = function()
-      vim.cmd([[ colorscheme kanagawa ]])
+      vim.cmd([[ colorscheme gruvbox ]])
     end
   }
 
