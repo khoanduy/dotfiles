@@ -255,14 +255,14 @@ return require('packer').startup(function()
         },
         sections = {
           lualine_a = {
-            { 'mode', separator = { left = '' }, right_padding = 2 },
+            { 'mode', separator = { left = '' }, right_padding = 2 },
           },
           lualine_b = { 'branch' },
           lualine_c = { 'filename', 'diagnostics' },
           lualine_x = { 'diff', 'encoding', 'filetype' },
           lualine_y = { 'location' },
           lualine_z = {
-            { 'progress', separator = { right = '' }, left_padding = 2 }
+            { 'progress', separator = { right = '' }, left_padding = 2 }
           }
         },
         inactive_sections = {
