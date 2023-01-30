@@ -48,9 +48,12 @@ key_bindings:
 colors:
   # Default colors
   primary:
-    # hard contrast: background = '#1d2021'
-    background: '#282828'
-    # soft contrast: background = '#32302f'
+    # Hard contrast
+    background: '#1d2021'
+    # Medium contrast
+    # background: '#282828'
+    # Soft contrast
+    # background: '#32302f'
     foreground: '#ebdbb2'
 
   # Normal colors

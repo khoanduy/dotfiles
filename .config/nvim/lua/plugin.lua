@@ -13,7 +13,7 @@ vim.cmd([[
   augroup end
 ]])
 
--- List plugins
+-- Plugin installation
 return require('packer').startup(function()
   use { 'wbthomason/packer.nvim' }
 
@@ -190,9 +190,18 @@ return require('packer').startup(function()
 
   -- UI
   use {
-    'ellisonleao/gruvbox.nvim',
+    'sainnhe/gruvbox-material',
     config = function()
-      vim.cmd([[ colorscheme gruvbox ]])
+      vim.cmd([[
+        if has('termguicolors')
+          set termguicolors
+        endif
+      ]])
+      vim.g.gruvbox_material_foreground = 'original'
+      vim.g.gruvbox_material_background = 'hard'
+      vim.g.gruvbox_material_better_performance = 1
+      vim.g.gruvbox_material_dim_inactive_windows = 1
+      vim.cmd([[ colorscheme gruvbox-material ]])
     end
   }
 
@@ -279,6 +288,13 @@ return require('packer').startup(function()
     end
   }
 
+  use {
+    'petertriho/nvim-scrollbar',
+    config = function()
+      require('scrollbar').setup()
+    end
+  }
+
   use { 'kdheepak/lazygit.nvim' }
 
   -- Fun stuff
@@ -307,5 +323,7 @@ return require('packer').startup(function()
       })
     end
   }
+
+  use { 'github/copilot.vim' }
 end)
 --------End plugins config--------
