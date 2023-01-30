@@ -147,6 +147,8 @@ return require('packer').startup(function()
     end
   }
 
+  use { 'editorconfig/editorconfig-vim', }
+
   -- Programming language
   use {
     'nvim-treesitter/nvim-treesitter',
