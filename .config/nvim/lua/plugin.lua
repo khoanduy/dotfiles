@@ -297,8 +297,5 @@ return require('packer').startup(function()
   }
 
   use { 'kdheepak/lazygit.nvim' }
-
-  -- Fun stuff
-  use { 'github/copilot.vim' }
 end)
 --------End plugins config--------
