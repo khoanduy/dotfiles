@@ -1,17 +1,14 @@
 --------LSP config--------
 local servers = {
   'rust_analyzer',
-  'gopls',
   'pylsp',
   'jdtls',
   'tsserver',
   'sqls',
-  'bashls',
   'clangd',
   'cmake',
-  'omnisharp',
   'jsonls',
-  'sumneko_lua',
+  'lua_ls',
   'yamlls',
 }
 
