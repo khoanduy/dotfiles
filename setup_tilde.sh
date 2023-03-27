@@ -15,9 +15,9 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
   brew update
   brew install git neovim zsh tmux curl wget node cmake ripgrep fzf go lazygit coreutils fd ncdu exa httpie
 
-  echo "[-] Installing SauceCodePro Nerd Font [-]"
+  echo "[-] Installing Caskaydia Cove Nerd Font [-]"
   brew tap homebrew/cask-fonts
-  brew install --cask font-sauce-code-pro-nerd-font
+  brew install --cask font-caskaydia-cove-nerd-font
 
 elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
   echo "[-] Installing some essentials packages [-]"
@@ -30,11 +30,11 @@ elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
 
   go install github.com/jesseduffield/lazygit@latest
 
-  echo "[-] Installing SauceCodePro Nerd Font [-]"
-  wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.2.2/SourceCodePro.zip
-  unzip SourceCodePro.zip -d ~/.fonts
+  echo "[-] Installing Caskaydia Cove Nerd Font [-]"
+  wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.3.3/CascadiaCode.zip
+  unzip CascadiaCode.zip -d ~/.fonts
   fc-cache -fv
-  rm -rf SourceCodePro.zip
+  rm -rf CascadiaCode.zip
 
   if ! hash node &> /dev/null; then
     curl -fsSL https://deb.nodesource.com/setup_lts.x | sudo -E bash -
