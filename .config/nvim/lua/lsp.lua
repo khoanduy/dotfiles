@@ -2,13 +2,11 @@
 local servers = {
   'rust_analyzer',
   'pylsp',
-  'jdtls',
   'tsserver',
   'sqls',
   'clangd',
   'cmake',
   'jsonls',
-  'lua_ls',
   'yamlls',
 }
 
