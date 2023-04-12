@@ -19,9 +19,8 @@ compctl -K    _pyenv pyenv
 # source $ZSH/oh-my-zsh.sh
 source $HOME/.profile
 
-# Doom Emacs
-export PATH="$HOME/.emacs.d/bin:$PATH"
-export LSP_USE_PLISTS=true
+# Go bin
+export PATH=$PATH:$HOME/go/bin
 
 # Alias
 alias lg=lazygit
