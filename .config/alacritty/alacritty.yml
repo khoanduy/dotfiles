@@ -44,32 +44,29 @@ font:
 key_bindings:
   - { key: Space, mods: Shift|Command, mode: ~Search, action: ToggleViMode }
 
-# Colors (Night Owlish Light)
-colors:
-  bright:
-    black: '#7a8181'
-    blue: '#5ca7e4'
-    cyan: '#00c990'
-    green: '#49d0c5'
-    magenta: '#697098'
-    red: '#f76e6e'
-    white: '#989fb1'
-    yellow: '#dac26b'
-  cursor:
-    cursor: '#403f53'
-    text: '#fbfbfb'
-  normal:
-    black: '#011627'
-    blue: '#4876d6'
-    cyan: '#08916a'
-    green: '#2aa298'
-    magenta: '#403f53'
-    red: '#d3423e'
-    white: '#7a8181'
-    yellow: '#daaa01'
+schemes:
   primary:
-    background: '#ffffff'
-    foreground: '#403f53'
-  selection:
-    background: '#f2f2f2'
-    text: '#403f53'
+    background: '#24283b'
+    foreground: '#a9b1d6'
+
+  # Normal colors
+  normal:
+    black:   '#32344a'
+    red:     '#f7768e'
+    green:   '#9ece6a'
+    yellow:  '#e0af68'
+    blue:    '#7aa2f7'
+    magenta: '#ad8ee6'
+    cyan:    '#449dab'
+    white:   '#9699a8'
+
+  # Bright colors
+  bright:
+    black:   '#444b6a'
+    red:     '#ff7a93'
+    green:   '#b9f27c'
+    yellow:  '#ff9e64'
+    blue:    '#7da6ff'
+    magenta: '#bb9af7'
+    cyan:    '#0db9d7'
+    white:   '#acb0d0'

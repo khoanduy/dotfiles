@@ -192,17 +192,9 @@ return require('packer').startup(function()
 
   -- UI
   use {
-    'sainnhe/gruvbox-material',
+    'folke/tokyonight.nvim',
     config = function()
-      vim.cmd([[
-        if has('termguicolors')
-          set termguicolors
-        endif
-      ]])
-      vim.g.gruvbox_material_foreground = 'original'
-      vim.g.gruvbox_material_background = 'hard'
-      vim.g.gruvbox_material_better_performance = 1
-      vim.cmd([[ colorscheme gruvbox-material ]])
+      vim.cmd([[ colorscheme tokyonight-night ]])
     end
   }
 
