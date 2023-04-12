@@ -22,7 +22,7 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
 elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
   echo "[-] Installing some essentials packages [-]"
   sudo apt-get update
-  sudo apt-get install -y git vim zsh tmux curl wget cmake python3 python3-pip ripgrep build-essential libssl-dev fd-find ncdu exa
+  sudo apt-get install -y git vim zsh tmux curl wget cmake python3 python3-pip ripgrep build-essential libssl-dev fd-find ncdu exa ninja-build gettext unzip
 
   sudo add-apt-repository ppa:longsleep/golang-backports
   sudo apt update
@@ -64,8 +64,8 @@ if [[ $PWD != $HOME ]]; then
   cp -R ./.* ~
 fi
 
-echo "[-] Installing Alacritty [-]"
 mkdir ~/open-source
+echo "[-] Installing Alacritty [-]"
 git clone https://github.com/alacritty/alacritty.git ~/open-source/alacritty
 
 rustup override set stable
@@ -84,6 +84,13 @@ elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
   sudo cp ~/open-source/alacritty/extra/logo/alacritty-term.svg /usr/share/pixmaps/Alacritty.svg
   sudo desktop-file-install ~/open-source/alacritty/extra/linux/Alacritty.desktop
   sudo update-desktop-database
+
+  echo "[-] Installing Neovim [-]"
+  git clone https://github.com/neovim/neovim.git ~/open-source/neovim
+  cd ~/open-source/neovim
+  make CMAKE_BUILD_TYPE=Release
+  sudo make install
+  cd ~
 fi
 
 chsh -s $(which zsh)
