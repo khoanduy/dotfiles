@@ -70,9 +70,6 @@ vim.keymap.set('n', '<leader>nf', ':NvimTreeFocus<CR>', nenrs)
 vim.keymap.set('n', '<leader>nF', ':NvimTreeFindFile<CR>', nenrs)
 vim.keymap.set('n', '<leader>nc', ':NvimTreeCollapse<CR>', nenrs)
 
--- Trouble
-vim.keymap.set('n', '<leader>x', ':TroubleToggle<CR>', nenrs)
-
 -- Toggleterm
 vim.keymap.set('n', '<leader>T', ':ToggleTerm<CR>', nenrs)
 vim.keymap.set('t', '<leader>T', [[<C-\><C-n>:ToggleTerm<CR>]], nenrs)
@@ -94,17 +91,4 @@ vim.keymap.set('n', '<leader>fb', require('telescope.builtin').current_buffer_fu
 vim.keymap.set('n', '<leader>ht', require('telescope.builtin').help_tags, nenrns)
 vim.keymap.set('n', '<leader>bb', require('telescope.builtin').buffers, nenrns)
 vim.keymap.set('n', '<leader>pp', require('telescope').extensions.project.project, nenrns)
-
--- Copilot
-vim.g.copilot_no_tab_map = true
-vim.keymap.set('i', '<C-E>', [[copilot#Accept('<CR>')]], enrs)
-vim.keymap.set('i', '<C-S>', [[<Plug>(copilot-suggest)]], nenrns)
-vim.keymap.set('i', '<C-J>', [[<Plug>(copilot-next)]], nenrns)
-vim.keymap.set('i', '<C-K>', [[<Plug>(copilot-previous)]], nenrns)
-
--- nvim-dap
-vim.keymap.set('n', '<leader>dp', [[:lua require'dap'.toggle_breakpoint()<CR>]], nenrns)
-vim.keymap.set('n', '<leader>dc', [[:lua require'dap'.continue()<CR>]], nenrns)
-vim.keymap.set('n', '<leader>ds', [[:lua require'dap'.step_over()<CR>]], nenrns)
-vim.keymap.set('n', '<leader>dS', [[:lua require'dap'.step_into()<CR>]], nenrns)
 --------End mappings config--------
