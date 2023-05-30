@@ -13,7 +13,7 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
 
   echo "[-] Installing some essentials packages [-]"
   brew update
-  brew install git neovim zsh tmux curl wget node cmake ripgrep fzf go lazygit coreutils fd ncdu exa httpie
+  brew install git neovim zsh tmux curl wget node cmake ripgrep fzf go lazygit coreutils fd ncdu exa
 
   echo "[-] Installing Caskaydia Cove Nerd Font [-]"
   brew tap homebrew/cask-fonts
@@ -49,12 +49,6 @@ if ! hash rustc &> /dev/null; then
   echo "[-] Installing Rust [-]"
   sh -c "$(curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y)"
   sh -c "$(source $HOME/.cargo/env)"
-fi
-
-if [[ ! -d ~/zsh-snap ]]; then
-  echo "[-] Installing Znap (zsh-snap) [-]"
-  git clone --depth 1 -- https://github.com/marlonrichert/zsh-snap.git
-  source zsh-snap/install.zsh
 fi
 
 # $HOME become repo's root
