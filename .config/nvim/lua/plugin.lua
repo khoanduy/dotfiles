@@ -128,27 +128,6 @@ return require('packer').startup(function()
     end
   }
 
-  use {
-    'folke/trouble.nvim',
-    config = function()
-      require('trouble').setup {
-        icons = true,
-        fold_open = '⦣',
-        fold_closed = '⦢',
-        indent_lines = false,
-        signs = {
-          error = '✘',
-          warning = '❢',
-          hint = '✔',
-          information = '✦'
-        },
-        use_diagnostic_signs = false
-      }
-    end
-  }
-
-  use { 'editorconfig/editorconfig-vim', }
-
   -- Programming language
   use {
     'nvim-treesitter/nvim-treesitter',
@@ -164,30 +143,6 @@ return require('packer').startup(function()
         },
       }
     end
-  }
-
-  use { 'rust-lang/rust.vim' }
-
-  -- LSP and DAP
-  use {
-    'williamboman/mason.nvim',
-    'williamboman/mason-lspconfig.nvim',
-    'neovim/nvim-lspconfig',
-  }
-
-  use {
-    'hrsh7th/nvim-cmp',
-    'hrsh7th/cmp-nvim-lsp',
-    'saadparwaiz1/cmp_luasnip',
-    'L3MON4D3/LuaSnip',
-  }
-
-  use {
-    'jose-elias-alvarez/null-ls.nvim',
-    requires = { 'nvim-lua/plenary.nvim' },
-    config = function()
-      require('null-ls').setup {}
-    end,
   }
 
   -- UI
@@ -289,32 +244,5 @@ return require('packer').startup(function()
   }
 
   use { 'kdheepak/lazygit.nvim' }
-
-  -- Fun stuff
-  use {
-    'andweeb/presence.nvim',
-    config = function()
-      require('presence').setup({
-        auto_update        = true,
-        neovim_image_text  = 'The One True Text Editor',
-        main_image         = 'neovim',
-        log_level          = nil,
-        debounce_timeout   = 10,
-        enable_line_number = true,
-        blacklist          = {},
-        buttons            = true,
-        file_assets        = {},
-        show_time          = true,
-
-        editing_text        = 'Editing %s',
-        file_explorer_text  = 'Browsing %s',
-        git_commit_text     = 'Committing changes',
-        plugin_manager_text = 'Managing plugins',
-        reading_text        = 'Reading %s',
-        workspace_text      = 'Working on %s',
-        line_number_text    = 'Line %s out of %s',
-      })
-    end
-  }
 end)
 --------End plugins config--------
