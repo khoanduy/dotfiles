@@ -1,6 +1,5 @@
 # Download Znap, if it's not there yet.
 [[ -f ~/znap/zsh-snap/znap.zsh ]] ||
-    mkdir znap
     git clone --depth 1 -- \
         https://github.com/marlonrichert/zsh-snap.git ~/znap/zsh-snap
 

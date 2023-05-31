@@ -51,12 +51,23 @@ if ! hash rustc &> /dev/null; then
   sh -c "$(source $HOME/.cargo/env)"
 fi
 
-# $HOME become repo's root
-if [[ $PWD != $HOME ]]; then
-  echo "[-] Make your home directory a repository [-]"
-  cp -R ./* ~
-  cp -R ./.* ~
-fi
+# Backup dotfiles
+echo "[-] Backing up dotfiles [-]"
+local current_date=$(date +%s)
+local backup_dir=dotfiles_bak_$current_date
+
+mkdir ~/$backup_dir
+mv ~/.zshrc ~/$backup_dir/.zshrc
+mv ~/.tmux.conf ~/$backup_dir/.tmux.conf
+
+# Link dotfiles
+echo "[-] Linking dotfiles [-]"
+ln -s $(pwd)/.zshrc ~/.zshrc
+ln -s $(pwd)/.tmux.conf ~/.tmux.conf
+
+mkdir -p ${XDG_CONFIG_HOME:=$HOME/.config}
+ln -s $(pwd)/nvim $XDG_CONFIG_HOME/nvim
+ln -s $(pwd)/alacritty $XDG_CONFIG_HOME/alacritty
 
 mkdir ~/open-source
 echo "[-] Installing Alacritty [-]"
