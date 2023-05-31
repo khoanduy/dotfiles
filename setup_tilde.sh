@@ -17,7 +17,7 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
 
   echo "[-] Installing Caskaydia Cove Nerd Font [-]"
   brew tap homebrew/cask-fonts
-  brew install --cask font-caskaydia-cove-nerd-font
+  brew install --cask font-sauce-code-pro-nerd-font
 
 elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
   echo "[-] Installing some essentials packages [-]"
@@ -30,11 +30,11 @@ elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
 
   go install github.com/jesseduffield/lazygit@latest
 
-  echo "[-] Installing Caskaydia Cove Nerd Font [-]"
-  wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.3.3/CascadiaCode.zip
-  unzip CascadiaCode.zip -d ~/.fonts
+  echo "[-] Installing Source Code Pro Nerd Font [-]"
+  wget https://github.com/ryanoasis/nerd-fonts/releases/download/v3.0.1/SourceCodePro.zip
+  unzip SourceCodePro.zip -d ~/.fonts
   fc-cache -fv
-  rm -rf CascadiaCode.zip
+  rm -rf SourceCodePro.zip
 
   if ! hash node &> /dev/null; then
     curl -fsSL https://deb.nodesource.com/setup_lts.x | sudo -E bash -
