@@ -52,13 +52,16 @@ if ! hash rustc &> /dev/null; then
 fi
 
 # Backup dotfiles
-echo "[-] Backing up dotfiles [-]"
-local current_date=$(date +%s)
-local backup_dir=dotfiles_bak_$current_date
+function backup() {
+  echo "[-] Backing up dotfiles [-]"
+  local current_date=$(date +%s)
+  local backup_dir=dotfiles_bak_$current_date
 
-mkdir ~/$backup_dir
-mv ~/.zshrc ~/$backup_dir/.zshrc
-mv ~/.tmux.conf ~/$backup_dir/.tmux.conf
+  mkdir ~/$backup_dir
+  mv ~/.zshrc ~/$backup_dir/.zshrc
+  mv ~/.tmux.conf ~/$backup_dir/.tmux.conf
+}
+backup
 
 # Link dotfiles
 echo "[-] Linking dotfiles [-]"
