@@ -147,9 +147,9 @@ return require('packer').startup(function()
 
   -- UI
   use {
-    'folke/tokyonight.nvim',
+    'catppuccin/nvim', as = 'catppuccin',
     config = function()
-      vim.cmd([[ colorscheme tokyonight-moon ]])
+      vim.cmd([[ colorscheme catppuccin-macchiato ]])
     end
   }
 
