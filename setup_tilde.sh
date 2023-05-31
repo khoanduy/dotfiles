@@ -15,7 +15,7 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
   brew update
   brew install git neovim zsh tmux curl wget node cmake ripgrep fzf go lazygit coreutils fd ncdu exa
 
-  echo "[-] Installing Caskaydia Cove Nerd Font [-]"
+  echo "[-] Installing Source Code Pro Nerd Font [-]"
   brew tap homebrew/cask-fonts
   brew install --cask font-sauce-code-pro-nerd-font
 
