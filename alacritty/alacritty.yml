@@ -31,13 +31,13 @@ scrolling:
 font:
   scale_with_dpi: true
   normal:
-    family: CaskaydiaCove Nerd Font
+    family: SauceCodePro Nerd Font
     style: Regular
   bold:
-    family: CaskaydiaCove Nerd Font
+    family: SauceCodePro Nerd Font
     style: Bold
   italic:
-    family: CaskaydiaCove Nerd Font
+    family: SauceCodePro Nerd Font
     style: Italic
   size: 13
 
@@ -123,4 +123,4 @@ colors:
   indexed_colors:
     - { index: 16, color: "#F5A97F" }
     - { index: 17, color: "#F4DBD6" }
-    
+

@@ -1,9 +1,18 @@
 --------Plugins config--------
 
--- Install Packer
-local packer_url = 'https://github.com/wbthomason/packer.nvim'
-local dest_path = os.getenv('HOME') .. '/.local/share/nvim/site/pack/packer/start/packer.nvim'
-packer_bootstrap = vim.fn.system({ 'git', 'clone', '--depth', '1', packer_url, dest_path })
+-- Ensure Packer
+local ensure_packer = function()
+  local fn = vim.fn
+  local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
+  if fn.empty(fn.glob(install_path)) > 0 then
+    fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
+    vim.cmd [[packadd packer.nvim]]
+    return true
+  end
+  return false
+end
+
+local packer_bootstrap = ensure_packer()
 
 -- Plugin autocompile
 vim.cmd([[
@@ -16,6 +25,12 @@ vim.cmd([[
 -- Plugin installation
 return require('packer').startup(function()
   use { 'wbthomason/packer.nvim' }
+
+  -- Automatically set up your configuration after cloning packer.nvim
+  -- Put this at the end after all plugins
+  if packer_bootstrap then
+    require('packer').sync()
+  end
 
   -- Utilities
   use {
@@ -128,6 +143,27 @@ return require('packer').startup(function()
     end
   }
 
+  use {
+    'folke/trouble.nvim',
+    config = function()
+      require('trouble').setup {
+        icons = true,
+        fold_open = '⦣',
+        fold_closed = '⦢',
+        indent_lines = false,
+        signs = {
+          error = '✘',
+          warning = '❢',
+          hint = '✔',
+          information = '✦'
+        },
+        use_diagnostic_signs = false
+      }
+    end
+  }
+
+  use { 'editorconfig/editorconfig-vim', }
+
   -- Programming language
   use {
     'nvim-treesitter/nvim-treesitter',
@@ -143,6 +179,30 @@ return require('packer').startup(function()
         },
       }
     end
+  }
+
+  use { 'rust-lang/rust.vim' }
+
+  -- LSP and DAP
+  use {
+    'williamboman/mason.nvim',
+    'williamboman/mason-lspconfig.nvim',
+    'neovim/nvim-lspconfig',
+  }
+
+  use {
+    'hrsh7th/nvim-cmp',
+    'hrsh7th/cmp-nvim-lsp',
+    'saadparwaiz1/cmp_luasnip',
+    'L3MON4D3/LuaSnip',
+  }
+
+  use {
+    'jose-elias-alvarez/null-ls.nvim',
+    requires = { 'nvim-lua/plenary.nvim' },
+    config = function()
+      require('null-ls').setup {}
+    end,
   }
 
   -- UI
