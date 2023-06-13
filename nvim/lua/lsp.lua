@@ -1,9 +1,14 @@
 --------LSP config--------
 local servers = {
   'rust_analyzer',
+  'gopls',
   'pyright',
   'sqlls',
-  'jsonls'
+  'jsonls',
+  'yamlls',
+  'html',
+  'cssls',
+  'tsserver'
 }
 
 require('mason').setup({
