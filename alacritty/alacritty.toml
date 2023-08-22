@@ -1,4 +1,4 @@
-dynamic_title = true
+# dynamic_title = true
 
 [[colors.indexed_colors]]
 color = "#FAB387"
@@ -60,9 +60,9 @@ foreground = "#CDD6F4"
 background = "#A6E3A1"
 foreground = "#1E1E2E"
 
-[colors.search.footer_bar]
-background = "#A6ADC8"
-foreground = "#1E1E2E"
+# [colors.search.footer_bar]
+# background = "#A6ADC8"
+# foreground = "#1E1E2E"
 
 [colors.search.matches]
 background = "#A6ADC8"
@@ -80,7 +80,7 @@ text = "#1E1E2E"
 TERM = "alacritty"
 
 [font]
-scale_with_dpi = true
+# scale_with_dpi = true
 size = 13
 
 [font.bold]
