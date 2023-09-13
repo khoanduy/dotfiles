@@ -1,12 +1,6 @@
 ---------Khoa Nguyen's vim/neovim configuration---------
 
--- Load configuration files-----
-require('plugin')
-require('mapping')
-require('command')
-require('lsp')
------End load configuration files-----
-
+-- General configuration --
 vim.api.nvim_command('set nocompatible')
 vim.g.diagnostics_enabled = true
 
@@ -66,4 +60,24 @@ vim.cmd([[
 
 -- Get rid of scratch buffer
 vim.cmd([[ set completeopt-=preview ]])
+
+-- Ensure lazy.nvim and load plugins --
+local lazypath = vim.fn.stdpath('data') .. '/lazy/lazy.nvim'
+if not vim.loop.fs_stat(lazypath) then
+  vim.fn.system({
+    'git',
+    'clone',
+    '--filter=blob:none',
+    'https://github.com/folke/lazy.nvim.git',
+    '--branch=stable', -- latest stable release
+    lazypath,
+  })
+end
+vim.opt.rtp:prepend(lazypath)
+require('lazy').setup('plugin')
+
+-- Load configuration files --
+require('mapping')
+require('command')
+require('lsp')
 ---------End configuration---------

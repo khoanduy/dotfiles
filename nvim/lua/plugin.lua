@@ -1,75 +1,33 @@
 --------Plugins config--------
-
--- Ensure Packer
-local ensure_packer = function()
-  local fn = vim.fn
-  local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
-  if fn.empty(fn.glob(install_path)) > 0 then
-    fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
-    vim.cmd [[packadd packer.nvim]]
-    return true
-  end
-  return false
-end
-
-local packer_bootstrap = ensure_packer()
-
--- Plugin autocompile
-vim.cmd([[
-  augroup packer_user_config
-    autocmd!
-    autocmd BufWritePost plugin.lua source <afile> | PackerCompile
-  augroup end
-]])
-
--- Plugin installation
-return require('packer').startup(function()
-  use { 'wbthomason/packer.nvim' }
-
-  -- Automatically set up your configuration after cloning packer.nvim
-  -- Put this at the end after all plugins
-  if packer_bootstrap then
-    require('packer').sync()
-  end
-
+return {
   -- Utilities
-  use {
+  {
     'numToStr/Comment.nvim',
     config = function()
       require('Comment').setup()
     end
-  }
-
-  use {
+  },
+  {
     'lewis6991/gitsigns.nvim',
     config = function()
       require('gitsigns').setup()
     end
-  }
-
-  use {
+  },
+  {
     'folke/which-key.nvim',
     config = function()
-      require('which-key').setup {}
+      require('which-key').setup()
     end
-  }
-
-  use {
-    'chipsenkbeil/distant.nvim',
-    config = function()
-      require('distant').setup {
-        ['*'] = require('distant.settings').chip_default()
-      }
-    end
-  }
-
-  use {
+  },
+  {
     'nvim-tree/nvim-tree.lua',
-    requires = {
+    version = '*',
+    lazy = false,
+    dependencies = {
       'nvim-tree/nvim-web-devicons',
     },
     config = function()
-      require('nvim-tree').setup {
+      require('nvim-tree').setup({
         auto_reload_on_write = true,
         update_cwd = true,
         view = {
@@ -106,28 +64,25 @@ return require('packer').startup(function()
           enable = true,
           ignore = false,
         },
-      }
+      })
     end
-  }
-
-  use {
+  },
+  {
     'kylechui/nvim-surround',
     config = function()
-      require("nvim-surround").setup {}
+      require("nvim-surround").setup()
     end
-  }
-
-  use {
+  },
+  {
     'windwp/nvim-autopairs',
     config = function()
-      require('nvim-autopairs').setup {}
+      require('nvim-autopairs').setup()
     end
-  }
-
-  use {
+  },
+  {
     'akinsho/toggleterm.nvim',
     config = function()
-      require('toggleterm').setup {
+      require('toggleterm').setup({
         size = 15,
         hide_numbers = true,
         shade_terminals = true,
@@ -139,14 +94,13 @@ return require('packer').startup(function()
         persist_mode = true,
         direction = 'horizontal',
         close_on_exit = true,
-      }
+      })
     end
-  }
-
-  use {
+  },
+  {
     'folke/trouble.nvim',
     config = function()
-      require('trouble').setup {
+      require('trouble').setup({
         icons = true,
         fold_open = '⦣',
         fold_closed = '⦢',
@@ -158,17 +112,17 @@ return require('packer').startup(function()
           information = '✦'
         },
         use_diagnostic_signs = false
-      }
+      })
     end
-  }
+  },
 
-  use { 'editorconfig/editorconfig-vim', }
+  'editorconfig/editorconfig-vim',
 
   -- Programming language
-  use {
+  {
     'nvim-treesitter/nvim-treesitter',
     config = function()
-      require('nvim-treesitter.configs').setup {
+      require('nvim-treesitter.configs').setup({
         ensure_installed = { 'c', 'cpp', 'rust', 'lua', 'python', 'java',
           'toml', 'html', 'css', 'javascript', 'json', 'yaml', 'dockerfile',
           'proto', 'markdown', 'http', 'cmake', 'make', 'go', 'sql', 'vim' },
@@ -177,51 +131,51 @@ return require('packer').startup(function()
           enable = true,
           additional_vim_regex_highlighting = false,
         },
-      }
+      })
     end
-  }
+  },
 
-  use { 'rust-lang/rust.vim' }
+  'rust-lang/rust.vim',
 
   -- LSP and DAP
-  use {
-    'williamboman/mason.nvim',
-    'williamboman/mason-lspconfig.nvim',
-    'neovim/nvim-lspconfig',
-  }
+  'williamboman/mason.nvim',
+  'williamboman/mason-lspconfig.nvim',
+  'neovim/nvim-lspconfig',
 
-  use {
-    'hrsh7th/nvim-cmp',
-    'hrsh7th/cmp-nvim-lsp',
-    'saadparwaiz1/cmp_luasnip',
-    'L3MON4D3/LuaSnip',
-  }
+  'hrsh7th/nvim-cmp',
+  'hrsh7th/cmp-nvim-lsp',
+  'saadparwaiz1/cmp_luasnip',
+  'L3MON4D3/LuaSnip',
 
-  use {
+  {
     'jose-elias-alvarez/null-ls.nvim',
-    requires = { 'nvim-lua/plenary.nvim' },
+    dependencies = { 'nvim-lua/plenary.nvim' },
     config = function()
-      require('null-ls').setup {}
+      require('null-ls').setup()
     end,
-  }
+  },
 
   -- UI
-  use {
-    'catppuccin/nvim', as = 'catppuccin',
+  {
+    'catppuccin/nvim', name = 'catppuccin', priority = 1000,
     config = function()
-      vim.cmd([[ colorscheme catppuccin-mocha ]])
+      require("catppuccin").setup({
+        flavour = "mocha",
+        transparent_background = true,
+        no_italic = true,
+      })
+      vim.cmd([[ colorscheme catppuccin ]])
     end
-  }
-
-  use {
+  },
+  {
     'nvim-telescope/telescope.nvim',
-    requires = {
+    dependencies = {
       'nvim-lua/plenary.nvim',
       'nvim-telescope/telescope-ui-select.nvim',
       'nvim-telescope/telescope-project.nvim'
     },
     config = function()
-      require('telescope').setup {
+      require('telescope').setup({
         ['ui-select'] = {
           require('telescope.themes').get_cursor {}
         },
@@ -252,16 +206,15 @@ return require('packer').startup(function()
             sync_with_nvim_tree = true,
           }
         }
-      }
+      })
       require('telescope').load_extension('ui-select')
       require('telescope').load_extension('project')
     end
-  }
-
-  use {
+  },
+  {
     'nvim-lualine/lualine.nvim',
     config = function()
-      require('lualine').setup {
+      require('lualine').setup({
         options = {
           icons_enabled = true,
           theme = 'auto',
@@ -292,17 +245,23 @@ return require('packer').startup(function()
         },
         tabline = {},
         extensions = {}
-      }
+      })
     end
-  }
-
-  use {
+  },
+  {
     'petertriho/nvim-scrollbar',
     config = function()
       require('scrollbar').setup()
     end
-  }
+  },
 
-  use { 'kdheepak/lazygit.nvim' }
-end)
+  'kdheepak/lazygit.nvim',
+
+  {
+    'andweeb/presence.nvim',
+    config = function()
+      require("presence").setup()
+    end
+  },
+}
 --------End plugins config--------
