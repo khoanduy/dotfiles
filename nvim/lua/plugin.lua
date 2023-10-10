@@ -121,16 +121,15 @@ return {
   -- Programming language
   {
     'nvim-treesitter/nvim-treesitter',
+    build = ":TSUpdate",
     config = function()
       require('nvim-treesitter.configs').setup({
         ensure_installed = { 'c', 'cpp', 'rust', 'lua', 'python', 'java',
           'toml', 'html', 'css', 'javascript', 'json', 'yaml', 'dockerfile',
           'proto', 'markdown', 'http', 'cmake', 'make', 'go', 'sql', 'vim' },
         sync_install = false,
-        highlight = {
-          enable = true,
-          additional_vim_regex_highlighting = false,
-        },
+        highlight = { enable = true },
+        indent = { enable = true },
       })
     end
   },
