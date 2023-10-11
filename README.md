@@ -9,8 +9,8 @@ $ cd dotfiles
 ```
 Then run the setup script (you have to run `chmod +x` in able to execute it):
 ```shell script
-$ chmod +x setup_tilde.sh
-$ ./setup_tilde.sh
+$ chmod +x configure_tilde.sh
+$ ./configure_tilde.sh
 ```
 This might take quite a while as it needs to download and install several tools.
 
@@ -26,9 +26,7 @@ $ nvim ~/.config/nvim/lua/plugin.lua
 Ignore all errors and install all plugins:
 ```vim
 :source %
-:PackerClean
-:PackerInstall
-:PackerCompile
+:Lazy
 ```
 
 ## Additional options
@@ -39,3 +37,4 @@ You might want to install these packages if they are not there yet:
 ## References
 [tmux](https://github.com/tmux/tmux)\
 [neovim](https://neovim.io/)
+
