@@ -9,8 +9,8 @@ $ cd dotfiles
 ```
 Then run the setup script (you have to run `chmod +x` in able to execute it):
 ```shell script
-$ chmod +x configure_tilde.sh
-$ ./configure_tilde.sh
+$ chmod +x configure-tilde
+$ ./configure-tilde
 ```
 This might take quite a while as it needs to download and install several tools.
 
