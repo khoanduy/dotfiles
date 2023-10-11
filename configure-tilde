@@ -7,13 +7,18 @@ if [[ "$OSTYPE" != "darwin"* ]]; then
   exit
 fi
 
-echo "[-] Installing Xcode Command Line Tools [-]"
-xcode-select --install
+function init() {
+  echo "[-] Installing Xcode Command Line Tools [-]"
+  xcode-select --install
 
-if ! hash brew &> /dev/null; then
-  echo "[-] Installing Homebrew [-]"
-  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-fi
+  if ! hash brew &> /dev/null; then
+    echo "[-] Installing Homebrew [-]"
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+  fi
+}
+
+# Setup initial tools
+init
 
 echo "[-] Installing some essentials packages [-]"
 brew update
@@ -33,7 +38,6 @@ fi
 
 # Backup dotfiles
 function backup() {
-  echo "[-] Backing up dotfiles [-]"
   local current_date=$(date +%s)
   local backup_dir=dotfiles_bak_$current_date
 
@@ -41,16 +45,20 @@ function backup() {
   mv ~/.zshrc ~/$backup_dir/.zshrc
   mv ~/.tmux.conf ~/$backup_dir/.tmux.conf
 }
+echo "[-] Backing up dotfiles [-]"
 backup
 
 # Link dotfiles
-echo "[-] Linking dotfiles [-]"
-ln -s $(pwd)/.zshrc ~/.zshrc
-ln -s $(pwd)/.tmux.conf ~/.tmux.conf
+function linking() {
+  ln -s $(pwd)/.zshrc ~/.zshrc
+  ln -s $(pwd)/.tmux.conf ~/.tmux.conf
 
-mkdir -p ${XDG_CONFIG_HOME:=$HOME/.config}
-ln -s $(pwd)/nvim $XDG_CONFIG_HOME/nvim
-ln -s $(pwd)/alacritty $XDG_CONFIG_HOME/alacritty
+  mkdir -p ${XDG_CONFIG_HOME:=$HOME/.config}
+  ln -s $(pwd)/nvim $XDG_CONFIG_HOME/nvim
+  ln -s $(pwd)/alacritty $XDG_CONFIG_HOME/alacritty
+}
+echo "[-] Linking dotfiles [-]"
+linking
 
 # Install default terminal emulator
 echo "[-] Installing Alacritty [-]"
