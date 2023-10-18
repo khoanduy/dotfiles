@@ -27,6 +27,7 @@ alias lg=lazygit
 alias ls=exa
 alias v=nvim
 alias vc="nvim ."
+alias c="code"
 
 # pyenv
 export PYENV_ROOT="$HOME/.pyenv"
