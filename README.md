@@ -19,13 +19,8 @@ After script execution finish, reload your `zsh` config file:
 $ source ~/.zshrc
 ```
 
-Open `neovim` plugin config file:
-```shell script
-$ nvim ~/.config/nvim/lua/plugin.lua
-```
-Ignore all errors and install all plugins:
+Open `neovim` and wait for `Lazy` installs all plugins, or you might need to run it manually
 ```vim
-:source %
 :Lazy
 ```
 

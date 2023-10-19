@@ -255,12 +255,6 @@ return {
   },
 
   'kdheepak/lazygit.nvim',
-
-  {
-    'andweeb/presence.nvim',
-    config = function()
-      require("presence").setup()
-    end
-  },
+  'tpope/vim-fugitive',
 }
 --------End plugins config--------
