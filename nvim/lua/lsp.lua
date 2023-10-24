@@ -2,10 +2,12 @@
 local servers = {
   'rust_analyzer',
   'gopls',
+  'jdtls',
   'pyright',
   'sqlls',
   'jsonls',
   'yamlls',
+  'taplo',
   'html',
   'cssls',
   'tsserver'
