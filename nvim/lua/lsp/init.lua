@@ -1,41 +1,40 @@
 -- LSP config --
-vim.lsp.handlers["textDocument/publishDiagnostics"] =
+vim.lsp.handlers['textDocument/publishDiagnostics'] =
   vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
     underline = true,
     virtual_text = {
-      prefix = "●",
+      prefix = '●',
       spacing = 2,
     },
     update_in_insert = false,
     severity_sort = true,
   })
 
-vim.fn.sign_define("DiagnosticSignError", {
-  text = "✖",
-  texthl = "DiagnosticSignError",
-  numhl = "DiagnosticSignError",
+vim.fn.sign_define('DiagnosticSignError', {
+  text = '✖',
+  texthl = 'DiagnosticSignError',
+  numhl = 'DiagnosticSignError',
 })
-vim.fn.sign_define("DiagnosticSignWarning", {
-  text = "▲",
-  texthl = "DiagnosticSignWarning",
-  numhl = "DiagnosticSignWarning",
+vim.fn.sign_define('DiagnosticSignWarning', {
+  text = '▲',
+  texthl = 'DiagnosticSignWarning',
+  numhl = 'DiagnosticSignWarning',
 })
-vim.fn.sign_define("DiagnosticSignInformation", {
-  text = "●",
-  texthl = "DiagnosticSignInformation",
-  numhl = "DiagnosticSignInformation",
+vim.fn.sign_define('DiagnosticSignInformation', {
+  text = '●',
+  texthl = 'DiagnosticSignInformation',
+  numhl = 'DiagnosticSignInformation',
 })
-vim.fn.sign_define("DiagnosticSignHint", {
-  text = "✱",
-  texthl = "DiagnosticSignHint",
-  numhl = "DiagnosticSignHint",
+vim.fn.sign_define('DiagnosticSignHint', {
+  text = '✱',
+  texthl = 'DiagnosticSignHint',
+  numhl = 'DiagnosticSignHint',
 })
 
 local servers = {
   'rust_analyzer',
-  'gopls',
-  'jdtls',
   'pyright',
+  'gopls',
   'sqlls',
   'jsonls',
   'yamlls',
@@ -49,8 +48,8 @@ require('mason').setup({
   ui = {
     icons = {
       server_installed = '✔',
-      server_pending = '➜',
-      server_uninstalled = '✗'
+      server_pending = '◔',
+      server_uninstalled = '✖'
     }
   },
 })

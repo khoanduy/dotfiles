@@ -10,9 +10,7 @@ require('nvim-tree').setup({
     indent_markers = {
       enable = true,
       icons = {
-        corner = '└',
-        edge = '│',
-        none = ' ',
+        corner = '╰',
       },
     },
     group_empty = true,
@@ -24,15 +22,16 @@ require('nvim-tree').setup({
         folder_arrow = false,
       },
       glyphs = {
-        default = 'ƒ',
+        default = 'ɕ',
         symlink = 'ȴ',
         git = {
-          unstaged = 'ŝ',
-          staged = 'š',
-          unmerged = 'ɱ',
-          renamed = 'ṙ',
-          untracked = 'ŧ',
-          deleted = 'đ',
+          unstaged = '◇',
+          staged = '◆',
+          unmerged = '❢',
+          renamed = '◎',
+          untracked = '✦',
+          deleted = '◯',
+          ignored = '◌',
         },
       }
     }

@@ -16,7 +16,13 @@ end
 vim.opt.rtp:prepend(lazypath)
 vim.g.mapleader = ','
 
-require('lazy').setup({
+local ok, lazy = pcall(require, 'lazy')
+if not ok then
+  print('lazy is just installed, please restart neovim')
+  return
+end
+
+lazy.setup({
   -- Utilities
   {
     'numToStr/Comment.nvim',
@@ -86,13 +92,7 @@ require('lazy').setup({
   'saadparwaiz1/cmp_luasnip',
   'L3MON4D3/LuaSnip',
 
-  {
-    'jose-elias-alvarez/null-ls.nvim',
-    dependencies = { 'nvim-lua/plenary.nvim' },
-    config = function()
-      require('null-ls').setup()
-    end,
-  },
+  'mfussenegger/nvim-jdtls',
 
   -- UI
   {
