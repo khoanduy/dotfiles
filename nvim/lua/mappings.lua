@@ -1,4 +1,4 @@
---------Mappings config--------
+-- Mappings' config --
 
 -- Set leader key
 vim.g.mapleader = ','
@@ -91,4 +91,4 @@ vim.keymap.set('n', '<leader>fb', require('telescope.builtin').current_buffer_fu
 vim.keymap.set('n', '<leader>ht', require('telescope.builtin').help_tags, nenrns)
 vim.keymap.set('n', '<leader>bb', require('telescope.builtin').buffers, nenrns)
 vim.keymap.set('n', '<leader>pp', require('telescope').extensions.project.project, nenrns)
---------End mappings config--------
+-- End mappings' config --

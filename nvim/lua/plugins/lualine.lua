@@ -1,9 +1,9 @@
 require('lualine').setup({
   options = {
-    icons_enabled = true,
+    icons_enabled = false,
     theme = 'auto',
-    component_separators = { left = '🔥', right = '»' },
-    section_separators = { left = '', right = '' },
+    component_separators = { left = '»', right = 'ȶ' },
+    section_separators = { left = 'ǂ', right = 'ǂ' },
     always_divide_middle = true,
     globalstatus = true,
   },

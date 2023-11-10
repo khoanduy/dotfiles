@@ -40,9 +40,6 @@ require('lazy').setup({
     'nvim-tree/nvim-tree.lua',
     version = '*',
     lazy = false,
-    dependencies = {
-      'nvim-tree/nvim-web-devicons',
-    },
     config = function()
       require('plugins/nvim-tree')
     end
@@ -63,12 +60,6 @@ require('lazy').setup({
     'akinsho/toggleterm.nvim',
     config = function()
       require('plugins/toggleterm')
-    end
-  },
-  {
-    'folke/trouble.nvim',
-    config = function()
-      require('plugins/trouble')
     end
   },
 

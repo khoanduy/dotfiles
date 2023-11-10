@@ -22,6 +22,18 @@ require('nvim-tree').setup({
         folder = true,
         git = true,
         folder_arrow = false,
+      },
+      glyphs = {
+        default = 'ƒ',
+        symlink = 'ȴ',
+        git = {
+          unstaged = 'ŝ',
+          staged = 'š',
+          unmerged = 'ɱ',
+          renamed = 'ṙ',
+          untracked = 'ŧ',
+          deleted = 'đ',
+        },
       }
     }
   },
