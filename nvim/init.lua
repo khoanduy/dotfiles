@@ -2,9 +2,9 @@
 vim.loader.enable()
 
 -- Load configuration files --
-require('kn/settings')
-require('kn/plugins')
-require('kn/lsp')
-require('kn/mappings')
-require('kn/autocmds')
+require('vimc/settings')
+require('vimc/plugins')
+require('vimc/lsp')
+require('vimc/mappings')
+require('vimc/autocmds')
 ----- End configuration -----

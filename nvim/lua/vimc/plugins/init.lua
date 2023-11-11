@@ -47,7 +47,7 @@ lazy.setup({
     version = '*',
     lazy = false,
     config = function()
-      require('kn/plugins/nvim-tree')
+      require('vimc/plugins/nvim-tree')
     end
   },
   {
@@ -65,7 +65,7 @@ lazy.setup({
   {
     'akinsho/toggleterm.nvim',
     config = function()
-      require('kn/plugins/toggleterm')
+      require('vimc/plugins/toggleterm')
     end
   },
 
@@ -76,7 +76,7 @@ lazy.setup({
     'nvim-treesitter/nvim-treesitter',
     build = ":TSUpdate",
     config = function()
-      require('kn/plugins/treesitter')
+      require('vimc/plugins/treesitter')
     end
   },
 
@@ -114,13 +114,13 @@ lazy.setup({
       'nvim-telescope/telescope-project.nvim'
     },
     config = function()
-      require('kn/plugins/telescope')
+      require('vimc/plugins/telescope')
     end
   },
   {
     'nvim-lualine/lualine.nvim',
     config = function()
-      require('kn/plugins/lualine')
+      require('vimc/plugins/lualine')
     end
   },
   {
