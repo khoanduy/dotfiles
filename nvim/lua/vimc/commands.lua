@@ -1,4 +1,4 @@
--- Autocmds definition --
+-- Commands definition --
 -- Auto remove trailing spaces
 -- vim.cmd([[
 --   augroup utils_user_config
@@ -9,4 +9,4 @@
 --     autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 --   augroup end
 -- ]])
--- End autocmds definition --
+-- End commands definition --

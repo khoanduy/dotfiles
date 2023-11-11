@@ -6,5 +6,5 @@ require('vimc/settings')
 require('vimc/plugins')
 require('vimc/lsp')
 require('vimc/mappings')
-require('vimc/autocmds')
+require('vimc/commands')
 ----- End configuration -----
