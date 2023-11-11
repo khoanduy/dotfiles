@@ -4,7 +4,7 @@ local root_markers = {'gradlew', '.git'}
 local root_dir = require('jdtls.setup').find_root(root_markers)
 local home = os.getenv('HOME')
 local workspace_folder = home .. '/.local/share/eclipse/' .. vim.fn.fnamemodify(root_dir, ':p:h:t')
-local config = require('vimc/lsp').configure()
+local config = require('vimc/lsp/common').make_conf()
 
 jdtls.jol_path = os.getenv('HOME') .. '/apps/jol.jar'
 config.settings = {
@@ -58,26 +58,14 @@ config.settings = {
       runtimes = {
         {
           name = 'JavaSE-11',
-          path = os.getenv('JDK11'),
-        },
-        {
-          name = 'JavaSE-17',
-          path = os.getenv('JDK17'),
-        },
-        {
-          name = 'JavaSE-18',
-          path = home .. '/.m2/jdks/jdk-18.0.2.1+1/',
-        },
-        {
-          name = 'JavaSE-21',
-          path = os.getenv('JDK21'),
+          path = os.getenv('JAVA_HOME'),
         },
       }
     };
   };
 }
 config.cmd = {
-  os.getenv('JDK21') .. '/bin/java',
+  os.getenv('JAVA_HOME') .. '/bin/java',
   --'-agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=1044',
   '-Declipse.application=org.eclipse.jdt.ls.core.id1',
   '-Dosgi.bundles.defaultStartLevel=4',
@@ -154,9 +142,9 @@ config.on_attach = function(client, bufnr)
       end
     end
   end
-  require('lsp_compl').attach(client, bufnr, {
-    server_side_fuzzy_completion = true,
-  })
+  -- require('lsp_compl').attach(client, bufnr, {
+  --   server_side_fuzzy_completion = true,
+  -- })
 
   local opts = { silent = true, buffer = bufnr }
   local set = vim.keymap.set

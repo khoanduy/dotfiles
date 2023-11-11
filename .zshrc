@@ -19,17 +19,20 @@ compctl -K    _pyenv pyenv
 # source $ZSH/oh-my-zsh.sh
 source $HOME/.profile
 
+# Cargo
+. "$HOME/.cargo/env"
+
 # Go bin
 export PATH=$PATH:$HOME/go/bin
+
+# pyenv
+export PYENV_ROOT="$HOME/.pyenv"
+command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
 
 # Alias
 alias lg=lazygit
 alias ls=exa
 alias v=nvim
 alias vc="nvim ."
-alias c="code"
 
-# pyenv
-export PYENV_ROOT="$HOME/.pyenv"
-command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init -)"
