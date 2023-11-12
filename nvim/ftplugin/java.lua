@@ -21,7 +21,7 @@ local config = {
   root_dir = require('jdtls.setup').find_root({'.git', 'mvnw', 'gradlew'}),
   settings = {
     java = {
-      autobuild = { enabled = true },
+      autobuild = { enabled = false },
       maxConcurrentBuilds = 8,
       signatureHelp = { enabled = true },
       saveActions = {
