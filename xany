@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 function find_text() {
   grep -Rnw $1 -e $2
 }
