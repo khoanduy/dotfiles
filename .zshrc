@@ -19,6 +19,11 @@ compctl -K    _pyenv pyenv
 # source $ZSH/oh-my-zsh.sh
 source $HOME/.profile
 
+# Corretto JDK env vars
+export JDK21=/Library/Java/JavaVirtualMachines/amazon-corretto-21.jdk/Contents/Home
+export JDK17=/Library/Java/JavaVirtualMachines/amazon-corretto-17.jdk/Contents/Home
+export JDK11=/Library/Java/JavaVirtualMachines/amazon-corretto-11.jdk/Contents/Home
+
 # Cargo
 . "$HOME/.cargo/env"
 
