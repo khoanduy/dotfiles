@@ -18,7 +18,7 @@ local config = {
     '-configuration', jdtls .. '/config_mac_arm',
     '-data', workspace_folder,
   },
-  root_dir = require('jdtls.setup').find_root({'.git', 'mvnw', 'gradlew'}),
+  root_dir = require('jdtls.setup').find_root({'.git', 'mvnw', 'gradlew', 'pom.xml'}),
   settings = {
     java = {
       autobuild = { enabled = false },
