@@ -18,7 +18,7 @@ vim.g.mapleader = ','
 
 local ok, lazy = pcall(require, 'lazy')
 if not ok then
-  print('lazy is just installed, please restart neovim')
+  vim.api.nvim_out_write('lazy is just installed, please restart neovim')
   return
 end
 
@@ -132,7 +132,6 @@ lazy.setup({
   },
 
   'kdheepak/lazygit.nvim',
-  'tpope/vim-fugitive',
 })
 
 -- End plugins' configuration --

@@ -4,24 +4,83 @@ function M.make_conf()
   local capabilities = require('cmp_nvim_lsp').default_capabilities()
   local default = {
     on_attach = function(client, bufnr)
-      -- Enable completion triggered by <c-x><c-o>
+      -- Enable completion triggered
       vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
 
       -- Mappings.
       -- See `:help vim.lsp.*` for documentation on any of the below functions
-      local bufopts = { noremap = true, silent = false, buffer = bufnr }
-      vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
-      vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
-      vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, bufopts)
-      vim.keymap.set('n', 'gy', vim.lsp.buf.type_definition, bufopts)
-      vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
-      vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, bufopts)
-      vim.keymap.set('n', '<C-a>', vim.lsp.buf.code_action, bufopts)
-      vim.keymap.set('v', '<C-a>', vim.lsp.buf.range_code_action, bufopts)
-      vim.keymap.set('n', '<leader>fm', vim.lsp.buf.format, bufopts)
-      vim.keymap.set('v', '<leader>fm', vim.lsp.buf.format, bufopts)
-      vim.keymap.set('n', '<leader>if', vim.lsp.buf.hover, bufopts)
-      vim.keymap.set('n', '<leader>ih', vim.lsp.buf.signature_help, bufopts)
+      vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, {
+        desc = 'Go to declaration',
+        noremap = true,
+        silent = false,
+        buffer = bufnr
+      })
+      vim.keymap.set('n', 'gd', vim.lsp.buf.definition, {
+        desc = 'Go to definition',
+        noremap = true,
+        silent = false,
+        buffer = bufnr
+      })
+      vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, {
+        desc = 'Go to implementation',
+        noremap = true,
+        silent = false,
+        buffer = bufnr
+      })
+      vim.keymap.set('n', 'gy', vim.lsp.buf.type_definition, {
+        desc = 'Go to type definition',
+        noremap = true,
+        silent = false,
+        buffer = bufnr
+      })
+      vim.keymap.set('n', 'gr', vim.lsp.buf.references, {
+        desc = 'Go to references',
+        noremap = true,
+        silent = false,
+        buffer = bufnr
+      })
+      vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, {
+        desc = 'Rename symbols',
+        noremap = true,
+        silent = false,
+        buffer = bufnr
+      })
+      vim.keymap.set('n', '<C-a>', vim.lsp.buf.code_action, {
+        desc = 'LSP code action',
+        noremap = true,
+        silent = false,
+        buffer = bufnr
+      })
+      vim.keymap.set('v', '<C-a>', vim.lsp.buf.range_code_action, {
+        desc = 'LSP code action',
+        noremap = true,
+        silent = false,
+        buffer = bufnr
+      })
+      vim.keymap.set('n', '<leader>fm', vim.lsp.buf.format, {
+        desc = 'Re-format current buffer',
+        noremap = true,
+        silent = false,
+        buffer = bufnr
+      })
+      vim.keymap.set('v', '<leader>fm', vim.lsp.buf.format, {
+        desc = 'Re-format current block',
+        noremap = true,
+        silent = false,
+        buffer = bufnr
+      })
+      vim.keymap.set('n', '<leader>if', vim.lsp.buf.hover, {
+        desc = 'Hover current line',
+        noremap = true,
+        silent = false,
+        buffer = bufnr
+      })
+      vim.keymap.set('n', '<leader>ih', vim.lsp.buf.signature_help, {
+        desc = 'Show signature help',
+        noremap = true,
+        silent = false,
+        buffer = bufnr
+      })
     end,
     capabilities = capabilities,
     root_dir = function()

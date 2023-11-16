@@ -2,6 +2,12 @@ local jdtls = vim.fn.stdpath('data') .. '/mason/packages/jdtls'
 local home = os.getenv('HOME')
 local workspace_folder = home .. '/.local/share/eclipse/' .. vim.fn.fnamemodify(root_dir, ":p:h:t")
 
+vim.opt_local.expandtab = true
+vim.opt_local.tabstop = 4
+vim.opt_local.shiftwidth = 4
+vim.opt_local.softtabstop = 4
+vim.opt_local.shiftround = true
+
 local config = {
   cmd = {
     os.getenv('JDK21') .. '/bin/java',
