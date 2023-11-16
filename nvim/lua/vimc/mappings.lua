@@ -64,6 +64,21 @@ vim.keymap.set('n', '<space>p', '"+p', nenrns)
 vim.keymap.set('n', '<space>v', '<C-w>v', nenrs)
 vim.keymap.set('n', '<space>h', '<C-w>s', nenrs)
 
+-- Show git annotate of current line
+function show_git_annotate()
+  local line = vim.fn.line('.')
+  local file = vim.fn.expand('%:p')
+  local format = ' | cut -d\' \' -f1,2,3 | tr \'(\' \' \''
+  local result = vim.fn.system('git annotate -L ' .. line .. ',' .. line .. ' ' .. file .. format)
+  vim.api.nvim_out_write(result)
+end
+vim.keymap.set('n', '<space>b', [[:lua show_git_annotate()<CR>]], {
+  desc = 'Show git annotate of current line',
+  expr = false,
+  noremap = true,
+  silent = true
+})
+
 -- NVIM tree
 vim.keymap.set('n', '<leader>nt', ':NvimTreeToggle<CR>', nenrs)
 vim.keymap.set('n', '<leader>nf', ':NvimTreeFocus<CR>', nenrs)
