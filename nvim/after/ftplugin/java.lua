@@ -1,6 +1,6 @@
 local jdtls = vim.fn.stdpath('data') .. '/mason/packages/jdtls'
-local home = os.getenv('HOME')
-local workspace_folder = home .. '/.local/share/eclipse/' .. vim.fn.fnamemodify(root_dir, ":p:h:t")
+local data_home = os.getenv('XDG_DATA_HOME')
+local workspace_folder = data_home .. '/jdtls-ws/' .. vim.fn.fnamemodify(root_dir, ':p:h:t')
 
 vim.opt_local.expandtab = true
 vim.opt_local.tabstop = 4
