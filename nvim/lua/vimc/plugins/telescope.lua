@@ -10,7 +10,9 @@ require('telescope').setup({
       theme = 'ivy'
     },
     buffers = {
-      theme = 'ivy'
+      theme = 'ivy',
+      ignore_current_buffer = true,
+      sort_lastused = true
     },
     live_grep = {
       theme = 'ivy'
@@ -18,7 +20,6 @@ require('telescope').setup({
     current_buffer_fuzzy_find = {
       theme = 'ivy'
     }
-
   },
   extensions = {
     project = {
