@@ -82,7 +82,7 @@ vim.keymap.set('t', '<leader>e', [[<C-\><C-n>]], {
 })
 
 -- Show current buffer's path
-vim.keymap.set('n', '<space>d', ':echo @%<CR>', {
+vim.keymap.set('n', '<space>D', ':echo @%<CR>', {
   desc = 'Show current buffer\'s full path',
   expr = false,
   noremap = false,

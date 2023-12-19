@@ -81,6 +81,24 @@ function M.make_conf()
         silent = false,
         buffer = bufnr
       })
+      vim.keymap.set('n', '<leader>d', vim.diagnostic.open_float, {
+        desc = 'Open diagnostic float',
+        noremap = true,
+        silent = false,
+        buffer = bufnr
+      })
+      vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, {
+        desc = 'Prev diagnostic',
+        noremap = true,
+        silent = false,
+        buffer = bufnr
+      })
+      vim.keymap.set('n', ']d', vim.diagnostic.goto_next, {
+        desc = 'Next diagnostic',
+        noremap = true,
+        silent = false,
+        buffer = bufnr
+      })
     end,
     capabilities = capabilities,
     root_dir = function()
