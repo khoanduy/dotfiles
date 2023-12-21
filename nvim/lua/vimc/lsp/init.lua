@@ -29,6 +29,10 @@ require('mason-lspconfig').setup {
   automatic_installation = true,
 }
 
+vim.keymap.set('n', '<leader>d', vim.diagnostic.open_float, { desc = 'Open diagnostic float', noremap = true, silent = false })
+vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Prev diagnostic', noremap = true, silent = false })
+vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Next diagnostic', noremap = true, silent = false })
+
 -- LSP servers' default config
 local config = require('vimc/lsp/common').make_conf()
 for _, lsp in ipairs(servers) do
