@@ -56,14 +56,15 @@ function linking() {
   ln -s $(pwd)/.tmux.conf ~/.tmux.conf
 
   mkdir -p ${XDG_CONFIG_HOME:=$HOME/.config}
+  ln -s $(pwd)/alacritty $XDG_CONFIG_HOME/alacritty
   ln -s $(pwd)/nvim $XDG_CONFIG_HOME/nvim
 }
 echo "[-] Linking dotfiles [-]"
 linking
 
 # Install default terminal emulator
-echo "[-] Installing Warp terminal [-]"
-brew install warp
+echo "[-] Installing Alacritty [-]"
+brew install alacritty
 
 # Create some essential folders
 echo "[-] Create essential folders [-]"
