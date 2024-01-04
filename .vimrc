@@ -1,7 +1,4 @@
-"----- Khoa Nguyen vim configuration -----"
-"---------*---------"
-
-"-- General settings --"
+" ** General settings ** "
 
 " Disable compatibility with vi which can cause unexpected issues.
 set nocompatible
@@ -36,7 +33,6 @@ set shiftwidth=2
 set tabstop=2
 set softtabstop=2
 set shiftround
-
 " Do not save temporary files.
 set nobackup
 set noswapfile
@@ -73,7 +69,7 @@ set wildmode=list:longest
 " Set the commands to save in history default number is 20.
 set history=1000
 
-"-- Mapping --"
+" ** Mapping ** "
 
 " Re-map leader key
 let mapleader=","
