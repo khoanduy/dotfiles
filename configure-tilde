@@ -54,6 +54,7 @@ backup
 function linking() {
   ln -s $(pwd)/.zshrc ~/.zshrc
   ln -s $(pwd)/.tmux.conf ~/.tmux.conf
+  ln -s $(pwd)/.vimrc ~/.vimrc
 
   mkdir -p ${XDG_CONFIG_HOME:=$HOME/.config}
   ln -s $(pwd)/alacritty $XDG_CONFIG_HOME/alacritty
