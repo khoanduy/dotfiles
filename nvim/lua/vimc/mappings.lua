@@ -1,72 +1,73 @@
 -- Mappings' config --
+local funcs = require('vimc/functions')
 
 -- Set leader key
 vim.g.mapleader = ','
 
 -- Remap C-w prefix
-vim.keymap.set('n', '<leader>w', '<C-w>', {
-  desc = 'Remap C-w prefix',
+vim.keymap.set('n', '<leader>w', '<c-w>', {
+  desc = 'Remap c-w prefix',
   expr = false,
   noremap = true,
   silent = true
 })
 
 -- Remap switch region keys
-vim.keymap.set('n', '<C-h>', '<C-w>h', { expr = false, noremap = true, silent = true })
-vim.keymap.set('n', '<C-j>', '<C-w>j', { expr = false, noremap = true, silent = true })
-vim.keymap.set('n', '<C-k>', '<C-w>k', { expr = false, noremap = true, silent = true })
-vim.keymap.set('n', '<C-l>', '<C-w>l', { expr = false, noremap = true, silent = true })
+vim.keymap.set('n', '<c-h>', '<c-w>h', { expr = false, noremap = true, silent = true })
+vim.keymap.set('n', '<c-j>', '<c-w>j', { expr = false, noremap = true, silent = true })
+vim.keymap.set('n', '<c-k>', '<c-w>k', { expr = false, noremap = true, silent = true })
+vim.keymap.set('n', '<c-l>', '<c-w>l', { expr = false, noremap = true, silent = true })
 
-vim.keymap.set('t', '<C-h>', [[<C-\><C-n><C-w>h]], { expr = false, noremap = true, silent = true })
-vim.keymap.set('t', '<C-j>', [[<C-\><C-n><C-w>j]], { expr = false, noremap = true, silent = true })
-vim.keymap.set('t', '<C-k>', [[<C-\><C-n><C-w>k]], { expr = false, noremap = true, silent = true })
-vim.keymap.set('t', '<C-l>', [[<C-\><C-n><C-w>l]], { expr = false, noremap = true, silent = true })
+vim.keymap.set('t', '<c-h>', [[<c-\><c-n><c-w>h]], { expr = false, noremap = true, silent = true })
+vim.keymap.set('t', '<c-j>', [[<c-\><c-n><c-w>j]], { expr = false, noremap = true, silent = true })
+vim.keymap.set('t', '<c-k>', [[<c-\><c-n><c-w>k]], { expr = false, noremap = true, silent = true })
+vim.keymap.set('t', '<c-l>', [[<c-\><c-n><c-w>l]], { expr = false, noremap = true, silent = true })
 
 -- Re-size split windows using arrow keys
-vim.keymap.set('n', '<Up>', ':resize -2<CR>', { expr = false, noremap = true, silent = true })
-vim.keymap.set('n', '<Down>', ':resize +2<CR>', { expr = false, noremap = true, silent = true })
-vim.keymap.set('n', '<Left>', ':vertical resize +2<CR>', { expr = false, noremap = true, silent = true })
-vim.keymap.set('n', '<Right>', ':vertical resize -2<CR>', { expr = false, noremap = true, silent = true })
+vim.keymap.set('n', '<up>', ':resize -2<cr>', { expr = false, noremap = true, silent = true })
+vim.keymap.set('n', '<down>', ':resize +2<cr>', { expr = false, noremap = true, silent = true })
+vim.keymap.set('n', '<left>', ':vertical resize +2<cr>', { expr = false, noremap = true, silent = true })
+vim.keymap.set('n', '<right>', ':vertical resize -2<cr>', { expr = false, noremap = true, silent = true })
 
 -- Remap switch buffers keys
-vim.keymap.set('n', '<leader>bn', ':bn<CR>', {
+vim.keymap.set('n', '<leader>bn', ':bn<cr>', {
   desc = 'Switch to next buffer',
   expr = false,
   noremap = true,
   silent = true
 })
-vim.keymap.set('n', '<leader>bN', ':bp<CR>', {
+vim.keymap.set('n', '<leader>bN', ':bp<cr>', {
   desc = 'Switch to previous buffer',
   expr = false,
   noremap = true,
   silent = true
 })
-vim.keymap.set('n', '<leader>bd', ':bd<CR>', {
+vim.keymap.set('n', '<leader>bd', ':bd<cr>', {
   desc = 'Delete current buffer',
   expr = false,
   noremap = true,
   silent = true
 })
-vim.keymap.set('n', '<leader>bD', ':bd<CR>', {
+vim.keymap.set('n', '<leader>bD', ':bd<cr>', {
   desc = 'Force delete current buffer',
   expr = false,
   noremap = true,
   silent = true
 })
-vim.keymap.set('n', '<leader>bw', ':bw<CR>', {
+vim.keymap.set('n', '<leader>bw', ':bw<cr>', {
   desc = 'Delete current buffer completely',
   expr = false,
   noremap = true,
   silent = true
 })
-vim.keymap.set('n', '<leader>bW', ':bw!<CR>', {
+vim.keymap.set('n', '<leader>bW', ':bw!<cr>', {
   desc = 'Force delete current buffer completely',
   expr = false,
   noremap = true,
   silent = true
 })
 
-vim.keymap.set('t', '<leader>bw', [[<C-\><C-n>:bw!<CR>]], {
+vim.keymap.set('t', '<leader>bw', [[<C-\><C-n>:bw!<cr>]], {
   desc = 'Delete current terminal completely',
   expr = false,
   noremap = true,
@@ -74,7 +75,7 @@ vim.keymap.set('t', '<leader>bw', [[<C-\><C-n>:bw!<CR>]], {
 })
 
 -- Remap terminal escape key
-vim.keymap.set('t', '<leader>e', [[<C-\><C-n>]], {
+vim.keymap.set('t', '<esc>', [[<c-\><c-n>]], {
   desc = 'Escape terminal mode',
   expr = false,
   noremap = false,
@@ -82,7 +83,7 @@ vim.keymap.set('t', '<leader>e', [[<C-\><C-n>]], {
 })
 
 -- Show current buffer's path
-vim.keymap.set('n', '<space>d', ':echo @%<CR>', {
+vim.keymap.set('n', '<space>d', ':echo @%<cr>', {
   desc = 'Show current buffer\'s full path',
   expr = false,
   noremap = false,
@@ -90,8 +91,8 @@ vim.keymap.set('n', '<space>d', ':echo @%<CR>', {
 })
 
 -- No highlight
-vim.keymap.set('n', '|', ':noh<CR>', { expr = false, noremap = true, silent = true })
-vim.keymap.set('n', '<space>r', ':e<CR>', {
+vim.keymap.set('n', '|', ':noh<cr>', { expr = false, noremap = true, silent = true })
+vim.keymap.set('n', '<space>r', ':e<cr>', {
   desc = 'Reload current buffer from disk',
   expr = false,
   noremap = true,
@@ -99,7 +100,7 @@ vim.keymap.set('n', '<space>r', ':e<CR>', {
 })
 
 -- Search current marked text
-vim.keymap.set('v', '//', [[y/\V<C-R>=escape(@",'/\')<CR><CR>]], {
+vim.keymap.set('v', '//', [[y/\V<C-R>=escape(@",'/\')<cr><cr>]], {
   desc = 'Search current marked text',
   expr = false,
   noremap = true,
@@ -107,19 +108,19 @@ vim.keymap.set('v', '//', [[y/\V<C-R>=escape(@",'/\')<CR><CR>]], {
 })
 
 -- Remap write and quit
-vim.keymap.set('n', '<space>w', ':w<CR>', {
+vim.keymap.set('n', '<space>w', ':w<cr>', {
   desc = 'Save buffer',
   expr = false,
   noremap = true,
   silent = false
 })
-vim.keymap.set('n', '<space>q', ':q<CR>', {
+vim.keymap.set('n', '<space>q', ':q<cr>', {
   desc = 'Quit buffer',
   expr = false,
   noremap = true,
   silent = false
 })
-vim.keymap.set('n', '<space>Q', ':qa<CR>', {
+vim.keymap.set('n', '<space>Q', ':qa<cr>', {
   desc = 'Quit all buffers',
   expr = false,
   noremap = true,
@@ -141,28 +142,26 @@ vim.keymap.set('n', '<space>p', '"+p', {
 })
 
 -- Remap split
-vim.keymap.set('n', '<space>v', '<C-w>v', {
+vim.keymap.set('n', '<space>v', '<c-w>v', {
   desc = 'Split buffer vertically',
   expr = false,
   noremap = true,
   silent = true
 })
-vim.keymap.set('n', '<space>h', '<C-w>s', {
+vim.keymap.set('n', '<space>h', '<c-w>s', {
   desc = 'Split buffer horizontally',
   expr = false,
   noremap = true,
   silent = true
 })
+vim.keymap.set('n', '<space>H', ':botright split<cr>', {
+  desc = 'Split buffer horizontally from bottom right',
+  expr = false,
+  noremap = true,
+  silent = true
+})
 
--- Show git annotate of current line
-function show_git_annotate()
-  local line = vim.fn.line('.')
-  local file = vim.fn.expand('%:p')
-  local format = ' | cut -d\' \' -f1,2,3 | tr \'(\' \' \''
-  local result = vim.fn.system('git annotate -L ' .. line .. ',' .. line .. ' ' .. file .. format)
-  vim.api.nvim_out_write(result)
-end
-vim.keymap.set('n', '<space>b', [[:lua show_git_annotate()<CR>]], {
+vim.keymap.set('n', '<space>a', funcs.show_git_annotate, {
   desc = 'Show git annotate of current line',
   expr = false,
   noremap = true,
@@ -170,25 +169,25 @@ vim.keymap.set('n', '<space>b', [[:lua show_git_annotate()<CR>]], {
 })
 
 -- NVIM tree
-vim.keymap.set('n', '<leader>nt', ':NvimTreeToggle<CR>', {
+vim.keymap.set('n', '<leader>nt', ':NvimTreeToggle<cr>', {
   desc = 'Toggle nvim tree',
   expr = false,
   noremap = true,
   silent = true
 })
-vim.keymap.set('n', '<leader>nf', ':NvimTreeFocus<CR>', {
+vim.keymap.set('n', '<leader>nf', ':NvimTreeFocus<cr>', {
   desc = 'Focus nvim tree',
   expr = false,
   noremap = true,
   silent = true
 })
-vim.keymap.set('n', '<leader>nF', ':NvimTreeFindFile<CR>', {
+vim.keymap.set('n', '<leader>nF', ':NvimTreeFindFile<cr>', {
   desc = 'Locate current file in nvim tree',
   expr = false,
   noremap = true,
   silent = true
 })
-vim.keymap.set('n', '<leader>nc', ':NvimTreeCollapse<CR>', {
+vim.keymap.set('n', '<leader>nc', ':NvimTreeCollapse<cr>', {
   desc = 'Collapse all folders in nvim tree',
   expr = false,
   noremap = true,
@@ -196,46 +195,21 @@ vim.keymap.set('n', '<leader>nc', ':NvimTreeCollapse<CR>', {
 })
 
 -- Toggleterm
-vim.keymap.set('n', '<leader>T', ':ToggleTerm<CR>', {
-  desc = 'Show terminal',
+vim.keymap.set('n', '<leader>T', funcs.create_terminal, {
+  desc = 'Create a new terminal',
   expr = false,
   noremap = true,
   silent = true
 })
-vim.keymap.set('t', '<leader>T', [[<C-\><C-n>:ToggleTerm<CR>]], {
-  desc = 'Hide terminal',
+vim.keymap.set('n', '<leader>tt', ':botright split<cr>:buffers<cr>:b <space>', {
+  desc = 'Split horizontally from bottom right then choose terminal to show',
   expr = false,
   noremap = true,
   silent = true
-})
-vim.keymap.set('n', '<leader>tt', ':ToggleTermToggleAll<CR>', {
-  desc = 'Show all terminals',
-  expr = false,
-  noremap = true,
-  silent = true
-})
-vim.keymap.set('t', '<leader>tt', [[<C-\><C-n>:ToggleTermToggleAll<CR>]], {
-  desc = 'Hide all terminals',
-  expr = false,
-  noremap = true,
-  silent = true
-})
-
-vim.keymap.set('n', '<leader>ts', ':ToggleTermSendCurrentLine<CR>', {
-  desc = 'Send current line to terminal',
-  expr = false,
-  noremap = true,
-  silent = false
-})
-vim.keymap.set('v', '<leader>ts', ':ToggleTermSendVisualSelection<CR>', {
-  desc = 'Send current marked text to terminal',
-  expr = false,
-  noremap = true,
-  silent = false
 })
 
 -- LazyGit
-vim.keymap.set('n', '<leader>g', ':LazyGit<CR>', {
+vim.keymap.set('n', '<leader>g', ':LazyGit<cr>', {
   desc = 'Open git client',
   expr = false,
   noremap = true,

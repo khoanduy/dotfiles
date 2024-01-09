@@ -31,4 +31,4 @@ You might want to install these packages if they are not there yet:
 
 ## References
 [tmux](https://github.com/tmux/tmux)\
-[neovim](https://neovim.io/)
+[neovim](https://neovim.io/doc/user/index.html)
