@@ -19,6 +19,11 @@ After script execution finish, reload your `zsh` config file:
 $ source ~/.zshrc
 ```
 
+Open `neovim` and wait for `Lazy` installs all plugins, or you might need to run it manually
+```vim
+:Lazy
+```
+
 ## Additional options
 You might want to install these packages if they are not there yet:
 1. [Alacritty](https://github.com/alacritty/alacritty)
@@ -26,4 +31,4 @@ You might want to install these packages if they are not there yet:
 
 ## References
 [tmux](https://github.com/tmux/tmux)\
-[helix](https://helix-editor.com/)
+[neovim](https://neovim.io/)
