@@ -5,6 +5,7 @@ require('nvim-tree').setup({
     adaptive_size = false,
     number = false,
     relativenumber = false,
+    preserve_window_proportions = true,
   },
   renderer = {
     indent_markers = {

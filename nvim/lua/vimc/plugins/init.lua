@@ -62,6 +62,12 @@ lazy.setup({
       require('nvim-autopairs').setup()
     end
   },
+  {
+    'akinsho/toggleterm.nvim',
+    config = function()
+      require('vimc/plugins/toggleterm')
+    end
+  },
 
   'editorconfig/editorconfig-vim',
 

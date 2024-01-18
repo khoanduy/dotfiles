@@ -195,17 +195,41 @@ vim.keymap.set('n', '<leader>nc', ':NvimTreeCollapse<cr>', {
 })
 
 -- Toggleterm
-vim.keymap.set('n', '<leader>T', funcs.create_terminal, {
-  desc = 'Create a new terminal',
+vim.keymap.set('n', '<leader>T', ':ToggleTerm<cr>', {
+  desc = 'Show terminal',
   expr = false,
   noremap = true,
   silent = true
 })
-vim.keymap.set('n', '<leader>tt', ':botright split<cr>:buffers<cr>:b <space>', {
-  desc = 'Split horizontally from bottom right then choose terminal to show',
+vim.keymap.set('t', '<leader>T', [[<c-\><c-n>:ToggleTerm<cr>]], {
+  desc = 'Hide terminal',
   expr = false,
   noremap = true,
   silent = true
+})
+vim.keymap.set('n', '<leader>tt', ':ToggleTermToggleAll<cr>', {
+  desc = 'Show all terminals',
+  expr = false,
+  noremap = true,
+  silent = true
+})
+vim.keymap.set('t', '<leader>tt', [[<C-\><C-n>:ToggleTermToggleAll<cr>]], {
+  desc = 'Hide all terminals',
+  expr = false,
+  noremap = true,
+  silent = true
+})
+vim.keymap.set('n', '<leader>ts', ':ToggleTermSendCurrentLine<cr>', {
+  desc = 'Send current line to terminal',
+  expr = false,
+  noremap = true,
+  silent = false
+})
+vim.keymap.set('v', '<leader>ts', ':ToggleTermSendVisualSelection<cr>', {
+  desc = 'Send current marked text to terminal',
+  expr = false,
+  noremap = true,
+  silent = false
 })
 
 -- LazyGit
