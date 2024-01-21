@@ -132,6 +132,9 @@ lazy.setup({
   },
 
   'kdheepak/lazygit.nvim',
+
+  -- Fun stuff
+  'andweeb/presence.nvim',
 })
 
 -- End plugins' configuration --
