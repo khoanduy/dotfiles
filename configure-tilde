@@ -63,6 +63,11 @@ function linking() {
 echo "[-] Linking dotfiles [-]"
 linking
 
+# Download git-prompt.sh script
+echo "[-] Downloading git-prompt.sh script [-]"
+mkdir -p .zsh/plugins/git/
+curl https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh -o ~/.zsh/plugins/git/git-prompt.sh
+
 # Install default terminal emulator
 echo "[-] Installing Alacritty [-]"
 brew install alacritty

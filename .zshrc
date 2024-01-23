@@ -1,22 +1,37 @@
-# Download Znap, if it's not there yet.
-[[ -f ~/znap/zsh-snap/znap.zsh ]] ||
-    git clone --depth 1 -- \
-        https://github.com/marlonrichert/zsh-snap.git ~/znap/zsh-snap
+# Initialize autocompletion
+autoload -U compinit; compinit
 
-source ~/znap/zsh-snap/znap.zsh  # Start Znap
+# Set up history
+setopt SHARE_HISTORY
+HISTFILE=$HOME/.zhistory
+SAVEHIST=1000
+HISTSIZE=999
+setopt HIST_EXPIRE_DUPS_FIRST
+setopt EXTENDED_HISTORY
+setopt NO_BEEP
 
-# `znap prompt` makes your prompt visible in just 15-40ms!
-znap prompt sindresorhus/pure
+# Autocompletion using arrow keys (based on history)
+bindkey '\e[A' history-beginning-search-backward
+bindkey '\e[B' history-beginning-search-forward
 
-# `znap source` automatically downloads and starts your plugins.
-znap source zsh-users/zsh-autosuggestions
-znap source zsh-users/zsh-syntax-highlighting
+# Enable git prompt
+source ~/.zsh/plugins/git/git-prompt.sh
 
-# `znap function` lets you lazy-load features you don't always need.
-znap function _pyenv pyenv 'eval "$( pyenv init - --no-rehash )"'
-compctl -K    _pyenv pyenv
+# Git prompt options
+GIT_PS1_SHOWDIRTYSTATE=true
+GIT_PS1_SHOWSTASHSTATE=true
+GIT_PS1_SHOWUNTRACKEDFILES=true
+GIT_PS1_SHOWUPSTREAM='auto'
+GIT_PS1_STATESEPARATOR=' '
+GIT_PS1_HIDE_IF_PWD_IGNORED=true
+GIT_PS1_COMPRESSSPARSESTATE=true
 
-# source $ZSH/oh-my-zsh.sh
+# Enable command-subsitution in PS1
+setopt PROMPT_SUBST
+NL=$'\n'
+PS1='$NL%B%F{cyan}%0~%f%b% %F{magenta}$(__git_ps1 "  %s")%f$NL%B%(?.%F{green}.%F{red})%(!.#.$)%f%b '
+
+# source .profile
 source $HOME/.profile
 
 # Corretto JDK env vars
@@ -35,3 +50,4 @@ eval "$(pyenv init -)"
 # Alias
 alias lg=lazygit
 alias ls=exa
+alias v=nvim
