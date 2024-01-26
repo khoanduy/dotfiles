@@ -17,12 +17,6 @@ style = "Italic"
 family = "SauceCodePro Nerd Font"
 style = "Regular"
 
-[[keyboard.bindings]]
-action = "ToggleViMode"
-key = "Space"
-mode = "~Search"
-mods = "Shift|Command"
-
 [scrolling]
 history = 20000
 multiplier = 2
