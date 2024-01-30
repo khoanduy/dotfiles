@@ -130,12 +130,6 @@ lazy.setup({
       require('vimc/plugins/telescope')
     end
   },
-  {
-    'nvim-lualine/lualine.nvim',
-    config = function()
-      require('vimc/plugins/lualine')
-    end
-  },
 
   'kdheepak/lazygit.nvim',
 })
