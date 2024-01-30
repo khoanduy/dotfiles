@@ -24,12 +24,12 @@ init
 
 echo "[-] Installing some essentials packages [-]"
 brew update
-brew install git zsh tmux tree curl wget lazygit coreutils ncdu pyenv helix
+brew install git zsh tmux curl wget lazygit coreutils ncdu pyenv neovim ripgrep
 
 # Install font
-echo "[-] Installing Source Code Pro Font [-]"
+echo "[-] Installing Source Code Pro Nerd Font [-]"
 brew tap homebrew/cask-fonts
-brew install --cask font-source-code-pro
+brew install --cask font-sauce-code-pro-nerd-font
 
 # Ensure Rust installation
 if ! hash rustc &> /dev/null; then
@@ -58,7 +58,7 @@ function linking() {
 
   mkdir -p ${XDG_CONFIG_HOME:=$HOME/.config}
   ln -s $(pwd)/alacritty $XDG_CONFIG_HOME/alacritty
-  ln -s $(pwd)/helix $XDG_CONFIG_HOME/helix
+  ln -s $(pwd)/nvim $XDG_CONFIG_HOME/nvim
 }
 echo "[-] Linking dotfiles [-]"
 linking
