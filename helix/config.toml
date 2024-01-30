@@ -18,3 +18,8 @@ C-h = "jump_view_left"
 C-j = "jump_view_down"
 C-k = "jump_view_up"
 C-l = "jump_view_right"
+
+[keys.normal.space]
+F = "file_picker_in_current_buffer_directory"
+G = ":pipe-to tmux setw remain-on-exit off && tmux split-window -h -p 65 'lazygit'"
+T = ":pipe-to tmux setw remain-on-exit off && tmux split-window -p 25 'zsh'"
