@@ -36,11 +36,8 @@ whichkey.register({
   t = {
     name = 'Terminal',
     t = { ':ToggleTerm<cr>', 'Show terminal' },
-    t = { [[<c-\><c-n>:ToggleTerm<cr>]], 'Hide terminal', mode = 't' },
     a = { ':ToggleTermToggleAll<cr>', 'Show all terminals' },
-    a = { [[<C-\><C-n>:ToggleTermToggleAll<cr>]], 'Hide all terminals', mode = 't' },
     s = { ':ToggleTermSendCurrentLine<cr>', 'Send current line to terminal' },
-    s = { ':ToggleTermSendVisualSelection<cr>', 'Send current marked text to terminal', mode = 'v' },
   },
 }, { prefix = '<leader>' })
 
@@ -98,6 +95,11 @@ vim.keymap.set('n', '<space>a', funcs.show_git_annotate, {
   desc = 'Show git annotate of current line',
   silent = true
 })
+
+-- Toggleterm
+vim.keymap.set('t', '<leader>tt', [[<c-\><c-n>:ToggleTerm<cr>]], { desc = 'Hide terminal' })
+vim.keymap.set('t', '<leader>ta', [[<C-\><C-n>:ToggleTermToggleAll<cr>]], { desc = 'Hide all terminals' })
+vim.keymap.set('v', '<leader>ts', ':ToggleTermSendVisualSelection<cr>', { desc = 'Send current marked text to terminal' })
 
 -- LazyGit
 vim.keymap.set('n', '<space>g', ':LazyGit<cr>', {

@@ -27,9 +27,9 @@ brew update
 brew install git zsh tmux curl wget lazygit coreutils ncdu pyenv neovim ripgrep
 
 # Install font
-echo "[-] Installing Source Code Pro Nerd Font [-]"
+echo "[-] Installing Source Code Pro Font [-]"
 brew tap homebrew/cask-fonts
-brew install --cask font-sauce-code-pro-nerd-font
+brew install --cask font-source-code-pro
 
 # Ensure Rust installation
 if ! hash rustc &> /dev/null; then
