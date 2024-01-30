@@ -99,14 +99,25 @@ lazy.setup({
 
   -- UI
   {
-    'catppuccin/nvim', name = 'catppuccin', priority = 1000,
+    'folke/tokyonight.nvim',
+    lazy = false,
+    priority = 1000,
     config = function()
-      require("catppuccin").setup({
-        flavour = "mocha",
-        transparent_background = true,
-        no_italic = true,
+      require('tokyonight').setup({
+        style = 'moon',
+        styles = {
+          comments = {
+            italic = false,
+          },
+          keywords = {
+            italic = false,
+          },
+          sidebars = 'transparent',
+          floats = 'transparent',
+        },
+        hide_inactive_statusline = true,
       })
-      vim.cmd([[ colorscheme catppuccin ]])
+      vim.cmd([[ colorscheme tokyonight ]])
     end
   },
   {
@@ -123,12 +134,6 @@ lazy.setup({
     'nvim-lualine/lualine.nvim',
     config = function()
       require('vimc/plugins/lualine')
-    end
-  },
-  {
-    'petertriho/nvim-scrollbar',
-    config = function()
-      require('scrollbar').setup()
     end
   },
 

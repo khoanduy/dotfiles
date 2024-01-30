@@ -17,7 +17,7 @@ require('nvim-tree').setup({
     group_empty = true,
     icons = {
       show = {
-        file = true,
+        file = false,
         folder = true,
         git = true,
         folder_arrow = false,
@@ -25,6 +25,14 @@ require('nvim-tree').setup({
       glyphs = {
         default = 'ɕ',
         symlink = 'ȴ',
+        folder = {
+          default = 'ɕ',
+          open = 'ɕ',
+          empty = 'ɕ',
+          empty_open = 'ɕ',
+          symlink = 'ȴ',
+          symlink_open = 'ȴ',
+        },
         git = {
           unstaged = '◇',
           staged = '◆',
