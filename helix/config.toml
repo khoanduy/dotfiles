@@ -3,6 +3,7 @@ theme = "kanagawa"
 [editor]
 mouse = true
 cursorline = true
+shell = ["zsh", "-c"]
 
 [editor.cursor-shape]
 insert = "bar"

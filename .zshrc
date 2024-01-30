@@ -33,11 +33,6 @@ PS1='$NL%B%F{cyan}%0~%f%b% %F{magenta}$(__git_ps1 "  %s")%f$NL%B%(?.%F{green}.%F
 # source .profile
 source $HOME/.profile
 
-# Corretto JDK env vars
-export JDK21=/Library/Java/JavaVirtualMachines/amazon-corretto-21.jdk/Contents/Home
-export JDK17=/Library/Java/JavaVirtualMachines/amazon-corretto-17.jdk/Contents/Home
-export JDK11=/Library/Java/JavaVirtualMachines/amazon-corretto-11.jdk/Contents/Home
-
 # Cargo
 . "$HOME/.cargo/env"
 
@@ -48,5 +43,3 @@ eval "$(pyenv init -)"
 
 # Alias
 alias lg=lazygit
-alias ls=exa
-alias v=nvim
