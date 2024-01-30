@@ -45,3 +45,7 @@ y = 2
 [window.position]
 x = 0
 y = 0
+
+[colors.primary]
+background = '#1f1f28'
+foreground = '#dcd7ba'
