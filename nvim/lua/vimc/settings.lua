@@ -60,20 +60,16 @@ vim.cmd([[
 -- Style statusline
 vim.cmd([[
   set laststatus=3
-  set statusline=
-  set statusline+=%1*
-  set statusline+=\ 
+  set statusline=%1*
   set statusline+=%{StatuslineMode()}
   set statusline+=\ 
   set statusline+=%3*
-  set statusline+=\ 
-  set statusline+=%F
+  set statusline+=%f
   set statusline+=\ 
   set statusline+=%m
   set statusline+=%=
   set statusline+=%2*
   set statusline+=%{b:gitbranch}
-  set statusline+=\ 
   set statusline+=%3*
   set statusline+=%{strlen(&fenc)?&fenc:'none'}
   set statusline+=\|
