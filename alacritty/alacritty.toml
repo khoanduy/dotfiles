@@ -32,7 +32,8 @@ blink_interval = 650
 [window]
 decorations = "full"
 dynamic_padding = false
-opacity = 1
+opacity = 0.8
+blur = true
 
 [window.dimensions]
 columns = 0

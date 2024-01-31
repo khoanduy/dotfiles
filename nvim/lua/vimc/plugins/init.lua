@@ -105,6 +105,7 @@ lazy.setup({
     config = function()
       require('tokyonight').setup({
         style = 'moon',
+        transparent = true,
         styles = {
           comments = {
             italic = false,
@@ -115,7 +116,6 @@ lazy.setup({
           sidebars = 'transparent',
           floats = 'transparent',
         },
-        hide_inactive_statusline = true,
       })
       vim.cmd([[ colorscheme tokyonight ]])
     end
