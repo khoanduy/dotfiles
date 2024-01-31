@@ -1,6 +1,9 @@
 # dotfiles
 NOTED: These are my personal configuration files, which could be changed as I develop my environment across multiple systems.
 
+## Showcase
+![image](./screenshots/nvim-screenshot.png)
+
 ## Installation
 Clone repository to your local device and `cd` into it:
 ```shell script
