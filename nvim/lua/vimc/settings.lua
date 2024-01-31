@@ -19,6 +19,7 @@ vim.opt.wrap = false
 vim.opt.errorbells = false
 
 -- Display options
+vim.opt.termguicolors = true
 vim.opt.showmode = false
 vim.opt.showcmd = true
 vim.opt.showmatch = true
@@ -54,12 +55,11 @@ vim.cmd([[
   set ma
   set mouse=a
   syntax enable
-  set termguicolors
 ]])
 
 -- Style statusline
 vim.cmd([[
-  set laststatus=2
+  set laststatus=3
   set statusline=
   set statusline+=%1*
   set statusline+=\ 
@@ -128,6 +128,10 @@ vim.cmd([[
     autocmd VimEnter,WinEnter,BufEnter * call StatuslineGitBranch()
   augroup END
 ]])
+
+-- Disable netrw
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
 
 -- Get rid of scratch buffer
 vim.cmd([[ set completeopt-=preview ]])

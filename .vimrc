@@ -21,7 +21,6 @@ syntax on
 
 " Add numbers to each line on the left-hand side.
 set number
-set relativenumber
 set ruler
 
 " Highlight cursor line underneath the cursor horizontally.

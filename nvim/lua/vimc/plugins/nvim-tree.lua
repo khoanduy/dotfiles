@@ -3,9 +3,8 @@ require('nvim-tree').setup({
   update_cwd = true,
   view = {
     adaptive_size = false,
-    number = false,
-    relativenumber = false,
     preserve_window_proportions = true,
+    cursorline = false,
   },
   renderer = {
     indent_markers = {
@@ -16,6 +15,7 @@ require('nvim-tree').setup({
     },
     group_empty = true,
     icons = {
+      symlink_arrow = ' » ',
       show = {
         file = false,
         folder = true,
