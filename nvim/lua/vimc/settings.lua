@@ -37,8 +37,8 @@ vim.opt.shiftround = true
 
 -- File stats
 vim.opt.number = true
-vim.opt.cursorline = true
-vim.opt.ruler = true
+vim.opt.cursorline = false
+vim.opt.ruler = false
 vim.opt.splitbelow = true
 vim.opt.splitright = true
 
