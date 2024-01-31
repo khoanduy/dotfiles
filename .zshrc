@@ -41,6 +41,10 @@ export PYENV_ROOT="$HOME/.pyenv"
 command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
 
+# LSP and DAP
+export LSP_DAP_ROOT="$HOME/.lspdap"
+export PATH="$LSP_DAP_ROOT/bin:$PATH"
+
 # Corretto JDK env vars
 export JDK21=/Library/Java/JavaVirtualMachines/amazon-corretto-21.jdk/Contents/Home
 export JDK17=/Library/Java/JavaVirtualMachines/amazon-corretto-17.jdk/Contents/Home

@@ -24,7 +24,7 @@ init
 
 echo "[-] Installing some essentials packages [-]"
 brew update
-brew install git zsh tmux curl wget lazygit coreutils ncdu pyenv neovim ripgrep
+brew install git zsh tmux curl wget lazygit coreutils ncdu pyenv helix neovim ripgrep
 
 # Install font
 echo "[-] Installing Source Code Pro Font [-]"
@@ -57,8 +57,9 @@ function linking() {
   ln -s $(pwd)/.vimrc ~/.vimrc
 
   mkdir -p ${XDG_CONFIG_HOME:=$HOME/.config}
-  ln -s $(pwd)/alacritty $XDG_CONFIG_HOME/alacritty
-  ln -s $(pwd)/nvim $XDG_CONFIG_HOME/nvim
+  ln -s $(pwd)/alacritty/ $XDG_CONFIG_HOME/alacritty
+  ln -s $(pwd)/helix/ $XDG_CONFIG_HOME/helix
+  ln -s $(pwd)/nvim/ $XDG_CONFIG_HOME/nvim
 }
 echo "[-] Linking dotfiles [-]"
 linking
@@ -74,6 +75,7 @@ brew install alacritty
 
 # Create some essential folders
 echo "[-] Create essential folders [-]"
+mkdir -p ~/.lspdap/bin/
 mkdir ~/open-source
 mkdir ~/playground
 
