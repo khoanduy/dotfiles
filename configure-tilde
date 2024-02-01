@@ -1,7 +1,5 @@
 #!/bin/bash
 # Install essential tools for my development environment
-
-# Install essential packages
 if [[ "$OSTYPE" != "darwin"* ]]; then
   echo "Unsupported OS."
   exit
@@ -24,7 +22,7 @@ init
 
 echo "[-] Installing some essentials packages [-]"
 brew update
-brew install git zsh tmux curl wget lazygit coreutils ncdu pyenv helix neovim ripgrep node
+brew install git zsh tmux curl wget lazygit coreutils ncdu tree pyenv helix neovim ripgrep node
 
 # Install font
 echo "[-] Installing Source Code Pro Font [-]"

@@ -21,4 +21,5 @@ C-l = "jump_view_right"
 [keys.normal.space]
 o = "file_picker_in_current_buffer_directory"
 G = ":pipe-to tmux setw remain-on-exit off && tmux split-window -h -p 65 'lazygit'"
+t = ":pipe-to tmux setw remain-on-exit on && tmux split-window -h -p 25 'tree -C --noreport'"
 T = ":pipe-to tmux setw remain-on-exit off && tmux split-window -p 25 'zsh'"
