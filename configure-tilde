@@ -24,7 +24,7 @@ init
 
 echo "[-] Installing some essentials packages [-]"
 brew update
-brew install git zsh tmux curl wget lazygit coreutils ncdu pyenv helix neovim ripgrep
+brew install git zsh tmux curl wget lazygit coreutils ncdu pyenv helix neovim ripgrep node
 
 # Install font
 echo "[-] Installing Source Code Pro Font [-]"
@@ -75,7 +75,6 @@ brew install alacritty
 
 # Create some essential folders
 echo "[-] Create essential folders [-]"
-mkdir -p ~/.lspdap/bin/
 mkdir ~/open-source
 mkdir ~/playground
 
