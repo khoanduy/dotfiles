@@ -14,7 +14,7 @@ if not vim.loop.fs_stat(lazypath) then
 end
 
 vim.opt.rtp:prepend(lazypath)
-vim.g.mapleader = ','
+vim.g.mapleader = '\\'
 
 local ok, lazy = pcall(require, 'lazy')
 if not ok then
@@ -103,20 +103,7 @@ lazy.setup({
     lazy = false,
     priority = 1000,
     config = function()
-      require('tokyonight').setup({
-        style = 'moon',
-        transparent = true,
-        styles = {
-          comments = {
-            italic = false,
-          },
-          keywords = {
-            italic = false,
-          },
-          sidebars = 'transparent',
-          floats = 'transparent',
-        },
-      })
+      require('vimc/plugins/colorscheme')
       vim.cmd([[ colorscheme tokyonight ]])
     end
   },
@@ -127,7 +114,6 @@ lazy.setup({
       'nvim-telescope/telescope-ui-select.nvim',
     },
     config = function()
-      require('vimc/plugins/telescope')
     end
   },
 

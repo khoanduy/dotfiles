@@ -47,5 +47,6 @@ export JDK17=/Library/Java/JavaVirtualMachines/amazon-corretto-17.jdk/Contents/H
 export JDK11=/Library/Java/JavaVirtualMachines/amazon-corretto-11.jdk/Contents/Home
 
 # Alias
-alias ohx="hx ."
+alias v=nvim
+alias vo="nvim ."
 alias lg=lazygit

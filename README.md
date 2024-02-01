@@ -29,7 +29,7 @@ Open `neovim` and wait for `Lazy` installs all plugins, or you might need to run
 
 ## Additional options
 You might want to follow this [page](https://github.com/helix-editor/helix/wiki/How-to-install-the-default-language-servers) 
-to install essential LSP and DAP for specific language
+to install essential LSP and DAP for specific language when using Helix
 
 ## References
 [tmux](https://github.com/tmux/tmux)\

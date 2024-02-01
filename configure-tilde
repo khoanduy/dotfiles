@@ -22,7 +22,7 @@ init
 
 echo "[-] Installing some essentials packages [-]"
 brew update
-brew install git zsh tmux curl wget lazygit coreutils ncdu tree pyenv helix neovim ripgrep node
+brew install git zsh tmux curl wget lazygit coreutils ncdu tree pyenv helix neovim ripgrep
 
 # Install font
 echo "[-] Installing Source Code Pro Font [-]"

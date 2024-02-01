@@ -61,10 +61,8 @@ vim.cmd([[
 vim.cmd([[
   set laststatus=3
   set statusline=
-  set statusline+=%4*
-  set statusline+=%=
-  set statusline+=%{b:gitbranch}
   set statusline+=%2*
+  set statusline+=%=
   set statusline+=%f
   set statusline+=\ 
   set statusline+=%m
@@ -110,25 +108,6 @@ vim.cmd([[
       return 'SHELL'
     endif
   endfunction
-
-  function! StatuslineGitBranch()
-    let b:gitbranch=''
-    if &modifiable
-      try
-        let l:dir=expand('%:p:h')
-        let l:gitrevparse = system('git -C '.l:dir.' rev-parse --abbrev-ref HEAD')
-        if !v:shell_error
-          let b:gitbranch='('.substitute(l:gitrevparse, '\n', '', 'g').') '
-        endif
-      catch
-      endtry
-    endif
-  endfunction
-
-  augroup GetGitBranch
-    autocmd!
-    autocmd VimEnter,WinEnter,BufEnter * call StatuslineGitBranch()
-  augroup END
 ]])
 
 -- Disable netrw

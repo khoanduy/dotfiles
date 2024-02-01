@@ -4,15 +4,18 @@ local lspconfig = require('lspconfig')
 local servers = {
   'rust_analyzer',
   'pyright',
-  'gopls',
   'sqlls',
+  'ansiblels',
+  'bashls',
   'jsonls',
   'yamlls',
   'taplo',
   'html',
   'cssls',
   'tsserver',
-  'ansiblels'
+  'dockerls',
+  'lua_ls',
+  'marksman',
 }
 
 require('mason').setup({
