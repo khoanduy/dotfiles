@@ -114,6 +114,7 @@ lazy.setup({
       'nvim-telescope/telescope-ui-select.nvim',
     },
     config = function()
+      require('vimc/plugins/telescope')
     end
   },
 
