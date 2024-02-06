@@ -1,5 +1,5 @@
 # dotfiles
-NOTED: These are my personal configuration files, which could be changed as I develop my environment across multiple systems.
+NOTED: These are my personal configuration files, which could be changed as I develop my environment on macOS.
 
 ## Showcase
 ![image](./screenshots/nvim-screenshot.png)
@@ -28,10 +28,8 @@ Open `neovim` and wait for `Lazy` installs all plugins, or you might need to run
 ```
 
 ## Additional options
-You might want to follow this [page](https://github.com/helix-editor/helix/wiki/How-to-install-the-default-language-servers) 
-to install essential LSP and DAP for specific language when using Helix
+You might want to install essential LSP and DAP for specific language using `:Mason`.
 
 ## References
 [tmux](https://github.com/tmux/tmux)\
-[helix](https://docs.helix-editor.com)\
 [neovim](https://neovim.io/doc/user/index.html)
