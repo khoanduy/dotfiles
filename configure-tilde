@@ -57,6 +57,7 @@ function linking() {
   mkdir -p ${XDG_CONFIG_HOME:=$HOME/.config}
   ln -s $(pwd)/alacritty/ $XDG_CONFIG_HOME/alacritty
   ln -s $(pwd)/nvim/ $XDG_CONFIG_HOME/nvim
+  ln -s $(pwd)/bat/ $XDG_CONFIG_HOME/bat
 }
 echo "[-] Linking dotfiles [-]"
 linking
