@@ -14,8 +14,6 @@ if not vim.loop.fs_stat(lazypath) then
 end
 
 vim.opt.rtp:prepend(lazypath)
-vim.g.mapleader = '\\'
-
 local ok, lazy = pcall(require, 'lazy')
 if not ok then
   vim.api.nvim_out_write('lazy is just installed, please restart neovim')
@@ -33,7 +31,9 @@ lazy.setup({
   {
     'lewis6991/gitsigns.nvim',
     config = function()
-      require('gitsigns').setup()
+      require('gitsigns').setup({
+        current_line_blame = true,
+      })
     end
   },
   {
@@ -121,4 +121,6 @@ lazy.setup({
   'kdheepak/lazygit.nvim',
 })
 
+-- Load custom plugins
+require('vimc/plugins/statusline')
 -- End plugins' configuration --
