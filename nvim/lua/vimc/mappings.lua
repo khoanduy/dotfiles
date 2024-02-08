@@ -1,18 +1,17 @@
 -- Mappings' config --
 local whichkey = require('which-key')
+local fzflua = require('fzf-lua')
 
 -- Set leader key
-vim.g.mapleader = ' '
+vim.g.mapleader = '\\'
 
 -- Define mapping groups
 whichkey.register({
-  b = { require('telescope.builtin').buffers, 'Buffer list', silent = false },
+  f = { fzflua.files, 'Find files' },
+  F = { fzflua.git_files, 'Find files (include ignored files)' },
+  b = { fzflua.buffers, 'Buffer list', silent = false },
   r = { ':e<cr>', 'Reload current buffer from disk', silent = false },
-  y = { '"+y', 'Copy marked text to global register', silent = false },
   p = { '"+p', 'Paste marked text from global register', silent = false },
-  -- p = { ':echo @%<cr>', 'Show current buffer\'s full path', silent = false },
-  f = { require('telescope.builtin').find_files, 'Find files' },
-  F = { require('telescope.builtin').git_files, 'Find files (include ignored files)' },
   e = { ':NvimTreeToggle<cr>', 'Toggle file explorer' },
   E = { ':NvimTreeFindFile<cr>', 'Locate current file in file explorer' },
   T = { ':ToggleTerm<cr>', 'Show terminal' },
@@ -25,6 +24,7 @@ whichkey.register({
 }, { prefix = '<leader>' })
 
 whichkey.register({
+  y = { '"+y', 'Copy marked text to global register', mode = 'v', silent = false },
   T = { [[<c-\><c-n>:ToggleTerm<cr>]], 'Hide terminal', mode = 't' },
 }, { prefix = '<leader>' })
 
@@ -46,7 +46,7 @@ vim.keymap.set('n', '<left>', ':vertical resize +2<cr>', { silent = true })
 vim.keymap.set('n', '<right>', ':vertical resize -2<cr>', { silent = true })
 
 vim.keymap.set('n', '|', ':noh<cr>', { desc = 'Clear highlights' })
-vim.keymap.set('n', '<leader>/', require('telescope.builtin').live_grep, { desc = 'Grep pattern within project' })
+vim.keymap.set('n', '<leader>/', fzflua.live_grep_native, { desc = 'Grep pattern within project' })
 vim.keymap.set('v', '//', [[y/\V<C-R>=escape(@",'/\')<cr><cr>]], {
   desc = 'Search current marked text'
 })

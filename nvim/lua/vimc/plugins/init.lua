@@ -108,13 +108,9 @@ lazy.setup({
     end
   },
   {
-    'nvim-telescope/telescope.nvim',
-    dependencies = {
-      'nvim-lua/plenary.nvim',
-      'nvim-telescope/telescope-ui-select.nvim',
-    },
+    'ibhagwan/fzf-lua',
     config = function()
-      require('vimc/plugins/telescope')
+      require('fzf-lua').setup({ 'max-perf' })
     end
   },
 
