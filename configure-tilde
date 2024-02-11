@@ -22,7 +22,7 @@ init
 
 echo "[-] Installing some essentials packages [-]"
 brew update
-brew install git zsh tmux curl wget lazygit coreutils ncdu fzf pyenv neovim ripgrep fd bat git-delta chafa
+brew install git zsh tmux curl wget helix lazygit coreutils ncdu pyenv neovim ripgrep fd bat git-delta chafa fzf 
 
 # Install font
 echo "[-] Installing Source Code Pro Font [-]"
@@ -56,6 +56,7 @@ function linking() {
 
   mkdir -p ${XDG_CONFIG_HOME:=$HOME/.config}
   ln -s $(pwd)/alacritty/ $XDG_CONFIG_HOME/alacritty
+  ln -s $(pwd)/helix/ $XDG_CONFIG_HOME/helix
   ln -s $(pwd)/nvim/ $XDG_CONFIG_HOME/nvim
   ln -s $(pwd)/bat/ $XDG_CONFIG_HOME/bat
 }

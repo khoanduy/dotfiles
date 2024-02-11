@@ -56,4 +56,5 @@ export JDK11=/Library/Java/JavaVirtualMachines/amazon-corretto-11.jdk/Contents/H
 # Alias
 alias v=nvim
 alias vo="nvim ."
+alias hxo="hx ."
 alias lg=lazygit
