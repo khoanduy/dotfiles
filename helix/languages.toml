@@ -33,7 +33,7 @@ language-servers = [ "sql-language-server" ]
 [language-server]
 jdtls = { command = "jdtls" }
 language-server = { command = "jdtls", args = [
-  "-data", "/home/<USER>/.cache/jdtls/workspace"
+  "-data", "$HOME/.cache/jdtls/workspace"
   ]}
 
 [[language]]
