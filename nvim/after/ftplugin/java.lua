@@ -1,6 +1,6 @@
 local jdtls = vim.fn.stdpath('data') .. '/mason/packages/jdtls'
 local data_home = os.getenv('XDG_DATA_HOME')
-local workspace_folder = data_home .. '/jdtls-ws/' .. vim.fn.fnamemodify(root_dir, ':p:h:t')
+local workspace_folder = data_home .. '/jdtls/workspace/' .. vim.fn.fnamemodify(vim.fn.getcwd(), ':p:h:t')
 
 vim.opt_local.expandtab = true
 vim.opt_local.tabstop = 4
@@ -10,7 +10,7 @@ vim.opt_local.shiftround = true
 
 local config = {
   cmd = {
-    os.getenv('JDK21') .. '/bin/java',
+    os.getenv('JDK17') .. '/bin/java',
     '-Declipse.application=org.eclipse.jdt.ls.core.id1',
     '-Dosgi.bundles.defaultStartLevel=4',
     '-Declipse.product=org.eclipse.jdt.ls.core.product',
@@ -21,10 +21,10 @@ local config = {
     '--add-opens', 'java.base/java.util=ALL-UNNAMED',
     '--add-opens', 'java.base/java.lang=ALL-UNNAMED',
     '-jar', vim.fn.glob(jdtls .. '/plugins/org.eclipse.equinox.launcher_*.jar'),
-    '-configuration', jdtls .. '/config_mac_arm',
+    '-configuration', jdtls .. '/config_mac',
     '-data', workspace_folder,
   },
-  root_dir = require('jdtls.setup').find_root({'.git', 'mvnw', 'gradlew', 'pom.xml'}),
+  root_dir = require('jdtls.setup').find_root({ 'pom.xml', '.git', 'mvnw', 'gradlew' }),
   settings = {
     java = {
       autobuild = { enabled = false },
