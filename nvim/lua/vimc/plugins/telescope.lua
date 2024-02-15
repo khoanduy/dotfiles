@@ -3,10 +3,10 @@ require('telescope').setup({
     require('telescope.themes').get_cursor {}
   },
   defaults = {
-    layout_strategy = 'center',
+    layout_strategy = 'vertical',
     layout_config = {
-      anchor = 'N',
-      width = 0.5,
+      anchor = 'CENTER',
+      width = 0.68,
       height = 0.8,
       preview_cutoff = 0,
     },
