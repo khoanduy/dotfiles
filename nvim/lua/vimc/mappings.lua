@@ -2,9 +2,6 @@
 local whichkey = require('which-key')
 local telescope = require('telescope.builtin')
 
--- Set leader key
-vim.g.mapleader = '\\'
-
 -- Define mapping groups
 whichkey.register({
   f = { telescope.find_files, 'Find files' },
@@ -14,8 +11,8 @@ whichkey.register({
   p = { '"+p', 'Paste marked text from global register', silent = false },
   e = { ':NvimTreeToggle<cr>', 'Toggle file explorer' },
   E = { ':NvimTreeFindFile<cr>', 'Locate current file in file explorer' },
-  T = { ':ToggleTerm<cr>', 'Show terminal' },
-  G = { ':LazyGit<cr>', 'Open git client' },
+  T = { ':!tmux split-window -p 25 \'zsh\'<cr><cr>', 'Open terminal' },
+  G = { ':!tmux split-window -h -p 65 \'lazygit\'<cr><cr>', 'Open git client' },
   w = {
     name = 'Window',
     v = { '<c-w>v', 'Split buffer vertically' },
@@ -25,7 +22,7 @@ whichkey.register({
 
 whichkey.register({
   y = { '"+y', 'Copy marked text to global register', mode = 'v', silent = false },
-  T = { [[<c-\><c-n>:ToggleTerm<cr>]], 'Hide terminal', mode = 't' },
+  T = { [[<c-\><c-n>:bd!<cr>]], 'Close terminal', mode = 't' },
 }, { prefix = '<leader>' })
 
 -- Remap switch region keys

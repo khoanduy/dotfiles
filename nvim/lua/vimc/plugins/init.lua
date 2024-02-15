@@ -20,6 +20,9 @@ if not ok then
   return
 end
 
+-- Make sure to set `mapleader` before lazy so your mappings are correct
+vim.g.mapleader = ' '
+
 lazy.setup({
   -- Utilities
   {
@@ -62,12 +65,6 @@ lazy.setup({
     'windwp/nvim-autopairs',
     config = function()
       require('nvim-autopairs').setup()
-    end
-  },
-  {
-    'akinsho/toggleterm.nvim',
-    config = function()
-      require('vimc/plugins/toggleterm')
     end
   },
 
@@ -117,8 +114,6 @@ lazy.setup({
       require('vimc/plugins/telescope')
     end
   },
-
-  'kdheepak/lazygit.nvim',
 })
 
 -- Load custom plugins
