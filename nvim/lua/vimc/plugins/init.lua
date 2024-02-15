@@ -57,18 +57,11 @@ lazy.setup({
   },
   {
     'kylechui/nvim-surround',
+    version = '*',
     config = function()
       require("nvim-surround").setup()
     end
   },
-  {
-    'windwp/nvim-autopairs',
-    config = function()
-      require('nvim-autopairs').setup()
-    end
-  },
-
-  'editorconfig/editorconfig-vim',
 
   -- Programming language
   {
@@ -78,7 +71,7 @@ lazy.setup({
       require('vimc/plugins/treesitter')
     end
   },
-
+  'nvim-treesitter/nvim-treesitter-textobjects',
   'rust-lang/rust.vim',
 
   -- LSP and DAP

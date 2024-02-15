@@ -47,4 +47,8 @@ vim.keymap.set('n', '<leader>/', telescope.live_grep, { desc = 'Grep pattern wit
 vim.keymap.set('v', '//', [[y/\V<C-R>=escape(@",'/\')<cr><cr>]], {
   desc = 'Search current marked text'
 })
+
+-- Remap indent keys
+vim.keymap.set('v', '<', '<gv', { silent = true })
+vim.keymap.set('v', '>', '>gv', { silent = true })
 -- End mappings' config --
