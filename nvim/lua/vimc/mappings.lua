@@ -7,6 +7,7 @@ whichkey.register({
   f = { telescope.find_files, 'Find files' },
   F = { telescope.git_files, 'Find files (include ignored files)' },
   b = { telescope.buffers, 'Buffer list', silent = false },
+  B = { ':Gitsigns toggle_current_line_blame<cr>', 'Toggle current lien blame' },
   r = { ':e<cr>', 'Reload current buffer from disk', silent = false },
   p = { '"+p', 'Paste marked text from global register', silent = false },
   e = { ':NvimTreeToggle<cr>', 'Toggle file explorer' },
