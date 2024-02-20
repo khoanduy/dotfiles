@@ -33,7 +33,7 @@ PS1='$NL%B%F{cyan}%0~%f%b% %F{magenta}$(__git_ps1 "  %s")%f$NL%B%(?.%F{green}.%F
 # fzf export
 export FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS
 --color=fg:#c8d3f5,hl:#ff757f
---color=fg+:#c8d3f5,bg+:#222436,hl+:#ff757f
+--color=fg+:#c8d3f5,bg+:#222436,hl+:#ff757f,gutter:-1
 --color=info:#82aaff,prompt:#86e1fc,pointer:#86e1fc
 --color=marker:#c3e88d,spinner:#c3e88d,header:#c3e88d"
 
@@ -57,6 +57,6 @@ export JDK11=/Library/Java/JavaVirtualMachines/amazon-corretto-11.jdk/Contents/H
 export XDG_DATA_HOME="$HOME/.local/share/"
 
 # Alias
-alias v=nvim
-alias vo="nvim ."
+alias v=vim
+alias vo="vim ."
 alias lg=lazygit
