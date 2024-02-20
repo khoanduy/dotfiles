@@ -44,6 +44,7 @@ set scrolloff=10
 
 " Do not wrap lines. Allow long lines to extend as far as the line goes.
 set nowrap
+set nocp
 
 " Searching
 set incsearch
@@ -58,7 +59,7 @@ set mouse=a
 
 " Show several useful info
 set showcmd
-" set showmode
+set noshowmode
 set showmatch
 
 " Get rid of scratch buffer
@@ -93,9 +94,9 @@ call plug#end()
 
 " Netrw config and mapping
 let g:netrw_keepdir=0
-let g:netrw_winsize=100
 let g:netrw_banner=0
 let g:netrw_localcopydircmd='cp -r'
+let g:netrw_localrmdir='rm -r'
 hi! link netrwMarkFile Search
 
 " Toggle netrw and focus file
@@ -105,17 +106,15 @@ nnoremap <leader>E :Explore %:p:h<cr>
 " Remap key inside netrw buffer
 function! NetrwMapping()
   " cancel browsing
-  nmap <buffer> qq <c-^>
+  nmap <buffer> <silent> x :Rexplore<cr>
   " go back in history
-  nmap <buffer> H u
+  nmap <buffer> <silent> H u
   " go up a dir
-  nmap <buffer> h -^
+  nmap <buffer> <silent> h -^
   " open a dir or file
-  nmap <buffer> l <cr>
-  " toggle dotfiles
-  nmap <buffer> . gh
+  nmap <buffer> <silent> l <cr>
   " add file
-  nmap <buffer> a %:w<cr>:buffer #<cr>
+  nmap <buffer> <silent> a %:w<cr>:buffer #<cr>
 endfunction
 
 augroup netrw_mapping
@@ -128,8 +127,8 @@ let g:fzf_vim={}
 let g:fzf_vim.preview_window=[]
 let g:fzf_layout={ 'window': { 'width': 0.6, 'height': 0.6 } }
 
-nnoremap <leader>f :Files<cr>
-nnoremap <leader>F :GFiles<cr>
+nnoremap <leader>f :GFiles<cr>
+nnoremap <leader>F :Files<cr>
 nnoremap <leader>b :Buffers<cr>
 nnoremap <leader>_ :Rg<cr>
 
