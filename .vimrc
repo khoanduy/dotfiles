@@ -130,7 +130,7 @@ let g:fzf_layout={ 'window': { 'width': 0.6, 'height': 0.6 } }
 nnoremap <leader>f :GFiles<cr>
 nnoremap <leader>F :Files<cr>
 nnoremap <leader>b :Buffers<cr>
-nnoremap <leader>_ :Rg<cr>
+nnoremap <leader>/ :Rg<cr>
 
 " Get git status of current buffer
 function! GitStatus()
