@@ -1,12 +1,12 @@
 -- Mappings' config --
 local whichkey = require('which-key')
-local telescope = require('telescope.builtin')
+local fzflua = require('fzf-lua')
 
 -- Define mapping groups
 whichkey.register({
-  f = { telescope.find_files, 'Find files' },
-  F = { telescope.git_files, 'Find files (include ignored files)' },
-  b = { telescope.buffers, 'Buffer list', silent = false },
+  f = { fzflua.files, 'Find files' },
+  F = { fzflua.git_files, 'Find files (include ignored files)' },
+  b = { fzflua.buffers, 'Buffer list', silent = false },
   B = { ':Gitsigns toggle_current_line_blame<cr>', 'Toggle current lien blame' },
   r = { ':e<cr>', 'Reload current buffer from disk', silent = false },
   p = { '"+p', 'Paste marked text from global register', silent = false },
@@ -44,7 +44,7 @@ vim.keymap.set('n', '<left>', ':vertical resize +2<cr>', { silent = true })
 vim.keymap.set('n', '<right>', ':vertical resize -2<cr>', { silent = true })
 
 vim.keymap.set('n', '|', ':noh<cr>', { desc = 'Clear highlights' })
-vim.keymap.set('n', '<leader>/', telescope.live_grep, { desc = 'Grep pattern within project' })
+vim.keymap.set('n', '<leader>/', fzflua.live_grep_native, { desc = 'Grep pattern within project' })
 vim.keymap.set('v', '//', [[y/\V<C-R>=escape(@",'/\')<cr><cr>]], {
   desc = 'Search current marked text'
 })

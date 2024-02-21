@@ -95,16 +95,7 @@ lazy.setup({
       vim.cmd([[ colorscheme tokyonight ]])
     end
   },
-  {
-    'nvim-telescope/telescope.nvim',
-    dependencies = {
-      'nvim-lua/plenary.nvim',
-      'nvim-telescope/telescope-ui-select.nvim',
-    },
-    config = function()
-      require('vimc/plugins/telescope')
-    end
-  },
+  'ibhagwan/fzf-lua',
 })
 
 -- Load custom plugins
