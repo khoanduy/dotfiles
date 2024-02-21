@@ -70,6 +70,10 @@ curl https://raw.githubusercontent.com/git/git/master/contrib/completion/git-pro
 echo "[-] Installing Alacritty [-]"
 brew install alacritty
 
+# Install DB CLI client for PostgreSQL and MySQL
+echo "[-] Installing DB CLI clients [-]"
+brew install pgcli mycli
+
 # Create some essential folders
 echo "[-] Create essential folders [-]"
 mkdir ~/playground
