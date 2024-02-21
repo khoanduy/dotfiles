@@ -22,7 +22,7 @@ init
 
 echo "[-] Installing some essentials packages [-]"
 brew update
-brew install git zsh tmux curl wget lazygit coreutils ncdu pyenv fzf neovim ripgrep
+brew install git zsh tmux curl wget neovim fzf ripgrep lazygit coreutils ncdu pyenv 
 
 # Install font
 echo "[-] Installing Source Code Pro Font [-]"
@@ -65,11 +65,6 @@ linking
 echo "[-] Downloading git-prompt.sh script [-]"
 mkdir -p ~/.zsh/plugins/git/
 curl https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh -o ~/.zsh/plugins/git/git-prompt.sh
-
-# Install vim plugin manager
-echo "[-] Installing vim-plug [-]"
-curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
-    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
 # Install default terminal emulator
 echo "[-] Installing Alacritty [-]"

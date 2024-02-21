@@ -13,7 +13,10 @@ whichkey.register({
   e = { ':NvimTreeToggle<cr>', 'Toggle file explorer' },
   E = { ':NvimTreeFindFile<cr>', 'Locate current file in file explorer' },
   T = { ':!tmux split-window -p 25 \'zsh\'<cr><cr>', 'Open terminal' },
-  G = { ':!tmux split-window -h -p 65 \'lazygit\'<cr><cr>', 'Open git client' },
+  G = {
+    ':!tmux setw remain-on-exit off && tmux split-window -h -p 65 \'lazygit\'<cr><cr>',
+    'Open git client'
+  },
   w = {
     name = 'Window',
     v = { '<c-w>v', 'Split buffer vertically' },
@@ -45,7 +48,7 @@ vim.keymap.set('n', '<right>', ':vertical resize -2<cr>', { silent = true })
 
 vim.keymap.set('n', '|', ':noh<cr>', { desc = 'Clear highlights' })
 vim.keymap.set('n', '<leader>/', fzflua.live_grep_native, { desc = 'Grep pattern within project' })
-vim.keymap.set('v', '//', [[y/\V<C-R>=escape(@",'/\')<cr><cr>]], {
+vim.keymap.set('v', '<leader>/', [[y/\V<C-R>=escape(@",'/\')<cr><cr>]], {
   desc = 'Search current marked text'
 })
 

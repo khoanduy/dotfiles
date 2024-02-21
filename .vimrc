@@ -72,31 +72,11 @@ set wildmode=list:longest
 " Set the commands to save in history default number is 20.
 set history=1000
 
-" --------------------
-" ----- vim-plug -----
-" --------------------
-call plug#begin()
-" Make sure you use single quotes
-
-Plug 'morhetz/gruvbox'
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'
-Plug 'tpope/vim-surround'
-Plug 'tpope/vim-commentary'
-Plug 'airblade/vim-gitgutter'
-
-" Initialize plugin system
-call plug#end()
-
 " ---------------------
 " ----- Utilities -----
 " ---------------------
 
 " Netrw config and mapping
-let g:netrw_keepdir=0
-let g:netrw_banner=0
-let g:netrw_localcopydircmd='cp -r'
-let g:netrw_localrmdir='rm -r'
 hi! link netrwMarkFile Search
 
 " Toggle netrw and focus file
@@ -113,8 +93,6 @@ function! NetrwMapping()
   nmap <buffer> <silent> h -^
   " open a dir or file
   nmap <buffer> <silent> l <cr>
-  " add file
-  nmap <buffer> <silent> a %:w<cr>:buffer #<cr>
 endfunction
 
 augroup netrw_mapping
@@ -122,32 +100,9 @@ augroup netrw_mapping
   autocmd filetype netrw call NetrwMapping()
 augroup END
 
-" fzf config and mapping
-let g:fzf_vim={}
-let g:fzf_vim.preview_window=[]
-let g:fzf_layout={ 'window': { 'width': 0.6, 'height': 0.6 } }
-
-nnoremap <leader>f :GFiles<cr>
-nnoremap <leader>F :Files<cr>
-nnoremap <leader>b :Buffers<cr>
-nnoremap <leader>/ :Rg<cr>
-
-" Get git status of current buffer
-function! GitStatus()
-  let [a,m,r] = GitGutterGetHunkSummary()
-  return printf('+%d ~%d -%d', a, m, r)
-endfunction
-
 " --------------
 " ----- UI -----
 " --------------
-
-" Colorscheme
-autocmd VimEnter * hi Normal ctermbg=none
-set background=dark
-let g:gruvbox_transparent_bg='1'
-let g:gruvbox_italic='0'
-colorscheme gruvbox
 
 " Custom statusline
 set laststatus=2
@@ -179,7 +134,6 @@ hi User1 ctermbg=NONE ctermfg=lightgreen guibg=NONE guifg=lightgreen
 hi User2 ctermbg=NONE ctermfg=lightcyan guibg=NONE guifg=lightcyan
 hi User3 ctermbg=NONE ctermfg=lightyellow guibg=NONE guifg=lightyellow
 hi User4 ctermbg=NONE ctermfg=grey guibg=NONE guifg=grey
-" hi User5 ctermbg=NONE ctermfg=lightred guibg=NONE guifg=lightred
 
 function! StatuslineMode()
   let l:mode=mode()
@@ -201,10 +155,6 @@ function! StatuslineMode()
     return 'SHELL'
   endif
 endfunction
-
-" Don't let GitGutter set sign backgrounds
-let g:gitgutter_set_sign_backgrounds=1
-highlight SignColumn ctermbg=none
 
 " -------------------
 " ----- Mapping -----
@@ -246,6 +196,3 @@ nnoremap <leader>p "+p
 
 " Split tmux pane below
 nnoremap <leader>T :!tmux split-window -p 25 'zsh'<cr><cr>
-
-" Open git client
-nnoremap <leader>G :!tmux setw remain-on-exit off && tmux split-window -h -p 65 'lazygit'<cr><cr>
