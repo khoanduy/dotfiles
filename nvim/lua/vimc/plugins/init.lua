@@ -57,14 +57,20 @@ lazy.setup({
     'kylechui/nvim-surround',
     version = '*',
     config = function()
-      require("nvim-surround").setup()
+      require('nvim-surround').setup()
+    end
+  },
+  {
+    'windwp/nvim-autopairs',
+    config = function()
+      require('nvim-autopairs').setup()
     end
   },
 
   -- Programming language
   {
     'nvim-treesitter/nvim-treesitter',
-    build = ":TSUpdate",
+    build = ':TSUpdate',
     config = function()
       require('vimc/plugins/treesitter')
     end
@@ -96,6 +102,38 @@ lazy.setup({
     end
   },
   'ibhagwan/fzf-lua',
+  {
+    'lukas-reineke/indent-blankline.nvim',
+    main = 'ibl',
+    opts = {},
+    config = function()
+      require('ibl').setup({
+        scope = {
+          show_start = false,
+          show_end = false,
+        },
+      })
+    end
+  },
+},
+{
+  ui = {
+    icons = {
+      cmd = '⌘',
+      config = '⚙',
+      event = '◔',
+      ft = '◊',
+      init = '◍',
+      keys = '⏼',
+      plugin = '▧',
+      runtime = '↺',
+      require = '⏾',
+      source = '◉',
+      start = '⏵',
+      task = '⌾',
+      lazy = '⏿ ',
+    },
+  },
 })
 
 -- Load custom plugins
