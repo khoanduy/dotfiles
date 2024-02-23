@@ -40,7 +40,7 @@ vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Next diagnostic' }
 -- LSP servers' default config
 local config = require('vimc/lsp/common').make_conf()
 for _, lsp in ipairs(servers) do
-  lspconfig[lsp].setup(config) 
+  lspconfig[lsp].setup(config)
 end
 
 -- nvim-cmp setup

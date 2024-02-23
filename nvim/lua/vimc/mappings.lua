@@ -17,6 +17,10 @@ whichkey.register({
     ':!tmux setw remain-on-exit off && tmux split-window -h -p 65 \'lazygit\'<cr><cr>',
     'Open git client'
   },
+  q = { ':q<cr>', 'Quit current buffer' },
+  Q = { ':qa<cr>', 'Quit all buffers' },
+  C = { ':qa!<cr>', 'Quit all buffers without saving' },
+  s = { ':w<cr>', 'Save current buffer' },
   w = {
     name = 'Window',
     v = { '<c-w>v', 'Split buffer vertically' },
@@ -28,6 +32,9 @@ whichkey.register({
   y = { '"+y', 'Copy marked text to global register', mode = 'v', silent = false },
   T = { [[<c-\><c-n>:bd!<cr>]], 'Close terminal', mode = 't' },
 }, { prefix = '<leader>' })
+
+-- Remap insert mode escape key
+vim.keymap.set('i', 'jk', '<esc>', { silent = true })
 
 -- Remap switch region keys
 vim.keymap.set('n', '<c-h>', '<c-w>h', { silent = true })

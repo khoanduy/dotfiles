@@ -35,6 +35,7 @@ set shiftwidth=2
 set tabstop=2
 set softtabstop=2
 set shiftround
+
 " Do not save temporary files.
 set nobackup
 set noswapfile
@@ -159,6 +160,9 @@ endfunction
 " -------------------
 " ----- Mapping -----
 " -------------------
+
+" Remap insert mode escape key
+inoremap jk <esc>
 
 " Remap c-w prefix
 nnoremap <silent> <leader>w <c-w>
