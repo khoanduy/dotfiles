@@ -42,6 +42,7 @@ set noswapfile
 
 " Do not let cursor scroll below or above N number of lines when scrolling.
 set scrolloff=10
+set splitbelow
 
 " Do not wrap lines. Allow long lines to extend as far as the line goes.
 set nowrap
@@ -73,37 +74,55 @@ set wildmode=list:longest
 " Set the commands to save in history default number is 20.
 set history=1000
 
-" ---------------------
-" ----- Utilities -----
-" ---------------------
+" -----------------------------
+" ----- Plugin definition -----
+" -----------------------------
 
-" Netrw config and mapping
-hi! link netrwMarkFile Search
+call plug#begin()
+" The default plugin directory will be as follows:
+"   - Vim (Linux/macOS): '~/.vim/plugged'
+"   - Vim (Windows): '~/vimfiles/plugged'
+"   - Neovim (Linux/macOS/Windows): stdpath('data') . '/plugged'
+" You can specify a custom plugin directory by passing it as the argument
+"   - e.g. `call plug#begin('~/.vim/plugged')`
+"   - Avoid using standard Vim directory names like 'plugin'
 
-" Toggle netrw and focus file
-nnoremap <leader>e :Explore<cr>
-nnoremap <leader>E :Explore %:p:h<cr>
+" Make sure you use single quotes
 
-" Remap key inside netrw buffer
-function! NetrwMapping()
-  " cancel browsing
-  nmap <buffer> <silent> x :Rexplore<cr>
-  " go back in history
-  nmap <buffer> <silent> H u
-  " go up a dir
-  nmap <buffer> <silent> h -^
-  " open a dir or file
-  nmap <buffer> <silent> l <cr>
-endfunction
+" Colorscheme
+Plug 'morhetz/gruvbox'
 
-augroup netrw_mapping
-  autocmd!
-  autocmd filetype netrw call NetrwMapping()
-augroup END
+" Fzf vim integration
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+
+" Parentheses, brackets, quotes, tags, and more
+Plug 'tpope/vim-surround'
+
+" Comment stuff out
+Plug 'tpope/vim-commentary'
+
+" Shows git diff markers in the sign column
+Plug 'airblade/vim-gitgutter'
+
+" Initialize plugin system
+" - Automatically executes `filetype plugin indent on` and `syntax enable`.
+call plug#end()
+" You can revert the settings after the call like so:
+"   filetype indent off   " Disable file-type-specific indentation
+"   syntax off            " Disable syntax highlighting
 
 " --------------
 " ----- UI -----
 " --------------
+
+" Colorscheme
+autocmd VimEnter * hi Normal ctermbg=none
+set background=dark
+let g:gruvbox_transparent_bg='1'
+let g:gruvbox_italic='0'
+colorscheme gruvbox
+
 
 " Custom statusline
 set laststatus=2
@@ -131,11 +150,13 @@ set statusline+=%1*
 set statusline+=%{StatuslineMode()}
 set statusline+=\ 
 
+" Custom statusline segment color
 hi User1 ctermbg=NONE ctermfg=lightgreen guibg=NONE guifg=lightgreen
 hi User2 ctermbg=NONE ctermfg=lightcyan guibg=NONE guifg=lightcyan
 hi User3 ctermbg=NONE ctermfg=lightyellow guibg=NONE guifg=lightyellow
 hi User4 ctermbg=NONE ctermfg=grey guibg=NONE guifg=grey
 
+" Get current mode
 function! StatuslineMode()
   let l:mode=mode()
   if l:mode==#'n'
@@ -189,7 +210,7 @@ vnoremap <silent> < <gv
 vnoremap <silent> > >gv
 
 " Search current marked text
-vnoremap // y/\V<c-r>=escape(@",'/\')<cr><cr>
+vnoremap <leader>/ y/\V<c-r>=escape(@",'/\')<cr><cr>
 
 " Turn off highlight
 nnoremap <silent> \| :noh<cr>
@@ -199,4 +220,57 @@ vnoremap <leader>y "+y
 nnoremap <leader>p "+p
 
 " Split tmux pane below
-nnoremap <leader>T :!tmux split-window -p 25 'zsh'<cr><cr>
+nnoremap <leader>T :!tmux split-window -l 10 zsh<cr><cr>
+
+" Open git client
+nnoremap <leader>G :!lazygit<cr><cr>
+
+" ---------------------
+" ----- Utilities -----
+" ---------------------
+
+" Terminal
+autocmd TerminalOpen * setlocal nonumber
+
+" Netrw config and mapping
+hi! link netrwMarkFile Search
+
+" Toggle netrw and focus file
+nnoremap <leader>e :Explore<cr>
+nnoremap <leader>E :Explore %:p:h<cr>
+
+" Remap key inside netrw buffer
+function! NetrwMapping()
+  " cancel browsing
+  nmap <buffer> <silent> x :Rexplore<cr>
+  " go back in history
+  nmap <buffer> <silent> H u
+  " go up a dir
+  nmap <buffer> <silent> h -^
+  " open a dir or file
+  nmap <buffer> <silent> l <cr>
+endfunction
+
+augroup netrw_mapping
+  autocmd!
+  autocmd filetype netrw call NetrwMapping()
+augroup END
+
+" ---------------------------------
+" ----- Plugin configuration ------
+" ---------------------------------
+
+" Fzf config
+let g:fzf_vim={}
+let g:fzf_vim.preview_window=[]
+let g:fzf_layout={ 'window': { 'width': 0.6, 'height': 0.6 } }
+
+" Fzf mapping
+nnoremap <leader>f :GFiles<cr>
+nnoremap <leader>F :Files<cr>
+nnoremap <leader>b :Buffers<cr>
+nnoremap <leader>/ :Rg<cr>
+
+" Don't let GitGutter set sign backgrounds
+let g:gitgutter_set_sign_backgrounds=1
+highlight SignColumn ctermbg=none

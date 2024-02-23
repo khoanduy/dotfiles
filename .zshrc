@@ -57,6 +57,6 @@ export JDK11=/Library/Java/JavaVirtualMachines/amazon-corretto-11.jdk/Contents/H
 export XDG_DATA_HOME="$HOME/.local/share/"
 
 # Alias
-alias v=nvim
-alias vo="nvim ."
+alias v=vim
+alias vo="vim ."
 alias lg=lazygit
