@@ -30,18 +30,19 @@ style = {shape = "Block", blinking = "Always"}
 blink_interval = 650
 
 [window]
-decorations = "full"
+decorations = "buttonless"
 dynamic_padding = false
-opacity = 0.9
+opacity = 0.85
 blur = true
+option_as_alt = "Both"
 
 [window.dimensions]
 columns = 0
 lines = 0
 
 [window.padding]
-x = 5
-y = 2
+x = 10
+y = 10
 
 [window.position]
 x = 0
