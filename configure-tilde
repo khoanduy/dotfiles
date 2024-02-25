@@ -22,7 +22,7 @@ init
 
 echo "[-] Installing some essentials packages [-]"
 brew update
-brew install git zellij zsh curl wget neovim fzf ripgrep lazygit coreutils ncdu pyenv 
+brew install git fish zellij curl wget helix ripgrep lazygit coreutils ncdu pyenv 
 
 # Install font
 echo "[-] Installing Source Code Pro Font [-]"
@@ -55,6 +55,7 @@ function linking() {
   mkdir -p ${XDG_CONFIG_HOME:=$HOME/.config}
   ln -s $(pwd)/alacritty/ $XDG_CONFIG_HOME/alacritty
   ln -s $(pwd)/zellij/ $XDG_CONFIG_HOME/zellij
+  ln -s $(pwd)/helix/ $XDG_CONFIG_HOME/helix
   ln -s $(pwd)/nvim/ $XDG_CONFIG_HOME/nvim
 }
 echo "[-] Linking dotfiles [-]"
@@ -64,11 +65,6 @@ linking
 echo "[-] Downloading git-prompt.sh script [-]"
 mkdir -p ~/.zsh/plugins/git/
 curl https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh -o ~/.zsh/plugins/git/git-prompt.sh
-
-# Install vim plugin manager
-echo "[-] Installing vim-plug [-]"
-curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
-    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
 # Install default terminal emulator
 echo "[-] Installing Alacritty [-]"
@@ -83,8 +79,8 @@ echo "[-] Create essential folders [-]"
 mkdir ~/playground
 
 # Change default shell
-echo "[-] Change default shell to Zsh [-]"
-chsh -s $(which zsh)
+# echo "[-] Change default shell to Fish [-]"
+# chsh -s $(which zsh)
 
 # Notify configuration finished
 echo "[-] Setup done. Run \`source ~/.zshrc\` to refresh shell config [-]"

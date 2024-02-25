@@ -59,4 +59,6 @@ export XDG_DATA_HOME="$HOME/.local/share/"
 # Alias
 alias v=nvim
 alias vo="nvim ."
+alias h=hx
+alias ho="hx ."
 alias lg=lazygit

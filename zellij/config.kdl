@@ -1,4 +1,5 @@
 simplified_ui true
+default_shell "zsh"
 themes {
     tokyo-night-storm {
         fg 169 177 214
@@ -17,3 +18,4 @@ themes {
 theme "tokyo-night-storm"
 mouse_mode true
 copy_on_select false
+scrollback_editor "/opt/homebrew/bin/hx"
