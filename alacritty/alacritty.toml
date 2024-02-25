@@ -21,8 +21,12 @@ style = "Regular"
 history = 20000
 multiplier = 2
 
+# [shell]
+# args = ["-l", "-c", "tmux attach || tmux"]
+# program = "/bin/zsh"
+
 [shell]
-args = ["-l", "-c", "tmux attach || tmux"]
+args = ["-l", "-c", "zellij attach || zellij"]
 program = "/bin/zsh"
 
 [cursor]

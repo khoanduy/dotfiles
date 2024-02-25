@@ -12,11 +12,8 @@ whichkey.register({
   p = { '"+p', 'Paste marked text from global register', silent = false },
   e = { ':NvimTreeToggle<cr>', 'Toggle file explorer' },
   E = { ':NvimTreeFindFile<cr>', 'Locate current file in file explorer' },
-  T = { ':!tmux split-window -p 25 \'zsh\'<cr><cr>', 'Open terminal' },
-  G = {
-    ':!tmux setw remain-on-exit off && tmux split-window -h -p 65 \'lazygit\'<cr><cr>',
-    'Open git client'
-  },
+  T = { ':!zellij action new-pane -d down<cr><cr>', 'Open terminal' },
+  G = { ':!zellij run -c -i -- lazygit<cr><cr>', 'Open git client' },
   q = { ':q<cr>', 'Quit current buffer' },
   Q = { ':qa<cr>', 'Quit all buffers' },
   C = { ':qa!<cr>', 'Quit all buffers without saving' },

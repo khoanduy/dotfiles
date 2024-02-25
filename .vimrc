@@ -219,9 +219,6 @@ nnoremap <silent> \| :noh<cr>
 vnoremap <leader>y "+y
 nnoremap <leader>p "+p
 
-" Split tmux pane below
-nnoremap <leader>T :!tmux split-window -l 10 zsh<cr><cr>
-
 " Open git client
 nnoremap <leader>G :!lazygit<cr><cr>
 
