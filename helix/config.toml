@@ -9,8 +9,15 @@ insert = "bar"
 normal = "block"
 select = "underline"
 
+[editor.lsp]
+display-messages = true
+
 [editor.file-picker]
 hidden = false
+
+[editor.statusline]
+left = ["mode", "spinner", "file-name"]
+right = ["diagnostics", "selections", "file-type", "file-encoding", "position", "file-line-ending"]
 
 [keys.normal]
 C-h = "jump_view_left"

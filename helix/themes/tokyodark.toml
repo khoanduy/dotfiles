@@ -1,3 +1,21 @@
+# Extend existing theme
 inherits = "tokyonight"
-"ui.background" = { fg = "foreground" }
-"ui.statusline" = { fg = "foreground" }
+
+# Transparent background
+"ui.background" = { fg = "fg" }
+
+# Transparent statusline
+"ui.statusline" = { fg = "fg-dark" }
+"ui.statusline.inactive" = { fg = "fg-gutter" }
+"ui.statusline.normal" = { fg = "blue", modifiers = ["bold"] }
+"ui.statusline.insert" = { fg = "light-green", modifiers = ["bold"] }
+"ui.statusline.select" = { fg = "magenta", modifiers = ["bold"] }
+
+# Disable italic
+comment = { fg = "comment"}
+function = { fg = "blue"}
+keyword = { fg = "purple"}
+"keyword.control.return" = { fg = "purple"}
+"variable.parameter" = { fg = "yellow"}
+"markup.italic" = {}
+"ui.text.inactive" = { fg = "comment"}
