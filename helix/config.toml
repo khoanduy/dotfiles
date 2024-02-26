@@ -20,5 +20,5 @@ C-l = "jump_view_right"
 
 [keys.normal.space]
 o = "file_picker_in_current_buffer_directory"
-G = ":pipe-to zellij run -c -i -- lazygit"
-T = ":pipe-to zellij action new-pane -d down"
+G = ":pipe-to tmux setw remain-on-exit off && tmux split-window -h -l 120 'lazygit'"
+T = ":pipe-to tmux split-window -l 12 'zsh'"

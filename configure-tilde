@@ -22,7 +22,7 @@ init
 
 echo "[-] Installing some essentials packages [-]"
 brew update
-brew install git fish zellij curl wget helix ripgrep lazygit coreutils ncdu pyenv 
+brew install git tmux curl wget helix ripgrep lazygit coreutils ncdu pyenv 
 
 # Install font
 echo "[-] Installing Source Code Pro Font [-]"
@@ -43,6 +43,7 @@ function backup() {
 
   mkdir ~/$backup_dir
   mv ~/.zshrc ~/$backup_dir/.zshrc
+  mv ~/.tmux.conf ~/$backup_dir/.tmux.conf
 }
 echo "[-] Backing up dotfiles [-]"
 backup
@@ -50,11 +51,11 @@ backup
 # Link dotfiles
 function linking() {
   ln -s $(pwd)/.zshrc ~/.zshrc
+  ln -s $(pwd)/.tmux.conf ~/.tmux.conf
   ln -s $(pwd)/.vimrc ~/.vimrc
 
   mkdir -p ${XDG_CONFIG_HOME:=$HOME/.config}
   ln -s $(pwd)/alacritty/ $XDG_CONFIG_HOME/alacritty
-  ln -s $(pwd)/zellij/ $XDG_CONFIG_HOME/zellij
   ln -s $(pwd)/helix/ $XDG_CONFIG_HOME/helix
   ln -s $(pwd)/nvim/ $XDG_CONFIG_HOME/nvim
 }
