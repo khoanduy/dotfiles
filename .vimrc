@@ -74,9 +74,54 @@ set wildmode=list:longest
 " Set the commands to save in history default number is 20.
 set history=1000
 
+" -----------------------------
+" ----- Plugin definition -----
+" -----------------------------
+
+call plug#begin()
+" The default plugin directory will be as follows:
+"   - Vim (Linux/macOS): '~/.vim/plugged'
+"   - Vim (Windows): '~/vimfiles/plugged'
+"   - Neovim (Linux/macOS/Windows): stdpath('data') . '/plugged'
+" You can specify a custom plugin directory by passing it as the argument
+"   - e.g. `call plug#begin('~/.vim/plugged')`
+"   - Avoid using standard Vim directory names like 'plugin'
+
+" Make sure you use single quotes
+
+" Colorscheme
+Plug 'rose-pine/vim'
+
+" Fzf vim integration
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+
+" Parentheses, brackets, quotes, tags, and more
+Plug 'tpope/vim-surround'
+
+" Comment stuff out
+Plug 'tpope/vim-commentary'
+
+" Shows git diff markers in the sign column
+Plug 'airblade/vim-gitgutter'
+
+" Initialize plugin system
+" - Automatically executes `filetype plugin indent on` and `syntax enable`.
+call plug#end()
+" You can revert the settings after the call like so:
+"   filetype indent off   " Disable file-type-specific indentation
+"   syntax off            " Disable syntax highlighting
+
 " --------------
 " ----- UI -----
 " --------------
+
+" Colorscheme
+" autocmd VimEnter * hi Normal ctermbg=none
+set background=dark
+let g:disable_bg = 1
+let g:disable_float_bg = 1
+colorscheme rosepine
 
 " Custom statusline
 set laststatus=2
@@ -173,6 +218,9 @@ nnoremap <silent> \| :noh<cr>
 vnoremap <leader>y "+y
 nnoremap <leader>p "+p
 
+" Open git client
+nnoremap <leader>G :!lazygit<cr><cr>
+
 " ---------------------
 " ----- Utilities -----
 " ---------------------
@@ -203,3 +251,22 @@ augroup netrw_mapping
   autocmd!
   autocmd filetype netrw call NetrwMapping()
 augroup END
+
+" ---------------------------------
+" ----- Plugin configuration ------
+" ---------------------------------
+
+" Fzf config
+let g:fzf_vim={}
+let g:fzf_vim.preview_window=[]
+let g:fzf_layout={ 'window': { 'width': 0.6, 'height': 0.6 } }
+
+" Fzf mapping
+nnoremap <leader>f :GFiles<cr>
+nnoremap <leader>F :Files<cr>
+nnoremap <leader>b :Buffers<cr>
+nnoremap <leader>/ :Rg<cr>
+
+" Don't let GitGutter set sign backgrounds
+let g:gitgutter_set_sign_backgrounds=1
+highlight SignColumn ctermbg=none
