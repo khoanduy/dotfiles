@@ -2,7 +2,7 @@
 NOTED: These are my personal configuration files, which could be changed as I develop my environment on macOS.
 
 ## Showcase
-![image](./screenshots/nvim-screenshot.png)
+![image](./screenshots/vim-screenshot.png)
 
 ## Installation
 Clone repository to your local device and `cd` into it:
@@ -22,10 +22,11 @@ After script execution finish, reload your `zsh` config file:
 $ source ~/.zshrc
 ```
 
-Open `neovim` and wait for `Lazy` installs all plugins, or you might need to run it manually
+Launch `vim`, ignore all errors and install all plugins by execute:
 ```vim
-:Lazy
+:PlugInstall
 ```
+With `neovim`, just need wait for `Lazy` installs all plugins.
 
 ## Additional options
 For Helix user, you might want to install essential LSP and DAP for specific language 
