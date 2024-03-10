@@ -22,16 +22,28 @@ After script execution finish, reload your `zsh` config file:
 $ source ~/.zshrc
 ```
 
-Launch `vim`, ignore all errors and install all plugins by execute:
-```vim
-:PlugInstall
-```
-With `neovim`, just need wait for `Lazy` installs all plugins.
-
 ## Additional options
-For Helix user, you might want to install essential LSP and DAP for specific language 
-by following this [guide](https://github.com/helix-editor/helix/wiki/How-to-install-the-default-language-servers).
+Currently, I use `git submodule` to manage Vim plugins.
+
+Adding a plugin:
+```shell script
+$ git submodule init
+$ git submodule add <repo_url> vim/pack/plugins/start/<plugin_name>
+$ git add .gitmodules vim/pack/plugins/start/<plugin_name>
+```
+
+Removing a plugin:
+```shell script
+$ git submodule deinit vim/pack/plugins/start/<plugin_name>
+$ git rm vim/pack/plugins/start/<plugin_name>
+$ rm -Rf .git/modules/vim/pack/plugins/start/<plugin_name>
+```
+
+Updating all plugins:
+```shell script
+$ git submodule update --remote --merge
+```
 
 ## References
 [tmux](https://github.com/tmux/tmux)\
-[neovim](https://neovim.io/doc/user/index.html)
+[vim](https://www.vim.org/)

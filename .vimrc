@@ -74,44 +74,6 @@ set wildmode=list:longest
 " Set the commands to save in history default number is 20.
 set history=1000
 
-" -----------------------------
-" ----- Plugin definition -----
-" -----------------------------
-
-call plug#begin()
-" The default plugin directory will be as follows:
-"   - Vim (Linux/macOS): '~/.vim/plugged'
-"   - Vim (Windows): '~/vimfiles/plugged'
-"   - Neovim (Linux/macOS/Windows): stdpath('data') . '/plugged'
-" You can specify a custom plugin directory by passing it as the argument
-"   - e.g. `call plug#begin('~/.vim/plugged')`
-"   - Avoid using standard Vim directory names like 'plugin'
-
-" Make sure you use single quotes
-
-" Colorscheme
-Plug 'rose-pine/vim'
-
-" Fzf vim integration
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'
-
-" Parentheses, brackets, quotes, tags, and more
-Plug 'tpope/vim-surround'
-
-" Comment stuff out
-Plug 'tpope/vim-commentary'
-
-" Shows git diff markers in the sign column
-Plug 'airblade/vim-gitgutter'
-
-" Initialize plugin system
-" - Automatically executes `filetype plugin indent on` and `syntax enable`.
-call plug#end()
-" You can revert the settings after the call like so:
-"   filetype indent off   " Disable file-type-specific indentation
-"   syntax off            " Disable syntax highlighting
-
 " --------------
 " ----- UI -----
 " --------------
