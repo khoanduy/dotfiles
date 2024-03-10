@@ -55,9 +55,9 @@ function linking() {
   ln -s $(pwd)/.vimrc ~/.vimrc
 
   mkdir -p ${XDG_CONFIG_HOME:=$HOME/.config}
-  ln -s $(pwd)/alacritty/ $XDG_CONFIG_HOME/alacritty
-  ln -s $(pwd)/vim/ $HOME/.vim
-  ln -s $(pwd)/nvim/ $XDG_CONFIG_HOME/nvim
+  ln -s $(pwd)/alacritty $XDG_CONFIG_HOME/alacritty
+  ln -s $(pwd)/vim $HOME/.vim
+  ln -s $(pwd)/nvim $XDG_CONFIG_HOME/nvim
 }
 echo "[-] Linking dotfiles [-]"
 linking
