@@ -235,3 +235,10 @@ nnoremap <leader>/ :Rg<cr>
 " Don't let GitGutter set sign backgrounds
 let g:gitgutter_set_sign_backgrounds=1
 highlight SignColumn ctermbg=none
+
+" ALE config
+let g:ale_sign_error = '✖'
+let g:ale_sign_warning = '▲'
+highlight ALEErrorSign ctermfg=red
+highlight ALEWarningSign ctermfg=yellow
+let g:ale_completion_enabled=1
