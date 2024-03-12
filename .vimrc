@@ -59,6 +59,9 @@ set smartcase
 set ma
 set mouse=a
 
+" Allow paste from clipboard
+set paste
+
 " Show several useful info
 set showcmd
 set noshowmode
