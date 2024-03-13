@@ -1,6 +1,6 @@
-" ----------------------------
-" ----- General settings -----
-" ----------------------------
+" ---------------------------- "
+" ----- General settings ----- "
+" ---------------------------- "
 
 " Re-map leader key
 nnoremap <space> <nop>
@@ -77,9 +77,9 @@ set wildmode=list:longest
 " Set the commands to save in history default number is 20.
 set history=1000
 
-" --------------
-" ----- UI -----
-" --------------
+" -------------- "
+" ----- UI ----- "
+" -------------- "
 
 " Colorscheme
 " autocmd VimEnter * hi Normal ctermbg=none
@@ -142,12 +142,9 @@ function! StatuslineMode()
   endif
 endfunction
 
-" -------------------
-" ----- Mapping -----
-" -------------------
-
-" Remap insert mode escape key
-inoremap jk <esc>
+" ------------------- "
+" ----- Mapping ----- "
+" ------------------- "
 
 " Remap c-w prefix
 nnoremap <silent> <leader>w <c-w>
@@ -186,15 +183,17 @@ nnoremap <leader>p "+p
 " Open git client
 nnoremap <leader>G :!lazygit<cr><cr>
 
-" ---------------------
-" ----- Utilities -----
-" ---------------------
+" --------------------- "
+" ----- Utilities ----- "
+" --------------------- "
 
 " Terminal
 autocmd TerminalOpen * setlocal nonumber
 
 " Netrw config and mapping
 hi! link netrwMarkFile Search
+highlight CursorLine ctermbg=none
+let g:netrw_liststyle=0
 
 " Toggle netrw and focus file
 nnoremap <leader>e :Explore<cr>
@@ -236,9 +235,21 @@ nnoremap <leader>/ :Rg<cr>
 let g:gitgutter_set_sign_backgrounds=1
 highlight SignColumn ctermbg=none
 
-" ALE config
-let g:ale_sign_error = '✖'
-let g:ale_sign_warning = '▲'
-highlight ALEErrorSign ctermfg=red
-highlight ALEWarningSign ctermfg=yellow
+" Enable ALE completion, must be set before ALE is loaded
 let g:ale_completion_enabled=1
+
+" Load ALE
+packadd ale
+
+" Custom ALE sign symbol
+let g:ale_sign_error = '✖'
+let g:ale_sign_info = '●'
+let g:ale_sign_warning = '▲'
+
+" Custom ALE sign color
+highlight ALEErrorSign ctermfg=red
+highlight ALEInfoSign ctermfg=lightblue
+highlight ALEWarningSign ctermfg=yellow
+
+" Disable ALE virtual text
+let g:ale_virtualtext_cursor='disabled'

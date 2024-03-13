@@ -36,7 +36,7 @@ Removing a plugin:
 ```shell script
 $ git submodule deinit vim/pack/plugins/start/<plugin_name>
 $ git rm vim/pack/plugins/start/<plugin_name>
-$ rm -Rf .git/modules/vim/pack/plugins/start/<plugin_name>
+$ rm -rf .git/modules/vim/pack/plugins/start/<plugin_name>
 ```
 
 Updating all plugins:

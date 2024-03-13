@@ -1,3 +1,12 @@
+#------------------------------------#
+#----- Alacritty configurations -----#
+#------------------------------------#
+
+# Load or attach tmux session at startup
+[shell]
+args = ["-l", "-c", "tmux attach || tmux"]
+program = "/bin/zsh"
+
 [env]
 TERM = "alacritty"
 WINIT_X11_SCALE_FACTOR = "1.0"
@@ -20,10 +29,6 @@ style = "Regular"
 [scrolling]
 history = 20000
 multiplier = 2
-
-[shell]
-args = ["-l", "-c", "tmux attach || tmux"]
-program = "/bin/zsh"
 
 [cursor]
 style = {shape = "Block", blinking = "Always"}
@@ -48,6 +53,7 @@ y = 10
 x = 0
 y = 0
 
+# Thanks to Rose Pine colorscheme
 [colors.primary]
 foreground = "#e0def4"
 background = "#191724"
