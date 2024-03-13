@@ -59,9 +59,9 @@ set smartcase
 set ma
 set mouse=a
 
-" Allow paste from clipboard
-set paste
+" Limit command height to 1 line
 set cmdheight=1
+set nopaste
 
 " Show several useful info
 set showcmd
@@ -181,6 +181,17 @@ nnoremap <leader>p "+p
 " Open git client
 nnoremap <leader>G :!lazygit<cr><cr>
 
+" ALE go to
+nnoremap <silent> gd :ALEGoToDefinition<cr>
+nnoremap <silent> gD :ALEGoToTypeDefinition<cr>
+nnoremap <silent> gi :ALEGoToImplementation<cr>
+
+" ALE actions
+nnoremap <leader>ah :ALEHover<cr>
+nnoremap <leader>ar :ALEFileRename<cr>
+nnoremap <leader>ac :ALECodeAction<cr>
+nnoremap <leader>af :ALEFixSuggest<cr>
+
 " --------------------- "
 " ----- Utilities ----- "
 " --------------------- "
@@ -214,9 +225,9 @@ augroup netrw_mapping
   autocmd filetype netrw call NetrwMapping()
 augroup END
 
-" ---------------------------------
-" ----- Plugin configuration ------
-" ---------------------------------
+" --------------------------------- "
+" ----- Plugin configuration ------ "
+" --------------------------------- "
 
 " Fzf config
 let g:fzf_vim={}
@@ -251,3 +262,44 @@ highlight ALEWarningSign ctermfg=yellow
 
 " Disable ALE virtual text
 let g:ale_virtualtext_cursor='disabled'
+
+" Custom ALE completion symbols
+let g:ale_completion_symbols = {
+\ 'text': 'ɕ',
+\ 'method': '◎',
+\ 'function': '◯',
+\ 'constructor': '⚙',
+\ 'field': '◍',
+\ 'variable': '✦',
+\ 'class': '◆',
+\ 'interface': '◇',
+\ 'module': '▧',
+\ 'property': '◉',
+\ 'unit': 'v',
+\ 'value': 'v',
+\ 'enum': 't',
+\ 'keyword': 'v',
+\ 'snippet': 'v',
+\ 'color': 'v',
+\ 'file': 'v',
+\ 'reference': 'v',
+\ 'folder': 'v',
+\ 'enum_member': 'm',
+\ 'constant': 'm',
+\ 'struct': 't',
+\ 'event': 'v',
+\ 'operator': 'f',
+\ 'type_parameter': 'p',
+\ '<default>': 'v'
+\ }
+
+" Enable ALE suggestions
+let g:ale_lsp_suggestions=1
+
+" Only run linters named in ale_linters settings.
+let g:ale_linters_explicit=1
+
+" Custom ALE linters and LSPs
+let g:ale_linters = {
+\   'python': ['pyright', 'ruff'],
+\}
