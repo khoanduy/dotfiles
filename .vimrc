@@ -61,6 +61,7 @@ set mouse=a
 
 " Allow paste from clipboard
 set paste
+set cmdheight=1
 
 " Show several useful info
 set showcmd
@@ -82,11 +83,11 @@ set history=1000
 " -------------- "
 
 " Colorscheme
-" autocmd VimEnter * hi Normal ctermbg=none
+autocmd VimEnter * hi Normal ctermbg=none
 set background=dark
-let g:disable_bg = 1
-let g:disable_float_bg = 1
-colorscheme rosepine
+let g:gruvbox_transparent_bg='1'
+let g:gruvbox_italic='0'
+colorscheme gruvbox
 
 " Custom statusline
 set laststatus=2
@@ -172,9 +173,6 @@ vnoremap <silent> > >gv
 
 " Search current marked text
 vnoremap <leader>/ y/\V<c-r>=escape(@",'/\')<cr><cr>
-
-" Turn off highlight
-nnoremap <silent> \| :noh<cr>
 
 " Copy marked text/paste to/from global register
 vnoremap <leader>y "+y

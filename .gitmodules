@@ -1,6 +1,3 @@
-[submodule "vim/pack/plugins/start/rose-pine"]
-	path = vim/pack/plugins/start/rose-pine
-	url = https://github.com/rose-pine/vim.git
 [submodule "vim/pack/plugins/start/fzf-vim"]
 	path = vim/pack/plugins/start/fzf-vim
 	url = https://github.com/junegunn/fzf.vim
@@ -19,3 +16,6 @@
 [submodule "vim/pack/plugins/opt/ale"]
 	path = vim/pack/plugins/opt/ale
 	url = https://github.com/dense-analysis/ale
+[submodule "vim/pack/plugins/start/gruvbox"]
+	path = vim/pack/plugins/start/gruvbox
+	url = https://github.com/morhetz/gruvbox
