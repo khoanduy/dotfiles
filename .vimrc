@@ -14,7 +14,6 @@ set encoding=utf-8
 set fileencoding=utf-8
 set termencoding=utf-8
 lang en_US.UTF-8
-
 " Enable type file detection
 filetype on
 filetype plugin on
@@ -83,22 +82,31 @@ set history=1000
 " -------------- "
 
 " Colorscheme
-autocmd VimEnter * hi Normal ctermbg=none
+set termguicolors
 set background=dark
 colorscheme nord
 
 " Custom statusline
 set laststatus=2
 set statusline=
+set statusline+=\ 
+set statusline+=%1*
+set statusline+='
+set statusline+=%{StatuslineMode()}
+set statusline+=:
+set statusline+=\ 
 set statusline+=%2*
-set statusline+=%=
 set statusline+=%f
 set statusline+=\ 
+set statusline+=%=
 set statusline+=%2*
 set statusline+=%m
 set statusline+=\ 
 set statusline+=%3*
 set statusline+=%y
+set statusline+=\ 
+set statusline+=%5*
+set statusline+=-
 set statusline+=\ 
 set statusline+=%4*
 set statusline+=%{strlen(&fenc)?&fenc:'none'}
@@ -108,16 +116,13 @@ set statusline+=:
 set statusline+=%L
 set statusline+=\ 
 set statusline+=%2*
-set statusline+=\ 
-set statusline+=%1*
-set statusline+=%{StatuslineMode()}
-set statusline+=\ 
 
 " Custom statusline segment color
 hi User1 ctermbg=NONE ctermfg=lightgreen guibg=NONE guifg=lightgreen
 hi User2 ctermbg=NONE ctermfg=lightcyan guibg=NONE guifg=lightcyan
 hi User3 ctermbg=NONE ctermfg=lightyellow guibg=NONE guifg=lightyellow
 hi User4 ctermbg=NONE ctermfg=grey guibg=NONE guifg=grey
+hi User5 ctermbg=NONE ctermfg=lightblue guibg=NONE guifg=lightblue
 
 " Get current mode
 function! StatuslineMode()
@@ -195,11 +200,11 @@ nnoremap <leader>af :ALEFixSuggest<cr>
 " --------------------- "
 
 " Terminal
-autocmd TerminalOpen * setlocal nonumber
+" autocmd TerminalOpen * setlocal nonumber
 
 " Netrw config and mapping
 hi! link netrwMarkFile Search
-highlight CursorLine ctermbg=none
+highlight CursorLine ctermbg=NONE guibg=NONE
 let g:netrw_liststyle=0
 
 " Toggle netrw and focus file
@@ -232,6 +237,10 @@ let g:fzf_vim={}
 let g:fzf_vim.preview_window=[]
 let g:fzf_layout={ 'window': { 'width': 0.6, 'height': 0.6 } }
 
+" Hile statusline on FZF window
+autocmd! FileType fzf set laststatus=0 noshowmode noruler
+  \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
+
 " Fzf mapping
 nnoremap <leader>f :GFiles<cr>
 nnoremap <leader>F :Files<cr>
@@ -240,7 +249,7 @@ nnoremap <leader>/ :Rg<cr>
 
 " Don't let GitGutter set sign backgrounds
 let g:gitgutter_set_sign_backgrounds=1
-highlight SignColumn ctermbg=none
+highlight SignColumn ctermbg=NONE guibg=NONE
 
 " Enable ALE completion, must be set before ALE is loaded
 let g:ale_completion_enabled=1
@@ -254,9 +263,9 @@ let g:ale_sign_info = '●'
 let g:ale_sign_warning = '▲'
 
 " Custom ALE sign color
-highlight ALEErrorSign ctermfg=red
-highlight ALEInfoSign ctermfg=lightblue
-highlight ALEWarningSign ctermfg=yellow
+highlight ALEErrorSign ctermfg=red guifg=red
+highlight ALEInfoSign ctermfg=lightblue guifg=lightblue
+highlight ALEWarningSign ctermfg=yellow guifg=yellow
 
 " Disable ALE virtual text
 let g:ale_virtualtext_cursor='disabled'
