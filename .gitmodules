@@ -16,6 +16,6 @@
 [submodule "vim/pack/plugins/opt/ale"]
 	path = vim/pack/plugins/opt/ale
 	url = https://github.com/dense-analysis/ale
-[submodule "vim/pack/plugins/start/gruvbox"]
-	path = vim/pack/plugins/start/gruvbox
-	url = https://github.com/morhetz/gruvbox
+[submodule "vim/pack/plugins/start/nordtheme"]
+	path = vim/pack/plugins/start/nordtheme
+	url = https://github.com/nordtheme/vim

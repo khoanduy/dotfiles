@@ -85,9 +85,7 @@ set history=1000
 " Colorscheme
 autocmd VimEnter * hi Normal ctermbg=none
 set background=dark
-let g:gruvbox_transparent_bg='1'
-let g:gruvbox_italic='0'
-colorscheme gruvbox
+colorscheme nord
 
 " Custom statusline
 set laststatus=2
@@ -302,4 +300,5 @@ let g:ale_linters_explicit=1
 " Custom ALE linters and LSPs
 let g:ale_linters = {
 \   'python': ['pyright', 'ruff'],
+\   'java': ['javac'],
 \}
