@@ -1,3 +1,50 @@
+" Disable compatibility with vi which can cause unexpected issues.
+set nocompatible
+
+" Enable ALE completion, must be set before ALE is loaded
+let g:ale_completion_enabled=1
+
+" ----------------------------- "
+" ----- Plugin definition ----- "
+" ----------------------------- "
+
+call plug#begin()
+" The default plugin directory will be as follows:
+"   - Vim (Linux/macOS): '~/.vim/plugged'
+"   - Vim (Windows): '~/vimfiles/plugged'
+"   - Neovim (Linux/macOS/Windows): stdpath('data') . '/plugged'
+" You can specify a custom plugin directory by passing it as the argument
+"   - e.g. `call plug#begin('~/.vim/plugged')`
+"   - Avoid using standard Vim directory names like 'plugin'
+
+" Make sure you use single quotes
+
+" Colorscheme
+Plug 'morhetz/gruvbox'
+
+" Fzf vim integration
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+
+" Parentheses, brackets, quotes, tags, and more
+Plug 'tpope/vim-surround'
+
+" Comment stuff out
+Plug 'tpope/vim-commentary'
+
+" Shows git diff markers in the sign column
+Plug 'airblade/vim-gitgutter'
+
+" Asynchronous Lint Engine
+Plug 'dense-analysis/ale'
+
+" Initialize plugin system
+" - Automatically executes `filetype plugin indent on` and `syntax enable`.
+call plug#end()
+" You can revert the settings after the call like so:
+"   filetype indent off   " Disable file-type-specific indentation
+"   syntax off            " Disable syntax highlighting
+
 " ---------------------------- "
 " ----- General settings ----- "
 " ---------------------------- "
@@ -6,14 +53,12 @@
 nnoremap <space> <nop>
 let mapleader=' '
 
-" Disable compatibility with vi which can cause unexpected issues.
-set nocompatible
-
 " Encoding
 set encoding=utf-8
 set fileencoding=utf-8
 set termencoding=utf-8
 lang en_US.UTF-8
+
 " Enable type file detection
 filetype on
 filetype plugin on
@@ -77,121 +122,79 @@ set wildmode=list:longest
 " Set the commands to save in history default number is 20.
 set history=1000
 
-" Enable ALE completion, must be set before ALE is loaded
-let g:ale_completion_enabled=1
-
-" ----------------------------- "
-" ----- Plugin definition ----- "
-" ----------------------------- "
-
-call plug#begin()
-" The default plugin directory will be as follows:
-"   - Vim (Linux/macOS): '~/.vim/plugged'
-"   - Vim (Windows): '~/vimfiles/plugged'
-"   - Neovim (Linux/macOS/Windows): stdpath('data') . '/plugged'
-" You can specify a custom plugin directory by passing it as the argument
-"   - e.g. `call plug#begin('~/.vim/plugged')`
-"   - Avoid using standard Vim directory names like 'plugin'
-
-" Make sure you use single quotes
-
-" Colorscheme
-Plug 'nordtheme/vim'
-
-" A light and simple status line
-Plug 'itchyny/lightline.vim'
-
-" Fzf vim integration
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'
-
-" Parentheses, brackets, quotes, tags, and more
-Plug 'tpope/vim-surround'
-
-" Comment stuff out
-Plug 'tpope/vim-commentary'
-
-" Shows git diff markers in the sign column
-Plug 'airblade/vim-gitgutter'
-
-" Asynchronous Lint Engine
-Plug 'dense-analysis/ale'
-
-" Initialize plugin system
-" - Automatically executes `filetype plugin indent on` and `syntax enable`.
-call plug#end()
-" You can revert the settings after the call like so:
-"   filetype indent off   " Disable file-type-specific indentation
-"   syntax off            " Disable syntax highlighting
-
 " -------------- "
 " ----- UI ----- "
 " -------------- "
 
 " Colorscheme
 set termguicolors
+autocmd VimEnter * hi Normal ctermbg=NONE guibg=NONE
 set background=dark
-colorscheme nord
+let g:gruvbox_transparent_bg='1'
+let g:gruvbox_italic='0'
+colorscheme gruvbox
 
 " Set statusline last status
 set laststatus=2
-" set statusline=
-" set statusline+=\ 
-" set statusline+=%1*
-" set statusline+='
-" set statusline+=%{StatuslineMode()}
-" set statusline+=:
-" set statusline+=\ 
-" set statusline+=%2*
-" set statusline+=%f
-" set statusline+=\ 
-" set statusline+=%=
-" set statusline+=%2*
-" set statusline+=%m
-" set statusline+=\ 
-" set statusline+=%3*
-" set statusline+=%y
-" set statusline+=\ 
-" set statusline+=%5*
-" set statusline+=-
-" set statusline+=\ 
-" set statusline+=%4*
-" set statusline+=%{strlen(&fenc)?&fenc:'none'}
-" set statusline+=\|
-" set statusline+=%l
-" set statusline+=:
-" set statusline+=%L
-" set statusline+=\ 
-" set statusline+=%2*
+set statusline=%1*
+set statusline+=\ 
+set statusline+='
+set statusline+=%{StatuslineMode()}
+set statusline+=:
+set statusline+=\ 
+set statusline+=%2*
+set statusline+=%f
+set statusline+=\ 
+set statusline+=%=
+set statusline+=%2*
+set statusline+=%m
+set statusline+=\ 
+set statusline+=%3*
+set statusline+=%y
+set statusline+=\ 
+set statusline+=%5*
+set statusline+=-
+set statusline+=\ 
+set statusline+=%4*
+set statusline+=%{strlen(&fenc)?&fenc:'none'}
+set statusline+=\|
+set statusline+=%l
+set statusline+=:
+set statusline+=%L
+set statusline+=\ 
+set statusline+=%2*
 
-" " Custom statusline segment color
-" hi User1 ctermbg=NONE ctermfg=lightgreen guibg=NONE guifg=lightgreen
-" hi User2 ctermbg=NONE ctermfg=lightcyan guibg=NONE guifg=lightcyan
-" hi User3 ctermbg=NONE ctermfg=lightyellow guibg=NONE guifg=lightyellow
-" hi User4 ctermbg=NONE ctermfg=grey guibg=NONE guifg=grey
-" hi User5 ctermbg=NONE ctermfg=lightblue guibg=NONE guifg=lightblue
+" Custom statusline segment color
+hi User1 ctermbg=NONE ctermfg=lightgreen guibg=NONE guifg=lightgreen
+hi User2 ctermbg=NONE ctermfg=lightcyan guibg=NONE guifg=lightcyan
+hi User3 ctermbg=NONE ctermfg=lightyellow guibg=NONE guifg=lightyellow
+hi User4 ctermbg=NONE ctermfg=lightgrey guibg=NONE guifg=lightgrey
+hi User5 ctermbg=NONE ctermfg=lightblue guibg=NONE guifg=lightblue
 
-" " Get current mode
-" function! StatuslineMode()
-"   let l:mode=mode()
-"   if l:mode==#'n'
-"     return 'NORMAL'
-"   elseif l:mode==?'v'
-"     return 'VISUAL'
-"   elseif l:mode==#'i'
-"     return 'INSERT'
-"   elseif l:mode==#'R'
-"     return 'REPLACE'
-"   elseif l:mode==?'s'
-"     return 'SELECT'
-"   elseif l:mode==#'t'
-"     return 'TERMINAL'
-"   elseif l:mode==#'c'
-"     return 'COMMAND'
-"   elseif l:mode==#'!'
-"     return 'SHELL'
-"   endif
-" endfunction
+" Set inactive status line style
+hi StatusLineNC ctermbg=NONE ctermfg=grey guibg=NONE guifg=grey
+
+" Get current mode
+function! StatuslineMode()
+  let l:mode=mode()
+  if l:mode==#'n'
+    return 'NORMAL'
+  elseif l:mode==?'v'
+    return 'VISUAL'
+  elseif l:mode==#'i'
+    return 'INSERT'
+  elseif l:mode==#'R'
+    return 'REPLACE'
+  elseif l:mode==?'s'
+    return 'SELECT'
+  elseif l:mode==#'t'
+    return 'TERMINAL'
+  elseif l:mode==#'c'
+    return 'COMMAND'
+  elseif l:mode==#'!'
+    return 'SHELL'
+  endif
+endfunction
 
 " ------------------- "
 " ----- Mapping ----- "
@@ -273,7 +276,7 @@ endfunction
 augroup netrw_mapping
   autocmd!
   autocmd filetype netrw call NetrwMapping()
-augroup END
+augroup end
 
 " --------------------------------- "
 " ----- Plugin configuration ------ "
@@ -283,10 +286,6 @@ augroup END
 let g:fzf_vim={}
 let g:fzf_vim.preview_window=[]
 let g:fzf_layout={ 'window': { 'width': 0.6, 'height': 0.6 } }
-
-" Hile statusline on FZF window
-autocmd! FileType fzf set laststatus=0 noshowmode noruler
-  \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
 
 " Fzf mapping
 nnoremap <leader>f :GFiles<cr>
