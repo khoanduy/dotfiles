@@ -30,6 +30,9 @@ setopt PROMPT_SUBST
 NL=$'\n'
 PS1='$NL%B%F{cyan}%0~%f%b% %F{magenta}$(__git_ps1 "  %s")%f$NL%B%(?.%F{green}.%F{red})%(!.#.$)%f%b '
 
+# Use 256 color term
+export TERM=xterm-256color
+
 # fzf export
 export FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS
 --color=fg:#e5e9f0,hl:#81a1c1

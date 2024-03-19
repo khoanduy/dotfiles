@@ -77,6 +77,53 @@ set wildmode=list:longest
 " Set the commands to save in history default number is 20.
 set history=1000
 
+" Enable ALE completion, must be set before ALE is loaded
+let g:ale_completion_enabled=1
+
+" ----------------------------- "
+" ----- Plugin definition ----- "
+" ----------------------------- "
+
+call plug#begin()
+" The default plugin directory will be as follows:
+"   - Vim (Linux/macOS): '~/.vim/plugged'
+"   - Vim (Windows): '~/vimfiles/plugged'
+"   - Neovim (Linux/macOS/Windows): stdpath('data') . '/plugged'
+" You can specify a custom plugin directory by passing it as the argument
+"   - e.g. `call plug#begin('~/.vim/plugged')`
+"   - Avoid using standard Vim directory names like 'plugin'
+
+" Make sure you use single quotes
+
+" Colorscheme
+Plug 'nordtheme/vim'
+
+" A light and simple status line
+Plug 'itchyny/lightline.vim'
+
+" Fzf vim integration
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+
+" Parentheses, brackets, quotes, tags, and more
+Plug 'tpope/vim-surround'
+
+" Comment stuff out
+Plug 'tpope/vim-commentary'
+
+" Shows git diff markers in the sign column
+Plug 'airblade/vim-gitgutter'
+
+" Asynchronous Lint Engine
+Plug 'dense-analysis/ale'
+
+" Initialize plugin system
+" - Automatically executes `filetype plugin indent on` and `syntax enable`.
+call plug#end()
+" You can revert the settings after the call like so:
+"   filetype indent off   " Disable file-type-specific indentation
+"   syntax off            " Disable syntax highlighting
+
 " -------------- "
 " ----- UI ----- "
 " -------------- "
@@ -86,65 +133,65 @@ set termguicolors
 set background=dark
 colorscheme nord
 
-" Custom statusline
+" Set statusline last status
 set laststatus=2
-set statusline=
-set statusline+=\ 
-set statusline+=%1*
-set statusline+='
-set statusline+=%{StatuslineMode()}
-set statusline+=:
-set statusline+=\ 
-set statusline+=%2*
-set statusline+=%f
-set statusline+=\ 
-set statusline+=%=
-set statusline+=%2*
-set statusline+=%m
-set statusline+=\ 
-set statusline+=%3*
-set statusline+=%y
-set statusline+=\ 
-set statusline+=%5*
-set statusline+=-
-set statusline+=\ 
-set statusline+=%4*
-set statusline+=%{strlen(&fenc)?&fenc:'none'}
-set statusline+=\|
-set statusline+=%l
-set statusline+=:
-set statusline+=%L
-set statusline+=\ 
-set statusline+=%2*
+" set statusline=
+" set statusline+=\ 
+" set statusline+=%1*
+" set statusline+='
+" set statusline+=%{StatuslineMode()}
+" set statusline+=:
+" set statusline+=\ 
+" set statusline+=%2*
+" set statusline+=%f
+" set statusline+=\ 
+" set statusline+=%=
+" set statusline+=%2*
+" set statusline+=%m
+" set statusline+=\ 
+" set statusline+=%3*
+" set statusline+=%y
+" set statusline+=\ 
+" set statusline+=%5*
+" set statusline+=-
+" set statusline+=\ 
+" set statusline+=%4*
+" set statusline+=%{strlen(&fenc)?&fenc:'none'}
+" set statusline+=\|
+" set statusline+=%l
+" set statusline+=:
+" set statusline+=%L
+" set statusline+=\ 
+" set statusline+=%2*
 
-" Custom statusline segment color
-hi User1 ctermbg=NONE ctermfg=lightgreen guibg=NONE guifg=lightgreen
-hi User2 ctermbg=NONE ctermfg=lightcyan guibg=NONE guifg=lightcyan
-hi User3 ctermbg=NONE ctermfg=lightyellow guibg=NONE guifg=lightyellow
-hi User4 ctermbg=NONE ctermfg=grey guibg=NONE guifg=grey
-hi User5 ctermbg=NONE ctermfg=lightblue guibg=NONE guifg=lightblue
+" " Custom statusline segment color
+" hi User1 ctermbg=NONE ctermfg=lightgreen guibg=NONE guifg=lightgreen
+" hi User2 ctermbg=NONE ctermfg=lightcyan guibg=NONE guifg=lightcyan
+" hi User3 ctermbg=NONE ctermfg=lightyellow guibg=NONE guifg=lightyellow
+" hi User4 ctermbg=NONE ctermfg=grey guibg=NONE guifg=grey
+" hi User5 ctermbg=NONE ctermfg=lightblue guibg=NONE guifg=lightblue
 
-" Get current mode
-function! StatuslineMode()
-  let l:mode=mode()
-  if l:mode==#'n'
-    return 'NORMAL'
-  elseif l:mode==?'v'
-    return 'VISUAL'
-  elseif l:mode==#'i'
-    return 'INSERT'
-  elseif l:mode==#'R'
-    return 'REPLACE'
-  elseif l:mode==?'s'
-    return 'SELECT'
-  elseif l:mode==#'t'
-    return 'TERMINAL'
-  elseif l:mode==#'c'
-    return 'COMMAND'
-  elseif l:mode==#'!'
-    return 'SHELL'
-  endif
-endfunction
+" " Get current mode
+" function! StatuslineMode()
+"   let l:mode=mode()
+"   if l:mode==#'n'
+"     return 'NORMAL'
+"   elseif l:mode==?'v'
+"     return 'VISUAL'
+"   elseif l:mode==#'i'
+"     return 'INSERT'
+"   elseif l:mode==#'R'
+"     return 'REPLACE'
+"   elseif l:mode==?'s'
+"     return 'SELECT'
+"   elseif l:mode==#'t'
+"     return 'TERMINAL'
+"   elseif l:mode==#'c'
+"     return 'COMMAND'
+"   elseif l:mode==#'!'
+"     return 'SHELL'
+"   endif
+" endfunction
 
 " ------------------- "
 " ----- Mapping ----- "
@@ -250,12 +297,6 @@ nnoremap <leader>/ :Rg<cr>
 " Don't let GitGutter set sign backgrounds
 let g:gitgutter_set_sign_backgrounds=1
 highlight SignColumn ctermbg=NONE guibg=NONE
-
-" Enable ALE completion, must be set before ALE is loaded
-let g:ale_completion_enabled=1
-
-" Load ALE
-packadd ale
 
 " Custom ALE sign symbol
 let g:ale_sign_error = '✖'
