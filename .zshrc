@@ -35,10 +35,10 @@ export TERM=xterm-256color
 
 # fzf export
 export FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS
---color=fg:#bdae93,hl:#83a598
---color=fg+:#bdae93,bg+:#1d2021,hl+:#83a598,gutter:-1
---color=info:#fabd2f,prompt:#fabd2f,pointer:#8ec07c
---color=marker:#8ec07c,spinner:#8ec07c,header:#83a598"
+--color=fg:#cdd6f4,hl:#f38ba8
+--color=fg+:#cdd6f4,bg+:#1e1e2e,hl+:#f38ba8,gutter:-1
+--color=info:#cba6f7,prompt:#cba6f7,pointer:#f5e0dc
+--color=marker:#f5e0dc,spinner:#f5e0dc,header:#f38ba8"
 
 # source .profile
 source $HOME/.profile

@@ -20,7 +20,7 @@ call plug#begin()
 " Make sure you use single quotes
 
 " Colorscheme
-Plug 'morhetz/gruvbox'
+Plug 'catppuccin/vim', { 'as': 'catppuccin' }
 
 " Fzf vim integration
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
@@ -128,11 +128,8 @@ set history=1000
 
 " Colorscheme
 set termguicolors
-autocmd VimEnter * hi Normal ctermbg=NONE guibg=NONE
 set background=dark
-let g:gruvbox_transparent_bg='1'
-let g:gruvbox_italic='0'
-colorscheme gruvbox
+colorscheme catppuccin_mocha
 
 " Set statusline last status
 set laststatus=2
