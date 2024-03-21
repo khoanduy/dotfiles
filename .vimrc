@@ -20,7 +20,7 @@ call plug#begin()
 " Make sure you use single quotes
 
 " Colorscheme
-Plug 'catppuccin/vim', { 'as': 'catppuccin' }
+Plug 'nanotech/jellybeans.vim'
 
 " Fzf vim integration
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
@@ -129,7 +129,9 @@ set history=1000
 " Colorscheme
 set termguicolors
 set background=dark
-colorscheme catppuccin_mocha
+let g:jellybeans_use_term_italics=0
+let g:jellybeans_use_gui_italics=0
+colorscheme jellybeans
 
 " Set statusline last status
 set laststatus=2
