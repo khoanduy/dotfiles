@@ -72,6 +72,7 @@ syntax enable
 " Add numbers to each line on the left-hand side.
 set number
 set ruler
+set hidden
 
 " Set default indentation
 set expandtab
@@ -199,6 +200,9 @@ endfunction
 " ----- Mapping ----- "
 " ------------------- "
 
+" Dismiss hightlight
+nnoremap <esc><esc> <esc>:noh<cr>
+
 " Remap c-w prefix
 nnoremap <silent> <leader>w <c-w>
 
@@ -254,7 +258,14 @@ nnoremap <leader>af :ALEFixSuggest<cr>
 " Netrw config and mapping
 hi! link netrwMarkFile Search
 highlight CursorLine ctermbg=NONE guibg=NONE
-let g:netrw_liststyle=0
+let g:netrw_liststyle=3
+
+" Sync current directory and browsing directory
+" This solves the problem with the 'move' command
+let g:netrw_keepdir=0
+
+" A better copy command
+let g:netrw_localcopydircmd='cp -r'
 
 " Toggle netrw and focus file
 nnoremap <leader>e :Explore<cr>
@@ -263,13 +274,31 @@ nnoremap <leader>E :Explore %:p:h<cr>
 " Remap key inside netrw buffer
 function! NetrwMapping()
   " cancel browsing
-  nmap <buffer> <silent> x :Rexplore<cr>
-  " go back in history
-  nmap <buffer> <silent> H u
-  " go up a dir
-  nmap <buffer> <silent> h -^
-  " open a dir or file
-  nmap <buffer> <silent> l <cr>
+  nmap <buffer> <silent> E :Rexplore<cr>
+
+  " Toggle the mark on a file
+  nmap <buffer> x mf
+
+  " Unmark all files
+  nmap <buffer> X mu
+
+  " Create a file
+  nmap <buffer> a %:w<cr>:buffer #<cr>
+
+  " Copy marked files
+  nmap <buffer> y mc
+
+  " Move marked files
+  nmap <buffer> p mm
+
+  " Set the directory under the cursor as the current target
+  nmap <buffer> t mtfq
+
+  " Show the list of marked files
+  nmap <buffer> ex :echo join(netrw#Expose('netrwmarkfilelist'), "\n")<cr>
+
+  " Show the current target directory
+  nmap <buffer> et :echo 'Target:' . netrw#Expose('netrwmftgt')<cr>
 endfunction
 
 augroup netrw_mapping
@@ -291,6 +320,9 @@ nnoremap <leader>f :GFiles<cr>
 nnoremap <leader>F :Files<cr>
 nnoremap <leader>b :Buffers<cr>
 nnoremap <leader>/ :Rg<cr>
+
+" Let :grep use ripgrep
+set grepprg=rg\ --vimgrep\ --smart-case\ --follow
 
 " Don't let GitGutter set sign backgrounds
 let g:gitgutter_set_sign_backgrounds=1
