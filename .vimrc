@@ -35,6 +35,9 @@ Plug 'tpope/vim-commentary'
 " Shows git diff markers in the sign column
 Plug 'airblade/vim-gitgutter'
 
+" A solid language pack for Vim
+Plug 'sheerun/vim-polyglot'
+
 " Asynchronous Lint Engine
 Plug 'dense-analysis/ale'
 
