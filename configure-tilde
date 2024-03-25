@@ -27,7 +27,7 @@ brew install git tmux curl wget fzf ripgrep lazygit coreutils ncdu pyenv
 # Install font
 echo "[-] Installing Terminess TTF Nerd Font [-]"
 brew tap homebrew/cask-fonts
-brew install --cask font-terminess-ttf-nerd-font
+brew install --cask font-sauce-code-pro-nerd-font
 
 # Ensure Rust installation
 if ! hash rustc &> /dev/null; then
