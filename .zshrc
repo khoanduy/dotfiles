@@ -12,10 +12,6 @@ setopt NO_BEEP
 bindkey '\e[A' history-beginning-search-backward
 bindkey '\e[B' history-beginning-search-forward
 
-# Enable Vi mode
-bindkey -v
-export KEYTIMEOUT=1
-
 # Enable git prompt
 source ~/.zsh/plugins/git/git-prompt.sh
 
