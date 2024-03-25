@@ -8,9 +8,14 @@ setopt HIST_EXPIRE_DUPS_FIRST
 setopt EXTENDED_HISTORY
 setopt NO_BEEP
 
-# Autocompletion using arrow keys (based on history)
+# Use emacs keybinding
+bindkey -e
+
+# Autocompletion (based on history)
 bindkey '\e[A' history-beginning-search-backward
 bindkey '\e[B' history-beginning-search-forward
+bindkey '^P' history-beginning-search-backward
+bindkey '^N' history-beginning-search-forward
 
 # Enable git prompt
 source ~/.zsh/plugins/git/git-prompt.sh

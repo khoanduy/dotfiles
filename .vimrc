@@ -261,7 +261,7 @@ nnoremap <leader>af :ALEFixSuggest<cr>
 " Netrw config and mapping
 hi! link netrwMarkFile Search
 highlight CursorLine ctermbg=NONE guibg=NONE
-let g:netrw_liststyle=3
+let g:netrw_liststyle=0
 
 " Sync current directory and browsing directory
 " This solves the problem with the 'move' command
@@ -278,6 +278,15 @@ nnoremap <leader>E :Explore %:p:h<cr>
 function! NetrwMapping()
   " cancel browsing
   nmap <buffer> <silent> E :Rexplore<cr>
+
+  " Go back in history
+  nmap <buffer> H u
+
+  " Go up a directory
+  nmap <buffer> h -^
+
+  " Go down a directory / open file
+  nmap <buffer> l <CR>
 
   " Toggle the mark on a file
   nmap <buffer> x mf
@@ -382,6 +391,6 @@ let g:ale_linters_explicit=1
 
 " Custom ALE linters and LSPs
 let g:ale_linters = {
-\  'python': ['pyright', 'ruff'],
-\  'java': ['javac'],
-\  }
+\ 'python': ['pyright', 'ruff'],
+\ 'java': ['javac'],
+\ }
