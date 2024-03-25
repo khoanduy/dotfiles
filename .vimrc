@@ -382,6 +382,6 @@ let g:ale_linters_explicit=1
 
 " Custom ALE linters and LSPs
 let g:ale_linters = {
-\   'python': ['pyright', 'ruff'],
-\   'java': ['javac'],
-\}
+\  'python': ['pyright', 'ruff'],
+\  'java': ['javac'],
+\  }
