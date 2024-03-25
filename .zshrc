@@ -1,11 +1,9 @@
+# Zsh configuration
 # Initialize autocompletion
 autoload -U compinit; compinit
 
 # Set up history
 setopt SHARE_HISTORY
-HISTFILE=$HOME/.zhistory
-SAVEHIST=1000
-HISTSIZE=999
 setopt HIST_EXPIRE_DUPS_FIRST
 setopt EXTENDED_HISTORY
 setopt NO_BEEP
@@ -13,6 +11,10 @@ setopt NO_BEEP
 # Autocompletion using arrow keys (based on history)
 bindkey '\e[A' history-beginning-search-backward
 bindkey '\e[B' history-beginning-search-forward
+
+# Enable Vi mode
+bindkey -v
+export KEYTIMEOUT=1
 
 # Enable git prompt
 source ~/.zsh/plugins/git/git-prompt.sh
@@ -30,29 +32,13 @@ setopt PROMPT_SUBST
 NL=$'\n'
 PS1='$NL%B%F{cyan}%0~%f%b% %F{magenta}$(__git_ps1 "  %s")%f$NL%B%(?.%F{green}.%F{red})%(!.#.$)%f%b '
 
-# Use 256 color term
-export TERM=xterm-256color
-
-# fzf export
-export FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS
---color=fg:#e4e4e4,bg:#161616,hl:#e98885
---color=fg+:#e4e4e4,bg+:#161616,hl+:#e98885,gutter:-1
---color=info:#e7cdfb,prompt:#e7cdfb,pointer:#ffb472
---color=marker:#a3c38b,spinner:#a3c38b,header:#e98885"
-
 # source .profile
 source $HOME/.profile
-
-# Cargo
-. "$HOME/.cargo/env"
 
 # pyenv
 export PYENV_ROOT="$HOME/.pyenv"
 command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
-
-# Set XDG_DATA_HOME
-export XDG_DATA_HOME="$HOME/.local/share/"
 
 # Alias
 alias v=vim
