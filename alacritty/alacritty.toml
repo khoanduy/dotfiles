@@ -53,35 +53,31 @@ y = 10
 x = 0
 y = 0
 
-# Thanks to Jellybeans
+# Thanks to Base16 default dark
 [colors.primary]
-background = "#161616"
-foreground = "#e4e4e4"
+background = '#181818'
+foreground = '#d8d8d8'
 
 [colors.cursor]
-text = "#feffff"
-cursor = "#ffb472"
+text = '#181818'
+cursor = '#d8d8d8'
 
 [colors.normal]
-black = "#a3a3a3"
-red = "#e98885"
-green = "#a3c38b"
-yellow = "#ffc68d"
-blue = "#a6cae2"
-magenta = "#e7cdfb"
-cyan = "#00a69f"
-white = "#e4e4e4"
+black   = '#181818'
+red     = '#ab4642'
+green   = '#a1b56c'
+yellow  = '#f7ca88'
+blue    = '#7cafc2'
+magenta = '#ba8baf'
+cyan    = '#86c1b9'
+white   = '#d8d8d8'
 
 [colors.bright]
-black = "#c8c8c8"
-red = "#ffb2b0"
-green = "#c8e2b9"
-yellow = "#ffe1af"
-blue = "#bddff7"
-magenta = "#fce2ff"
-cyan = "#0bbdb6"
-white = "#feffff"
-
-[colors.selection]
-text = "#5963a2"
-background = "#f6f6f6"
+black   = '#585858'
+red     = '#ab4642'
+green   = '#a1b56c'
+yellow  = '#f7ca88'
+blue    = '#7cafc2'
+magenta = '#ba8baf'
+cyan    = '#86c1b9'
+white   = '#f8f8f8'
