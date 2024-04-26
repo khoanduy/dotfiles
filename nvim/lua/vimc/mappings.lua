@@ -12,6 +12,7 @@ whichkey.register({
   p = { '"+p', 'Paste marked text from global register', silent = false },
   e = { ':NvimTreeToggle<cr>', 'Toggle file explorer' },
   E = { ':NvimTreeFindFile<cr>', 'Locate current file in file explorer' },
+  t = { ':TroubleToggle<cr>', 'Open trouble lists' },
   T = { ':!tmux split-window -l 12 \'zsh\'<cr><cr>', 'Open terminal' },
   G = {
     ':!tmux setw remain-on-exit off && tmux split-window -h -l 120 \'lazygit\'<cr><cr>',
@@ -67,6 +68,9 @@ vim.keymap.set('n', '<leader>/', fzflua.live_grep_native, { desc = 'Grep pattern
 vim.keymap.set('v', '<leader>/', [[y/\V<C-R>=escape(@",'/\')<cr><cr>]], {
   desc = 'Search current marked text'
 })
+
+-- Re-map go to references when having Trouble
+vim.keymap.set('n', 'gR', function() require('trouble').toggle('lsp_references') end, { desc = 'LSP references troubles' })
 
 -- Remap indent keys
 vim.keymap.set('v', '<', '<gv', { silent = true })

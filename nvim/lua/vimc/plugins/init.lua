@@ -106,6 +106,22 @@ lazy.setup({
       })
     end
   },
+  {
+    'folke/trouble.nvim',
+    opts = {
+      icons = false,
+      fold_open = '◇', -- icon used for open folds
+      fold_closed = '◆', -- icon used for closed folds
+      indent_lines = false, -- add an indent guide below the fold icons
+      signs = {
+          error = '✖',
+          warning = '▲',
+          hint = '✱',
+          information = '●'
+      },
+      use_diagnostic_signs = false
+    },
+  }
 })
 
 -- Load custom statusline
