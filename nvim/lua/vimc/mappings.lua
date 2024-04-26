@@ -21,6 +21,12 @@ whichkey.register({
   Q = { ':qa<cr>', 'Quit all buffers' },
   C = { ':qa!<cr>', 'Quit all buffers without saving' },
   s = { ':w<cr>', 'Save current buffer' },
+  x = {
+    name = 'nvimdiff',
+    p = { ':diffput 2<cr>', 'Put current change to middle' },
+    l = { ':diffget 1<cr>', 'Get left changes' },
+    r = { ':diffget 3<cr>', 'Get right changes' },
+  },
   w = {
     name = 'Window',
     v = { '<c-w>v', 'Split buffer vertically' },
