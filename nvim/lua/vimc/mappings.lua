@@ -9,10 +9,10 @@ whichkey.register({
   b = { fzflua.buffers, 'Buffer list', silent = false },
   B = { ':Gitsigns toggle_current_line_blame<cr>', 'Toggle current lien blame' },
   r = { ':e<cr>', 'Reload current buffer from disk', silent = false },
+  y = { '"+y', 'Copy marked text to global register', mode = 'v', silent = false },
   p = { '"+p', 'Paste marked text from global register', silent = false },
   e = { ':NvimTreeToggle<cr>', 'Toggle file explorer' },
   E = { ':NvimTreeFindFile<cr>', 'Locate current file in file explorer' },
-  t = { ':TroubleToggle<cr>', 'Open trouble lists' },
   T = { ':!tmux split-window -l 12 \'zsh\'<cr><cr>', 'Open terminal' },
   G = {
     ':!tmux setw remain-on-exit off && tmux split-window -h -l 120 \'lazygit\'<cr><cr>',
@@ -22,7 +22,9 @@ whichkey.register({
   Q = { ':qa<cr>', 'Quit all buffers' },
   C = { ':qa!<cr>', 'Quit all buffers without saving' },
   s = { ':w<cr>', 'Save current buffer' },
-  x = {
+  d = { vim.diagnostic.open_float, 'Open diagnostic float' },
+  x = { ':TroubleToggle<cr>', 'Open trouble lists' },
+  i = {
     name = 'nvimdiff',
     p = { ':diffput 2<cr>', 'Put current change to middle' },
     l = { ':diffget 1<cr>', 'Get left changes' },
@@ -32,47 +34,43 @@ whichkey.register({
     name = 'Window',
     v = { '<c-w>v', 'Split buffer vertically' },
     h = { '<c-w>s', 'Split buffer horizontally' },
-  }
+  },
+  ['/'] = { fzflua.live_grep_native, 'Grep pattern within project' },
 }, { prefix = '<leader>' })
 
 whichkey.register({
-  y = { '"+y', 'Copy marked text to global register', mode = 'v', silent = false },
   T = { [[<c-\><c-n>:bd!<cr>]], 'Close terminal', mode = 't' },
+  ['/'] = { [[y/\V<C-R>=escape(@",'/\')<cr><cr>]], 'Search current marked text', mode = 'v' },
 }, { prefix = '<leader>' })
 
--- Remap insert mode escape key
-vim.keymap.set('i', 'jk', '<esc>', { silent = true })
+whichkey.register({
+  d = { vim.diagnostic.goto_prev, 'Prev diagnostic' },
+}, { prefix = '[' })
 
--- Dismiss hightlight
-vim.keymap.set('n', '<esc><esc>', '<esc>:noh<cr>', { silent = true })
+whichkey.register({
+  d = { vim.diagnostic.goto_next, 'Next diagnostic' },
+}, { prefix = ']' })
 
--- Remap switch region keys
-vim.keymap.set('n', '<c-h>', '<c-w>h', { silent = true })
-vim.keymap.set('n', '<c-j>', '<c-w>j', { silent = true })
-vim.keymap.set('n', '<c-k>', '<c-w>k', { silent = true })
-vim.keymap.set('n', '<c-l>', '<c-w>l', { silent = true })
-
-vim.keymap.set('t', '<c-h>', [[<c-\><c-n><c-w>h]], { silent = true })
-vim.keymap.set('t', '<c-j>', [[<c-\><c-n><c-w>j]], { silent = true })
-vim.keymap.set('t', '<c-k>', [[<c-\><c-n><c-w>k]], { silent = true })
-vim.keymap.set('t', '<c-l>', [[<c-\><c-n><c-w>l]], { silent = true })
-
--- Re-size split windows using arrow keys
-vim.keymap.set('n', '<up>', ':resize -2<cr>', { silent = true })
-vim.keymap.set('n', '<down>', ':resize +2<cr>', { silent = true })
-vim.keymap.set('n', '<left>', ':vertical resize +2<cr>', { silent = true })
-vim.keymap.set('n', '<right>', ':vertical resize -2<cr>', { silent = true })
-
-vim.keymap.set('n', '|', ':noh<cr>', { desc = 'Clear highlights' })
-vim.keymap.set('n', '<leader>/', fzflua.live_grep_native, { desc = 'Grep pattern within project' })
-vim.keymap.set('v', '<leader>/', [[y/\V<C-R>=escape(@",'/\')<cr><cr>]], {
-  desc = 'Search current marked text'
+whichkey.register({
+  ['<esc><esc>'] = { '<esc>:noh<cr>', 'Dismiss highlight' },
+  ['<c-h>'] = { '<c-w>h', 'Switch to left region' },
+  ['<c-j>'] = { '<c-w>j', 'Switch to bottom region' },
+  ['<c-k>'] = { '<c-w>k', 'Switch to top region' },
+  ['<c-l>'] = { '<c-w>l', 'Switch to right region' },
+  ['<up>'] = { ':resize -2<cr>', 'Decrease vertical size' },
+  ['<down>'] = { ':resize +2<cr>', 'Increase vertical size' },
+  ['<left>'] = { ':vertical resize +2<cr>', 'Left horizontal resize' },
+  ['<right>'] = { ':vertical resize -2<cr>', 'Right horizontal resize' },
+  gR = { function() require('trouble').toggle('lsp_references') end, 'LSP references troubles' },
+  ['<'] = { '<gv', 'Indent marked text left' },
+  ['>'] = { '>gv', 'Indent marked text right' },
 })
 
--- Re-map go to references when having Trouble
-vim.keymap.set('n', 'gR', function() require('trouble').toggle('lsp_references') end, { desc = 'LSP references troubles' })
-
--- Remap indent keys
-vim.keymap.set('v', '<', '<gv', { silent = true })
-vim.keymap.set('v', '>', '>gv', { silent = true })
+whichkey.register({
+  jk = { '<esc>', 'Insert mode escape key', mode = 'i' },
+  ['<c-h>'] = { [[<c-\><c-n><c-w>h]], 'Switch to left region', mode = 't' },
+  ['<c-j>'] = { [[<c-\><c-n><c-w>j]], 'Switch to bottom region', mode = 't' },
+  ['<c-k>'] = { [[<c-\><c-n><c-w>k]], 'Switch to top region', mode = 't' },
+  ['<c-l>'] = { [[<c-\><c-n><c-w>l]], 'Switch to right region', mode = 't' },
+})
 -- End mappings' config --
