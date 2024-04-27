@@ -22,7 +22,7 @@ init
 
 echo "[-] Installing some essentials packages [-]"
 brew update
-brew install curl wget git tmux neovim fzf ripgrep lazygit coreutils ncdu pyenv 
+brew install curl wget git tmux neovim zsh-autosuggestions fzf ripgrep lazygit coreutils ncdu pyenv 
 
 # Install font
 echo "[-] Installing Source Code Pro Font [-]"
@@ -78,6 +78,7 @@ brew install pgcli mycli
 
 # Create some essential folders
 echo "[-] Create essential folders [-]"
+mkdir ~/scripts
 mkdir ~/playground
 
 # Change default shell

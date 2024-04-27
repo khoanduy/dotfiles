@@ -1,6 +1,7 @@
 # Zsh configuration
 # Initialize autocompletion
-autoload -U compinit; compinit
+setopt auto_cd
+autoload -Uz compinit; compinit
 
 # Set up history
 setopt SHARE_HISTORY
@@ -33,8 +34,11 @@ setopt PROMPT_SUBST
 NL=$'\n'
 PS1='$NL%B%F{cyan}%0~%f%b% %F{magenta}$(__git_ps1 "  %s")%f$NL%B%(?.%F{green}.%F{red})%(!.#.$)%f%b '
 
-# source .profile
+# Source .profile
 source $HOME/.profile
+
+# Activate autosuggestions
+source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # pyenv
 export PYENV_ROOT="$HOME/.pyenv"
