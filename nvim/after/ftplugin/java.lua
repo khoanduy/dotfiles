@@ -16,7 +16,7 @@ local config = {
     '-Declipse.product=org.eclipse.jdt.ls.core.product',
     '-Dlog.protocol=true',
     '-Dlog.level=ALL',
-    '-Xmx4g',
+    '-Xmx8G',
     '--add-modules=ALL-SYSTEM',
     '--add-opens', 'java.base/java.util=ALL-UNNAMED',
     '--add-opens', 'java.base/java.lang=ALL-UNNAMED',
@@ -48,6 +48,12 @@ local config = {
         },
         useBlocks = true,
       },
+      maven = {
+        downloadSources = true,
+      },
+      references = {
+        includeDecompiledSources = true,
+      },
       configuration = {
         runtimes = {
           {
@@ -64,6 +70,21 @@ local config = {
           },
         },
       },
+    },
+    signatureHelp = {
+      enabled = true
+    },
+    sources = {
+      organizeImports = {
+        starThreshold = 9999,
+        staticStarThreshold = 9999,
+      },
+    },
+    codeGeneration = {
+      toString = {
+        template = "${object.className}{${member.name()}=${member.value}, ${otherMembers}}",
+      },
+      useBlocks = true,
     },
   },
   on_attach = require('vimc/lsp/common').make_conf().on_attach,

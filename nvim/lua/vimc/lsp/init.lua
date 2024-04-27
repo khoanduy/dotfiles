@@ -4,6 +4,7 @@ local lspconfig = require('lspconfig')
 local servers = {
   'rust_analyzer',
   'pyright',
+  'jdtls',
   'sqlls',
   'ansiblels',
   'bashls',
@@ -36,7 +37,9 @@ require('mason-lspconfig').setup {
 -- LSP servers' default config
 local config = require('vimc/lsp/common').make_conf()
 for _, lsp in ipairs(servers) do
-  lspconfig[lsp].setup(config)
+  if lsp ~= 'jdtls' then
+    lspconfig[lsp].setup(config)
+  end
 end
 
 -- nvim-cmp setup
