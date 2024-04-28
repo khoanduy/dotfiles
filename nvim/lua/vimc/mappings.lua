@@ -1,6 +1,7 @@
 -- Mappings' config --
 local whichkey = require('which-key')
 local fzflua = require('fzf-lua')
+local utils = require('vimc.utilities')
 
 -- Define mapping groups
 whichkey.register({
@@ -13,9 +14,9 @@ whichkey.register({
   p = { '"+p', 'Paste marked text from global register', silent = false },
   e = { ':NvimTreeToggle<cr>', 'Toggle file explorer' },
   E = { ':NvimTreeFindFile<cr>', 'Locate current file in file explorer' },
-  T = { ':!tmux split-window -l 12 \'zsh\'<cr><cr>', 'Open terminal' },
+  T = { ':!tmux split-window -l 12 "zsh"<cr><cr>', 'Open terminal' },
   G = {
-    ':!tmux setw remain-on-exit off && tmux split-window -h -l 120 \'lazygit\'<cr><cr>',
+    ':!tmux setw remain-on-exit off && tmux split-window -h -l 120 "lazygit"<cr><cr>',
     'Open git client'
   },
   q = { ':q<cr>', 'Quit current buffer' },
@@ -62,8 +63,6 @@ whichkey.register({
   ['<left>'] = { ':vertical resize +2<cr>', 'Left horizontal resize' },
   ['<right>'] = { ':vertical resize -2<cr>', 'Right horizontal resize' },
   gR = { function() require('trouble').toggle('lsp_references') end, 'LSP references troubles' },
-  ['<'] = { '<gv', 'Indent marked text left' },
-  ['>'] = { '>gv', 'Indent marked text right' },
 })
 
 whichkey.register({
@@ -73,4 +72,16 @@ whichkey.register({
   ['<c-k>'] = { [[<c-\><c-n><c-w>k]], 'Switch to top region', mode = 't' },
   ['<c-l>'] = { [[<c-\><c-n><c-w>l]], 'Switch to right region', mode = 't' },
 })
+
+whichkey.register({
+  j = {
+    name = 'Java custom commands',
+    i = {
+      ':!tmux new-window -n "mvn-install" "mvn -N flyway:migrate && mvn clean install -T 5"<cr><cr>',
+      'Clean and install project using Maven',
+      silent = false
+    },
+    t = { utils.run_maven_test, 'Run current test using Maven', silent = false, expr = true },
+  }
+}, { prefix = '\\' })
 -- End mappings' config --
