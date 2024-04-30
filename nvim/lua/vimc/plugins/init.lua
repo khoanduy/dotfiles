@@ -100,8 +100,11 @@ lazy.setup({
   {
     'mfussenegger/nvim-jdtls',
     ft = 'java',
+    dependencies = {
+      'mfussenegger/nvim-dap'
+    }
   },
-  require('vimc/plugins/nvim-dap'),
+  require('vimc/plugins/nvim-dap-ui'),
 
   -- UI
   require('vimc/plugins/telescope'),

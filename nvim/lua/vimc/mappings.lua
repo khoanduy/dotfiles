@@ -73,7 +73,7 @@ whichkey.register({
 })
 
 whichkey.register({
-  j = {
+  c = {
     name = 'Java custom commands',
     i = {
       ':!tmux new-window -n "mvn-install" "mvn -N flyway:migrate && mvn clean install -T 5"<cr><cr>',
@@ -82,23 +82,33 @@ whichkey.register({
     },
     t = { utils.run_maven_test, 'Run current test using Maven', silent = false, expr = true },
   },
+  d = {
+    name = 'DAP commands',
+    s = {
+      require('jdtls.dap').setup_dap_main_class_configs,
+      'Setup DAP main class configs',
+      silent = false
+    },
+    t = {
+      require('dapui').toggle,
+      'Toggle DAP UI'
+    },
+    b = { ':DapToggleBreakpoint<cr>', 'Toggle DAP Breakpoint' },
+    c = { ':DapContinue<cr>', 'Debug continue' },
+    i = { ':DapUIStepInto<cr>', 'Debug step into' },
+    o = { ':DapUIStepOut<cr>', 'Debug step out' },
+    v = { ':DapUIStepOver<cr>', 'Debug step over' },
+    q = { ':DapTerminate<cr>', 'Debug terminate' },
+  },
   t = {
-    name = 'Run test',
+    name = 'Testing commands',
     c = {
-      function ()
-        if vim.bo.filetype == 'java' then
-          require('jdtls').test_class();
-        end
-      end,
+      require('jdtls').test_class,
       'Run current test file',
       silent = false
     },
     m = {
-      function ()
-        if vim.bo.filetype == 'java' then
-          require('jdtls').test_nearest_method();
-        end
-      end,
+      require('jdtls').test_nearest_method(),
       'Run current test method',
       silent = false
     }

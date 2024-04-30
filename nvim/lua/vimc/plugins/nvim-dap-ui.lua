@@ -7,24 +7,23 @@ return {
     'nvim-telescope/telescope-dap.nvim'
   },
   config = function (_, opts)
-    local dap = require('dap')
-    require('dapui').setup(opts)
+    local dap, dapui = require('dap'), require('dapui')
+    dapui.setup(opts)
 
-    dap.listeners.after.event_initialized['dapui_config'] = function()
-      require('dapui').open()
+    dap.listeners.before.attach.dapui_config = function()
+      dapui.open()
+    end
+    dap.listeners.before.launch.dapui_config = function()
+      dapui.open()
+    end
+    dap.listeners.before.event_terminated.dapui_config = function()
+      dapui.close()
+    end
+    dap.listeners.before.event_exited.dapui_config = function()
+      dapui.close()
     end
 
-    dap.listeners.before.event_terminated['dapui_config'] = function()
-      -- Commented to prevent DAP UI from closing when unit tests finish
-      -- require('dapui').close()
-    end
-
-    dap.listeners.before.event_exited['dapui_config'] = function()
-      -- Commented to prevent DAP UI from closing when unit tests finish
-      -- require('dapui').close()
-    end
-
-    -- Add dap configurations based on your language/adapter settings
+    -- Add DAP configurations based on your language or adapter settings
     dap.configurations.java = {
       {
         name = 'Debug Launch (2GB)';

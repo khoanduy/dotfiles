@@ -100,12 +100,9 @@ local config = {
   flags = { allow_incremental_sync = true },
   init_options = { bundles = bundles },
   capabilities = require('cmp_nvim_lsp').default_capabilities(),
-  on_attach = function(client, bufnr)
-    require('vimc/lsp/common').make_conf().on_attach(client, bufnr)
-    jdtls.setup_dap({ hotcodereplace = 'auto' })
-    require('jdtls.dap').setup_dap_main_class_configs()
-  end
+  on_attach = require('vimc/lsp/common').make_conf().on_attach
 }
+
 -- This starts a new client & server,
 -- or attaches to an existing client & server depending on the `root_dir`.
 require('jdtls').start_or_attach(config)
