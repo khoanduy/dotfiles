@@ -96,7 +96,7 @@ M.highlight = setmetatable({}, {
 function M.with_config(config)
     M.config = vim.tbl_extend("force", {
         telescope = true,
-        telescope_borders = false,
+        telescope_borders = true,
         indentblankline = true,
         notify = true,
         ts_rainbow = true,

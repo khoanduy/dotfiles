@@ -1,13 +1,13 @@
 -- Mappings' config --
 local whichkey = require('which-key')
-local fzflua = require('fzf-lua')
+local telescope = require('telescope.builtin')
 local utils = require('vimc.utilities')
 
 -- Define mapping groups
 whichkey.register({
-  f = { fzflua.files, 'Find files' },
-  F = { fzflua.git_files, 'Find files (include ignored files)' },
-  b = { fzflua.buffers, 'Buffer list', silent = false },
+  f = { telescope.find_files, 'Find files' },
+  F = { telescope.git_files, 'Find files (include ignored files)' },
+  b = { telescope.buffers, 'Buffer list', silent = false },
   B = { ':Gitsigns toggle_current_line_blame<cr>', 'Toggle current lien blame' },
   r = { ':e<cr>', 'Reload current buffer from disk', silent = false },
   y = { '"+y', 'Copy marked text to global register', mode = 'v', silent = false },
@@ -36,7 +36,7 @@ whichkey.register({
     v = { '<c-w>v', 'Split buffer vertically' },
     h = { '<c-w>s', 'Split buffer horizontally' },
   },
-  ['/'] = { fzflua.live_grep_native, 'Grep pattern within project' },
+  ['/'] = { telescope.live_grep, 'Grep pattern within project' },
 }, { prefix = '<leader>' })
 
 whichkey.register({
@@ -53,7 +53,6 @@ whichkey.register({
 }, { prefix = ']' })
 
 whichkey.register({
-  ['<esc><esc>'] = { '<esc>:noh<cr>', 'Dismiss highlight' },
   ['<c-h>'] = { '<c-w>h', 'Switch to left region' },
   ['<c-j>'] = { '<c-w>j', 'Switch to bottom region' },
   ['<c-k>'] = { '<c-w>k', 'Switch to top region' },
@@ -82,6 +81,27 @@ whichkey.register({
       silent = false
     },
     t = { utils.run_maven_test, 'Run current test using Maven', silent = false, expr = true },
+  },
+  t = {
+    name = 'Run test',
+    c = {
+      function ()
+        if vim.bo.filetype == 'java' then
+          require('jdtls').test_class();
+        end
+      end,
+      'Run current test file',
+      silent = false
+    },
+    m = {
+      function ()
+        if vim.bo.filetype == 'java' then
+          require('jdtls').test_nearest_method();
+        end
+      end,
+      'Run current test method',
+      silent = false
+    }
   }
 }, { prefix = '\\' })
 -- End mappings' config --

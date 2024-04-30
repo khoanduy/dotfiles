@@ -8,6 +8,14 @@ vim.opt_local.shiftwidth = 4
 vim.opt_local.softtabstop = 4
 vim.opt_local.shiftround = true
 
+-- Debugging
+local bundles = {
+  vim.fn.glob(data_home .. '/nvim/mason/share/java-debug-adapter/com.microsoft.java.debug.plugin.jar'),
+}
+
+-- Running or debugging unit tests
+vim.list_extend(bundles, vim.split(vim.fn.glob(data_home .. '/nvim/mason/share/java-test/*.jar', 1), '\n'))
+
 local config = {
   cmd = {
     os.getenv('JDK17') .. '/bin/java',
@@ -27,8 +35,10 @@ local config = {
   root_dir = require('jdtls.setup').find_root({ 'pom.xml', '.git', 'mvnw', 'gradlew' }),
   settings = {
     java = {
+      home = os.getenv('JAVA_HOME'),
+      eclipse = { downloadSources = true },
       autobuild = { enabled = false },
-      maxConcurrentBuilds = 8,
+      maxConcurrentBuilds = 10,
       signatureHelp = { enabled = true },
       saveActions = {
         organizeImports = false,
@@ -48,13 +58,12 @@ local config = {
         },
         useBlocks = true,
       },
-      maven = {
-        downloadSources = true,
-      },
-      references = {
-        includeDecompiledSources = true,
-      },
+      maven = { downloadSources = true },
+      references = { includeDecompiledSources = true },
+      implementationsCodeLens = { enabled = true },
+      referencesCodeLens = { enabled = true },
       configuration = {
+        updateBuildConfiguration = 'interactive',
         runtimes = {
           {
             name = 'JavaSE-11',
@@ -74,6 +83,7 @@ local config = {
     signatureHelp = {
       enabled = true
     },
+    extendedClientCapabilities = jdtls.extendedClientCapabilities,
     sources = {
       organizeImports = {
         starThreshold = 9999,
@@ -82,13 +92,19 @@ local config = {
     },
     codeGeneration = {
       toString = {
-        template = "${object.className}{${member.name()}=${member.value}, ${otherMembers}}",
+        template = '${object.className}{${member.name()}=${member.value}, ${otherMembers}}',
       },
       useBlocks = true,
     },
   },
-  on_attach = require('vimc/lsp/common').make_conf().on_attach,
-  capabilities = require('cmp_nvim_lsp').default_capabilities()
+  flags = { allow_incremental_sync = true },
+  init_options = { bundles = bundles },
+  capabilities = require('cmp_nvim_lsp').default_capabilities(),
+  on_attach = function(client, bufnr)
+    require('vimc/lsp/common').make_conf().on_attach(client, bufnr)
+    jdtls.setup_dap({ hotcodereplace = 'auto' })
+    require('jdtls.dap').setup_dap_main_class_configs()
+  end
 }
 -- This starts a new client & server,
 -- or attaches to an existing client & server depending on the `root_dir`.

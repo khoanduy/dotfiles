@@ -71,28 +71,40 @@ lazy.setup({
   {
     'nvim-treesitter/nvim-treesitter',
     build = ':TSUpdate',
+    dependencies = {
+      'nvim-treesitter/nvim-treesitter-textobjects',
+    },
     config = function()
       require('vimc/plugins/treesitter')
     end
   },
-  'nvim-treesitter/nvim-treesitter-textobjects',
+  'folke/neodev.nvim',
   'rust-lang/rust.vim',
 
   -- LSP and DAP
-  'williamboman/mason.nvim',
-  'williamboman/mason-lspconfig.nvim',
-  'neovim/nvim-lspconfig',
-
-  'hrsh7th/nvim-cmp',
-  'hrsh7th/cmp-nvim-lsp',
-  'saadparwaiz1/cmp_luasnip',
-  'L3MON4D3/LuaSnip',
-
-  'mfussenegger/nvim-dap',
-  'mfussenegger/nvim-jdtls',
+  {
+    'neovim/nvim-lspconfig',
+    dependencies = {
+      'williamboman/mason.nvim',
+      'williamboman/mason-lspconfig.nvim',
+    },
+  },
+  {
+    'hrsh7th/nvim-cmp',
+    dependencies = {
+      'hrsh7th/cmp-nvim-lsp',
+      'saadparwaiz1/cmp_luasnip',
+      'L3MON4D3/LuaSnip',
+    },
+  },
+  {
+    'mfussenegger/nvim-jdtls',
+    ft = 'java',
+  },
+  require('vimc/plugins/nvim-dap'),
 
   -- UI
-  'ibhagwan/fzf-lua',
+  require('vimc/plugins/telescope'),
   {
     'lukas-reineke/indent-blankline.nvim',
     main = 'ibl',
@@ -121,7 +133,7 @@ lazy.setup({
       },
       use_diagnostic_signs = false
     },
-  }
+  },
 })
 
 -- Load custom statusline
