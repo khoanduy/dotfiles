@@ -1,7 +1,7 @@
 -- Mappings' config --
 local whichkey = require('which-key')
 local telescope = require('telescope.builtin')
-local utils = require('vimc.utilities')
+local utils = require('vimc.utils')
 
 -- Define mapping groups
 whichkey.register({
@@ -108,7 +108,7 @@ whichkey.register({
       silent = false
     },
     m = {
-      require('jdtls').test_nearest_method(),
+      require('jdtls').test_nearest_method,
       'Run current test method',
       silent = false
     }
