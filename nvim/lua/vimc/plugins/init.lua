@@ -46,14 +46,6 @@ lazy.setup({
     end
   },
   {
-    'nvim-tree/nvim-tree.lua',
-    version = '*',
-    lazy = false,
-    config = function()
-      require('vimc/plugins/nvim-tree')
-    end
-  },
-  {
     'kylechui/nvim-surround',
     version = '*',
     config = function()
@@ -66,18 +58,10 @@ lazy.setup({
       require('nvim-autopairs').setup()
     end
   },
+  require('vimc/plugins/nvim-tree'),
 
   -- Programming language
-  {
-    'nvim-treesitter/nvim-treesitter',
-    build = ':TSUpdate',
-    dependencies = {
-      'nvim-treesitter/nvim-treesitter-textobjects',
-    },
-    config = function()
-      require('vimc/plugins/treesitter')
-    end
-  },
+  require('vimc/plugins/treesitter'),
   'folke/neodev.nvim',
   'rust-lang/rust.vim',
 
@@ -125,9 +109,9 @@ lazy.setup({
     'folke/trouble.nvim',
     opts = {
       icons = false,
-      fold_open = '◇', -- icon used for open folds
-      fold_closed = '◆', -- icon used for closed folds
-      indent_lines = false, -- add an indent guide below the fold icons
+      fold_open = '◇',
+      fold_closed = '◆',
+      indent_lines = false,
       signs = {
           error = '✖',
           warning = '▲',

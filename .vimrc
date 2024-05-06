@@ -1,56 +1,9 @@
-" ----------------------- "
-" ----- Init set-up ----- "
-" ----------------------- "
-
-" Disable compatibility with vi which can cause unexpected issues.
-set nocompatible
-
-" Enable ALE completion, must be set before ALE is loaded
-let g:ale_completion_enabled=1
-
-call plug#begin()
-" The default plugin directory will be as follows:
-"   - Vim (Linux/macOS): '~/.vim/plugged'
-"   - Vim (Windows): '~/vimfiles/plugged'
-"   - Neovim (Linux/macOS/Windows): stdpath('data') . '/plugged'
-" You can specify a custom plugin directory by passing it as the argument
-"   - e.g. `call plug#begin('~/.vim/plugged')`
-"   - Avoid using standard Vim directory names like 'plugin'
-
-" Make sure you use single quotes
-
-" Colorscheme
-Plug 'nanotech/jellybeans.vim'
-
-" A command-line fuzzy finder
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'
-
-" Parentheses, brackets, quotes, tags, and more
-Plug 'tpope/vim-surround'
-
-" Comment stuff out
-Plug 'tpope/vim-commentary'
-
-" Shows git diff markers in the sign column
-Plug 'airblade/vim-gitgutter'
-
-" A solid language pack for Vim
-Plug 'sheerun/vim-polyglot'
-
-" Asynchronous Lint Engine
-Plug 'dense-analysis/ale'
-
-" Initialize plugin system
-" - Automatically executes `filetype plugin indent on` and `syntax enable`.
-call plug#end()
-" You can revert the settings after the call like so:
-"   filetype indent off   " Disable file-type-specific indentation
-"   syntax off            " Disable syntax highlighting
-
 " ---------------------------- "
 " ----- General settings ----- "
 " ---------------------------- "
+
+" Disable compatibility with vi which can cause unexpected issues.
+set nocompatible
 
 " Re-map leader key
 nnoremap <space> <nop>
@@ -240,17 +193,10 @@ vnoremap <leader>/ y/\V<c-r>=escape(@",'/\')<cr><cr>
 vnoremap <leader>y "+y
 nnoremap <leader>p "+p
 
-" Open git client
-nnoremap <leader>G :!lazygit<cr><cr>
-" ALE go to
-nnoremap <silent> gd :ALEGoToDefinition<cr>
-nnoremap <silent> gD :ALEGoToTypeDefinition<cr>
-nnoremap <silent> gi :ALEGoToImplementation<cr>
-" ALE actions
-nnoremap <leader>ah :ALEHover<cr>
-nnoremap <leader>ar :ALEFileRename<cr>
-nnoremap <leader>ac :ALECodeAction<cr>
-nnoremap <leader>af :ALEFixSuggest<cr>
+" Difftool kemaps
+nnoremap <leader>dp :diffput 2<cr>
+nnoremap <leader>dl :diffget 1<cr>
+nnoremap <leader>dr :diffget 3<cr>
 
 " --------------------- "
 " ----- Utilities ----- "
@@ -315,79 +261,3 @@ augroup netrw_mapping
   autocmd!
   autocmd filetype netrw call NetrwMapping()
 augroup end
-
-" --------------------------------- "
-" ----- Plugin configuration ------ "
-" --------------------------------- "
-
-" Fzf config
-let g:fzf_vim={}
-let g:fzf_vim.preview_window=[]
-let g:fzf_layout={ 'window': { 'width': 0.6, 'height': 0.6 } }
-
-" Fzf mapping
-nnoremap <leader>f :GFiles<cr>
-nnoremap <leader>F :Files<cr>
-nnoremap <leader>b :Buffers<cr>
-nnoremap <leader>/ :Rg<cr>
-" Let :grep use ripgrep
-set grepprg=rg\ --vimgrep\ --smart-case\ --follow
-
-" Don't let GitGutter set sign backgrounds
-let g:gitgutter_set_sign_backgrounds=1
-highlight SignColumn ctermbg=NONE guibg=NONE
-
-" Custom ALE sign symbol
-let g:ale_sign_error='✖'
-let g:ale_sign_info='●'
-let g:ale_sign_warning='▲'
-
-" Custom ALE sign color
-highlight ALEErrorSign ctermfg=red guifg=red
-highlight ALEInfoSign ctermfg=lightblue guifg=lightblue
-highlight ALEWarningSign ctermfg=yellow guifg=yellow
-
-" Disable ALE virtual text
-let g:ale_virtualtext_cursor='disabled'
-
-" Custom ALE completion symbols
-let g:ale_completion_symbols = {
-\ 'text': 'ɕ',
-\ 'method': '◎',
-\ 'function': '◯',
-\ 'constructor': '⚙',
-\ 'field': '◍',
-\ 'variable': '✦',
-\ 'class': '◆',
-\ 'interface': '◇',
-\ 'module': '▧',
-\ 'property': '◉',
-\ 'unit': 'v',
-\ 'value': 'v',
-\ 'enum': 't',
-\ 'keyword': 'v',
-\ 'snippet': 'v',
-\ 'color': 'v',
-\ 'file': 'v',
-\ 'reference': 'v',
-\ 'folder': 'v',
-\ 'enum_member': 'm',
-\ 'constant': 'm',
-\ 'struct': 't',
-\ 'event': 'v',
-\ 'operator': 'f',
-\ 'type_parameter': 'p',
-\ '<default>': 'v'
-\ }
-
-" Enable ALE suggestions
-let g:ale_lsp_suggestions=1
-
-" Only run linters named in ale_linters settings.
-let g:ale_linters_explicit=1
-
-" Custom ALE linters and LSPs
-let g:ale_linters = {
-\ 'python': ['pyright', 'ruff'],
-\ 'java': ['javac'],
-\ }
