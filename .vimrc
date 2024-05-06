@@ -84,14 +84,7 @@ set history=10000
 " -------------- "
 
 " Colorscheme
-set termguicolors
 set background=dark
-let g:jellybeans_overrides = {
-\ 'background': { 'ctermbg': 'none', '256ctermbg': 'none', 'guibg': 'none' },
-\ }
-let g:jellybeans_use_term_italics=0
-let g:jellybeans_use_gui_italics=0
-colorscheme jellybeans
 
 " Set statusline last status
 set laststatus=2
