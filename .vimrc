@@ -1,4 +1,4 @@
-vim9script noclear
+vim9script
 
 # ----------------------- #
 # ----- Init set-up ----- #
@@ -153,7 +153,7 @@ hi User5 ctermbg=NONE ctermfg=lightblue guibg=NONE guifg=lightblue
 hi StatusLineNC ctermbg=NONE ctermfg=grey guibg=NONE guifg=grey
 
 # Get current mode
-def StatuslineMode(): string
+def g:Slmode(): string
   var mode = mode()
   if mode ==# 'n'
     return 'NORMAL'
@@ -172,6 +172,7 @@ def StatuslineMode(): string
   elseif mode ==# '!'
     return 'SHELL'
   endif
+  return 'UNKNOWN'
 enddef
 
 # Set statusline last status
@@ -179,7 +180,7 @@ set laststatus=2
 set statusline=%1*
 set statusline+=\ 
 set statusline+='
-set statusline+=%{StatuslineMode()}
+set statusline+=%{g:Slmode()}
 set statusline+=:
 set statusline+=\ 
 set statusline+=%2*
@@ -230,10 +231,6 @@ nnoremap <silent> <up> :resize -2<cr>
 nnoremap <silent> <down> :resize +2<cr>
 nnoremap <silent> <left> :vertical resize +2<cr>
 nnoremap <silent> <right> :vertical resize -2<cr>
-
-# Remap indent keys
-vnoremap <silent> < <gv
-vnoremap <silent> > >gv
 
 # Search current marked text
 vnoremap <leader>/ y/\V<c-r> = escape(@#,'/\')<cr><cr>
@@ -401,3 +398,5 @@ g:ale_linters  =  {
 \ 'python': ['pyright', 'ruff'],
 \ 'java': ['javac'],
 \ }
+
+defcompile
