@@ -142,68 +142,103 @@ g:jellybeans_use_term_italics = 0
 g:jellybeans_use_gui_italics = 0
 colorscheme jellybeans
 
-# Custom statusline segment color
-hi User1 ctermbg=NONE ctermfg=lightgreen guibg=NONE guifg=lightgreen
-hi User2 ctermbg=NONE ctermfg=lightcyan guibg=NONE guifg=lightcyan
-hi User3 ctermbg=NONE ctermfg=lightyellow guibg=NONE guifg=lightyellow
-hi User4 ctermbg=NONE ctermfg=lightgrey guibg=NONE guifg=lightgrey
-hi User5 ctermbg=NONE ctermfg=lightblue guibg=NONE guifg=lightblue
-
-# Set inactive status line style
-hi StatusLineNC ctermbg=NONE ctermfg=grey guibg=NONE guifg=grey
-
-# Get current mode
-def g:Slmode(): string
-  var mode = mode()
-  if mode ==# 'n'
-    return 'NORMAL'
-  elseif mode ==? 'v'
-    return 'VISUAL'
-  elseif mode ==# 'i'
-    return 'INSERT'
-  elseif mode ==# 'R'
-    return 'REPLACE'
-  elseif mode ==? 's'
-    return 'SELECT'
-  elseif mode ==# 't'
-    return 'TERMINAL'
-  elseif mode ==# 'c'
-    return 'COMMAND'
-  elseif mode ==# '!'
-    return 'SHELL'
-  endif
-  return 'UNKNOWN'
-enddef
-
 # Set statusline last status
 set laststatus=2
-set statusline=%1*
-set statusline+=\ 
-set statusline+='
-set statusline+=%{g:Slmode()}
-set statusline+=:
-set statusline+=\ 
-set statusline+=%2*
-set statusline+=%f
-set statusline+=\ 
-set statusline+=%= 
-set statusline+=%2*
-set statusline+=%m
-set statusline+=\ 
-set statusline+=%3*
-set statusline+=%y
-set statusline+=\ 
-set statusline+=%5*
-set statusline+=-
-set statusline+=\ 
-set statusline+=%4*
-set statusline+=%{strlen(&fenc)?&fenc:'none'}
-set statusline+=\|
-set statusline+=%l
-set statusline+=:
-set statusline+=%L
-set statusline+=\ 
-set statusline+=%2*
+
+# Mode dictionary
+const modes = {
+  'n': 'NORMAL',
+  'no': 'NORMAL',
+  'v': 'VISUAL',
+  'V': 'VISUAL LINE',
+  '': 'VISUAL BLOCK',
+  's': 'SELECT',
+  'S': 'SELECT LINE',
+  '': 'SELECT BLOCK',
+  'i': 'INSERT',
+  'ic': 'INSERT',
+  'R': 'REPLACE',
+  'Rv': 'VISUAL REPLACE',
+  'c': 'COMMAND',
+  'cv': 'VIM EX',
+  'ce': 'EX',
+  'r': 'PROMPT',
+  'rm': 'MOAR',
+  'r?': 'CONFIRM',
+  '!': 'SHELL',
+  't': 'TERMINAL',
+}
+
+# Set active and inactive status line style
+hi StatusLine ctermbg=NONE ctermfg=white guibg=NONE guifg=white
+hi Normal ctermbg=NONE guibg=NONE
+hi StatusLineNC ctermbg=NONE ctermfg=grey guibg=NONE guifg=grey
+
+# Set mode highlight color groups
+hi StatuslineAccent ctermbg=NONE ctermfg=cyan guibg=NONE guifg=#86c1b9
+hi StatuslineInsertAccent ctermbg=NONE ctermfg=green guibg=NONE guifg=#a1b56c
+hi StatuslineVisualAccent ctermbg=NONE ctermfg=magenta guibg=NONE guifg=#ba8baf
+hi StatuslineReplaceAccent ctermbg=NONE ctermfg=red guibg=NONE guifg=#ab4642
+hi StatuslineCommandAccent ctermbg=NONE ctermfg=yellow guibg=NONE guifg=#f7ca88
+hi StatuslineTerminalAccent ctermbg=NONE ctermfg=lightgreen guibg=NONE guifg=lightgreen
+
+# Custom segment color
+hi RedAccent ctermbg=NONE ctermfg=lightred guibg=NONE guifg=lightred
+hi YellowAccent ctermbg=NONE ctermfg=lightyellow guibg=NONE guifg=lightyellow
+hi BlueAccent ctermbg=NONE ctermfg=lightblue guibg=NONE guifg=lightblue
+hi GreyAccent ctermbg=NONE ctermfg=lightgrey guibg=NONE guifg=lightgrey
+
+# Add custom color for each mode
+def UpdateModeColors(): string
+  var current = modes[mode()]
+  if stridx(current, 'NORMAL') != -1
+    return '%#StatuslineAccent#'
+  elseif stridx(current, 'INSERT') != -1
+    return '%#StatuslineInsertAccent#'
+  elseif stridx(current, 'VISUAL') != -1
+    return '%#StatuslineVisualAccent#'
+  elseif stridx(current, 'REPLACE') != -1
+    return '%#StatuslineReplaceAccent#'
+  elseif stridx(current, 'COMMAND') != -1
+    return '%#StatuslineCommandAccent#'
+  elseif stridx(current, 'TERMINAL') != -1
+    return '%#StatuslineTerminalAccent#'
+  endif
+  return '%#StatusLineAccent#'
+enddef
+
+# Active statusline
+def g:ActiveStatusline(): string
+  var sl = '%#Statusline#'
+  sl ..= UpdateModeColors()
+  sl ..= modes[mode()]
+  sl ..= ':'
+  sl ..= '%#YellowAccent# '
+  sl ..= '%f'
+  sl ..= '%='
+  sl ..= '%#GreyAccent#'
+  sl ..= '%m'
+  sl ..= '%#RedAccent#'
+  sl ..= '%y'
+  sl ..= '%#Normal#'
+  sl ..= ' - '
+  sl ..= '%{strlen(&fenc)?&fenc:"none"}'
+  sl ..= '|'
+  sl ..= '%#BlueAccent#'
+  sl ..= '%l'
+  sl ..= ':'
+  sl ..= '%c'
+  sl ..= ' '
+  return sl
+enddef
+
+augroup statusline
+au!
+au WinEnter,BufEnter * setlocal statusline=%!ActiveStatusline()
+au WinLeave,BufLeave * setlocal statusline=%F
+au WinEnter,BufEnter,FileType netrw setlocal statusline=%#StatusLineNC#
+augroup END
+
 
 # ------------------- #
 # ----- Keymaps ----- #
@@ -243,7 +278,6 @@ nnoremap <leader>p #+p
 nnoremap <leader>dp :diffput 2<cr>
 nnoremap <leader>dl :diffget 1<cr>
 nnoremap <leader>dr :diffget 3<cr>
-
 
 # Open git client
 nnoremap <leader>G :!lazygit<cr><cr>
