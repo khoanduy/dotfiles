@@ -136,8 +136,8 @@ set history=10000
 set termguicolors
 set background=dark
 g:jellybeans_overrides = {
-\ 'background': { 'ctermbg': 'none', '256ctermbg': 'none', 'guibg': 'none' },
-\ }
+  'background': { 'ctermbg': 'none', '256ctermbg': 'none', 'guibg': 'none' },
+}
 g:jellybeans_use_term_italics = 0
 g:jellybeans_use_gui_italics = 0
 colorscheme jellybeans
@@ -392,34 +392,34 @@ highlight ALEWarningSign ctermfg = yellow guifg = yellow
 g:ale_virtualtext_cursor = 'disabled'
 
 # Custom ALE completion symbols
-g:ale_completion_symbols  =  {
-\ 'text': 'ɕ',
-\ 'method': '◎',
-\ 'function': '◯',
-\ 'constructor': '⚙',
-\ 'field': '◍',
-\ 'variable': '✦',
-\ 'class': '◆',
-\ 'interface': '◇',
-\ 'module': '▧',
-\ 'property': '◉',
-\ 'unit': 'v',
-\ 'value': 'v',
-\ 'enum': 't',
-\ 'keyword': 'v',
-\ 'snippet': 'v',
-\ 'color': 'v',
-\ 'file': 'v',
-\ 'reference': 'v',
-\ 'folder': 'v',
-\ 'enum_member': 'm',
-\ 'constant': 'm',
-\ 'struct': 't',
-\ 'event': 'v',
-\ 'operator': 'f',
-\ 'type_parameter': 'p',
-\ '<default>': 'v'
-\ }
+g:ale_completion_symbols = {
+  'text': 'ɕ',
+  'method': '◎',
+  'function': '◯',
+  'constructor': '⚙',
+  'field': '◍',
+  'variable': '✦',
+  'class': '◆',
+  'interface': '◇',
+  'module': '▧',
+  'property': '◉',
+  'unit': 'v',
+  'value': 'v',
+  'enum': 't',
+  'keyword': 'v',
+  'snippet': 'v',
+  'color': 'v',
+  'file': 'v',
+  'reference': 'v',
+  'folder': 'v',
+  'enum_member': 'm',
+  'constant': 'm',
+  'struct': 't',
+  'event': 'v',
+  'operator': 'f',
+  'type_parameter': 'p',
+  '<default>': 'v'
+}
 
 # Enable ALE suggestions
 g:ale_lsp_suggestions = 1
@@ -429,8 +429,8 @@ g:ale_linters_explicit = 1
 
 # Custom ALE linters and LSPs
 g:ale_linters  =  {
-\ 'python': ['pyright', 'ruff'],
-\ 'java': ['javac'],
-\ }
+  'python': ['pyright', 'ruff'],
+  'java': ['javac'],
+}
 
 defcompile
