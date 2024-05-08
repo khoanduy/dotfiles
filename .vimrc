@@ -22,7 +22,7 @@ call plug#begin()
 # Make sure you use single quotes
 
 # Colorscheme
-Plug 'nanotech/jellybeans.vim'
+Plug 'NLKNguyen/papercolor-theme'
 
 # A command-line fuzzy finder
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
@@ -133,14 +133,10 @@ set history=10000
 # -------------- #
 
 # Colorscheme
+set t_Co=256
 set termguicolors
-set background=dark
-g:jellybeans_overrides = {
-  'background': { 'ctermbg': 'none', '256ctermbg': 'none', 'guibg': 'none' },
-}
-g:jellybeans_use_term_italics = 0
-g:jellybeans_use_gui_italics = 0
-colorscheme jellybeans
+set background=light
+colorscheme PaperColor
 
 # Set statusline last status
 set laststatus=2
@@ -169,62 +165,19 @@ const modes = {
   't': 'TERMINAL',
 }
 
-# Set active and inactive status line style
-hi StatusLine ctermbg=NONE ctermfg=white guibg=NONE guifg=white
-hi Normal ctermbg=NONE guibg=NONE
-hi StatusLineNC ctermbg=NONE ctermfg=grey guibg=NONE guifg=grey
-
-# Set mode highlight color groups
-hi StatuslineAccent ctermbg=NONE ctermfg=cyan guibg=NONE guifg=#86c1b9
-hi StatuslineInsertAccent ctermbg=NONE ctermfg=green guibg=NONE guifg=#a1b56c
-hi StatuslineVisualAccent ctermbg=NONE ctermfg=magenta guibg=NONE guifg=#ba8baf
-hi StatuslineReplaceAccent ctermbg=NONE ctermfg=red guibg=NONE guifg=#ab4642
-hi StatuslineCommandAccent ctermbg=NONE ctermfg=yellow guibg=NONE guifg=#f7ca88
-hi StatuslineTerminalAccent ctermbg=NONE ctermfg=lightgreen guibg=NONE guifg=lightgreen
-
-# Custom segment color
-hi RedAccent ctermbg=NONE ctermfg=lightred guibg=NONE guifg=lightred
-hi YellowAccent ctermbg=NONE ctermfg=lightyellow guibg=NONE guifg=lightyellow
-hi BlueAccent ctermbg=NONE ctermfg=lightblue guibg=NONE guifg=lightblue
-hi GreyAccent ctermbg=NONE ctermfg=lightgrey guibg=NONE guifg=lightgrey
-
-# Add custom color for each mode
-def UpdateModeColors(): string
-  var current = modes[mode()]
-  if stridx(current, 'NORMAL') != -1
-    return '%#StatuslineAccent#'
-  elseif stridx(current, 'INSERT') != -1
-    return '%#StatuslineInsertAccent#'
-  elseif stridx(current, 'VISUAL') != -1
-    return '%#StatuslineVisualAccent#'
-  elseif stridx(current, 'REPLACE') != -1
-    return '%#StatuslineReplaceAccent#'
-  elseif stridx(current, 'COMMAND') != -1
-    return '%#StatuslineCommandAccent#'
-  elseif stridx(current, 'TERMINAL') != -1
-    return '%#StatuslineTerminalAccent#'
-  endif
-  return '%#StatusLineAccent#'
-enddef
-
 # Active statusline
 def g:ActiveStatusline(): string
-  var sl = '%#Statusline#'
-  sl ..= UpdateModeColors()
+  var sl = '%#Stress# '
   sl ..= modes[mode()]
-  sl ..= ':'
-  sl ..= '%#YellowAccent# '
+  sl ..= '%#Normal#'
+  sl ..= ': '
   sl ..= '%f'
   sl ..= '%='
-  sl ..= '%#GreyAccent#'
   sl ..= '%m'
-  sl ..= '%#RedAccent#'
   sl ..= '%y'
-  sl ..= '%#Normal#'
   sl ..= ' - '
   sl ..= '%{strlen(&fenc)?&fenc:"none"}'
   sl ..= '|'
-  sl ..= '%#BlueAccent#'
   sl ..= '%l'
   sl ..= ':'
   sl ..= '%c'
@@ -232,11 +185,26 @@ def g:ActiveStatusline(): string
   return sl
 enddef
 
+# Inactive statusline
+def g:InactiveStatusline(): string
+  return '%#Blur# %f%=%L '
+enddef
+
+# Minimal statusline
+def g:MinimalStatusline(): string
+  return '%#Blur# %y '
+enddef
+
+# Set active and inactive status line style
+hi Normal ctermbg=NONE guibg=NONE
+hi Stress cterm=bold ctermbg=NONE gui=bold guibg=NONE
+hi Blur ctermbg=NONE ctermfg=grey guibg=NONE guifg=grey
+
 augroup statusline
 au!
 au WinEnter,BufEnter * setlocal statusline=%!ActiveStatusline()
-au WinLeave,BufLeave * setlocal statusline=%f
-au WinEnter,BufEnter,FileType netrw setlocal statusline=%#StatusLineNC#
+au WinLeave,BufLeave * setlocal statusline=%!InactiveStatusline()
+au WinEnter,BufEnter,FileType netrw setlocal statusline=%!MinimalStatusline()
 augroup END
 
 
@@ -371,6 +339,7 @@ nnoremap <leader>f :GFiles<cr>
 nnoremap <leader>F :Files<cr>
 nnoremap <leader>b :Buffers<cr>
 nnoremap <leader>/ :Rg<cr>
+
 # Let :grep use ripgrep
 set grepprg=rg\ --vimgrep\ --smart-case\ --follow
 
