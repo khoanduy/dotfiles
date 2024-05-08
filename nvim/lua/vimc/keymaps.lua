@@ -1,19 +1,18 @@
 -- Mappings' config --
 local whichkey = require('which-key')
-local telescope = require('telescope.builtin')
+local fzf = require('fzf-lua')
 local utils = require('vimc.utils')
 
 -- Define mapping groups
 whichkey.register({
-  f = { telescope.find_files, 'Find files' },
-  F = { telescope.git_files, 'Find files (include ignored files)' },
-  b = { telescope.buffers, 'Buffer list', silent = false },
+  f = { fzf.files, 'Find files' },
+  F = { fzf.git_files, 'Find files (include ignored files)' },
+  b = { fzf.buffers, 'Buffer list', silent = false },
   B = { ':Gitsigns toggle_current_line_blame<cr>', 'Toggle current lien blame' },
   r = { ':e<cr>', 'Reload current buffer from disk', silent = false },
   y = { '"+y', 'Copy marked text to global register', mode = 'v', silent = false },
   p = { '"+p', 'Paste marked text from global register', silent = false },
-  e = { ':NvimTreeToggle<cr>', 'Toggle file explorer' },
-  E = { ':NvimTreeFindFile<cr>', 'Locate current file in file explorer' },
+  e = { ':Oil<cr>', 'Toggle file explorer' },
   T = { ':!tmux split-window -l 12 "zsh"<cr><cr>', 'Open terminal' },
   G = {
     ':!tmux setw remain-on-exit off && tmux split-window -h -l 120 "lazygit"<cr><cr>',
@@ -36,7 +35,7 @@ whichkey.register({
     v = { '<c-w>v', 'Split buffer vertically' },
     h = { '<c-w>s', 'Split buffer horizontally' },
   },
-  ['/'] = { telescope.live_grep, 'Grep pattern within project' },
+  ['/'] = { fzf.live_grep, 'Grep pattern within project' },
 }, { prefix = '<leader>' })
 
 whichkey.register({

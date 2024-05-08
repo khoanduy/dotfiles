@@ -235,7 +235,7 @@ enddef
 augroup statusline
 au!
 au WinEnter,BufEnter * setlocal statusline=%!ActiveStatusline()
-au WinLeave,BufLeave * setlocal statusline=%F
+au WinLeave,BufLeave * setlocal statusline=%f
 au WinEnter,BufEnter,FileType netrw setlocal statusline=%#StatusLineNC#
 augroup END
 
