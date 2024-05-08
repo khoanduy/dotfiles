@@ -239,8 +239,8 @@ nnoremap <silent> <right> :vertical resize -2<cr>
 vnoremap <leader>/ y/\V<c-r> = escape(@#,'/\')<cr><cr>
 
 # Copy marked text/paste to/from global register
-vnoremap <leader>y #+y
-nnoremap <leader>p #+p
+vnoremap <leader>y "+y
+nnoremap <leader>p "+p
 
 # Difftool kemaps
 nnoremap <leader>dp :diffput 2<cr>
