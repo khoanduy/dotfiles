@@ -353,9 +353,9 @@ g:ale_sign_info = '●'
 g:ale_sign_warning = '▲'
 
 # Custom ALE sign color
-highlight ALEErrorSign ctermfg = red guifg = red
-highlight ALEInfoSign ctermfg = lightblue guifg = lightblue
-highlight ALEWarningSign ctermfg = yellow guifg = yellow
+highlight ALEErrorSign ctermfg=red guifg=#d70000
+highlight ALEInfoSign ctermfg=blue guifg=#005f87
+highlight ALEWarningSign ctermfg=yellow guifg=#ffaf00
 
 # Disable ALE virtual text
 g:ale_virtualtext_cursor = 'disabled'
