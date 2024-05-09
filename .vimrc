@@ -215,6 +215,9 @@ augroup END
 # Remap escape key in insert mode
 inoremap <silent> jk <esc>
 
+# Dismiss highlight
+nnoremap <silent> \| :noh<cr>
+
 # Remap c-w prefix
 nnoremap <silent> <leader>w <c-w>
 
@@ -236,7 +239,7 @@ nnoremap <silent> <left> :vertical resize +2<cr>
 nnoremap <silent> <right> :vertical resize -2<cr>
 
 # Search current marked text
-vnoremap <leader>/ y/\V<c-r> = escape(@#,'/\')<cr><cr>
+vnoremap // y/\V<c-r>=escape(@",'/\')<cr><cr>
 
 # Copy marked text/paste to/from global register
 vnoremap <leader>y "+y
@@ -342,6 +345,9 @@ nnoremap <leader>/ :Rg<cr>
 
 # Let :grep use ripgrep
 set grepprg=rg\ --vimgrep\ --smart-case\ --follow
+
+# Default fzf layout (center of the screen)
+g:fzf_layout = { 'window': { 'width': 0.8, 'height': 0.6 } }
 
 # Don't let GitGutter set sign backgrounds
 g:gitgutter_set_sign_backgrounds = 1
