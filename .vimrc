@@ -261,17 +261,6 @@ nnoremap <leader>dr :diffget 3<cr>
 # Open git client
 nnoremap <leader>G :!lazygit<cr><cr>
 
-# ALE go to
-nnoremap <silent> gd :ALEGoToDefinition<cr>
-nnoremap <silent> gD :ALEGoToTypeDefinition<cr>
-nnoremap <silent> gi :ALEGoToImplementation<cr>
-
-# ALE actions
-nnoremap <leader>ah :ALEHover<cr>
-nnoremap <leader>ar :ALEFileRename<cr>
-nnoremap <leader>ac :ALECodeAction<cr>
-nnoremap <leader>af :ALEFixSuggest<cr>
-
 # --------------------- #
 # ----- Utilities ----- #
 # --------------------- #
@@ -357,6 +346,23 @@ set grepprg=rg\ --vimgrep\ --smart-case\ --follow
 # Don't let GitGutter set sign backgrounds
 g:gitgutter_set_sign_backgrounds = 1
 hi SignColumn ctermbg=NONE guibg=NONE
+
+# Disable ALE by default, enable by :ALEToggle
+g:ale_enabled = 0
+
+# Enable ALE
+nnoremap <leader>S :ALEToggle<cr>
+
+# ALE go to
+nnoremap <silent> gd :ALEGoToDefinition<cr>
+nnoremap <silent> gD :ALEGoToTypeDefinition<cr>
+nnoremap <silent> gi :ALEGoToImplementation<cr>
+
+# ALE actions
+nnoremap <leader>ah :ALEHover<cr>
+nnoremap <leader>ar :ALEFileRename<cr>
+nnoremap <leader>ac :ALECodeAction<cr>
+nnoremap <leader>af :ALEFixSuggest<cr>
 
 # Custom ALE sign symbol
 g:ale_sign_error = '✖'
