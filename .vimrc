@@ -43,8 +43,8 @@ Plug 'airblade/vim-gitgutter'
 # A solid language pack for Vim
 Plug 'sheerun/vim-polyglot'
 
-# Asynchronous Lint Engine
-Plug 'dense-analysis/ale'
+# Asynchronous Lint Engine (Forked from `dense-analysis/ale`)
+Plug 'khoanduy/ale'
 
 # Initialize plugin system
 # - Automatically executes `filetype plugin indent on` and `syntax enable`.
