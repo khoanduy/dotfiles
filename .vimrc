@@ -278,7 +278,7 @@ nnoremap <leader>af :ALEFixSuggest<cr>
 
 # Netrw config and mapping
 hi! link netrwMarkFile Search
-highlight CursorLine ctermbg = NONE guibg = NONE
+hi CursorLine ctermbg=NONE guibg=NONE
 g:netrw_liststyle = 0
 
 # Sync current directory and browsing directory
