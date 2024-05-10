@@ -24,8 +24,16 @@ After script execution finish, reload your `zsh` config file:
 $ source ~/.zshrc
 ```
 
-Try to launch `nvim` up, Lazy should pop up and install all plugins, if it doesn't try `:Lazy` instead.
+Try to launch `vim` up, ignore all errors and try `:PlugInstal` then restart `vim`.
+
+### Additional notes
+If you want to develop Java using Vim, additional script is needed:
+```shell script
+$ chmod +x configure-jdtls
+$ ./configure-jdtls
+```
 
 ## References
 [tmux](https://github.com/tmux/tmux)\
-[neovim](https://neovim.io/)
+[vim](https://www.vim.org/) \
+[langserver](https://langserver.org/)

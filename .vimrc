@@ -22,7 +22,7 @@ call plug#begin()
 # Make sure you use single quotes
 
 # Colorscheme
-Plug 'NLKNguyen/papercolor-theme'
+Plug 'nanotech/jellybeans.vim'
 
 # A command-line fuzzy finder
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
@@ -33,6 +33,9 @@ Plug 'tpope/vim-surround'
 
 # Comment stuff out
 Plug 'tpope/vim-commentary'
+
+# Vim plugin, insert or delete brackets, parens, quotes in pair
+Plug 'jiangmiao/auto-pairs'
 
 # Shows git diff markers in the sign column
 Plug 'airblade/vim-gitgutter'
@@ -133,10 +136,14 @@ set history=10000
 # -------------- #
 
 # Colorscheme
-set t_Co=256
 set termguicolors
-set background=light
-colorscheme PaperColor
+set background=dark
+g:jellybeans_overrides = {
+  'background': { 'ctermbg': 'none', '256ctermbg': 'none', 'guibg': 'none' },
+}
+g:jellybeans_use_term_italics = 0
+g:jellybeans_use_gui_italics = 0
+colorscheme jellybeans
 
 # Set statusline last status
 set laststatus=2
@@ -216,7 +223,7 @@ augroup END
 inoremap <silent> jk <esc>
 
 # Dismiss highlight
-nnoremap <silent> \| :noh<cr>
+nnoremap \| :noh<cr>
 
 # Remap c-w prefix
 nnoremap <silent> <leader>w <c-w>
@@ -240,6 +247,7 @@ nnoremap <silent> <right> :vertical resize -2<cr>
 
 # Search current marked text
 vnoremap // y/\V<c-r>=escape(@",'/\')<cr><cr>
+vnoremap <leader>/ y/\V<c-r>=escape(@",':Rg')<cr><cr>
 
 # Copy marked text/paste to/from global register
 vnoremap <leader>y "+y
@@ -335,7 +343,7 @@ augroup end
 # Fzf config
 g:fzf_vim = {}
 g:fzf_vim.preview_window = []
-g:fzf_layout = { 'window': { 'width': 0.6, 'height': 0.6 } }
+g:fzf_layout = { 'window': { 'width': 0.8, 'height': 0.8 } }
 
 # Fzf mapping
 nnoremap <leader>f :GFiles<cr>
@@ -346,12 +354,9 @@ nnoremap <leader>/ :Rg<cr>
 # Let :grep use ripgrep
 set grepprg=rg\ --vimgrep\ --smart-case\ --follow
 
-# Default fzf layout (center of the screen)
-g:fzf_layout = { 'window': { 'width': 0.8, 'height': 0.6 } }
-
 # Don't let GitGutter set sign backgrounds
 g:gitgutter_set_sign_backgrounds = 1
-highlight SignColumn ctermbg = NONE guibg = NONE
+hi SignColumn ctermbg=NONE guibg=NONE
 
 # Custom ALE sign symbol
 g:ale_sign_error = '✖'
@@ -359,42 +364,12 @@ g:ale_sign_info = '●'
 g:ale_sign_warning = '▲'
 
 # Custom ALE sign color
-highlight ALEErrorSign ctermfg=red guifg=#d70000
-highlight ALEInfoSign ctermfg=blue guifg=#005f87
-highlight ALEWarningSign ctermfg=yellow guifg=#ffaf00
+hi ALEErrorSign ctermfg=red guifg=#e27373
+hi ALEInfoSign ctermfg=blue guifg=#97bedc
+hi ALEWarningSign ctermfg=yellow guifg=#ffba7b
 
 # Disable ALE virtual text
 g:ale_virtualtext_cursor = 'disabled'
-
-# Custom ALE completion symbols
-g:ale_completion_symbols = {
-  'text': 'ɕ',
-  'method': '◎',
-  'function': '◯',
-  'constructor': '⚙',
-  'field': '◍',
-  'variable': '✦',
-  'class': '◆',
-  'interface': '◇',
-  'module': '▧',
-  'property': '◉',
-  'unit': 'v',
-  'value': 'v',
-  'enum': 't',
-  'keyword': 'v',
-  'snippet': 'v',
-  'color': 'v',
-  'file': 'v',
-  'reference': 'v',
-  'folder': 'v',
-  'enum_member': 'm',
-  'constant': 'm',
-  'struct': 't',
-  'event': 'v',
-  'operator': 'f',
-  'type_parameter': 'p',
-  '<default>': 'v'
-}
 
 # Enable ALE suggestions
 g:ale_lsp_suggestions = 1
@@ -405,7 +380,18 @@ g:ale_linters_explicit = 1
 # Custom ALE linters and LSPs
 g:ale_linters  =  {
   'python': ['pyright', 'ruff'],
-  'java': ['javac'],
+  'java': ['eclipselsp'],
 }
+
+# Jdtls configuration
+var jdtls_repo = $HOME .. '/eclipse.jdt.ls'
+var jdtls = jdtls_repo .. '/org.eclipse.jdt.ls.product/target/repository'
+var workspace_folder = $XDG_DATA_HOME .. '/jdtls/workspace/' .. fnamemodify(getcwd(), ':p:h:t')
+
+# ALE jdtls specific variables
+g:ale_java_eclipselsp_executable = $JDK17 .. '/bin/java'
+g:ale_java_eclipselsp_config_path = jdtls .. '/config_mac'
+g:ale_java_eclipselsp_path = jdtls_repo
+g:ale_java_eclipselsp_workspace_path = workspace_folder
 
 defcompile

@@ -1,5 +1,6 @@
 #!/bin/bash
 # Install essential tools for my development environment
+
 if [[ "$OSTYPE" != "darwin"* ]]; then
   echo "Unsupported OS."
   exit
@@ -82,8 +83,9 @@ echo "[-] Installing DB CLI clients [-]"
 brew install pgcli mycli
 
 # Create some essential folders
-echo "[-] Create essential folders [-]"
+echo "[-] Creating essential folders [-]"
 mkdir ~/scripts
+mkdir ~/open-source
 mkdir ~/playground
 
 # Change default shell
