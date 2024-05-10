@@ -24,7 +24,7 @@ After script execution finish, reload your `zsh` config file:
 $ source ~/.zshrc
 ```
 
-Try to launch `vim` up, ignore all errors and try `:PlugInstal` then restart `vim`.
+Try to launch `vim` up, ignore all errors and try `:PlugInstall` then restart `vim`.
 
 ### Additional notes
 If you want to develop Java using Vim, additional script is needed:
