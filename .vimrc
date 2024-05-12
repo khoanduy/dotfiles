@@ -22,7 +22,7 @@ call plug#begin()
 # Make sure you use single quotes
 
 # Colorscheme
-Plug 'nanotech/jellybeans.vim'
+Plug 'NLKNguyen/papercolor-theme'
 
 # A command-line fuzzy finder
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
@@ -136,14 +136,10 @@ set history=10000
 # -------------- #
 
 # Colorscheme
+set t_Co=256
 set termguicolors
-set background=dark
-g:jellybeans_overrides = {
-  'background': { 'ctermbg': 'none', '256ctermbg': 'none', 'guibg': 'none' },
-}
-g:jellybeans_use_term_italics = 0
-g:jellybeans_use_gui_italics = 0
-colorscheme jellybeans
+set background=light
+colorscheme PaperColor
 
 # Set statusline last status
 set laststatus=2

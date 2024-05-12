@@ -19,10 +19,10 @@ export TERM=xterm-256color
 
 # Fzf options
 export FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS
---color=fg:#dedede,bg:#121212,hl:#e27373
---color=fg+:#dedede,bg+:#121212,hl+:#e27373,gutter:-1
---color=info:#ffba7b,prompt:#e1c0fa,pointer:#94b979
---color=marker:#94b979,spinner:#94b979,header:#97bedc"
+--color=fg:#444444,bg:#eeeeee,hl:#d70000
+--color=fg+:#444444,bg+:#eeeeee,hl+:#d70000,gutter:-1
+--color=info:#005f87,prompt:#005f87,pointer:#d70087
+--color=marker:#d75f00,spinner:#d75f00,header:#d70000"
 
 . "$HOME/.cargo/env"
 
