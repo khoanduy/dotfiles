@@ -31,7 +31,8 @@ return {
       },
       sync_install = false,
       highlight = {
-        enable = true
+        enable = true,
+        disable = { 'help' }
       },
       indent = {
         enable = true

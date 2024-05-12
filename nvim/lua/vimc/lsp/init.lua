@@ -48,12 +48,10 @@ require('cmp').setup(require('vimc/lsp/common').nvim_cmp_conf())
 -- Diagnostic sign symbols
 vim.lsp.handlers['textDocument/publishDiagnostics'] =
   vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
-    underline = true,
-    virtual_text = {
-      prefix = '●',
-      spacing = 2,
-    },
+    underline = false,
+    virtual_text = false,
     update_in_insert = false,
+    signs = false,
     severity_sort = true,
   })
 

@@ -26,27 +26,7 @@ local modes = {
 -- Get current mode
 local function mode()
   local current_mode = vim.api.nvim_get_mode().mode
-  return string.format(' \'%s:', modes[current_mode]):upper()
-end
-
--- Add custom color for each mode
-local function update_mode_colors()
-  local current_mode = vim.api.nvim_get_mode().mode
-  local mode_color = '%#StatusLineAccent#'
-  if current_mode == 'n' then
-      mode_color = '%#StatuslineAccent#'
-  elseif current_mode == 'i' or current_mode == 'ic' then
-      mode_color = '%#StatuslineInsertAccent#'
-  elseif current_mode == 'v' or current_mode == 'V' or current_mode == '' then
-      mode_color = '%#StatuslineVisualAccent#'
-  elseif current_mode == 'R' then
-      mode_color = '%#StatuslineReplaceAccent#'
-  elseif current_mode == 'c' then
-      mode_color = '%#StatuslineCmdLineAccent#'
-  elseif current_mode == 't' then
-      mode_color = '%#StatuslineTerminalAccent#'
-  end
-  return mode_color
+  return string.format(' %s:', modes[current_mode]):upper()
 end
 
 -- Custom file path
@@ -105,7 +85,7 @@ end
 
 -- Custom file type
 local function filetype()
-  return ' %m ' .. string.format(' [%s]', vim.bo.filetype):lower()
+  return ' %m ' .. string.format('[%s]', vim.bo.filetype):lower()
 end
 
 -- Line info
@@ -113,7 +93,7 @@ local function lineinfo()
   if vim.bo.filetype == 'alpha' then
     return ''
   end
-  return ' %{strlen(&fenc)?&fenc:\'none\'} | %l:%c '
+  return ' %{strlen(&fenc)?&fenc:\'none\'}|%l:%c '
 end
 
 -- Build the statusline
@@ -121,13 +101,11 @@ Statusline = {}
 
 Statusline.active = function()
   return table.concat {
-    '%#Statusline#',
-    update_mode_colors(),
+    '%#Stress#',
     mode(),
     '%#Normal#',
     filepath(),
     filename(),
-    '%#Normal#',
     '%=',
     lsp(),
     filetype(),
@@ -136,11 +114,11 @@ Statusline.active = function()
 end
 
 function Statusline.inactive()
-  return ' %F'
+  return '%#Blur# ' .. filepath() .. filename() .. '%=%L '
 end
 
 function Statusline.short()
-  return '%#StatusLineNC#'
+  return '%#Blur# %y '
 end
 
 -- Apply statusline
@@ -148,28 +126,22 @@ vim.api.nvim_exec([[
   set laststatus=3
 
   " Set active and inactive status line style
-  hi StatusLine ctermbg=NONE ctermfg=white guibg=NONE guifg=white
+  hi Statusline ctermbg=NONE ctermfg=black guibg=NONE guifg=#444444
+  hi StatuslineNC ctermbg=NONE ctermfg=grey guibg=NONE guifg=#878787
   hi Normal ctermbg=NONE guibg=NONE
-  hi StatusLineNC ctermbg=NONE ctermfg=grey guibg=NONE guifg=#d8d8d8
-
-  " Set mode highlight color groups
-  hi StatuslineAccent ctermbg=NONE ctermfg=cyan guibg=NONE guifg=#86c1b9
-  hi StatuslineInsertAccent ctermbg=NONE ctermfg=green guibg=NONE guifg=#a1b56c
-  hi StatuslineVisualAccent ctermbg=NONE ctermfg=magenta guibg=NONE guifg=#ba8baf
-  hi StatuslineReplaceAccent ctermbg=NONE ctermfg=red guibg=NONE guifg=#ab4642
-  hi StatuslineCmdLineAccent ctermbg=NONE ctermfg=yellow guibg=NONE guifg=#f7ca88
-  hi StatuslineTerminalAccent ctermbg=NONE ctermfg=white guibg=NONE guifg=#d8d8d8
+  hi Stress cterm=bold ctermbg=NONE gui=bold guibg=NONE
+  hi Blur ctermbg=NONE ctermfg=grey guibg=NONE guifg=#878787
 
   " Set LSP highlight color groups
-  hi LspDiagnosticsSignError ctermbg=NONE ctermfg=red guibg=NONE guifg=#ab4642
-  hi LspDiagnosticsSignWarning ctermbg=NONE ctermfg=yellow guibg=NONE guifg=#f7ca88
-  hi LspDiagnosticsSignInformation ctermbg=NONE ctermfg=cyan guibg=NONE guifg=#86c1b9
-  hi LspDiagnosticsSignHint ctermbg=NONE ctermfg=green guibg=NONE guifg=#a1b56c
+  hi LspDiagnosticsSignError ctermbg=NONE ctermfg=red guibg=NONE guifg=#af0000
+  hi LspDiagnosticsSignWarning ctermbg=NONE ctermfg=yellow guibg=NONE guifg=#d75f00
+  hi LspDiagnosticsSignInformation ctermbg=NONE ctermfg=blue guibg=NONE guifg=#005f87
+  hi LspDiagnosticsSignHint ctermbg=NONE ctermfg=green guibg=NONE guifg=#008700
 
   augroup statusline
   au!
   au WinEnter,BufEnter * setlocal statusline=%!v:lua.Statusline.active()
   au WinLeave,BufLeave * setlocal statusline=%!v:lua.Statusline.inactive()
-  au WinEnter,BufEnter,FileType NvimTree setlocal statusline=%!v:lua.Statusline.short()
+  au WinEnter,BufEnter,FileType term setlocal statusline=%!v:lua.Statusline.short()
   augroup END
 ]], false)

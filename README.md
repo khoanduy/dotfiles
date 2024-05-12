@@ -24,16 +24,9 @@ After script execution finish, reload your `zsh` config file:
 $ source ~/.zshrc
 ```
 
-Try to launch `vim` up, ignore all errors and try `:PlugInstall` then restart `vim`.
-
-### Additional notes
-If you want to develop Java using Vim, additional script is needed:
-```shell script
-$ chmod +x configure-jdtls
-$ ./configure-jdtls
-```
+Try to launch `nvim` up, Lazy should pop up and install all plugins, otherwise try `:Lazy` instead.
 
 ## References
 [tmux](https://github.com/tmux/tmux)\
-[vim](https://www.vim.org/) \
+[neovim](https://neovim.io/) \
 [langserver](https://langserver.org/)

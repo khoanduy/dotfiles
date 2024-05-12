@@ -1,4 +1,4 @@
------ Khoa Nguyen's neovim configuration -----
+----- khoanduy's neovim configuration -----
 vim.loader.enable()
 
 -- Load configuration files --

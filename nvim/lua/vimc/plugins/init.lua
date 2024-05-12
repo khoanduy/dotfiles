@@ -32,9 +32,12 @@ lazy.setup({
     end
   },
   {
-    'lewis6991/gitsigns.nvim',
+    'airblade/vim-gitgutter',
     config = function()
-      require('gitsigns').setup()
+      vim.api.nvim_exec([[
+        let g:gitgutter_set_sign_backgrounds=1
+        hi SignColumn ctermbg=NONE guibg=NONE
+      ]], false)
     end
   },
   {
@@ -63,7 +66,6 @@ lazy.setup({
   -- Programming language
   require('vimc/plugins/treesitter'),
   'folke/neodev.nvim',
-  'rust-lang/rust.vim',
 
   -- LSP and DAP
   {
@@ -92,18 +94,16 @@ lazy.setup({
 
   -- UI
   {
-    'metalelf0/jellybeans-nvim',
-    dependencies = {
-      'rktjmp/lush.nvim'
-    },
+    'pappasam/papercolor-theme-slim',
     config = function()
-      vim.cmd[[colorscheme jellybeans-nvim]]
+      vim.cmd[[ set background=light ]]
+      vim.cmd.colorscheme 'PaperColorSlim'
     end
   },
   {
     'ibhagwan/fzf-lua',
     config = function()
-      require('fzf-lua').setup()
+      require('fzf-lua').setup({'max-perf'})
     end
   },
   {

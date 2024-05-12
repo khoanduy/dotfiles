@@ -8,7 +8,7 @@ whichkey.register({
   f = { fzf.files, 'Find files' },
   F = { fzf.git_files, 'Find files (include ignored files)' },
   b = { fzf.buffers, 'Buffer list', silent = false },
-  B = { ':Gitsigns toggle_current_line_blame<cr>', 'Toggle current lien blame' },
+  B = { utils.show_git_annotate, 'Show current line blame' },
   r = { ':e<cr>', 'Reload current buffer from disk', silent = false },
   y = { '"+y', 'Copy marked text to global register', mode = 'v', silent = false },
   p = { '"+p', 'Paste marked text from global register', silent = false },
