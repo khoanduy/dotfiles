@@ -79,7 +79,6 @@ brew install pgcli mycli
 
 # Create some essential folders
 echo "[-] Creating essential folders [-]"
-mkdir ~/scripts
 mkdir ~/open-source
 mkdir ~/playground
 
