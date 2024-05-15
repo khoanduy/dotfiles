@@ -2,21 +2,15 @@
 local lspconfig = require('lspconfig')
 
 local servers = {
-  'rust_analyzer',
   'pyright',
   'jdtls',
+  'rust_analyzer',
   'sqlls',
-  'ansiblels',
   'bashls',
-  'jsonls',
-  'yamlls',
-  'taplo',
   'html',
   'cssls',
   'tsserver',
-  'dockerls',
   'lua_ls',
-  'marksman',
 }
 
 require('mason').setup({
@@ -49,7 +43,7 @@ require('cmp').setup(require('vimc/lsp/common').nvim_cmp_conf())
 vim.lsp.handlers['textDocument/publishDiagnostics'] =
   vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
     underline = false,
-    virtual_text = false,
+    virtual_text = true,
     update_in_insert = false,
     signs = false,
     severity_sort = true,

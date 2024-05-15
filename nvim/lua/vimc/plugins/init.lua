@@ -119,7 +119,7 @@ lazy.setup({
           hint = '✱',
           information = '●'
       },
-      use_diagnostic_signs = false
+      use_diagnostic_signs = true
     },
   },
 })
