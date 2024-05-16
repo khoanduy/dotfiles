@@ -1,13 +1,13 @@
 -- Mappings' config --
 local whichkey = require('which-key')
-local fzf = require('fzf-lua')
+local telescope = require('telescope.builtin')
 local utils = require('vimc.utils')
 
 -- Define mapping groups
 whichkey.register({
-  f = { fzf.files, 'Find files' },
-  F = { fzf.git_files, 'Find files (include ignored files)' },
-  b = { fzf.buffers, 'Buffer list', silent = false },
+  f = { telescope.find_files, 'Find files' },
+  F = { telescope.git_files, 'Find files (include ignored files)' },
+  b = { telescope.buffers, 'Buffer list', silent = false },
   B = { utils.show_git_annotate, 'Show current line blame' },
   r = { ':e<cr>', 'Reload current buffer from disk', silent = false },
   y = { '"+y', 'Copy marked text to global register', mode = 'v', silent = false },
@@ -18,11 +18,8 @@ whichkey.register({
     ':!tmux setw remain-on-exit off && tmux split-window -h -l 120 "lazygit"<cr><cr>',
     'Open git client'
   },
-  q = { ':q<cr>', 'Quit current buffer' },
-  Q = { ':qa<cr>', 'Quit all buffers' },
-  C = { ':qa!<cr>', 'Quit all buffers without saving' },
-  s = { ':w<cr>', 'Save current buffer' },
   d = { vim.diagnostic.open_float, 'Open diagnostic float' },
+  D = { telescope.diagnostics, 'List diagnostics for all open buffers' },
   x = { ':TroubleToggle<cr>', 'Open trouble lists' },
   i = {
     name = 'nvimdiff',
@@ -35,12 +32,7 @@ whichkey.register({
     v = { '<c-w>v', 'Split buffer vertically' },
     h = { '<c-w>s', 'Split buffer horizontally' },
   },
-  ['/'] = { fzf.live_grep, 'Grep pattern within project' },
-}, { prefix = '<leader>' })
-
-whichkey.register({
-  T = { [[<c-\><c-n>:bd!<cr>]], 'Close terminal', mode = 't' },
-  ['/'] = { [[y/\V<C-R>=escape(@",'/\')<cr><cr>]], 'Search current marked text', mode = 'v' },
+  ['/'] = { telescope.live_grep, 'Grep pattern within project' },
 }, { prefix = '<leader>' })
 
 whichkey.register({
@@ -60,6 +52,9 @@ whichkey.register({
   ['<down>'] = { ':resize +2<cr>', 'Increase vertical size' },
   ['<left>'] = { ':vertical resize +2<cr>', 'Left horizontal resize' },
   ['<right>'] = { ':vertical resize -2<cr>', 'Right horizontal resize' },
+  ['|'] = { ':noh<cr>', 'Dismiss highlights' },
+  ['//'] = { [[y/\V<C-R>=escape(@",'/\')<cr><cr>]], 'Search current marked text', mode = 'v' },
+  ['/'] = { telescope.grep_string, 'Grep current marked text within project', mode = 'v' },
   gR = { function() require('trouble').toggle('lsp_references') end, 'LSP references troubles' },
 })
 
