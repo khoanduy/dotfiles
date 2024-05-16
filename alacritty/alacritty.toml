@@ -12,7 +12,7 @@ TERM = "alacritty"
 WINIT_X11_SCALE_FACTOR = "1.0"
 
 [font]
-size = 14
+size = 15
 
 [font.bold]
 family = "SauceCodePro Nerd Font"
