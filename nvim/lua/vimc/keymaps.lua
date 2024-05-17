@@ -8,7 +8,7 @@ whichkey.register({
   f = { telescope.find_files, 'Find files' },
   F = { telescope.git_files, 'Find files (include ignored files)' },
   b = { telescope.buffers, 'Buffer list', silent = false },
-  B = { utils.show_git_annotate, 'Show current line blame' },
+  B = { ':Gitsigns toggle_current_line_blame<cr>', 'Toggle line blame' },
   r = { ':e<cr>', 'Reload current buffer from disk', silent = false },
   y = { '"+y', 'Copy marked text to global register', mode = 'v', silent = false },
   p = { '"+p', 'Paste marked text from global register', silent = false },
@@ -34,14 +34,6 @@ whichkey.register({
   },
   ['/'] = { telescope.live_grep, 'Grep pattern within project' },
 }, { prefix = '<leader>' })
-
-whichkey.register({
-  d = { vim.diagnostic.goto_prev, 'Prev diagnostic' },
-}, { prefix = '[' })
-
-whichkey.register({
-  d = { vim.diagnostic.goto_next, 'Next diagnostic' },
-}, { prefix = ']' })
 
 whichkey.register({
   ['<c-h>'] = { '<c-w>h', 'Switch to left region' },
@@ -76,36 +68,5 @@ whichkey.register({
     },
     t = { utils.run_maven_test, 'Run current test using Maven', silent = false, expr = true },
   },
-  d = {
-    name = 'DAP commands',
-    s = {
-      require('jdtls.dap').setup_dap_main_class_configs,
-      'Setup DAP main class configs',
-      silent = false
-    },
-    t = {
-      require('dapui').toggle,
-      'Toggle DAP UI'
-    },
-    b = { ':DapToggleBreakpoint<cr>', 'Toggle DAP Breakpoint' },
-    c = { ':DapContinue<cr>', 'Debug continue' },
-    i = { ':DapUIStepInto<cr>', 'Debug step into' },
-    o = { ':DapUIStepOut<cr>', 'Debug step out' },
-    v = { ':DapUIStepOver<cr>', 'Debug step over' },
-    q = { ':DapTerminate<cr>', 'Debug terminate' },
-  },
-  t = {
-    name = 'Testing commands',
-    c = {
-      require('jdtls').test_class,
-      'Run current test file',
-      silent = false
-    },
-    m = {
-      require('jdtls').test_nearest_method,
-      'Run current test method',
-      silent = false
-    }
-  }
 }, { prefix = '\\' })
 -- End mappings' config --

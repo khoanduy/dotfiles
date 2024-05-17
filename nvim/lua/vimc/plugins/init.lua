@@ -26,19 +26,16 @@ vim.g.mapleader = ' '
 lazy.setup({
   -- Utilities
   {
-    'airblade/vim-gitgutter',
+    'lewis6991/gitsigns.nvim',
     config = function()
-      vim.api.nvim_exec([[
-        let g:gitgutter_set_sign_backgrounds=1
-        hi SignColumn ctermbg=NONE guibg=NONE
-      ]], false)
+      require('gitsigns').setup()
     end
   },
   {
     'folke/which-key.nvim',
     config = function()
       vim.o.timeout = true
-      vim.o.timeoutlen = 200
+      vim.o.timeoutlen = 500
       require('which-key').setup()
     end
   },
@@ -59,7 +56,13 @@ lazy.setup({
 
   -- Programming language
   require('vimc/plugins/treesitter'),
-  'folke/neodev.nvim',
+  {
+    'folke/neodev.nvim',
+    opts = {},
+    config = function()
+      require("neodev").setup({})
+    end
+  },
 
   -- LSP and DAP
   {
@@ -80,18 +83,19 @@ lazy.setup({
   {
     'mfussenegger/nvim-jdtls',
     ft = 'java',
-    dependencies = {
-      'mfussenegger/nvim-dap'
-    }
   },
-  require('vimc/plugins/nvim-dap-ui'),
 
   -- UI
   {
-    'pappasam/papercolor-theme-slim',
+    'catppuccin/nvim',
+    name = 'catppuccin',
+    priority = 1000,
     config = function()
-      vim.cmd[[ set background=light ]]
-      vim.cmd.colorscheme 'PaperColorSlim'
+      require('catppuccin').setup({
+        flavour = 'latte',
+        no_italic = true
+      })
+      vim.cmd.colorscheme 'catppuccin'
     end
   },
   require('vimc/plugins/telescope'),
