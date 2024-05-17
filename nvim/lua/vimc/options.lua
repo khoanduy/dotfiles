@@ -1,11 +1,7 @@
 -- General settings --
 -- Encoding
 vim.opt.encoding = 'utf-8'
-vim.opt.termencoding = 'utf-8'
 vim.opt.fileencoding = 'utf-8'
-vim.cmd([[
-  lang en_US.UTF-8
-]])
 
 -- No temporary files
 vim.opt.smartcase = true
@@ -16,7 +12,6 @@ vim.opt.wrap = false
 vim.opt.errorbells = false
 
 -- Display options
-vim.opt.termguicolors = true
 vim.opt.showmode = false
 vim.opt.showcmd = true
 vim.opt.showmatch = true
@@ -43,21 +38,11 @@ vim.opt.splitright = true
 -- Searching
 vim.opt.incsearch = true
 vim.opt.hlsearch = true
-vim.cmd([[
-  set matchpairs+=<:>
-]])
 
--- UI
-vim.cmd([[
-  set ma
-  set mouse=a
-  syntax enable
-]])
+-- Mouse support
+vim.opt.mouse = 'a'
 
 -- Disable netrw
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
-
--- Get rid of scratch buffer
-vim.cmd([[ set completeopt-=preview ]])
 -- End general settings --

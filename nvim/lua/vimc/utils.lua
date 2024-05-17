@@ -1,4 +1,4 @@
--- Functions definition --
+-- Utils functions --
 local M = {}
 
 function M.show_git_annotate()

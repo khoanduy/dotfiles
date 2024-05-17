@@ -26,12 +26,6 @@ vim.g.mapleader = ' '
 lazy.setup({
   -- Utilities
   {
-    'numToStr/Comment.nvim',
-    config = function()
-      require('Comment').setup()
-    end
-  },
-  {
     'airblade/vim-gitgutter',
     config = function()
       vim.api.nvim_exec([[
