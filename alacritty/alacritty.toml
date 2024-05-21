@@ -53,69 +53,31 @@ y = 10
 x = 0
 y = 0
 
-# Thanks to Catppuccin
+# Thanks to Jellybeans color scheme
 [colors.primary]
-background = '#eff1f5'
-foreground = '#4c4f69'
+background = '0x121212'
+foreground = '0xdedede'
 
 [colors.cursor]
-text = '#eff1f5'
-cursor = '#dc8a78'
-
-[colors.vi_mode_cursor]
-text = '#eff1f5'
-cursor = '#7287fd'
-
-[colors.search.matches]
-foreground = '#eff1f5'
-background = '#6c6f85'
-
-[colors.search.focused_match]
-foreground = '#eff1f5'
-background = '#40a02b'
-
-[colors.footer_bar]
-foreground = '#eff1f5'
-background = '#6c6f85'
-
-[colors.hints.start]
-foreground = '#eff1f5'
-background = '#df8e1d'
-
-[colors.hints.end]
-foreground = '#eff1f5'
-background = '#6c6f85'
-
-[colors.selection]
-text = '#eff1f5'
-background = '#dc8a78'
+text = '0xffffff'
+cursor = '0xffa460'
 
 [colors.normal]
-black = '#5c5f77'
-red = '#d20f39'
-green = '#40a02b'
-yellow = '#df8e1d'
-blue = '#1e66f5'
-magenta = '#ea76cb'
-cyan = '#179299'
-white = '#acb0be'
+black   = '0x929292'
+red     = '0xe27373'
+green   = '0x94b979'
+yellow  = '0xffba7b'
+blue    = '0x97bedc'
+magenta = '0xe1c0fa'
+cyan    = '0x00988e'
+white   = '0xdedede'
 
 [colors.bright]
-black = '#6c6f85'
-red = '#d20f39'
-green = '#40a02b'
-yellow = '#df8e1d'
-blue = '#1e66f5'
-magenta = '#ea76cb'
-cyan = '#179299'
-white = '#bcc0cc'
-
-[colors.dim]
-black = '#5c5f77'
-red = '#d20f39'
-green = '#40a02b'
-yellow = '#df8e1d'
-blue = '#1e66f5'
-magenta = '#ea76cb'
-cyan = '#179299'
-white = '#acb0be'
+black   = '0xbdbdbd'
+red     = '0xffa1a1'
+green   = '0xbddeab'
+yellow  = '0xffdca0'
+blue    = '0xb1d8f6'
+magenta = '0xfbdaff'
+cyan    = '0x1ab2a8'
+white   = '0xffffff'

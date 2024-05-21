@@ -87,15 +87,12 @@ lazy.setup({
 
   -- UI
   {
-    'catppuccin/nvim',
-    name = 'catppuccin',
-    priority = 1000,
+    'metalelf0/jellybeans-nvim',
+    dependencies = {
+      'rktjmp/lush.nvim'
+    },
     config = function()
-      require('catppuccin').setup({
-        flavour = 'latte',
-        no_italic = true
-      })
-      vim.cmd.colorscheme 'catppuccin'
+      vim.cmd.colorscheme 'jellybeans-nvim'
     end
   },
   require('vimc/plugins/telescope'),

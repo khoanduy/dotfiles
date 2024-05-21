@@ -44,7 +44,7 @@ whichkey.register({
   ['<down>'] = { ':resize +2<cr>', 'Increase vertical size' },
   ['<left>'] = { ':vertical resize +2<cr>', 'Left horizontal resize' },
   ['<right>'] = { ':vertical resize -2<cr>', 'Right horizontal resize' },
-  ['|'] = { ':noh<cr>', 'Dismiss highlights' },
+  ['~'] = { ':noh<cr>', 'Dismiss highlights' },
   ['//'] = { [[y/\V<C-R>=escape(@",'/\')<cr><cr>]], 'Search current marked text', mode = 'v' },
   ['/'] = { telescope.grep_string, 'Grep current marked text within project', mode = 'v' },
   gR = { function() require('trouble').toggle('lsp_references') end, 'LSP references troubles' },
