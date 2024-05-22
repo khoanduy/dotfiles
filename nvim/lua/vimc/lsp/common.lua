@@ -63,7 +63,7 @@ function M.nvim_cmp_conf()
     },
     mapping = cmp.mapping.preset.insert({
       ['<c-d>'] = cmp.mapping.scroll_docs(-5),
-      ['<C-u>'] = cmp.mapping.scroll_docs(5),
+      ['<c-u>'] = cmp.mapping.scroll_docs(5),
       ['<c-space>'] = cmp.mapping.complete(),
       ['<tab>'] = cmp.mapping.confirm {
         behavior = cmp.ConfirmBehavior.Replace,
