@@ -121,27 +121,43 @@ function Statusline.short()
   return '%#Blur# %y '
 end
 
+-- Highlight groups
+vim.cmd.highlight('Statusline ctermbg=NONE ctermfg=black guibg=NONE guifg=#444444')
+vim.cmd.highlight('StatuslineNC ctermbg=NONE ctermfg=grey guibg=NONE guifg=#878787')
+vim.cmd.highlight('Normal ctermbg=NONE guibg=NONE')
+vim.cmd.highlight('Stress cterm=bold ctermbg=NONE gui=bold guibg=NONE')
+vim.cmd.highlight('Blur ctermbg=NONE ctermfg=grey guibg=NONE guifg=#878787')
+
+-- Set LSP highlight color groups
+vim.cmd.highlight('LspDiagnosticsSignError ctermbg=NONE ctermfg=red guibg=NONE guifg=#af0000')
+vim.cmd.highlight('LspDiagnosticsSignWarning ctermbg=NONE ctermfg=yellow guibg=NONE guifg=#d75f00')
+vim.cmd.highlight('LspDiagnosticsSignInformation ctermbg=NONE ctermfg=blue guibg=NONE guifg=#005f87')
+vim.cmd.highlight('LspDiagnosticsSignHint ctermbg=NONE ctermfg=green guibg=NONE guifg=#008700')
+
 -- Apply statusline
-vim.api.nvim_exec([[
-  set laststatus=3
+vim.opt.laststatus = 3
+vim.api.nvim_create_augroup('statusline', { clear = false })
 
-  " Set active and inactive status line style
-  hi Statusline ctermbg=NONE ctermfg=black guibg=NONE guifg=#444444
-  hi StatuslineNC ctermbg=NONE ctermfg=grey guibg=NONE guifg=#878787
-  hi Normal ctermbg=NONE guibg=NONE
-  hi Stress cterm=bold ctermbg=NONE gui=bold guibg=NONE
-  hi Blur ctermbg=NONE ctermfg=grey guibg=NONE guifg=#878787
+vim.api.nvim_create_autocmd({'BufEnter', 'WinEnter'}, {
+  pattern = '*',
+  callback = function()
+    vim.o.statusline = Statusline.active()
+  end,
+  group = 'statusline',
+})
 
-  " Set LSP highlight color groups
-  hi LspDiagnosticsSignError ctermbg=NONE ctermfg=red guibg=NONE guifg=#af0000
-  hi LspDiagnosticsSignWarning ctermbg=NONE ctermfg=yellow guibg=NONE guifg=#d75f00
-  hi LspDiagnosticsSignInformation ctermbg=NONE ctermfg=blue guibg=NONE guifg=#005f87
-  hi LspDiagnosticsSignHint ctermbg=NONE ctermfg=green guibg=NONE guifg=#008700
+vim.api.nvim_create_autocmd({'BufLeave', 'WinLeave'}, {
+  pattern = '*',
+  callback = function()
+    vim.o.statusline = Statusline.inactive()
+  end,
+  group = 'statusline',
+})
 
-  augroup statusline
-  au!
-  au WinEnter,BufEnter * setlocal statusline=%!v:lua.Statusline.active()
-  au WinLeave,BufLeave * setlocal statusline=%!v:lua.Statusline.inactive()
-  au WinEnter,BufEnter,FileType term setlocal statusline=%!v:lua.Statusline.short()
-  augroup END
-]], false)
+vim.api.nvim_create_autocmd({'BufLeave', 'WinLeave'}, {
+  pattern = 'filetype:term',
+  callback = function()
+    vim.o.statusline = Statusline.short()
+  end,
+  group = 'statusline',
+})
