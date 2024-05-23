@@ -53,31 +53,27 @@ y = 10
 x = 0
 y = 0
 
-# Thanks to Jellybeans color scheme
+# Thanks to Tokyonight color scheme
 [colors.primary]
-background = '0x121212'
-foreground = '0xdedede'
-
-[colors.cursor]
-text = '0xffffff'
-cursor = '0xffa460'
+background = '#24283b'
+foreground = '#a9b1d6'
 
 [colors.normal]
-black   = '0x929292'
-red     = '0xe27373'
-green   = '0x94b979'
-yellow  = '0xffba7b'
-blue    = '0x97bedc'
-magenta = '0xe1c0fa'
-cyan    = '0x00988e'
-white   = '0xdedede'
+black   = '#32344a'
+red     = '#f7768e'
+green   = '#9ece6a'
+yellow  = '#e0af68'
+blue    = '#7aa2f7'
+magenta = '#ad8ee6'
+cyan    = '#449dab'
+white   = '#9699a8'
 
 [colors.bright]
-black   = '0xbdbdbd'
-red     = '0xffa1a1'
-green   = '0xbddeab'
-yellow  = '0xffdca0'
-blue    = '0xb1d8f6'
-magenta = '0xfbdaff'
-cyan    = '0x1ab2a8'
-white   = '0xffffff'
+black   = '#444b6a'
+red     = '#ff7a93'
+green   = '#b9f27c'
+yellow  = '#ff9e64'
+blue    = '#7da6ff'
+magenta = '#bb9af7'
+cyan    = '#0db9d7'
+white   = '#acb0d0'

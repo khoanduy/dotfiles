@@ -87,12 +87,17 @@ lazy.setup({
 
   -- UI
   {
-    'metalelf0/jellybeans-nvim',
-    dependencies = {
-      'rktjmp/lush.nvim'
-    },
+    'folke/tokyonight.nvim',
+    lazy = false,
+    priority = 1000,
+    opts = {},
     config = function()
-      vim.cmd.colorscheme 'jellybeans-nvim'
+      require('tokyonight').setup({
+        style = 'storm',
+        dim_inactive = true,
+        lualine_bold = true,
+      })
+      vim.cmd.colorscheme 'tokyonight'
     end
   },
   require('plugins/lualine'),
