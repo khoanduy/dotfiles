@@ -29,7 +29,7 @@ require('mason-lspconfig').setup {
 }
 
 -- LSP servers' default config
-local config = require('vimc/lsp/common').make_conf()
+local config = require('lsp/common').make_conf()
 for _, lsp in ipairs(servers) do
   if lsp ~= 'jdtls' then
     lspconfig[lsp].setup(config)
@@ -37,7 +37,7 @@ for _, lsp in ipairs(servers) do
 end
 
 -- nvim-cmp setup
-require('cmp').setup(require('vimc/lsp/common').nvim_cmp_conf())
+require('cmp').setup(require('lsp/common').nvim_cmp_conf())
 
 -- Diagnostic sign symbols
 vim.lsp.handlers['textDocument/publishDiagnostics'] =

@@ -52,10 +52,10 @@ lazy.setup({
       require('nvim-autopairs').setup()
     end
   },
-  require('vimc/plugins/oil'),
+  require('plugins/oil'),
 
   -- Programming language
-  require('vimc/plugins/treesitter'),
+  require('plugins/treesitter'),
   {
     'folke/neodev.nvim',
     opts = {},
@@ -95,7 +95,8 @@ lazy.setup({
       vim.cmd.colorscheme 'jellybeans-nvim'
     end
   },
-  require('vimc/plugins/telescope'),
+  require('plugins/lualine'),
+  require('plugins/telescope'),
   {
     'folke/trouble.nvim',
     opts = {
@@ -113,7 +114,4 @@ lazy.setup({
     },
   },
 })
-
--- Load custom statusline
-require('vimc/plugins/statusline')
 -- End plugins' configuration --

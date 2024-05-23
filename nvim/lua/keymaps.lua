@@ -1,7 +1,7 @@
 -- Mappings' config --
 local whichkey = require('which-key')
 local telescope = require('telescope.builtin')
-local utils = require('vimc.utils')
+local utils = require('utils')
 
 -- Define mapping groups
 whichkey.register({

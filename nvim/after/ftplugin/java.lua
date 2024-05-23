@@ -100,7 +100,7 @@ local config = {
   flags = { allow_incremental_sync = true },
   init_options = { bundles = bundles },
   capabilities = require('cmp_nvim_lsp').default_capabilities(),
-  on_attach = require('vimc/lsp/common').make_conf().on_attach
+  on_attach = require('lsp/common').make_conf().on_attach
 }
 
 -- This starts a new client & server,

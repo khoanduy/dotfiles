@@ -2,8 +2,8 @@
 vim.loader.enable()
 
 -- Load configuration files --
-require('vimc/options')
-require('vimc/plugins')
-require('vimc/keymaps')
-require('vimc/lsp')
+require('options')
+require('plugins')
+require('keymaps')
+require('lsp')
 ----- End configuration -----
