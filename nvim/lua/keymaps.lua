@@ -18,6 +18,7 @@ whichkey.register({
     ':!tmux setw remain-on-exit off && tmux split-window -h -l 120 "lazygit"<cr><cr>',
     'Open git client'
   },
+  q = { ':bd<cr>', 'Delete buffer' },
   d = { vim.diagnostic.open_float, 'Open diagnostic float' },
   D = { telescope.diagnostics, 'List diagnostics for all open buffers' },
   x = { ':TroubleToggle<cr>', 'Open trouble lists' },
