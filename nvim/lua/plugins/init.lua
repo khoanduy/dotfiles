@@ -94,8 +94,11 @@ lazy.setup({
     config = function()
       require('tokyonight').setup({
         style = 'storm',
-        dim_inactive = true,
         lualine_bold = true,
+        styles = {
+          comments = { italic = false },
+          keywords = { italic = false },
+        },
       })
       vim.cmd.colorscheme 'tokyonight'
     end

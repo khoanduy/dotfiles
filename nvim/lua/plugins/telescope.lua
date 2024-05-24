@@ -19,5 +19,10 @@ return {
         },
       }
     })
+    vim.cmd.highlight('TelescopeNormal ctermbg=none guibg=none')
+    vim.cmd.highlight('TelescopePromptBorder ctermbg=none guibg=none')
+    vim.cmd.highlight('TelescopePromptTitle ctermbg=none guibg=none')
+    vim.cmd.highlight('TelescopeBorder ctermbg=none guibg=none')
+    vim.cmd.highlight('TelescopeTitle ctermbg=none guibg=none')
   end
 }
