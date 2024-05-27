@@ -52,7 +52,7 @@ lazy.setup({
       require('nvim-autopairs').setup()
     end
   },
-  require('plugins/oil'),
+  require('plugins/nvim-tree'),
 
   -- Programming language
   require('plugins/treesitter'),
