@@ -1,7 +1,7 @@
 -- Mappings' config --
 local whichkey = require('which-key')
 local telescope = require('telescope.builtin')
-local utils = require('utils')
+local funcs = require('utils.funcs')
 
 -- Define mapping groups
 whichkey.register({
@@ -68,7 +68,7 @@ whichkey.register({
       'Clean and install project using Maven',
       silent = false
     },
-    t = { utils.run_maven_test, 'Run current test using Maven', silent = false, expr = true },
+    t = { funcs.run_maven_test, 'Run current test using Maven', silent = false, expr = true },
   },
 }, { prefix = '\\' })
 -- End mappings' config --
