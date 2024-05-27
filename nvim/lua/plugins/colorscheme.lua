@@ -1,17 +1,14 @@
 return {
-  'folke/tokyonight.nvim',
+  'RRethy/base16-nvim',
   lazy = false,
-  priority = 1000,
   opts = {},
   config = function()
-    require('tokyonight').setup({
-      style = 'storm',
-      lualine_bold = true,
-      styles = {
-        comments = { italic = false },
-        keywords = { italic = false },
-      },
+    require('base16-colorscheme').with_config({
+      telescope = false,
+      telescope_borders = false,
+      indentblankline = false,
     })
-    vim.cmd.colorscheme 'tokyonight'
+
+    vim.cmd.colorscheme 'base16-default-dark'
   end
 }

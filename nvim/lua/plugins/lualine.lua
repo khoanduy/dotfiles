@@ -1,14 +1,14 @@
 return {
   'nvim-lualine/lualine.nvim',
+  dependencies = {
+    'RRethy/base16-nvim'
+  },
   config = function()
-    local theme = require('lualine.themes.tokyonight')
-    theme.normal.c.bg = nil
     require('lualine').setup {
       options = {
-        theme = theme,
         icons_enabled = false,
         component_separators = '-',
-        section_separators = { left = '|', right = '|' },
+        section_separators = { left = '.', right = '.' },
         always_divide_middle = false,
         globalstatus = true,
       },
@@ -31,5 +31,12 @@ return {
         lualine_z = { 'location' },
       },
     }
+
+    vim.cmd.highlight('Statusline ctermbg=none guibg=none')
+    vim.cmd.highlight('StatuslineNC ctermbg=none guibg=none')
+
+    vim.cmd.highlight('lualine_c_normal ctermbg=none guibg=none')
+    vim.cmd.highlight('lualine_c_command ctermbg=none guibg=none')
+    vim.cmd.highlight('lualine_c_inactive ctermbg=none guibg=none')
   end
 }
