@@ -86,8 +86,36 @@ set number
 set ruler
 set hidden
 
+# Auto copy indent and auto read file change
+set autoindent
+set autoread
+
+# Allow backspacing over listed items and belloff
+set backspace=indent,eol,start
+set belloff=all
+
+# List of string that can start a comment line
+set comments=s1:/*,mb:*,ex:*/,://,b:#,:%,:XCOMM,n:>,fb:-,fb:•
+set commentstring=
+
+# Scan to put in completion
+set complete=.,w,b,u,t
+set define=
+
+# Characters to fill the statuslines
+set fillchars=
+set display=lastline
+
+# Sequence of letters which describes how automatic formatting is to be done
+set formatoptions=tcqj
+
+# Program to use for the :grep command
+set grepprg=rg\ --vimgrep\ -uu
+set path=.,,
+
 # Set default indentation
 set expandtab
+set smarttab
 set shiftwidth=2
 set tabstop=2
 set softtabstop=2
@@ -100,6 +128,7 @@ set noswapfile
 # Do not let cursor scroll below or above N number of lines when scrolling.
 set scrolloff=10
 set splitbelow
+set sidescroll=1
 
 # Do not wrap lines. Allow long lines to extend as far as the line goes.
 set nowrap
@@ -112,9 +141,17 @@ set matchpairs+=<:>
 set ignorecase
 set smartcase
 
+# Pattern to be used to find an include command
+set include=
+set nojoinspaces
+
+# The characters specified by this option are included in file names and path names
+set isfname=@,48-57,/,.,-,_,+,,,#,$,%,~,=
+set nolangremap
+
 # Enable mouse interaction
-set ma
 set mouse=a
+set mousemodel=popup_setpos
 
 # Limit command height to 1 line
 set cmdheight=1
@@ -125,15 +162,42 @@ set showcmd
 set noshowmode
 set showmatch
 
+# Strings to use in list mode
+set listchars=tab:>\ ,trail:-,nbsp:+
+set nrformats=bin,hex
+
+# Changes the effect of the :mksession command
+set sessionoptions=blank,buffers,curdir,folds,help,tabpages,winsize,terminal
+
+# This option helps to avoid all the hit-enter prompts caused by file messages
+set shortmess=ltToOCF
+
+# The cursor is kept in the same column
+set nostartofline
+
+# Filenames for the tag command
+set tags=./tags;,tags
+
+# This option controls the behavior when switching between buffers
+set switchbuf=uselast
+set tabpagemax=50
+
 # Get rid of scratch buffer
 set completeopt-=preview
+set ttimeout
+set ttimeoutlen=50
+
+# Changes the effect of the :mkview command
+set viewoptions=folds,cursor,curdir
 
 # Enable auto completion menu after pressing TAB.
 set wildmenu
+set wildoptions=pum,tagfile
 set wildmode=list:longest
 
 # Set the commands to save in history default number is 20.
 set history=10000
+set ttyfast
 
 # -------------- #
 # ----- UI ----- #
@@ -365,9 +429,6 @@ nnoremap <leader>f :GFiles<cr>
 nnoremap <leader>F :Files<cr>
 nnoremap <leader>b :Buffers<cr>
 nnoremap <leader>/ :Rg<cr>
-
-# Let :grep use ripgrep
-set grepprg=rg\ --vimgrep\ --smart-case\ --follow
 
 # Custom ALE sign symbol
 g:ale_sign_error = '✖'
