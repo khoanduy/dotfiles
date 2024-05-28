@@ -7,6 +7,53 @@ vim9script
 # Disable compatibility with vi which can cause unexpected issues.
 set nocompatible
 
+# ----------------------------- #
+# ----- Plugin definition ----- #
+# ----------------------------- #
+
+call plug#begin()
+# The default plugin directory will be as follows:
+#   - Vim (Linux/macOS): '~/.vim/plugged'
+#   - Vim (Windows): '~/vimfiles/plugged'
+#   - Neovim (Linux/macOS/Windows): stdpath('data') . '/plugged'
+# You can specify a custom plugin directory by passing it as the argument
+#   - e.g. `call plug#begin('~/.vim/plugged')`
+#   - Avoid using standard Vim directory names like 'plugin'
+
+# Make sure you use single quotes
+
+# A colorful, dark color scheme for Vim
+Plug 'nanotech/jellybeans.vim'
+
+# A command-line fuzzy finder
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+
+# Parentheses, brackets, quotes, tags, and more
+Plug 'tpope/vim-surround'
+
+# Comment stuff out
+Plug 'tpope/vim-commentary'
+
+# Vim plugin, insert or delete brackets, parens, quotes in pair
+Plug 'jiangmiao/auto-pairs'
+
+# Shows git diff markers in the sign column
+Plug 'airblade/vim-gitgutter'
+
+# A solid language pack for Vim
+Plug 'sheerun/vim-polyglot'
+
+# Asynchronous Lint Engine
+Plug 'dense-analysis/ale'
+
+# Call plug#end to update &runtimepath and initialize the plugin system.
+# - It automatically executes `filetype plugin indent on` and `syntax enable`
+call plug#end()
+# You can revert the settings after the call like so:
+#   filetype indent off   # Disable file-type-specific indentation
+#   syntax off            # Disable syntax highlighting
+
 # ---------------------------- #
 # ----- General settings ----- #
 # ---------------------------- #
@@ -90,7 +137,14 @@ set history=10000
 # -------------- #
 
 # Colorscheme
-set background=light
+set termguicolors
+set background=dark
+g:jellybeans_overrides = {
+  'background': { 'ctermbg': 'none', '256ctermbg': 'none', 'guibg': 'none' },
+}
+g:jellybeans_use_term_italics = 0
+g:jellybeans_use_gui_italics = 0
+colorscheme jellybeans
 
 # Set statusline last status
 set laststatus=2
@@ -170,7 +224,7 @@ augroup END
 inoremap <silent> jk <esc>
 
 # Dismiss highlight
-nnoremap \| :noh<cr>
+nnoremap ~ :noh<cr>
 
 # Remap c-w prefix
 nnoremap <silent> <leader>w <c-w>
@@ -204,6 +258,20 @@ nnoremap <leader>p "+p
 nnoremap <leader>dp :diffput 2<cr>
 nnoremap <leader>dl :diffget 1<cr>
 nnoremap <leader>dr :diffget 3<cr>
+
+# Open git client
+nnoremap <leader>G :!lazygit<cr><cr>
+
+# ALE go to
+nnoremap <silent> gd :ALEGoToDefinition<cr>
+nnoremap <silent> gD :ALEGoToTypeDefinition<cr>
+nnoremap <silent> gi :ALEGoToImplementation<cr>
+
+# ALE actions
+nnoremap <leader>ah :ALEHover<cr>
+nnoremap <leader>ar :ALEFileRename<cr>
+nnoremap <leader>ac :ALECodeAction<cr>
+nnoremap <leader>af :ALEFixSuggest<cr>
 
 # --------------------- #
 # ----- Utilities ----- #
@@ -268,5 +336,51 @@ augroup netrw_mapping
   autocmd!
   autocmd filetype netrw call NetrwMapping()
 augroup end
+
+# --------------------------------- #
+# ----- Plugin configuration ------ #
+# --------------------------------- #
+
+# Don't let GitGutter set sign backgrounds
+g:gitgutter_set_sign_backgrounds = 1
+hi SignColumn ctermbg=NONE guibg=NONE
+
+# Fzf config
+g:fzf_vim = {}
+g:fzf_vim.preview_window = []
+g:fzf_layout = { 'window': { 'width': 0.8, 'height': 0.8 } }
+
+# Fzf mapping
+nnoremap <leader>f :GFiles<cr>
+nnoremap <leader>F :Files<cr>
+nnoremap <leader>b :Buffers<cr>
+nnoremap <leader>/ :Rg<cr>
+
+# Let :grep use ripgrep
+set grepprg=rg\ --vimgrep\ --smart-case\ --follow
+
+# Custom ALE sign symbol
+g:ale_sign_error = '✖'
+g:ale_sign_info = '●'
+g:ale_sign_warning = '▲'
+
+# Custom ALE sign color
+hi ALEErrorSign ctermfg=red guifg=#e27373
+hi ALEInfoSign ctermfg=blue guifg=#97bedc
+hi ALEWarningSign ctermfg=yellow guifg=#ffba7b
+
+# Disable ALE virtual text
+g:ale_virtualtext_cursor = 'disabled'
+
+# Enable ALE suggestions
+g:ale_lsp_suggestions = 1
+
+# Only run linters named in ale_linters settings.
+g:ale_linters_explicit = 1
+
+# Custom ALE linters and LSPs
+g:ale_linters  =  {
+  'python': ['pyright', 'ruff'],
+}
 
 defcompile
