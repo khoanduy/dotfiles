@@ -41,6 +41,9 @@ Plug 'jiangmiao/auto-pairs'
 # Shows git diff markers in the sign column
 Plug 'airblade/vim-gitgutter'
 
+# A Vim plugin for visually displaying indent levels in code
+Plug 'nathanaelkane/vim-indent-guides'
+
 # A solid language pack for Vim
 Plug 'sheerun/vim-polyglot'
 
@@ -203,6 +206,9 @@ def g:MinimalStatusline(): string
   return '%#Blur# %y '
 enddef
 
+# Default statusline
+set statusline=%!InactiveStatusline()
+
 # Set active and inactive status line style
 hi Normal ctermbg=NONE guibg=NONE
 hi Stress cterm=bold ctermbg=NONE gui=bold guibg=NONE
@@ -344,6 +350,10 @@ augroup end
 # Don't let GitGutter set sign backgrounds
 g:gitgutter_set_sign_backgrounds = 1
 hi SignColumn ctermbg=NONE guibg=NONE
+
+# Enable indent guides by default
+g:indent_guides_enable_on_vim_startup = 1
+g:indent_guides_guide_size = 1
 
 # Fzf config
 g:fzf_vim = {}
