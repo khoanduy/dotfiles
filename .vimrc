@@ -7,6 +7,9 @@ vim9script
 # Disable compatibility with vi which can cause unexpected issues.
 set nocompatible
 
+# Enable ALE completion, must be set before ALE is loaded
+g:ale_completion_enabled = 1
+
 # ----------------------------- #
 # ----- Plugin definition ----- #
 # ----------------------------- #
@@ -32,20 +35,8 @@ Plug 'junegunn/fzf.vim'
 # Parentheses, brackets, quotes, tags, and more
 Plug 'tpope/vim-surround'
 
-# Comment stuff out
-Plug 'tpope/vim-commentary'
-
-# Vim plugin, insert or delete brackets, parens, quotes in pair
-Plug 'jiangmiao/auto-pairs'
-
 # Shows git diff markers in the sign column
 Plug 'airblade/vim-gitgutter'
-
-# A Vim plugin for visually displaying indent levels in code
-Plug 'nathanaelkane/vim-indent-guides'
-
-# A solid language pack for Vim
-Plug 'sheerun/vim-polyglot'
 
 # Asynchronous Lint Engine
 Plug 'dense-analysis/ale'
@@ -285,7 +276,6 @@ au WinLeave,BufLeave * setlocal statusline=%!InactiveStatusline()
 au WinEnter,BufEnter,FileType netrw setlocal statusline=%!MinimalStatusline()
 augroup END
 
-
 # ------------------- #
 # ----- Keymaps ----- #
 # ------------------- #
@@ -318,7 +308,6 @@ nnoremap <silent> <right> :vertical resize -2<cr>
 
 # Search current marked text
 vnoremap // y/\V<c-r>=escape(@",'/\')<cr><cr>
-vnoremap <leader>/ y/\V<c-r>=escape(@",':Rg')<cr><cr>
 
 # Copy marked text/paste to/from global register
 vnoremap <leader>y "+y
@@ -366,7 +355,7 @@ nnoremap <leader>E :Explore %:p:h<cr>
 # Remap key inside netrw buffer
 def NetrwMapping(): void
   # cancel browsing
-  nmap <buffer> <silent> E :Rexplore<cr>
+  nmap <buffer> E :Rexplore<cr>
 
   # Go back in history
   nmap <buffer> H u
@@ -415,10 +404,6 @@ augroup end
 g:gitgutter_set_sign_backgrounds = 1
 hi SignColumn ctermbg=NONE guibg=NONE
 
-# Enable indent guides by default
-g:indent_guides_enable_on_vim_startup = 1
-g:indent_guides_guide_size = 1
-
 # Fzf config
 g:fzf_vim = {}
 g:fzf_vim.preview_window = []
@@ -429,6 +414,9 @@ nnoremap <leader>f :GFiles<cr>
 nnoremap <leader>F :Files<cr>
 nnoremap <leader>b :Buffers<cr>
 nnoremap <leader>/ :Rg<cr>
+
+# Disable ALE by default, enable by :ALEToggle
+g:ale_enabled = 0
 
 # Custom ALE sign symbol
 g:ale_sign_error = '✖'
