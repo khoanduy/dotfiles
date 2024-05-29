@@ -25,8 +25,8 @@ call plug#begin()
 
 # Make sure you use single quotes
 
-# A colorful, dark color scheme for Vim
-Plug 'nanotech/jellybeans.vim'
+# Light & Dark Vim color schemes inspired by Google's Material Design
+Plug 'NLKNguyen/papercolor-theme'
 
 # A command-line fuzzy finder
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
@@ -196,13 +196,8 @@ set ttyfast
 
 # Colorscheme
 set termguicolors
-set background=dark
-g:jellybeans_overrides = {
-  'background': { 'ctermbg': 'none', '256ctermbg': 'none', 'guibg': 'none' },
-}
-g:jellybeans_use_term_italics = 0
-g:jellybeans_use_gui_italics = 0
-colorscheme jellybeans
+set background=light
+colorscheme PaperColor
 
 # Set statusline last status
 set laststatus=2
@@ -234,6 +229,7 @@ const modes = {
 # Active statusline
 def g:ActiveStatusline(): string
   var sl = '%#Stress# '
+  sl ..= ' '
   sl ..= modes[mode()]
   sl ..= '%#Normal#'
   sl ..= ': '
@@ -243,7 +239,7 @@ def g:ActiveStatusline(): string
   sl ..= '%y'
   sl ..= ' - '
   sl ..= '%{strlen(&fenc)?&fenc:"none"}'
-  sl ..= '|'
+  sl ..= ' | '
   sl ..= '%l'
   sl ..= ':'
   sl ..= '%c'
