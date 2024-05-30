@@ -25,8 +25,8 @@ call plug#begin()
 
 # Make sure you use single quotes
 
-# Light & Dark Vim color schemes inspired by Google's Material Design
-Plug 'NLKNguyen/papercolor-theme'
+# A colorful, dark color scheme for Vim
+Plug 'nanotech/jellybeans.vim'
 
 # A command-line fuzzy finder
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
@@ -196,8 +196,13 @@ set ttyfast
 
 # Colorscheme
 set termguicolors
-set background=light
-colorscheme PaperColor
+set background=dark
+g:jellybeans_overrides = {
+  'background': { 'ctermbg': 'none', '256ctermbg': 'none', 'guibg': 'none' },
+}
+g:jellybeans_use_term_italics = 0
+g:jellybeans_use_gui_italics = 0
+colorscheme jellybeans
 
 # Set statusline last status
 set laststatus=2
