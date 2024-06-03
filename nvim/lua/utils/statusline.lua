@@ -93,7 +93,7 @@ local function lineinfo()
   if vim.bo.filetype == 'alpha' then
     return ''
   end
-  return ' %{strlen(&fenc)?&fenc:\'none\'} | %l:%c '
+  return ' %{strlen(&fenc)?&fenc:\'none\'} | %l:%c'
 end
 
 -- Build the statusline
@@ -102,7 +102,7 @@ Statusline = {}
 Statusline.active = function()
   return table.concat {
     '%#Stress#',
-    '  ',
+    ' ',
     mode(),
     '%#Normal#',
     filepath(),
@@ -142,7 +142,11 @@ vim.api.nvim_create_augroup('statusline', { clear = false })
 vim.api.nvim_create_autocmd({'BufEnter', 'WinEnter'}, {
   pattern = '*',
   callback = function()
-    vim.o.statusline = Statusline.active()
+    if vim.bo.filetype == 'oil' then
+      vim.o.statusline = Statusline.short()
+    else
+      vim.o.statusline = Statusline.active()
+    end
   end,
   group = 'statusline',
 })
@@ -151,14 +155,6 @@ vim.api.nvim_create_autocmd({'BufLeave', 'WinLeave'}, {
   pattern = '*',
   callback = function()
     vim.o.statusline = Statusline.inactive()
-  end,
-  group = 'statusline',
-})
-
-vim.api.nvim_create_autocmd({'BufLeave', 'WinLeave'}, {
-  pattern = 'filetype:nvimtree',
-  callback = function()
-    vim.o.statusline = Statusline.short()
   end,
   group = 'statusline',
 })
