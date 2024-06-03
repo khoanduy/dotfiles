@@ -243,7 +243,7 @@ def g:ActiveStatusline(): string
   sl ..= modes[mode()]
   sl ..= '%#Normal#'
   sl ..= ': '
-  sl ..= '%f'
+  sl ..= '%t'
   sl ..= '%='
   sl ..= '%m'
   sl ..= '%y'
@@ -259,7 +259,7 @@ enddef
 
 # Inactive statusline
 def g:InactiveStatusline(): string
-  return '%#Blur# %f%=%L '
+  return '%#Blur# %t%=%L '
 enddef
 
 # Minimal statusline
@@ -315,6 +315,9 @@ nnoremap <silent> <right> :vertical resize -2<cr>
 # Search current marked text
 vnoremap // y/\V<c-r>=escape(@",'/\')<cr><cr>
 
+# Print current file path
+nnoremap <leader>I :echo @%<cr>
+
 # Copy marked text/paste to/from global register
 vnoremap <leader>y "+y
 nnoremap <leader>p "+p
@@ -324,19 +327,17 @@ nnoremap <leader>dp :diffput 2<cr>
 nnoremap <leader>dl :diffget 1<cr>
 nnoremap <leader>dr :diffget 3<cr>
 
+# Show current line git annotate
+def g:ShowGitAnnotate()
+  var line = line('.')
+  var file = expand('%:p')
+  var format = " | cut -d' ' -f1,2,3 | tr '(' ' '"
+  echo system('git annotate -L ' .. line .. ',' .. line .. ' ' .. file .. format)
+enddef
+nnoremap <leader>B :call ShowGitAnnotate()<cr>
+
 # Open git client
 nnoremap <leader>G :!lazygit<cr><cr>
-
-# ALE go to
-nnoremap <silent> gd :ALEGoToDefinition<cr>
-nnoremap <silent> gD :ALEGoToTypeDefinition<cr>
-nnoremap <silent> gi :ALEGoToImplementation<cr>
-
-# ALE actions
-nnoremap <leader>ah :ALEHover<cr>
-nnoremap <leader>ar :ALEFileRename<cr>
-nnoremap <leader>ac :ALECodeAction<cr>
-nnoremap <leader>af :ALEFixSuggest<cr>
 
 # --------------------- #
 # ----- Utilities ----- #
@@ -433,6 +434,17 @@ g:ale_sign_warning = '▲'
 hi ALEErrorSign ctermfg=red guifg=#af0000
 hi ALEInfoSign ctermfg=blue guifg=#0087af
 hi ALEWarningSign ctermfg=yellow guifg=#ffaf00
+
+# ALE go to
+nnoremap <silent> gd :ALEGoToDefinition<cr>
+nnoremap <silent> gD :ALEGoToTypeDefinition<cr>
+nnoremap <silent> gi :ALEGoToImplementation<cr>
+
+# ALE actions
+nnoremap <leader>ah :ALEHover<cr>
+nnoremap <leader>ar :ALEFileRename<cr>
+nnoremap <leader>ac :ALECodeAction<cr>
+nnoremap <leader>af :ALEFixSuggest<cr>
 
 # Disable ALE virtual text
 g:ale_virtualtext_cursor = 'disabled'
