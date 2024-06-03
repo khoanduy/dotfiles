@@ -31,4 +31,5 @@ lazy.setup('plugins')
 require('options')
 require('keymaps')
 require('lsp')
+require('utils.statusline')
 ----- End configuration -----

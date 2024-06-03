@@ -46,6 +46,6 @@ command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
 
 # Alias
-alias v=vim
-alias vo="vim ."
+alias vim=nvim
 alias lg=lazygit
+export KUBECONFIG=/Users/khoan/.config/kubeconfig-k3s-local.yaml

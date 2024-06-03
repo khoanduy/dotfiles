@@ -27,7 +27,6 @@ return {
         'make',
         'go',
         'sql',
-        'vim'
       },
       sync_install = false,
       highlight = {
