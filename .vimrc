@@ -458,7 +458,7 @@ g:ale_linters_explicit = 1
 
 # Custom ALE linters and LSPs
 g:ale_linters  =  {
-  'java': ['eclipselsp'],
+  'java': ['eclipselsp', 'javac'],
   'python': ['pyright', 'ruff'],
   'javascript': ['tsserver', 'eslint'],
 }
