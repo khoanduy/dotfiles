@@ -42,7 +42,7 @@ Plug 'tpope/vim-surround'
 Plug 'airblade/vim-gitgutter'
 
 # Asynchronous Lint Engine
-Plug 'dense-analysis/ale'
+Plug 'khoanduy/ale'
 
 # Call plug#end to update &runtimepath and initialize the plugin system.
 # - It automatically executes `filetype plugin indent on` and `syntax enable`
@@ -446,8 +446,20 @@ g:ale_linters_explicit = 1
 
 # Custom ALE linters and LSPs
 g:ale_linters  =  {
+  'java': ['eclipselsp'],
   'python': ['pyright', 'ruff'],
   'javascript': ['tsserver', 'eslint'],
 }
+
+# Jdtls configuration
+var jdtls_repo = $HOME .. '/eclipse.jdt.ls'
+var jdtls = jdtls_repo .. '/org.eclipse.jdt.ls.product/target/repository'
+var workspace_folder = $XDG_DATA_HOME .. '/jdtls/workspace/' .. fnamemodify(getcwd(), ':p:h:t')
+
+# ALE jdtls specific variables
+g:ale_java_eclipselsp_executable = $JDK17 .. '/bin/java'
+g:ale_java_eclipselsp_config_path = jdtls .. '/config_mac'
+g:ale_java_eclipselsp_path = jdtls_repo
+g:ale_java_eclipselsp_workspace_path = workspace_folder
 
 defcompile
