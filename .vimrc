@@ -328,7 +328,7 @@ nnoremap <leader>dl :diffget 1<cr>
 nnoremap <leader>dr :diffget 3<cr>
 
 # Show current line git annotate
-def g:ShowGitAnnotate()
+def g:ShowGitAnnotate(): void
   var line = line('.')
   var file = expand('%:p')
   var format = " | cut -d' ' -f1,2,3 | tr '(' ' '"
@@ -362,16 +362,7 @@ nnoremap <leader>E :Explore %:p:h<cr>
 # Remap key inside netrw buffer
 def NetrwMapping(): void
   # cancel browsing
-  nmap <buffer> E :Rexplore<cr>
-
-  # Go back in history
-  nmap <buffer> H u
-
-  # Go up a directory
-  nmap <buffer> h -^
-
-  # Go down a directory / open file
-  nmap <buffer> l <CR>
+  nmap <buffer> z :Rexplore<cr>
 
   # Toggle the mark on a file
   nmap <buffer> x mf
@@ -390,12 +381,6 @@ def NetrwMapping(): void
 
   # Set the directory under the cursor as the current target
   nmap <buffer> t mtfq
-
-  # Show the list of marked files
-  nmap <buffer> ex :echo join(netrw#Expose('netrwmarkfilelist'), #\n#)<cr>
-
-  # Show the current target directory
-  nmap <buffer> et :echo 'Target:' . netrw#Expose('netrwmftgt')<cr>
 enddef
 
 augroup netrw_mapping
@@ -438,11 +423,12 @@ nnoremap <silent> gD :ALEGoToTypeDefinition<cr>
 nnoremap <silent> gi :ALEGoToImplementation<cr>
 
 # ALE actions
-nnoremap <leader>ga :ALECodeAction<cr>
-nnoremap <leader>go :ALEHover<cr>
-nnoremap <leader>gr :ALEFileRename<cr>
-nnoremap <leader>gx :ALEFixSuggest<cr>
-nnoremap <leader>gm :ALEImport<cr>
+nnoremap <leader>a :ALECodeAction<cr>
+nnoremap <leader>r :ALEFileRename<cr>
+nnoremap <leader>k :ALEHover<cr>
+nnoremap <leader>x :ALEFixSuggest<cr>
+nnoremap <leader>i :ALEImport<cr>
+vnoremap <leader>s y:ALESymbolSearch <c-r>"<cr>
 
 # Disable ALE virtual text
 g:ale_virtualtext_cursor = 'disabled'
