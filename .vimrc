@@ -42,7 +42,7 @@ Plug 'tpope/vim-surround'
 Plug 'airblade/vim-gitgutter'
 
 # Asynchronous Lint Engine
-Plug 'khoanduy/ale'
+Plug 'dense-analysis/ale'
 
 # Call plug#end to update &runtimepath and initialize the plugin system.
 # - It automatically executes `filetype plugin indent on` and `syntax enable`
@@ -422,9 +422,6 @@ nnoremap <leader>F :Files<cr>
 nnoremap <leader>b :Buffers<cr>
 nnoremap <leader>/ :Rg<cr>
 
-# Enable ALE by default, disable by :ALEToggle
-g:ale_enabled = 1
-
 # Custom ALE sign symbol
 g:ale_sign_error = '✖'
 g:ale_sign_info = '●'
@@ -441,22 +438,21 @@ nnoremap <silent> gD :ALEGoToTypeDefinition<cr>
 nnoremap <silent> gi :ALEGoToImplementation<cr>
 
 # ALE actions
-nnoremap <leader>ah :ALEHover<cr>
-nnoremap <leader>ar :ALEFileRename<cr>
-nnoremap <leader>ac :ALECodeAction<cr>
-nnoremap <leader>af :ALEFixSuggest<cr>
+nnoremap <leader>ga :ALECodeAction<cr>
+nnoremap <leader>go :ALEHover<cr>
+nnoremap <leader>gr :ALEFileRename<cr>
+nnoremap <leader>gx :ALEFixSuggest<cr>
+nnoremap <leader>gm :ALEImport<cr>
 
 # Disable ALE virtual text
 g:ale_virtualtext_cursor = 'disabled'
 
-# Enable ALE suggestions
+# Enable ALE LSP suggestions
 g:ale_disable_lsp = 0
 g:ale_lsp_suggestions = 1
 
-# Only run linters named in ale_linters settings.
-g:ale_linters_explicit = 1
-
 # Custom ALE linters and LSPs
+g:ale_linters_explicit = 1
 g:ale_linters  =  {
   'java': ['eclipselsp', 'javac'],
   'python': ['pyright', 'ruff'],
