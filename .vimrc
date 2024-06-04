@@ -32,6 +32,9 @@ Plug 'NLKNguyen/papercolor-theme'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 
+# A tree explorer plugin for vim
+Plug 'preservim/nerdtree'
+
 # Vim plugin, insert or delete brackets, parens, quotes in pair
 Plug 'jiangmiao/auto-pairs'
 
@@ -262,11 +265,6 @@ def g:InactiveStatusline(): string
   return '%#Blur# %t%=%L '
 enddef
 
-# Minimal statusline
-def g:MinimalStatusline(): string
-  return '%#Blur# %y '
-enddef
-
 # Default statusline
 set statusline=%!InactiveStatusline()
 
@@ -276,11 +274,14 @@ hi Stress cterm=bold ctermbg=NONE gui=bold guibg=NONE
 hi Blur ctermbg=NONE ctermfg=grey guibg=NONE guifg=grey
 
 augroup statusline
-au!
-au WinEnter,BufEnter * setlocal statusline=%!ActiveStatusline()
-au WinLeave,BufLeave * setlocal statusline=%!InactiveStatusline()
-au WinEnter,BufEnter,FileType netrw setlocal statusline=%!MinimalStatusline()
+  au!
+  au WinEnter,BufEnter * if &ft != 'nerdtree' | setlocal statusline=%!ActiveStatusline()
+  au WinLeave,BufLeave * if &ft != 'nerdtree' | setlocal statusline=%!InactiveStatusline()
 augroup END
+
+# Disable Netrw
+g:loaded_netrw = 1
+g:loaded_netrwPlugin = 1
 
 # ------------------- #
 # ----- Keymaps ----- #
@@ -356,58 +357,17 @@ autocmd FileType java nnoremap <leader>T :call RunMavenTest()<cr>
 # Open git client
 nnoremap <leader>G :!lazygit<cr><cr>
 
-# --------------------- #
-# ----- Utilities ----- #
-# --------------------- #
-
-# Netrw config and mapping
-hi! link netrwMarkFile Search
-hi CursorLine ctermbg=NONE guibg=NONE
-g:netrw_liststyle = 0
-
-# Sync current directory and browsing directory
-# This solves the problem with the 'move' command
-g:netrw_keepdir = 0
-
-# A better copy command
-g:netrw_localcopydircmd = 'cp -r'
-
-# Toggle netrw and focus file
-nnoremap <leader>e :Explore<cr>
-nnoremap <leader>E :Explore %:p:h<cr>
-
-# Remap key inside netrw buffer
-def NetrwMapping(): void
-  # cancel browsing
-  nmap <buffer> z :Rexplore<cr>
-
-  # Toggle the mark on a file
-  nmap <buffer> x mf
-
-  # Unmark all files
-  nmap <buffer> X mu
-
-  # Create a file
-  nmap <buffer> a %:w<cr>:buffer #<cr>
-
-  # Copy marked files
-  nmap <buffer> y mc
-
-  # Move marked files
-  nmap <buffer> p mm
-
-  # Set the directory under the cursor as the current target
-  nmap <buffer> t mtfq
-enddef
-
-augroup netrw_mapping
-  autocmd!
-  autocmd filetype netrw call NetrwMapping()
-augroup end
-
 # --------------------------------- #
 # ----- Plugin configuration ------ #
 # --------------------------------- #
+
+# NERDTree keymaps
+nnoremap <leader>e :NERDTreeToggle<CR>
+nnoremap <leader>E :NERDTreeFind<CR>
+
+# Disable statusline in NERDTree
+g:NERDTreeStatusline = '%#Blur# %y '
+g:NERDTreeShowHidden = 1
 
 # Don't let GitGutter set sign backgrounds
 g:gitgutter_set_sign_backgrounds = 1
