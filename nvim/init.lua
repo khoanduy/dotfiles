@@ -25,7 +25,12 @@ end
 vim.g.mapleader = ' '
 
 -- Load all files in lua/plugins folder
-lazy.setup('plugins')
+lazy.setup('plugins', {
+  change_detection = {
+    enabled = true,
+    notify = false,
+  },
+})
 
 -- Load configuration files --
 require('options')

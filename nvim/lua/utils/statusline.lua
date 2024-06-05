@@ -43,9 +43,9 @@ end
 local function filename()
   local fname = vim.fn.expand '%:t'
   if fname == '' then
-      return ''
+      return '%m'
   end
-  return fname .. ' '
+  return fname .. ' %m'
 end
 
 -- Display LSP
@@ -85,7 +85,7 @@ end
 
 -- Custom file type
 local function filetype()
-  return ' %m ' .. string.format('[%s]', vim.bo.filetype):lower()
+  return string.format(' [%s]', vim.bo.filetype):lower()
 end
 
 -- Line info
@@ -105,6 +105,7 @@ Statusline.active = function()
     '  ',
     mode(),
     '%#Normal#',
+    ':',
     filepath(),
     filename(),
     '%=',

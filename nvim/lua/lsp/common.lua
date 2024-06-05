@@ -44,14 +44,8 @@ function M.make_conf()
 end
 
 function M.nvim_cmp_conf()
-  local luasnip = require('luasnip')
   local cmp = require('cmp')
   return {
-    snippet = {
-      expand = function(args)
-        luasnip.lsp_expand(args.body)
-      end,
-    },
     mapping = cmp.mapping.preset.insert({
       ['<c-d>'] = cmp.mapping.scroll_docs(-5),
       ['<c-u>'] = cmp.mapping.scroll_docs(5),
@@ -63,8 +57,6 @@ function M.nvim_cmp_conf()
       ['<c-n>'] = cmp.mapping(function(fallback)
         if cmp.visible() then
           cmp.select_next_item()
-        elseif luasnip.expand_or_jumpable() then
-          luasnip.expand_or_jump()
         else
           fallback()
         end
@@ -72,8 +64,6 @@ function M.nvim_cmp_conf()
       ['<c-p>'] = cmp.mapping(function(fallback)
         if cmp.visible() then
           cmp.select_prev_item()
-        elseif luasnip.jumpable(-1) then
-          luasnip.jump(-1)
         else
           fallback()
         end
@@ -81,7 +71,6 @@ function M.nvim_cmp_conf()
     }),
     sources = {
       { name = 'nvim_lsp' },
-      { name = 'luasnip' },
     },
   }
 end
