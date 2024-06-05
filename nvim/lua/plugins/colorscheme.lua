@@ -1,8 +1,14 @@
 return {
-  'pappasam/papercolor-theme-slim',
-  lazy = false,
+  'catppuccin/nvim',
+  name = 'catppuccin',
+  priority = 1000,
   config = function()
-    vim.cmd 'set background=light'
-    vim.cmd.colorscheme 'PaperColorSlim'
+    require('catppuccin').setup({
+      flavour = 'mocha',
+      transparent_background = true,
+      term_colors = true,
+      no_italic = true,
+    })
+    vim.cmd.colorscheme 'catppuccin'
   end
 }

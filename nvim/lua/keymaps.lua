@@ -8,7 +8,7 @@ whichkey.register({
   f = { telescope.find_files, 'Find files' },
   F = { telescope.git_files, 'Find files (include ignored files)' },
   b = { telescope.buffers, 'Buffer list', silent = false },
-  B = { funcs.show_git_annotate, 'Toggle line blame' },
+  B = { ':Gitsigns toggle_current_line_blame', 'Toggle line blame' },
   y = { '"+y', 'Copy marked text to global register', mode = 'v', silent = false },
   p = { '"+p', 'Paste marked text from global register', silent = false },
   e = { ':Oil<cr>', 'Toggle file explorer' },
@@ -61,7 +61,7 @@ whichkey.register({
 whichkey.register({
   c = {
     name = 'Custom commands',
-    t = { funcs.run_maven_test, 'Run current test using Maven', silent = true, expr = true },
+    t = { funcs.run_maven_test, 'Run current test using Maven' },
   },
 }, { prefix = '\\' })
 -- End mappings' config --
