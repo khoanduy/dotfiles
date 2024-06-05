@@ -9,7 +9,6 @@ whichkey.register({
   F = { telescope.git_files, 'Find files (include ignored files)' },
   b = { telescope.buffers, 'Buffer list', silent = false },
   B = { funcs.show_git_annotate, 'Toggle line blame' },
-  r = { ':e<cr>', 'Reload current buffer from disk', silent = false },
   y = { '"+y', 'Copy marked text to global register', mode = 'v', silent = false },
   p = { '"+p', 'Paste marked text from global register', silent = false },
   e = { ':Oil<cr>', 'Toggle file explorer' },
@@ -61,13 +60,8 @@ whichkey.register({
 
 whichkey.register({
   c = {
-    name = 'Java custom commands',
-    i = {
-      ':!tmux new-window -n "mvn-install" "mvn -N flyway:migrate && mvn clean install -T 5"<cr><cr>',
-      'Clean and install project using Maven',
-      silent = false
-    },
-    t = { funcs.run_maven_test, 'Run current test using Maven', silent = false, expr = true },
+    name = 'Custom commands',
+    t = { funcs.run_maven_test, 'Run current test using Maven', silent = true, expr = true },
   },
 }, { prefix = '\\' })
 -- End mappings' config --

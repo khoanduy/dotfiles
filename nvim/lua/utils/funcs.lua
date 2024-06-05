@@ -14,16 +14,16 @@ function M.run_maven_test()
     return ':echo "Not a Java file!"\n'
   end
 
-  local p = vim.fn.expand('%:.')
+  -- local p = vim.fn.expand('%:.')
   local s = '/'
   local ss = {}
-  for str in string.gmatch(p, '([^'..s..']+)') do
+  for str in string.gmatch(vim.fn.expand('%:.'), '([^'..s..']+)') do
     table.insert(ss, str)
   end
 
   local m = table.remove(ss, 1)
   local t = table.concat(ss, '.', 4):sub(1, -6)
-  return ':!tmux new-window -n "mvn-test" "mvn test -Dtest=' .. t .. ' -pl :' .. m .. ' -am -DfailIfNoTests=false"'
+  return vim.fn.execute('silent !tmux new-window -n "maven-test" "mvn test -Dtest=' .. t .. ' -pl :' .. m .. ' -DskipTests=false"')
 end
 
 return M

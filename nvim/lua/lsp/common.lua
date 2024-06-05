@@ -23,24 +23,15 @@ function M.make_conf()
 
       whichkey.register({
         a = { vim.lsp.buf.code_action, 'LSP code action', buffer = bufnr },
-        m = {
-          name = 'LSP modify',
-          r = { vim.lsp.buf.rename, 'Rename symbols', buffer = bufnr },
-          f = { vim.lsp.buf.format, 'Re-format current buffer', buffer = bufnr },
-        },
-        h = {
-          name = 'LSP helper',
-          v = { vim.lsp.buf.hover, 'Hover current line', buffer = bufnr },
-          h = { vim.lsp.buf.signature_help, 'Show signature help', buffer = bufnr },
-        }
+        r = { vim.lsp.buf.rename, 'Rename symbols', buffer = bufnr },
+        m = { vim.lsp.buf.format, 'Re-format current buffer', buffer = bufnr },
+        k = { vim.lsp.buf.hover, 'Hover current line', buffer = bufnr },
+        h = { vim.lsp.buf.signature_help, 'Show signature help', buffer = bufnr },
       }, { prefix = '<leader>' })
 
       whichkey.register({
         a = { vim.lsp.buf.code_action, 'LSP code action', mode = 'v', buffer = bufnr },
-        m = {
-          name = 'LSP modify',
-          f = { vim.lsp.buf.format, 'Re-format current block', mode = 'v', buffer = bufnr },
-        }
+        m = { vim.lsp.buf.format, 'Re-format current block', mode = 'v', buffer = bufnr },
       }, { prefix = '<leader>' })
     end,
     capabilities = capabilities,
