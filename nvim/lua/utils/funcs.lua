@@ -14,7 +14,6 @@ function M.run_maven_test()
     return ':echo "Not a Java file!"\n'
   end
 
-  -- local p = vim.fn.expand('%:.')
   local s = '/'
   local ss = {}
   for str in string.gmatch(vim.fn.expand('%:.'), '([^'..s..']+)') do

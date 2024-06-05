@@ -1,62 +1,11 @@
 vim9script
 
-# ----------------------- #
-# ----- Init set-up ----- #
-# ----------------------- #
-
-# Disable compatibility with vi which can cause unexpected issues.
-set nocompatible
-
-# Enable ALE completion, must be set before ALE is loaded
-g:ale_completion_enabled = 1
-
-# ----------------------------- #
-# ----- Plugin definition ----- #
-# ----------------------------- #
-
-call plug#begin()
-# The default plugin directory will be as follows:
-#   - Vim (Linux/macOS): '~/.vim/plugged'
-#   - Vim (Windows): '~/vimfiles/plugged'
-#   - Neovim (Linux/macOS/Windows): stdpath('data') . '/plugged'
-# You can specify a custom plugin directory by passing it as the argument
-#   - e.g. `call plug#begin('~/.vim/plugged')`
-#   - Avoid using standard Vim directory names like 'plugin'
-
-# Make sure you use single quotes
-
-# Light Vim color schemes inspired by Google's Material Design
-Plug 'NLKNguyen/papercolor-theme'
-
-# A command-line fuzzy finder
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'
-
-# A tree explorer plugin for vim
-Plug 'preservim/nerdtree'
-
-# Vim plugin, insert or delete brackets, parens, quotes in pair
-Plug 'jiangmiao/auto-pairs'
-
-# Parentheses, brackets, quotes, tags, and more
-Plug 'tpope/vim-surround'
-
-# Shows git diff markers in the sign column
-Plug 'airblade/vim-gitgutter'
-
-# Asynchronous Lint Engine
-Plug 'khoanduy/ale'
-
-# Call plug#end to update &runtimepath and initialize the plugin system.
-# - It automatically executes `filetype plugin indent on` and `syntax enable`
-call plug#end()
-# You can revert the settings after the call like so:
-#   filetype indent off   # Disable file-type-specific indentation
-#   syntax off            # Disable syntax highlighting
-
 # ---------------------------- #
 # ----- General settings ----- #
 # ---------------------------- #
+
+# Disable compatibility with vi which can cause unexpected issues.
+set nocompatible
 
 # Re-map leader key
 nnoremap <space> <nop>
@@ -196,99 +145,15 @@ set wildmode=list:longest
 set history=10000
 set ttyfast
 
-# -------------- #
-# ----- UI ----- #
-# -------------- #
-
 # Colorscheme
-set termguicolors
-set background=light
-g:PaperColor_Theme_Options = {
-  'theme': {
-    'default': {
-      'allow_italic': 0
-    }
-  }
-}
-colorscheme PaperColor
+set background=dark
 
 # Set statusline last status
 set laststatus=2
 
-# Mode dictionary
-const modes = {
-  'n': 'NORMAL',
-  'no': 'NORMAL',
-  'v': 'VISUAL',
-  'V': 'VISUAL LINE',
-  '': 'VISUAL BLOCK',
-  's': 'SELECT',
-  'S': 'SELECT LINE',
-  '': 'SELECT BLOCK',
-  'i': 'INSERT',
-  'ic': 'INSERT',
-  'R': 'REPLACE',
-  'Rv': 'VISUAL REPLACE',
-  'c': 'COMMAND',
-  'cv': 'VIM EX',
-  'ce': 'EX',
-  'r': 'PROMPT',
-  'rm': 'MOAR',
-  'r?': 'CONFIRM',
-  '!': 'SHELL',
-  't': 'TERMINAL',
-}
-
-# Active statusline
-def g:ActiveStatusline(): string
-  var sl = '%#Stress# '
-  sl ..= ' '
-  sl ..= modes[mode()]
-  sl ..= '%#Normal#'
-  sl ..= ': '
-  sl ..= '%t'
-  sl ..= '%='
-  sl ..= '%m'
-  sl ..= '%y'
-  sl ..= ' - '
-  sl ..= '%{strlen(&fenc)?&fenc:"none"}'
-  sl ..= ' | '
-  sl ..= '%l'
-  sl ..= ':'
-  sl ..= '%c'
-  sl ..= ' '
-  return sl
-enddef
-
-# Inactive statusline
-def g:InactiveStatusline(): string
-  return '%#Blur# %t%=%L '
-enddef
-
-# Default statusline
-set statusline=%!InactiveStatusline()
-
-# Set active and inactive status line style
-hi Normal ctermbg=NONE guibg=NONE
-hi Stress cterm=bold ctermbg=NONE gui=bold guibg=NONE
-hi Blur ctermbg=NONE ctermfg=grey guibg=NONE guifg=grey
-
-augroup statusline
-  au!
-  au WinEnter,BufEnter * if &ft != 'nerdtree' | setlocal statusline=%!ActiveStatusline()
-  au WinLeave,BufLeave * if &ft != 'nerdtree' | setlocal statusline=%!InactiveStatusline()
-augroup END
-
-# Disable Netrw
-g:loaded_netrw = 1
-g:loaded_netrwPlugin = 1
-
 # ------------------- #
 # ----- Keymaps ----- #
 # ------------------- #
-
-# Remap escape key in insert mode
-inoremap <silent> jk <esc>
 
 # Dismiss highlight
 nnoremap ~ :noh<cr>
@@ -329,108 +194,12 @@ nnoremap <leader>dl :diffget 1<cr>
 nnoremap <leader>dr :diffget 3<cr>
 
 # Show current line git annotate
-def g:ShowGitAnnotate(): void
+def ShowGitAnnotate(): void
   var line = line('.')
   var file = expand('%:p')
   var format = " | cut -d' ' -f1,2,3 | tr '(' ' '"
   echo system('git annotate -L ' .. line .. ',' .. line .. ' ' .. file .. format)
 enddef
 nnoremap <leader>B :call ShowGitAnnotate()<cr>
-
-# Maven run current test
-def g:RunMavenTest(): void
-  var folders = split(@%, '[/]')
-
-  if index(folders, 'test') < 0
-    echo 'Not a test file!'
-    return
-  endif
-
-  var module = folders[0] != 'src' ? folders[0] : ''
-  var test_class = join(folders[4 : ], '.')[ : -6 ]
-
-  execute('silent !tmux new-window -n "maven-test" -d "mvn test -pl :' ..
-    module .. ' -Dtest=' .. test_class .. ' -DskipTests=false"')
-enddef
-autocmd FileType java nnoremap <leader>T :call RunMavenTest()<cr>
-
-# Open git client
-nnoremap <leader>G :!lazygit<cr><cr>
-
-# --------------------------------- #
-# ----- Plugin configuration ------ #
-# --------------------------------- #
-
-# NERDTree keymaps
-nnoremap <leader>e :NERDTreeToggle<CR>
-nnoremap <leader>E :NERDTreeFind<CR>
-
-# Disable statusline in NERDTree
-g:NERDTreeStatusline = '%#Blur# %y '
-g:NERDTreeShowHidden = 1
-
-# Don't let GitGutter set sign backgrounds
-g:gitgutter_set_sign_backgrounds = 1
-hi SignColumn ctermbg=NONE guibg=NONE
-
-# Fzf config
-g:fzf_vim = {}
-g:fzf_vim.preview_window = []
-g:fzf_layout = { 'window': { 'width': 0.8, 'height': 0.8 } }
-
-# Fzf mapping
-nnoremap <leader>f :GFiles<cr>
-nnoremap <leader>F :Files<cr>
-nnoremap <leader>b :Buffers<cr>
-nnoremap <leader>/ :Rg<cr>
-
-# Custom ALE sign symbol
-g:ale_sign_error = '✖'
-g:ale_sign_info = '●'
-g:ale_sign_warning = '▲'
-
-# Custom ALE sign color
-hi ALEErrorSign ctermfg=red guifg=#af0000
-hi ALEInfoSign ctermfg=blue guifg=#0087af
-hi ALEWarningSign ctermfg=yellow guifg=#ffaf00
-
-# ALE go to
-nnoremap <silent> gd :ALEGoToDefinition<cr>
-nnoremap <silent> gD :ALEGoToTypeDefinition<cr>
-nnoremap <silent> gi :ALEGoToImplementation<cr>
-
-# ALE actions
-nnoremap <leader>a :ALECodeAction<cr>
-nnoremap <leader>r :ALEFileRename<cr>
-nnoremap <leader>k :ALEHover<cr>
-nnoremap <leader>x :ALEFixSuggest<cr>
-nnoremap <leader>i :ALEImport<cr>
-vnoremap <leader>s y:ALESymbolSearch <c-r>"<cr>
-
-# Disable ALE virtual text
-g:ale_virtualtext_cursor = 'disabled'
-
-# Enable ALE LSP suggestions
-g:ale_disable_lsp = 0
-g:ale_lsp_suggestions = 1
-
-# Custom ALE linters and LSPs
-g:ale_linters_explicit = 1
-g:ale_linters  =  {
-  'java': ['eclipselsp', 'javac'],
-  'python': ['pyright', 'ruff'],
-  'javascript': ['tsserver', 'eslint'],
-}
-
-# Jdtls configuration
-var jdtls_repo = $HOME .. '/eclipse.jdt.ls'
-var jdtls = jdtls_repo .. '/org.eclipse.jdt.ls.product/target/repository'
-var workspace_folder = $XDG_DATA_HOME .. '/jdtls/workspace/' .. fnamemodify(getcwd(), ':p:h:t')
-
-# ALE jdtls specific variables
-g:ale_java_eclipselsp_executable = $JDK17 .. '/bin/java'
-g:ale_java_eclipselsp_config_path = jdtls .. '/config_mac'
-g:ale_java_eclipselsp_path = jdtls_repo
-g:ale_java_eclipselsp_workspace_path = workspace_folder
 
 defcompile

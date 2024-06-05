@@ -26,7 +26,7 @@ local modes = {
 -- Get current mode
 local function mode()
   local current_mode = vim.api.nvim_get_mode().mode
-  return string.format('%s:', modes[current_mode]):upper()
+  return string.format('%s', modes[current_mode]):upper()
 end
 
 -- Custom file path
@@ -93,7 +93,7 @@ local function lineinfo()
   if vim.bo.filetype == 'alpha' then
     return ''
   end
-  return ' %{strlen(&fenc)?&fenc:\'none\'} | %l:%c'
+  return ' %{strlen(&fenc)?&fenc:\'none\'} | %l:%c '
 end
 
 -- Build the statusline
@@ -102,7 +102,7 @@ Statusline = {}
 Statusline.active = function()
   return table.concat {
     '%#Stress#',
-    ' ',
+    '  ',
     mode(),
     '%#Normal#',
     filepath(),

@@ -11,7 +11,6 @@ whichkey.register({
   B = { ':Gitsigns toggle_current_line_blame', 'Toggle line blame' },
   y = { '"+y', 'Copy marked text to global register', mode = 'v', silent = false },
   p = { '"+p', 'Paste marked text from global register', silent = false },
-  e = { ':Oil<cr>', 'Toggle file explorer' },
   T = { ':!tmux split-window -l 12 "zsh"<cr><cr>', 'Open terminal' },
   G = {
     ':!tmux setw remain-on-exit off && tmux split-window -h -l 120 "lazygit"<cr><cr>',
@@ -44,6 +43,7 @@ whichkey.register({
   ['<down>'] = { ':resize +2<cr>', 'Increase vertical size' },
   ['<left>'] = { ':vertical resize +2<cr>', 'Left horizontal resize' },
   ['<right>'] = { ':vertical resize -2<cr>', 'Right horizontal resize' },
+  ['-'] = { ':Oil<cr>', 'Toggle file explorer' },
   ['~'] = { ':noh<cr>', 'Dismiss highlights' },
   ['//'] = { [[y/\V<C-R>=escape(@",'/\')<cr><cr>]], 'Search current marked text', mode = 'v' },
   ['/'] = { telescope.grep_string, 'Grep current marked text within project', mode = 'v' },
