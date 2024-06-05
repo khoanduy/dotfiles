@@ -45,7 +45,7 @@ Plug 'tpope/vim-surround'
 Plug 'airblade/vim-gitgutter'
 
 # Asynchronous Lint Engine
-Plug 'dense-analysis/ale'
+Plug 'khoanduy/ale'
 
 # Call plug#end to update &runtimepath and initialize the plugin system.
 # - It automatically executes `filetype plugin indent on` and `syntax enable`
