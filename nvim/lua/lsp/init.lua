@@ -45,7 +45,7 @@ vim.lsp.handlers['textDocument/publishDiagnostics'] =
     underline = false,
     virtual_text = true,
     update_in_insert = false,
-    signs = false,
+    signs = true,
     severity_sort = true,
   })
 

@@ -8,7 +8,7 @@ whichkey.register({
   f = { telescope.find_files, 'Find files' },
   F = { telescope.git_files, 'Find files (include ignored files)' },
   b = { telescope.buffers, 'Buffer list', silent = false },
-  B = { ':Gitsigns toggle_current_line_blame', 'Toggle line blame' },
+  B = { ':Gitsigns toggle_current_line_blame<cr>', 'Toggle line blame' },
   y = { '"+y', 'Copy marked text to global register', mode = 'v', silent = false },
   p = { '"+p', 'Paste marked text from global register', silent = false },
   T = { ':!tmux split-window -l 12 "zsh"<cr><cr>', 'Open terminal' },
