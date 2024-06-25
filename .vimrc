@@ -7,7 +7,6 @@ vim9script
 # Disable compatibility with vi which can cause unexpected issues.
 set nocompatible
 
-####################################
 ## EXCLUDED PART ON REMOTE SERVER ##
 
 # ----------------------------- #
@@ -24,10 +23,6 @@ call plug#begin()
 #   - Avoid using standard Vim directory names like 'plugin'
 
 # Make sure you use single quotes
-
-# A command-line fuzzy finder
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'
 
 # Vim plugin, insert or delete brackets, parens, quotes in pair
 Plug 'jiangmiao/auto-pairs'
@@ -49,7 +44,6 @@ call plug#end()
 #   syntax off            # Disable syntax highlighting
 
 ## END EXCLUDED PART ON REMOTE SERVER ##
-########################################
 
 #----------------------------#
 #----- General settings -----#
@@ -88,10 +82,6 @@ set autoread
 set backspace=indent,eol,start
 set belloff=all
 
-# List of string that can start a comment line
-set comments=s1:/*,mb:*,ex:*/,://,b:#,:%,:XCOMM,n:>,fb:-,fb:•
-set commentstring=
-
 # Scan to put in completion
 set complete=.,w,b,u,t
 set define=
@@ -101,7 +91,7 @@ set formatoptions=tcqj
 
 # Program to use for the :grep command
 set grepprg=rg\ --vimgrep\ -uu
-set path=.,,
+set path+=**
 
 # Set default indentation
 set expandtab
@@ -178,8 +168,10 @@ set ttimeoutlen=50
 set viewoptions=folds,cursor,curdir
 
 # Enable auto completion menu after pressing TAB.
+set wildmode=full
+set wildignore+=*.o,*~,*.pyc,*/.DS_Store
+set wildignore+=*/Library/*,*/.git/*,*/.hg/*,*/.svn/*,*/node_modules/*
 set wildmenu
-set wildmode=list:longest
 
 # Set the commands to save in history default number is 20.
 set history=10000
@@ -279,7 +271,7 @@ def g:DefaultSl(): string
   sl ..= '%y'
   sl ..= ' - '
   sl ..= '%l'
-  sl ..= '|'
+  sl ..= ':'
   sl ..= '%c'
   sl ..= ' '
   return sl
@@ -292,7 +284,6 @@ hi Statusline cterm=NONE ctermbg=grey ctermfg=black guibg=grey guifg=black
 hi StatuslineNC ctermfg=darkgray guifg=darkgray
 hi VertSplit cterm=NONE ctermfg=grey guifg=grey
 
-####################################
 ## EXCLUDED PART ON REMOTE SERVER ##
 
 # --------------------------------- #
@@ -303,58 +294,26 @@ hi VertSplit cterm=NONE ctermfg=grey guifg=grey
 g:gitgutter_set_sign_backgrounds = 1
 hi SignColumn ctermbg=NONE guibg=NONE
 
-# Fzf config
-g:fzf_vim = {}
-g:fzf_vim.preview_window = []
-g:fzf_layout = { 'window': { 'width': 0.8, 'height': 0.8 } }
-
-# Fzf mapping
-nnoremap <leader>f :GFiles<cr>
-nnoremap <leader>F :Files<cr>
-nnoremap <leader>b :Buffers<cr>
-nnoremap <leader>/ :Rg<cr>
-
 # Enable ALE completion, must be set before ALE is loaded
 g:ale_completion_enabled = 1
 
 # Disable ALE LSP suggestions
 g:ale_disable_lsp = 1
+g:ale_virtualtext_cursor = 'disabled'
 
 # Custom ALE sign symbol
 g:ale_sign_error = '✖'
 g:ale_sign_info = '●'
 g:ale_sign_warning = '▲'
 
-# Custom ALE linters and LSPs
-g:ale_linters_explicit = 1
-g:ale_linters  =  {
-  'java': ['javac'],
-  'python': ['ruff'],
-  'javascript': ['eslint'],
-}
-
 # Custom ALE sign color
-hi ALEErrorSign ctermfg=red guifg=#af0000
-hi ALEInfoSign ctermfg=blue guifg=#0087af
-hi ALEWarningSign ctermfg=yellow guifg=#ffaf00
-
-# ALE go to
-nnoremap <silent> gd :ALEGoToDefinition<cr>
-nnoremap <silent> gD :ALEGoToTypeDefinition<cr>
-nnoremap <silent> gi :ALEGoToImplementation<cr>
-
-# ALE actions
-nnoremap <leader>a :ALECodeAction<cr>
-nnoremap <leader>r :ALEFileRename<cr>
-nnoremap <leader>k :ALEHover<cr>
-nnoremap <leader>x :ALEFixSuggest<cr>
-nnoremap <leader>i :ALEImport<cr>
-vnoremap <leader>s y:ALESymbolSearch <c-r>"<cr>
+hi ALEErrorSign ctermfg=red guifg=#ab4642
+hi ALEInfoSign ctermfg=blue guifg=#7cafc2
+hi ALEWarningSign ctermfg=yellow guifg=#f7ca88
 
 # Open git client
 nnoremap <leader>G :!lazygit<cr><cr>
 
 ## END EXCLUDED PART ON REMOTE SERVER ##
-########################################
 
 defcompile
