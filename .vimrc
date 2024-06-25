@@ -1,11 +1,59 @@
 vim9script
 
-# ---------------------------- #
-# ----- General settings ----- #
-# ---------------------------- #
+# ----------------------- #
+# ----- Init set-up ----- #
+# ----------------------- #
 
 # Disable compatibility with vi which can cause unexpected issues.
 set nocompatible
+
+####################################
+## EXCLUDED PART ON REMOTE SERVER ##
+
+# ----------------------------- #
+# ----- Plugin definition ----- #
+# ----------------------------- #
+
+call plug#begin()
+# The default plugin directory will be as follows:
+#   - Vim (Linux/macOS): '~/.vim/plugged'
+#   - Vim (Windows): '~/vimfiles/plugged'
+#   - Neovim (Linux/macOS/Windows): stdpath('data') . '/plugged'
+# You can specify a custom plugin directory by passing it as the argument
+#   - e.g. `call plug#begin('~/.vim/plugged')`
+#   - Avoid using standard Vim directory names like 'plugin'
+
+# Make sure you use single quotes
+
+# A command-line fuzzy finder
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+
+# Vim plugin, insert or delete brackets, parens, quotes in pair
+Plug 'jiangmiao/auto-pairs'
+
+# Parentheses, brackets, quotes, tags, and more
+Plug 'tpope/vim-surround'
+
+# Shows git diff markers in the sign column
+Plug 'airblade/vim-gitgutter'
+
+# Asynchronous Lint Engine
+Plug 'dense-analysis/ale'
+
+# Call plug#end to update &runtimepath and initialize the plugin system.
+# - It automatically executes `filetype plugin indent on` and `syntax enable`
+call plug#end()
+# You can revert the settings after the call like so:
+#   filetype indent off   # Disable file-type-specific indentation
+#   syntax off            # Disable syntax highlighting
+
+## END EXCLUDED PART ON REMOTE SERVER ##
+########################################
+
+#----------------------------#
+#----- General settings -----#
+#----------------------------#
 
 # Re-map leader key
 nnoremap <space> <nop>
@@ -15,7 +63,6 @@ g:mapleader = ' '
 set encoding=utf-8
 set fileencoding=utf-8
 set termencoding=utf-8
-lang en_US.UTF-8
 
 # Enable type file detection
 filetype on
@@ -29,6 +76,7 @@ syntax enable
 
 # Add numbers to each line on the left-hand side.
 set number
+set relativenumber
 set ruler
 set hidden
 
@@ -47,10 +95,6 @@ set commentstring=
 # Scan to put in completion
 set complete=.,w,b,u,t
 set define=
-
-# Characters to fill the statuslines
-set fillchars=
-set display=lastline
 
 # Sequence of letters which describes how automatic formatting is to be done
 set formatoptions=tcqj
@@ -115,9 +159,6 @@ set nrformats=bin,hex
 # Changes the effect of the :mksession command
 set sessionoptions=blank,buffers,curdir,folds,help,tabpages,winsize,terminal
 
-# This option helps to avoid all the hit-enter prompts caused by file messages
-set shortmess=ltToOCF
-
 # The cursor is kept in the same column
 set nostartofline
 
@@ -138,7 +179,6 @@ set viewoptions=folds,cursor,curdir
 
 # Enable auto completion menu after pressing TAB.
 set wildmenu
-set wildoptions=pum,tagfile
 set wildmode=list:longest
 
 # Set the commands to save in history default number is 20.
@@ -154,9 +194,6 @@ set laststatus=2
 # ------------------- #
 # ----- Keymaps ----- #
 # ------------------- #
-
-# Dismiss highlight
-nnoremap ~ :noh<cr>
 
 # Remap c-w prefix
 nnoremap <silent> <leader>w <c-w>
@@ -194,12 +231,130 @@ nnoremap <leader>dl :diffget 1<cr>
 nnoremap <leader>dr :diffget 3<cr>
 
 # Show current line git annotate
-def ShowGitAnnotate(): void
+def g:ShowGitAnnotate(): void
   var line = line('.')
   var file = expand('%:p')
   var format = " | cut -d' ' -f1,2,3 | tr '(' ' '"
   echo system('git annotate -L ' .. line .. ',' .. line .. ' ' .. file .. format)
 enddef
 nnoremap <leader>B :call ShowGitAnnotate()<cr>
+
+# -------------- #
+# ----- UI ----- #
+# -------------- #
+
+# Mode dictionary
+const modes = {
+  'n': 'NORMAL',
+  'no': 'NORMAL',
+  'v': 'VISUAL',
+  'V': 'VISUAL LINE',
+  '': 'VISUAL BLOCK',
+  's': 'SELECT',
+  'S': 'SELECT LINE',
+  '': 'SELECT BLOCK',
+  'i': 'INSERT',
+  'ic': 'INSERT',
+  'R': 'REPLACE',
+  'Rv': 'VISUAL REPLACE',
+  'c': 'COMMAND',
+  'cv': 'VIM EX',
+  'ce': 'EX',
+  'r': 'PROMPT',
+  'rm': 'MOAR',
+  'r?': 'CONFIRM',
+  '!': 'SHELL',
+  't': 'TERMINAL',
+}
+
+# Custom statusline
+def g:DefaultSl(): string
+  var sl = ' '
+  sl ..= modes[mode()]
+  sl ..= ': '
+  sl ..= '%t'
+  sl ..= ' '
+  sl ..= '%m'
+  sl ..= '%='
+  sl ..= '%y'
+  sl ..= ' - '
+  sl ..= '%l'
+  sl ..= '|'
+  sl ..= '%c'
+  sl ..= ' '
+  return sl
+enddef
+set statusline=%!DefaultSl()
+
+# Set basic highlight groups
+hi Normal cterm=NONE ctermbg=NONE
+hi Statusline cterm=NONE ctermbg=grey ctermfg=black guibg=grey guifg=black
+hi StatuslineNC ctermfg=darkgray guifg=darkgray
+hi VertSplit cterm=NONE ctermfg=grey guifg=grey
+
+####################################
+## EXCLUDED PART ON REMOTE SERVER ##
+
+# --------------------------------- #
+# ----- Plugin configuration ------ #
+# --------------------------------- #
+
+# Don't let GitGutter set sign backgrounds
+g:gitgutter_set_sign_backgrounds = 1
+hi SignColumn ctermbg=NONE guibg=NONE
+
+# Fzf config
+g:fzf_vim = {}
+g:fzf_vim.preview_window = []
+g:fzf_layout = { 'window': { 'width': 0.8, 'height': 0.8 } }
+
+# Fzf mapping
+nnoremap <leader>f :GFiles<cr>
+nnoremap <leader>F :Files<cr>
+nnoremap <leader>b :Buffers<cr>
+nnoremap <leader>/ :Rg<cr>
+
+# Enable ALE completion, must be set before ALE is loaded
+g:ale_completion_enabled = 1
+
+# Disable ALE LSP suggestions
+g:ale_disable_lsp = 1
+
+# Custom ALE sign symbol
+g:ale_sign_error = '✖'
+g:ale_sign_info = '●'
+g:ale_sign_warning = '▲'
+
+# Custom ALE linters and LSPs
+g:ale_linters_explicit = 1
+g:ale_linters  =  {
+  'java': ['javac'],
+  'python': ['ruff'],
+  'javascript': ['eslint'],
+}
+
+# Custom ALE sign color
+hi ALEErrorSign ctermfg=red guifg=#af0000
+hi ALEInfoSign ctermfg=blue guifg=#0087af
+hi ALEWarningSign ctermfg=yellow guifg=#ffaf00
+
+# ALE go to
+nnoremap <silent> gd :ALEGoToDefinition<cr>
+nnoremap <silent> gD :ALEGoToTypeDefinition<cr>
+nnoremap <silent> gi :ALEGoToImplementation<cr>
+
+# ALE actions
+nnoremap <leader>a :ALECodeAction<cr>
+nnoremap <leader>r :ALEFileRename<cr>
+nnoremap <leader>k :ALEHover<cr>
+nnoremap <leader>x :ALEFixSuggest<cr>
+nnoremap <leader>i :ALEImport<cr>
+vnoremap <leader>s y:ALESymbolSearch <c-r>"<cr>
+
+# Open git client
+nnoremap <leader>G :!lazygit<cr><cr>
+
+## END EXCLUDED PART ON REMOTE SERVER ##
+########################################
 
 defcompile

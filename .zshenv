@@ -5,9 +5,12 @@ export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_CACHE_HOME="$HOME/.cache"
 
+# Set language
+LANG=en_US.UTF-8
+
 # Default editor
-export EDITOR="nvim"
-export VISUAL="nvim"
+export EDITOR="vim"
+export VISUAL="vim"
 
 # Zsh history
 HISTFILE=$HOME/.zhistory
@@ -19,10 +22,10 @@ export TERM=xterm-256color
 
 # Fzf options
 export FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS
---color=fg:#444444,bg:#eeeeee,hl:#d70000
---color=fg+:#444444,bg+:#eeeeee,hl+:#d70000,gutter:-1
---color=info:#005f87,prompt:#005f87,pointer:#d70087
---color=marker:#d75f00,spinner:#d75f00,header:#d70000"
+--color=fg:#e4e4e4,bg:-1,hl:#e98885,gutter:-1
+--color=fg+:#e4e4e4,bg+:-1,hl+:#e98885,gutter:-1
+--color=info:#e7cdfb,prompt:#e7cdfb,pointer:#ffb472
+--color=marker:#a3c38b,spinner:#a3c38b,header:#e98885"
 
 . "$HOME/.cargo/env"
 
