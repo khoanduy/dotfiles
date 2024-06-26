@@ -70,7 +70,6 @@ syntax enable
 
 # Add numbers to each line on the left-hand side.
 set number
-set relativenumber
 set ruler
 set hidden
 
@@ -171,6 +170,7 @@ set viewoptions=folds,cursor,curdir
 set wildmode=full
 set wildignore+=*.o,*~,*.pyc,*/.DS_Store
 set wildignore+=*/Library/*,*/.git/*,*/.hg/*,*/.svn/*,*/node_modules/*
+set wildignore+=*/target/*
 set wildmenu
 
 # Set the commands to save in history default number is 20.
@@ -230,6 +230,9 @@ def g:ShowGitAnnotate(): void
   echo system('git annotate -L ' .. line .. ',' .. line .. ' ' .. file .. format)
 enddef
 nnoremap <leader>B :call ShowGitAnnotate()<cr>
+
+# Grep current select text
+vnoremap <leader>/ y:grep <c-r>"<cr>
 
 # -------------- #
 # ----- UI ----- #
@@ -296,6 +299,7 @@ hi SignColumn ctermbg=NONE guibg=NONE
 
 # Enable ALE completion, must be set before ALE is loaded
 g:ale_completion_enabled = 1
+g:ale_completion_autoimport = 1
 
 # Disable ALE LSP suggestions
 g:ale_disable_lsp = 1
@@ -305,6 +309,14 @@ g:ale_virtualtext_cursor = 'disabled'
 g:ale_sign_error = '✖'
 g:ale_sign_info = '●'
 g:ale_sign_warning = '▲'
+
+# Custom ALE linters and LSPs
+g:ale_linters_explicit = 1
+g:ale_linters  =  {
+  'java': ['javac'],
+  'python': ['ruff'],
+  'javascript': ['eslint'],
+}
 
 # Custom ALE sign color
 hi ALEErrorSign ctermfg=red guifg=#ab4642
