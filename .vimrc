@@ -231,6 +231,23 @@ def g:ShowGitAnnotate(): void
 enddef
 nnoremap <leader>B :call ShowGitAnnotate()<cr>
 
+# Maven run current test
+def g:RunMavenTest(): void
+  var folders = split(@%, '[/]')
+
+  if index(folders, 'test') < 0
+    echo 'Not a test file!'
+    return
+  endif
+
+  var module = folders[0] != 'src' ? folders[0] : ''
+  var test_class = join(folders[4 : ], '.')[ : -6 ]
+
+  execute('silent !tmux new-window -n "maven-test" -d "mvn test -pl :' ..
+    module .. ' -Dtest=' .. test_class .. ' -DskipTests=false"')
+enddef
+autocmd FileType java nnoremap <leader>T :call RunMavenTest()<cr>
+
 # Grep current select text
 vnoremap <leader>/ y:grep <c-r>"<cr>
 
