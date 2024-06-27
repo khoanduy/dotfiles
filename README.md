@@ -24,9 +24,8 @@ After script execution finish, reload your `zsh` config file:
 $ source ~/.zshrc
 ```
 
-Try to launch `nvim` up, Lazy should pop up and install all plugins, otherwise try `:Lazy` instead.
+Try to launch `vim` up and install all plugins using `:PlugInstall` then restart.
 
 ## References
 [tmux](https://github.com/tmux/tmux)\
-[neovim](https://neovim.io/) \
-[langserver](https://langserver.org/)
+[vim](https://www.vim.org)

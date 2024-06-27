@@ -65,7 +65,7 @@ linking
 
 # Install some extended packages
 echo "[-] Installing extended packages [-]"
-brew install tmux zsh-autosuggestions ripgrep lazygit pyenv fzf
+brew install tmux zsh-autosuggestions ripgrep lazygit pyenv
 
 # Download git-prompt.sh script
 echo "[-] Downloading git-prompt.sh script [-]"
