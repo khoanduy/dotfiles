@@ -276,6 +276,7 @@ set statusline=%!DefaultSl()
 
 # Set basic highlight groups
 hi Normal cterm=NONE ctermbg=NONE
+hi CursorLine cterm=bold term=bold
 hi Statusline cterm=NONE ctermbg=grey ctermfg=black guibg=grey guifg=black
 hi StatuslineNC ctermfg=darkgray guifg=darkgray
 hi VertSplit cterm=NONE ctermfg=grey guifg=grey
