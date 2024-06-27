@@ -243,17 +243,23 @@ def g:RunMavenTest(): void
   var module = folders[0] != 'src' ? folders[0] : ''
   var test_class = join(folders[4 : ], '.')[ : -6 ]
 
-  execute('silent !tmux new-window -n "maven-test" -d "mvn test -pl :' ..
-    module .. ' -Dtest=' .. test_class .. ' -DskipTests=false"')
+  execute('silent !mvn test -pl :' ..
+    module .. ' -Dtest=' .. test_class .. ' -DskipTests=false')
 enddef
 autocmd FileType java nnoremap <leader>T :call RunMavenTest()<cr>
 
 # Grep current select text
-vnoremap <leader>/ y:grep <c-r>"<cr>
+vnoremap <leader>/ y:grep <c-r>"<cr><cr>
+
+# Open netrw at current dir
+nnoremap - :Explore<cr>
 
 # -------------- #
 # ----- UI ----- #
 # -------------- #
+
+# Highlight marked files in the same way search matches are
+hi! link netrwMarkFile Search
 
 # Mode dictionary
 const modes = {
@@ -339,9 +345,6 @@ g:ale_linters  =  {
 hi ALEErrorSign ctermfg=red guifg=#ab4642
 hi ALEInfoSign ctermfg=blue guifg=#7cafc2
 hi ALEWarningSign ctermfg=yellow guifg=#f7ca88
-
-# Open git client
-nnoremap <leader>G :!lazygit<cr><cr>
 
 ## END EXCLUDED PART ON REMOTE SERVER ##
 
