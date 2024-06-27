@@ -89,7 +89,7 @@ set define=
 set formatoptions=tcqj
 
 # Program to use for the :grep command
-set grepprg=rg\ --vimgrep\ -uu
+set grepprg=rg\ --vimgrep\ --hidden
 set path+=**
 
 # Set default indentation
@@ -249,7 +249,7 @@ enddef
 autocmd FileType java nnoremap <leader>T :call RunMavenTest()<cr>
 
 # Grep current select text
-vnoremap <leader>/ y:grep <c-r>"<cr><cr>
+vnoremap <leader>/ y:grep <c-r>"<cr>
 
 # Open netrw at current dir
 nnoremap - :Explore<cr>
