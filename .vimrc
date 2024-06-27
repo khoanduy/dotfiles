@@ -24,9 +24,6 @@ call plug#begin()
 
 # Make sure you use single quotes
 
-# Vim plugin, insert or delete brackets, parens, quotes in pair
-Plug 'jiangmiao/auto-pairs'
-
 # Parentheses, brackets, quotes, tags, and more
 Plug 'tpope/vim-surround'
 
@@ -83,7 +80,6 @@ set belloff=all
 
 # Scan to put in completion
 set complete=.,w,b,u,t
-set define=
 
 # Sequence of letters which describes how automatic formatting is to be done
 set formatoptions=tcqj
@@ -107,11 +103,6 @@ set noswapfile
 # Do not let cursor scroll below or above N number of lines when scrolling.
 set scrolloff=10
 set splitbelow
-set sidescroll=1
-
-# Do not wrap lines. Allow long lines to extend as far as the line goes.
-set nowrap
-set nocp
 
 # Searching
 set incsearch
@@ -119,14 +110,6 @@ set hlsearch
 set matchpairs+=<:>
 set ignorecase
 set smartcase
-
-# Pattern to be used to find an include command
-set include=
-set nojoinspaces
-
-# The characters specified by this option are included in file names and path names
-set isfname=@,48-57,/,.,-,_,+,,,#,$,%,~,=
-set nolangremap
 
 # Enable mouse interaction
 set mouse=a
@@ -141,18 +124,8 @@ set showcmd
 set noshowmode
 set showmatch
 
-# Strings to use in list mode
-set listchars=tab:>\ ,trail:-,nbsp:+
-set nrformats=bin,hex
-
-# Changes the effect of the :mksession command
-set sessionoptions=blank,buffers,curdir,folds,help,tabpages,winsize,terminal
-
 # The cursor is kept in the same column
 set nostartofline
-
-# Filenames for the tag command
-set tags=./tags;,tags
 
 # This option controls the behavior when switching between buffers
 set switchbuf=uselast
@@ -162,9 +135,6 @@ set tabpagemax=50
 set completeopt-=preview
 set ttimeout
 set ttimeoutlen=50
-
-# Changes the effect of the :mkview command
-set viewoptions=folds,cursor,curdir
 
 # Enable auto completion menu after pressing TAB.
 set wildmode=full
