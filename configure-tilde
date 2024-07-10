@@ -57,7 +57,6 @@ function linking() {
   ln -s $(pwd)/.zshenv $HOME/.zshenv
   ln -s $(pwd)/.tmux.conf $HOME/.tmux.conf
   ln -s $(pwd)/.vimrc $HOME/.vimrc
-  ln -s $(pwd)/com.googlecode.iterm2.plist $HOME/Library/Preferences/com.googlecode.iterm2.plist
 }
 echo "[-] Linking dotfiles [-]"
 linking
@@ -72,8 +71,8 @@ mkdir -p ~/.zsh/plugins/git/
 curl https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh -o ~/.zsh/plugins/git/git-prompt.sh
 
 # Install default terminal emulator
-echo "[-] Installing iTerm [-]"
-brew install --cask iterm2
+echo "[-] Installing Warp [-]"
+brew install --cask warp
 
 # Install DB CLI client for PostgreSQL and MySQL
 echo "[-] Installing DB CLI clients [-]"
