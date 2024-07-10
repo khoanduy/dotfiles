@@ -7,41 +7,6 @@ vim9script
 # Disable compatibility with vi which can cause unexpected issues.
 set nocompatible
 
-## EXCLUDED PART ON REMOTE SERVER ##
-
-# ----------------------------- #
-# ----- Plugin definition ----- #
-# ----------------------------- #
-
-call plug#begin()
-# The default plugin directory will be as follows:
-#   - Vim (Linux/macOS): '~/.vim/plugged'
-#   - Vim (Windows): '~/vimfiles/plugged'
-#   - Neovim (Linux/macOS/Windows): stdpath('data') . '/plugged'
-# You can specify a custom plugin directory by passing it as the argument
-#   - e.g. `call plug#begin('~/.vim/plugged')`
-#   - Avoid using standard Vim directory names like 'plugin'
-
-# Make sure you use single quotes
-
-# Parentheses, brackets, quotes, tags, and more
-Plug 'tpope/vim-surround'
-
-# Shows git diff markers in the sign column
-Plug 'airblade/vim-gitgutter'
-
-# Asynchronous Lint Engine
-Plug 'dense-analysis/ale'
-
-# Call plug#end to update &runtimepath and initialize the plugin system.
-# - It automatically executes `filetype plugin indent on` and `syntax enable`
-call plug#end()
-# You can revert the settings after the call like so:
-#   filetype indent off   # Disable file-type-specific indentation
-#   syntax off            # Disable syntax highlighting
-
-## END EXCLUDED PART ON REMOTE SERVER ##
-
 #----------------------------#
 #----- General settings -----#
 #----------------------------#
@@ -153,77 +118,6 @@ set background=dark
 # Set statusline last status
 set laststatus=2
 
-# ------------------- #
-# ----- Keymaps ----- #
-# ------------------- #
-
-# Remap c-w prefix
-nnoremap <silent> <leader>w <c-w>
-
-# Remap switch region keys
-nnoremap <c-h> <c-w>h
-nnoremap <c-j> <c-w>j
-nnoremap <c-k> <c-w>k
-nnoremap <c-l> <c-w>l
-
-tnoremap <c-h> <c-\><c-n><c-w>h
-tnoremap <c-j> <c-\><c-n><c-w>j
-tnoremap <c-k> <c-\><c-n><c-w>k
-tnoremap <c-l> <c-\><c-n><c-w>l
-
-# Re-size split windows using arrow keys
-nnoremap <silent> <up> :resize -2<cr>
-nnoremap <silent> <down> :resize +2<cr>
-nnoremap <silent> <left> :vertical resize +2<cr>
-nnoremap <silent> <right> :vertical resize -2<cr>
-
-# Search current marked text
-vnoremap // y/\V<c-r>=escape(@",'/\')<cr><cr>
-
-# Print current file path
-nnoremap <leader>I :echo @%<cr>
-
-# Copy marked text/paste to/from global register
-vnoremap <leader>y "+y
-nnoremap <leader>p "+p
-
-# Difftool kemaps
-nnoremap <leader>dp :diffput 2<cr>
-nnoremap <leader>dl :diffget 1<cr>
-nnoremap <leader>dr :diffget 3<cr>
-
-# Show current line git annotate
-def g:ShowGitAnnotate(): void
-  var line = line('.')
-  var file = expand('%:p')
-  var format = " | cut -d' ' -f1,2,3 | tr '(' ' '"
-  echo system('git annotate -L ' .. line .. ',' .. line .. ' ' .. file .. format)
-enddef
-nnoremap <leader>B :call ShowGitAnnotate()<cr>
-
-# Maven run current test
-def g:RunMavenTest(): void
-  var folders = split(@%, '[/]')
-
-  if index(folders, 'test') < 0
-    echo 'Not a test file!'
-    return
-  endif
-
-  var module = folders[0] != 'src' ? folders[0] : ''
-  var test_class = join(folders[4 : ], '.')[ : -6 ]
-
-  execute('silent !mvn test -pl :' ..
-    module .. ' -Dtest=' .. test_class .. ' -DskipTests=false')
-enddef
-autocmd FileType java nnoremap <leader>T :call RunMavenTest()<cr>
-
-# Grep current select text
-vnoremap <leader>/ y:grep <c-r>"<cr>
-
-# Open netrw at current dir
-nnoremap - :Explore<cr>
-
 # -------------- #
 # ----- UI ----- #
 # -------------- #
@@ -281,42 +175,73 @@ hi Statusline cterm=NONE ctermbg=grey ctermfg=black guibg=grey guifg=black
 hi StatuslineNC ctermfg=darkgray guifg=darkgray
 hi VertSplit cterm=NONE ctermfg=grey guifg=grey
 
-## EXCLUDED PART ON REMOTE SERVER ##
+# ------------------- #
+# ----- Keymaps ----- #
+# ------------------- #
 
-# --------------------------------- #
-# ----- Plugin configuration ------ #
-# --------------------------------- #
+# Remap switch region keys
+nnoremap <c-h> <c-w>h
+nnoremap <c-j> <c-w>j
+nnoremap <c-k> <c-w>k
+nnoremap <c-l> <c-w>l
 
-# Don't let GitGutter set sign backgrounds
-g:gitgutter_set_sign_backgrounds = 1
-hi SignColumn ctermbg=NONE guibg=NONE
+tnoremap <c-h> <c-\><c-n><c-w>h
+tnoremap <c-j> <c-\><c-n><c-w>j
+tnoremap <c-k> <c-\><c-n><c-w>k
+tnoremap <c-l> <c-\><c-n><c-w>l
 
-# Enable ALE completion, must be set before ALE is loaded
-g:ale_completion_enabled = 1
-g:ale_completion_autoimport = 1
+# Re-size split windows using arrow keys
+nnoremap <silent> <up> :resize -2<cr>
+nnoremap <silent> <down> :resize +2<cr>
+nnoremap <silent> <left> :vertical resize +2<cr>
+nnoremap <silent> <right> :vertical resize -2<cr>
 
-# Disable ALE LSP suggestions
-g:ale_disable_lsp = 1
-g:ale_virtualtext_cursor = 'disabled'
+# Search current marked text
+vnoremap // y/\V<c-r>=escape(@",'/\')<cr><cr>
 
-# Custom ALE sign symbol
-g:ale_sign_error = '✖'
-g:ale_sign_info = '●'
-g:ale_sign_warning = '▲'
+# Print current file path
+nnoremap <leader>I :echo @%<cr>
 
-# Custom ALE linters and LSPs
-g:ale_linters_explicit = 1
-g:ale_linters  =  {
-  'java': ['javac'],
-  'python': ['ruff'],
-  'javascript': ['eslint'],
-}
+# Copy marked text/paste to/from global register
+vnoremap <leader>y "+y
+nnoremap <leader>p "+p
+vnoremap <leader>p "+p
 
-# Custom ALE sign color
-hi ALEErrorSign ctermfg=red guifg=#ab4642
-hi ALEInfoSign ctermfg=blue guifg=#7cafc2
-hi ALEWarningSign ctermfg=yellow guifg=#f7ca88
+# Difftool kemaps
+nnoremap <leader>dp :diffput 2<cr>
+nnoremap <leader>dl :diffget 1<cr>
+nnoremap <leader>dr :diffget 3<cr>
 
-## END EXCLUDED PART ON REMOTE SERVER ##
+# Grep current select text
+vnoremap <leader>/ y:grep <c-r>"<cr>
+
+# Open netrw at current dir
+nnoremap - :Explore<cr>
+
+# Show current line git annotate
+def g:ShowGitAnnotate(): void
+  var line = line('.')
+  var file = expand('%:p')
+  var format = " | cut -d' ' -f1,2,3 | tr '(' ' '"
+  echo system('git annotate -L ' .. line .. ',' .. line .. ' ' .. file .. format)
+enddef
+nnoremap <leader>B :call ShowGitAnnotate()<cr>
+
+# Maven run current test
+def g:RunMavenTest(): void
+  var folders = split(@%, '[/]')
+
+  if index(folders, 'test') < 0
+    echo 'Not a test file!'
+    return
+  endif
+
+  var module = folders[0] != 'src' ? folders[0] : ''
+  var test_class = join(folders[4 : ], '.')[ : -6 ]
+
+  execute('silent !mvn test -pl :' ..
+    module .. ' -Dtest=' .. test_class .. ' -DskipTests=false')
+enddef
+autocmd FileType java nnoremap <leader>T :call RunMavenTest()<cr>
 
 defcompile

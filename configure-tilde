@@ -29,7 +29,7 @@ brew install curl wget git coreutils watch ncdu
 # Install font
 echo "[-] Installing Source Code Pro Font [-]"
 brew tap homebrew/cask-fonts
-brew install --cask font-sauce-code-pro-nerd-font
+brew install --cask font-source-code-pro
 
 # Ensure Rust installation
 if ! hash rustc &> /dev/null; then
@@ -45,6 +45,7 @@ function backup() {
 
   mkdir ~/$backup_dir
   mv ~/.zshrc ~/$backup_dir/.zshrc
+  mv ~/.zshenv ~/$backup_dir/.zshenv
   mv ~/.tmux.conf ~/$backup_dir/.tmux.conf
 }
 echo "[-] Backing up dotfiles [-]"
@@ -52,13 +53,11 @@ backup
 
 # Link dotfiles
 function linking() {
-  ln -s $(pwd)/.zshrc ~/.zshrc
-  ln -s $(pwd)/.zshenv ~/.zshenv
-  ln -s $(pwd)/.tmux.conf ~/.tmux.conf
-  ln -s $(pwd)/.vimrc ~/.vimrc
-
-  mkdir -p ${XDG_CONFIG_HOME:=$HOME/.config}
-  ln -s $(pwd)/alacritty $XDG_CONFIG_HOME/alacritty
+  ln -s $(pwd)/.zshrc $HOME/.zshrc
+  ln -s $(pwd)/.zshenv $HOME/.zshenv
+  ln -s $(pwd)/.tmux.conf $HOME/.tmux.conf
+  ln -s $(pwd)/.vimrc $HOME/.vimrc
+  ln -s $(pwd)/com.googlecode.iterm2.plist $HOME/Library/Preferences/com.googlecode.iterm2.plist
 }
 echo "[-] Linking dotfiles [-]"
 linking
@@ -72,14 +71,9 @@ echo "[-] Downloading git-prompt.sh script [-]"
 mkdir -p ~/.zsh/plugins/git/
 curl https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh -o ~/.zsh/plugins/git/git-prompt.sh
 
-# Download Vim plugin manager
-echo "[-] Downloading vim-plug [-]"
-curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
-    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-
 # Install default terminal emulator
-echo "[-] Installing Alacritty [-]"
-brew install alacritty
+echo "[-] Installing iTerm [-]"
+brew install --cask iterm2
 
 # Install DB CLI client for PostgreSQL and MySQL
 echo "[-] Installing DB CLI clients [-]"
@@ -91,8 +85,8 @@ mkdir ~/open-source
 mkdir ~/playground
 
 # Change default shell
-echo "[-] Change default shell to Zsh [-]"
-chsh -s $(which zsh)
+# echo "[-] Change default shell to Zsh [-]"
+# chsh -s $(which zsh)
 
 # Notify configuration finished
 echo "[-] Setup done. Run \`source ~/.zshrc\` to refresh shell config [-]"

@@ -46,6 +46,4 @@ command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
 
 # Alias
-alias v=vim
-alias vo="vim ."
 alias lg=lazygit
