@@ -29,7 +29,7 @@ brew install curl wget git coreutils watch ncdu
 # Install font
 echo "[-] Installing Source Code Pro Font [-]"
 brew tap homebrew/cask-fonts
-brew install --cask font-source-code-pro
+brew install --cask font-sauce-code-pro-nerd-font
 
 # Ensure Rust installation
 if ! hash rustc &> /dev/null; then
@@ -57,6 +57,9 @@ function linking() {
   ln -s $(pwd)/.zshenv $HOME/.zshenv
   ln -s $(pwd)/.tmux.conf $HOME/.tmux.conf
   ln -s $(pwd)/.vimrc $HOME/.vimrc
+
+  mkdir -p ${XDG_CONFIG_HOME:=$HOME/.config}
+  ln -s $(pwd)/alacritty $XDG_CONFIG_HOME/alacritty
 }
 echo "[-] Linking dotfiles [-]"
 linking
@@ -71,8 +74,8 @@ mkdir -p ~/.zsh/plugins/git/
 curl https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh -o ~/.zsh/plugins/git/git-prompt.sh
 
 # Install default terminal emulator
-echo "[-] Installing Warp [-]"
-brew install --cask warp
+echo "[-] Installing Alacritty [-]"
+brew install alacritty
 
 # Install DB CLI client for PostgreSQL and MySQL
 echo "[-] Installing DB CLI clients [-]"
