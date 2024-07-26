@@ -1,19 +1,25 @@
 vim9script
 
-# ----------------------- #
-# ----- Init set-up ----- #
-# ----------------------- #
-
 # Disable compatibility with vi which can cause unexpected issues.
 set nocompatible
 
-#----------------------------#
-#----- General settings -----#
-#----------------------------#
+# Plugins Definition
+call plug#begin()
+
+# A command-line fuzzy finder
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+
+# Shows git diff markers in the sign column
+Plug 'airblade/vim-gitgutter'
+
+# End Plugins Definition
+call plug#end()
 
 # Re-map leader key
 nnoremap <space> <nop>
 g:mapleader = ' '
+
 
 # Encoding
 set encoding=utf-8
@@ -50,7 +56,7 @@ set complete=.,w,b,u,t
 set formatoptions=tcqj
 
 # Program to use for the :grep command
-set grepprg=rg\ --vimgrep\ --hidden
+# set grepprg=rg\ --vimgrep\ --hidden
 set path+=**
 
 # Set default indentation
@@ -118,10 +124,6 @@ set background=dark
 # Set statusline last status
 set laststatus=2
 
-# -------------- #
-# ----- UI ----- #
-# -------------- #
-
 # Highlight marked files in the same way search matches are
 hi! link netrwMarkFile Search
 
@@ -174,10 +176,6 @@ hi CursorLine cterm=bold term=bold
 hi Statusline cterm=NONE ctermbg=grey ctermfg=black guibg=grey guifg=black
 hi StatuslineNC ctermfg=darkgray guifg=darkgray
 hi VertSplit cterm=NONE ctermfg=grey guifg=grey
-
-# ------------------- #
-# ----- Keymaps ----- #
-# ------------------- #
 
 # Remap switch region keys
 nnoremap <c-h> <c-w>h
@@ -243,5 +241,20 @@ def g:RunMavenTest(): void
     module .. ' -Dtest=' .. test_class .. ' -DskipTests=false')
 enddef
 autocmd FileType java nnoremap <leader>T :call RunMavenTest()<cr>
+
+# Don't let GitGutter set sign backgrounds
+g:gitgutter_set_sign_backgrounds = 1
+hi SignColumn ctermbg=NONE guibg=NONE
+
+# Fzf config
+g:fzf_vim = {}
+g:fzf_vim.preview_window = []
+g:fzf_layout = { 'window': { 'width': 0.8, 'height': 0.8 } }
+
+# Fzf mapping
+nnoremap <leader>f :GFiles<cr>
+nnoremap <leader>F :Files<cr>
+nnoremap <leader>b :Buffers<cr>
+nnoremap <leader>/ :Rg<cr>
 
 defcompile
