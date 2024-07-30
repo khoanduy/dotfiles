@@ -2,14 +2,14 @@
 #----- Alacritty configurations -----#
 #------------------------------------#
 
-# Load or attach tmux session at startup
-[shell]
-args = ["-l", "-c", "tmux attach || tmux"]
-program = "/bin/zsh"
-
 [env]
 TERM = "alacritty"
 WINIT_X11_SCALE_FACTOR = "1.0"
+
+# Load or attach tmux session at startup
+# [shell]
+# args = ["-l", "-c", "tmux attach || tmux"]
+# program = "/bin/zsh"
 
 [font]
 size = 15

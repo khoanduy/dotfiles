@@ -3,19 +3,6 @@ vim9script
 # Disable compatibility with vi which can cause unexpected issues.
 set nocompatible
 
-# Plugins Definition
-call plug#begin()
-
-# A command-line fuzzy finder
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'
-
-# Shows git diff markers in the sign column
-Plug 'airblade/vim-gitgutter'
-
-# End Plugins Definition
-call plug#end()
-
 # Re-map leader key
 nnoremap <space> <nop>
 g:mapleader = ' '
@@ -56,8 +43,9 @@ set complete=.,w,b,u,t
 set formatoptions=tcqj
 
 # Program to use for the :grep command
-# set grepprg=rg\ --vimgrep\ --hidden
+set grepprg=rg\ --vimgrep\ --hidden
 set path+=**
+set nowrap
 
 # Set default indentation
 set expandtab
@@ -241,20 +229,5 @@ def g:RunMavenTest(): void
     module .. ' -Dtest=' .. test_class .. ' -DskipTests=false')
 enddef
 autocmd FileType java nnoremap <leader>T :call RunMavenTest()<cr>
-
-# Don't let GitGutter set sign backgrounds
-g:gitgutter_set_sign_backgrounds = 1
-hi SignColumn ctermbg=NONE guibg=NONE
-
-# Fzf config
-g:fzf_vim = {}
-g:fzf_vim.preview_window = []
-g:fzf_layout = { 'window': { 'width': 0.8, 'height': 0.8 } }
-
-# Fzf mapping
-nnoremap <leader>f :GFiles<cr>
-nnoremap <leader>F :Files<cr>
-nnoremap <leader>b :Buffers<cr>
-nnoremap <leader>/ :Rg<cr>
 
 defcompile
