@@ -53,31 +53,31 @@ y = 5
 x = 0
 y = 0
 
-# Thanks to PaperColor
+# Thanks to Base16
 [colors.primary]
-background = '#eeeeee'
-foreground = '#444444'
+background = '#181818'
+foreground = '#d8d8d8'
 
 [colors.cursor]
-text = '#eeeeee'
-cursor = '#444444'
+text = '#181818'
+cursor = '#d8d8d8'
 
 [colors.normal]
-black   = '#eeeeee'
-red     = '#af0000'
-green   = '#008700'
-yellow  = '#d75f00'
-blue    = '#005f87'
-magenta = '#8700af'
-cyan    = '#0087af'
-white   = '#444444'
+black   = '#181818'
+red     = '#ab4642'
+green   = '#a1b56c'
+yellow  = '#f7ca88'
+blue    = '#7cafc2'
+magenta = '#ba8baf'
+cyan    = '#86c1b9'
+white   = '#d8d8d8'
 
 [colors.bright]
-black   = '#eeeeee'
-red     = '#af0000'
-green   = '#008700'
-yellow  = '#ffaf00'
-blue    = '#00afaf'
-magenta = '#af87d7'
-cyan    = '#5fafd7'
-white   = '#585858'
+black   = '#585858'
+red     = '#ab4642'
+green   = '#a1b56c'
+yellow  = '#f7ca88'
+blue    = '#7cafc2'
+magenta = '#ba8baf'
+cyan    = '#86c1b9'
+white   = '#f8f8f8'
