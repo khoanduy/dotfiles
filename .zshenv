@@ -21,7 +21,7 @@ HISTSIZE=10000
 
 # Use 256 color term
 export TERM=xterm-256color
-# export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=#bcbcbc'
+export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=#bcbcbc'
 
 # Fzf options
 export FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS

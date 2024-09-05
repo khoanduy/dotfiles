@@ -107,7 +107,7 @@ set history=10000
 set ttyfast
 
 # Colorscheme
-set background=dark
+set background=light
 
 # Set statusline last status
 set laststatus=2
@@ -161,9 +161,9 @@ set statusline=%!DefaultSl()
 # Set basic highlight groups
 hi Normal cterm=NONE ctermbg=NONE
 hi CursorLine cterm=bold term=bold
-hi Statusline cterm=NONE ctermbg=grey ctermfg=black guibg=grey guifg=black
-hi StatuslineNC ctermfg=darkgray guifg=darkgray
-hi VertSplit cterm=NONE ctermfg=grey guifg=grey
+hi Statusline cterm=NONE ctermbg=darkgray ctermfg=white guibg=darkgray guifg=white
+hi StatuslineNC ctermfg=grey guifg=grey
+hi VertSplit cterm=NONE ctermfg=darkgray guifg=darkgray
 
 # Remap switch region keys
 nnoremap <c-h> <c-w>h
