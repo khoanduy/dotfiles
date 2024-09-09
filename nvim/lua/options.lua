@@ -18,7 +18,7 @@ vim.opt.wrap = false
 vim.opt.errorbells = false
 
 -- Display options
-vim.opt.showmode = false
+vim.opt.showmode = true
 vim.opt.showmatch = true
 
 -- Indentation
@@ -46,15 +46,21 @@ vim.opt.hlsearch = true
 -- Mouse support
 vim.opt.mouse = 'a'
 
+-- Enable auto completion menu after pressing TAB.
+vim.opt.wildmode = 'full'
+vim.opt.wildignore = vim.opt.wildignore + '*.o,*~,*.pyc,*/.DS_Store'
+vim.opt.wildignore = vim.opt.wildignore + '*/Library/*,*/.git/*,*/.hg/*,*/.svn/*,*/node_modules/*'
+vim.opt.wildignore = vim.opt.wildignore + '*/target/*'
+
 -- Program to use for the :grep command
 vim.opt.grepprg = 'rg --vimgrep --hidden'
 vim.opt.path = vim.opt.path + '**'
 
-vim.cmd.highlight('Normal cterm=NONE ctermbg=NONE')
-vim.cmd.highlight('CursorLine cterm=bold term=bold')
-vim.cmd.highlight('Statusline cterm=NONE ctermbg=darkgray ctermfg=white guibg=darkgray guifg=white')
-vim.cmd.highlight('StatuslineNC ctermfg=grey guifg=grey')
-vim.cmd.highlight('VertSplit cterm=NONE ctermfg=darkgray guifg=darkgray')
+-- vim.cmd.highlight('Normal cterm=NONE ctermbg=NONE')
+-- vim.cmd.highlight('CursorLine cterm=bold term=bold')
+-- vim.cmd.highlight('Statusline cterm=NONE ctermbg=darkgray ctermfg=white guibg=darkgray guifg=white')
+-- vim.cmd.highlight('StatuslineNC ctermfg=grey guifg=grey')
+-- vim.cmd.highlight('VertSplit cterm=NONE ctermfg=darkgray guifg=darkgray')
 
 --------------------------
 -- End general settings --
