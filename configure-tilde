@@ -24,7 +24,7 @@ init
 # Install prerequisite packages
 echo "[-] Installing some prerequisite packages [-]"
 brew update
-brew install curl wget git coreutils watch ncdu
+brew install curl wget git neovim coreutils watch ncdu
 
 # Install font
 echo "[-] Installing Source Code Pro Font [-]"
@@ -60,6 +60,7 @@ function linking() {
 
   mkdir -p ${XDG_CONFIG_HOME:=$HOME/.config}
   ln -s $(pwd)/alacritty $XDG_CONFIG_HOME/alacritty
+  ln -s $(pwd)/nvim $XDG_CONFIG_HOME/nvim
 }
 echo "[-] Linking dotfiles [-]"
 linking
