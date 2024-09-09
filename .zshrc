@@ -47,3 +47,4 @@ eval "$(pyenv init -)"
 
 # Alias
 alias lg=lazygit
+alias vim=nvim
