@@ -115,55 +115,12 @@ set laststatus=2
 # Highlight marked files in the same way search matches are
 hi! link netrwMarkFile Search
 
-# Mode dictionary
-const modes = {
-  'n': 'NORMAL',
-  'no': 'NORMAL',
-  'v': 'VISUAL',
-  'V': 'VISUAL LINE',
-  '': 'VISUAL BLOCK',
-  's': 'SELECT',
-  'S': 'SELECT LINE',
-  '': 'SELECT BLOCK',
-  'i': 'INSERT',
-  'ic': 'INSERT',
-  'R': 'REPLACE',
-  'Rv': 'VISUAL REPLACE',
-  'c': 'COMMAND',
-  'cv': 'VIM EX',
-  'ce': 'EX',
-  'r': 'PROMPT',
-  'rm': 'MOAR',
-  'r?': 'CONFIRM',
-  '!': 'SHELL',
-  't': 'TERMINAL',
-}
-
-# Custom statusline
-def g:DefaultSl(): string
-  var sl = ' '
-  sl ..= modes[mode()]
-  sl ..= ': '
-  sl ..= '%t'
-  sl ..= ' '
-  sl ..= '%m'
-  sl ..= '%='
-  sl ..= '%y'
-  sl ..= ' - '
-  sl ..= '%l'
-  sl ..= ':'
-  sl ..= '%c'
-  sl ..= ' '
-  return sl
-enddef
-set statusline=%!DefaultSl()
-
 # Set basic highlight groups
 hi Normal cterm=NONE ctermbg=NONE
 hi CursorLine cterm=bold term=bold
-hi Statusline cterm=NONE ctermbg=darkgray ctermfg=white guibg=darkgray guifg=white
-hi StatuslineNC ctermfg=grey guifg=grey
-hi VertSplit cterm=NONE ctermfg=darkgray guifg=darkgray
+hi Statusline cterm=NONE ctermbg=grey ctermfg=black guibg=grey guifg=black
+hi StatuslineNC ctermfg=lightgray guifg=lightgray
+hi VertSplit cterm=NONE ctermfg=grey guifg=grey
 
 # Remap switch region keys
 nnoremap <c-h> <c-w>h
