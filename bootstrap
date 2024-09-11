@@ -28,7 +28,6 @@ brew install curl wget git neovim coreutils watch ncdu
 
 # Install font
 echo "[-] Installing Source Code Pro Font [-]"
-brew tap homebrew/cask-fonts
 brew install --cask font-sauce-code-pro-nerd-font
 
 # Ensure Rust installation
