@@ -45,7 +45,6 @@ set formatoptions=tcqj
 # Program to use for the :grep command
 set grepprg=rg\ --vimgrep\ --hidden
 set path+=**
-set nowrap
 
 # Set default indentation
 set expandtab
@@ -58,6 +57,7 @@ set shiftround
 # Do not save temporary files.
 set nobackup
 set noswapfile
+set nowrap
 
 # Do not let cursor scroll below or above N number of lines when scrolling.
 set scrolloff=10
@@ -97,9 +97,9 @@ set ttimeoutlen=50
 
 # Enable auto completion menu after pressing TAB.
 set wildmode=full
-set wildignore+=*.o,*~,*.pyc,*/.DS_Store
-set wildignore+=*/Library/*,*/.git/*,*/.hg/*,*/.svn/*,*/node_modules/*
-set wildignore+=*/target/*
+set wildignore=*.o,*~,*.a,*.so,*.pyc,*.swp,.git/,*.class,*/target/*,.idea/
+set wildignore+=*/Library/*,*/.git/*,*/.hg/*,*/.svn/*,*/node_modules/*,*/.DS_Store
+set wildoptions=pum,tagfile
 set wildmenu
 
 # Set the commands to save in history default number is 20.
@@ -128,6 +128,7 @@ nnoremap <c-j> <c-w>j
 nnoremap <c-k> <c-w>k
 nnoremap <c-l> <c-w>l
 
+# Remap switch region keys within terminal
 tnoremap <c-h> <c-\><c-n><c-w>h
 tnoremap <c-j> <c-\><c-n><c-w>j
 tnoremap <c-k> <c-\><c-n><c-w>k
@@ -162,16 +163,16 @@ vnoremap <leader>/ y:grep <c-r>"<cr>
 nnoremap - :Explore<cr>
 
 # Show current line git annotate
-def g:ShowGitAnnotate(): void
+def ShowGitAnnotate(): void
   var line = line('.')
   var file = expand('%:p')
   var format = " | cut -d' ' -f1,2,3 | tr '(' ' '"
   echo system('git annotate -L ' .. line .. ',' .. line .. ' ' .. file .. format)
 enddef
-nnoremap <leader>B :call ShowGitAnnotate()<cr>
+nnoremap <leader>B <ScriptCmd>ShowGitAnnotate()<cr>
 
-# Maven run current test
-def g:RunMavenTest(): void
+# Maven run current test, only apply to Java files
+def RunMavenTest(): void
   var folders = split(@%, '[/]')
 
   if index(folders, 'test') < 0
@@ -185,6 +186,6 @@ def g:RunMavenTest(): void
   execute('silent !mvn test -pl :' ..
     module .. ' -Dtest=' .. test_class .. ' -DskipTests=false')
 enddef
-autocmd FileType java nnoremap <leader>T :call RunMavenTest()<cr>
+autocmd FileType java nnoremap <leader>T <ScriptCmd>RunMavenTest()<cr>
 
 defcompile
