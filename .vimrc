@@ -46,6 +46,10 @@ set formatoptions=tcqj
 set grepprg=rg\ --vimgrep\ --hidden
 set path+=**
 
+# Enable and disable ignored files when grep
+nnoremap <leader>ie :set grepprg=rg\ --vimgrep\ --no-ignore<cr>
+nnoremap <leader>id :set grepprg=rg\ --vimgrep\ --hidden<cr>
+
 # Set default indentation
 set expandtab
 set smarttab
