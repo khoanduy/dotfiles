@@ -24,7 +24,7 @@ init
 # Install prerequisite packages
 echo "[-] Installing some prerequisite packages [-]"
 brew update
-brew install curl wget git coreutils watch ncdu
+brew install curl wget git coreutils watch ncdu jq
 
 # Install font
 echo "[-] Installing Source Code Pro Font [-]"

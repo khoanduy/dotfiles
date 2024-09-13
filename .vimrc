@@ -46,10 +46,6 @@ set formatoptions=tcqj
 set grepprg=rg\ --vimgrep\ --hidden
 set path+=**
 
-# Enable and disable ignored files when grep
-nnoremap <leader>ie :set grepprg=rg\ --vimgrep\ --no-ignore<cr>
-nnoremap <leader>id :set grepprg=rg\ --vimgrep\ --hidden<cr>
-
 # Set default indentation
 set expandtab
 set smarttab
@@ -154,14 +150,6 @@ nnoremap <leader>I :echo @%<cr>
 vnoremap <leader>y "+y
 nnoremap <leader>p "+p
 vnoremap <leader>p "+p
-
-# Difftool kemaps
-nnoremap <leader>dp :diffput 2<cr>
-nnoremap <leader>dl :diffget 1<cr>
-nnoremap <leader>dr :diffget 3<cr>
-
-# Grep current select text
-vnoremap <leader>/ y:grep <c-r>"<cr>
 
 # Open netrw at current dir
 nnoremap - :Explore<cr>
