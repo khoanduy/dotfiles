@@ -95,7 +95,7 @@ set nopaste
 
 # Show several useful info
 set showcmd
-set noshowmode
+set showmode
 set showmatch
 
 # The cursor is kept in the same column
@@ -131,7 +131,7 @@ set laststatus=2
 hi! link netrwMarkFile Search
 
 # Set basic highlight groups
-# hi Normal cterm=NONE ctermbg=NONE
+hi Normal cterm=NONE ctermbg=NONE
 hi CursorLine cterm=bold term=bold
 hi Statusline cterm=NONE ctermbg=grey ctermfg=black guibg=grey guifg=black
 hi StatuslineNC ctermfg=lightgray guifg=lightgray
