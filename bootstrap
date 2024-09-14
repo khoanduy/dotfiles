@@ -24,7 +24,7 @@ init
 # Install prerequisite packages
 echo "[-] Installing some prerequisite packages [-]"
 brew update
-brew install curl wget git coreutils watch ncdu jq
+brew install curl wget git neovim coreutils watch ncdu jq
 
 # Install font
 echo "[-] Installing Source Code Pro Font [-]"
@@ -59,18 +59,24 @@ function linking() {
 
   mkdir -p ${XDG_CONFIG_HOME:=$HOME/.config}
   ln -s $(pwd)/alacritty $XDG_CONFIG_HOME/alacritty
+  ln -s $(pwd)/nvim $XDG_CONFIG_HOME/nvim
 }
 echo "[-] Linking dotfiles [-]"
 linking
 
 # Install some extended packages
 echo "[-] Installing extended packages [-]"
-brew install tmux zsh-autosuggestions fzf universal-ctags ripgrep lazygit pyenv httpie
+brew install tmux zsh-autosuggestions fzf parallel universal-ctags ripgrep lazygit pyenv httpie
 
 # Download git-prompt.sh script
 echo "[-] Downloading git-prompt.sh script [-]"
 mkdir -p ~/.zsh/plugins/git/
 curl https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh -o ~/.zsh/plugins/git/git-prompt.sh
+
+# Download Vim plugin manager
+echo "[-] Downloading vim-plug [-]"
+sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
+       https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 
 # Install default terminal emulator
 echo "[-] Installing Alacritty [-]"

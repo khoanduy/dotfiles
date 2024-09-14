@@ -11,8 +11,8 @@ export LC_ALL=en_US.UTF-8
 export LC_CTYPE=en_US.UTF-8
 
 # Default editor
-export EDITOR="vim"
-export VISUAL="vim"
+export EDITOR="nvim"
+export VISUAL="nvim"
 
 # Zsh history
 HISTFILE=$HOME/.zhistory
@@ -20,15 +20,15 @@ SAVEHIST=10000
 HISTSIZE=10000
 
 # Use 256 color term
-export TERM=xterm-256color
+export TERM=screen-256color
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=#bcbcbc'
 
 # Fzf options
-export FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS
---color=fg:#e4e4e4,bg:-1,hl:#e98885,gutter:-1
---color=fg+:#e4e4e4,bg+:-1,hl+:#e98885,gutter:-1
---color=info:#e7cdfb,prompt:#e7cdfb,pointer:#ffb472
---color=marker:#a3c38b,spinner:#a3c38b,header:#e98885"
+export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
+ --color=fg:#434343,bg:#f7f7f7,hl:#325cc0,gutter:-1
+ --color=fg+:#434343,bg+:#f7f7f7,hl+:#007acc,gutter:-1
+ --color=info:#448c27,prompt:#7a3e9d,pointer:#aa3731
+ --color=marker:#cb9000,spinner:#e64ce6,header:#f05050'
 
 . "$HOME/.cargo/env"
 
