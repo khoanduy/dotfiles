@@ -20,7 +20,7 @@ SAVEHIST=10000
 HISTSIZE=10000
 
 # Use 256 color term
-export TERM=screen-256color
+export TERM=tmux-256color
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=#bcbcbc'
 
 # Fzf options
