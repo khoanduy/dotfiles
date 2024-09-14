@@ -202,10 +202,6 @@ hi SignColumn ctermbg=NONE guibg=NONE
 # Fzf config
 g:fzf_vim = {}
 g:fzf_layout = { 'window': { 'width': 0.8, 'height': 0.8 } }
-g:fzf_colors =
- { 'fg':      ['fg', 'Normal'],
- 'bg':      ['Normal'],
-  }
 
 # Fuzzy finding
 nnoremap <leader>f :Files<CR>
