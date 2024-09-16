@@ -20,6 +20,9 @@ Plug 'junegunn/fzf.vim'
 # A Vim plugin which shows git diff markers in the sign column
 Plug 'airblade/vim-gitgutter'
 
+# A Git wrapper so awesome, it should be illegal
+Plug 'tpope/vim-fugitive'
+
 # End plugin definitions
 call plug#end()
 
@@ -168,15 +171,6 @@ vnoremap <leader>p "+p
 
 # Open netrw at current dir
 nnoremap - :Explore<cr>
-
-# Show current line git annotate
-def ShowGitAnnotate(): void
-  var line = line('.')
-  var file = expand('%:p')
-  var format = " | cut -d' ' -f1,2,3 | tr '(' ' '"
-  echo system('git annotate -L ' .. line .. ',' .. line .. ' ' .. file .. format)
-enddef
-nnoremap <leader>B <ScriptCmd>ShowGitAnnotate()<cr>
 
 # Maven run current test, only apply to Java files
 def RunMavenTest(): void

@@ -44,6 +44,3 @@ source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 export PYENV_ROOT="$HOME/.pyenv"
 command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
-
-# Alias
-alias lg=lazygit
