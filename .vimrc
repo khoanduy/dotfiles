@@ -23,6 +23,9 @@ Plug 'airblade/vim-gitgutter'
 # A Git wrapper so awesome, it should be illegal
 Plug 'tpope/vim-fugitive'
 
+# Personal Wiki for Vim
+Plug 'vimwiki/vimwiki'
+
 # End plugin definitions
 call plug#end()
 
@@ -202,5 +205,10 @@ nnoremap <leader>f :Files<CR>
 nnoremap <leader>F :GFiles<CR>
 nnoremap <leader>b :Buffers<CR>
 nnoremap <leader>/ :Rg<CR>
+
+# User Markdown for vimwiki
+g:vimwiki_list = [{'path': '~/vimwiki/', 'syntax': 'markdown', 'ext': 'md'}]
+g:vimwiki_global_ext = 0
+g:vimwiki_ext2syntax = {}
 
 defcompile
