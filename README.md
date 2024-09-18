@@ -7,7 +7,7 @@ NOTED: These are my personal configuration files, which could be changed as I de
 ## Installation
 Clone repository to your local device and `cd` into it:
 ```shell script
-$ git clone https://github.com/SillySimpleFellow/dotfiles.git
+$ git clone https://github.com/khoanvi/dotfiles.git
 $ cd dotfiles
 ```
 
