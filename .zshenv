@@ -21,14 +21,13 @@ HISTSIZE=10000
 
 # Use 256 color term
 export TERM=xterm-256color
-export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=#bcbcbc'
 
 # Fzf options
 export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
- --color=fg:#434343,bg:-1,hl:#325cc0,gutter:-1
- --color=fg+:#434343,bg+:-1,hl+:#007acc,gutter:-1
- --color=info:#448c27,prompt:#7a3e9d,pointer:#aa3731
- --color=marker:#cb9000,spinner:#e64ce6,header:#f05050'
+ --color=fg:#d8d8d8,bg:-1,hl:#7cafc2,gutter:-1
+ --color=fg+:#d8d8d8,bg+:-1,hl+:#ba8baf,gutter:-1
+ --color=info:#f7ca88,prompt:#86c1b9,pointer:#ab4642
+ --color=marker:#a1b56c,spinner:#a1b56c,header:#f7ca88'
 
 . "$HOME/.cargo/env"
 

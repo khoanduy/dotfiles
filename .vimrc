@@ -127,11 +127,9 @@ set wildmenu
 set history=10000
 set ttyfast
 
-# Colorscheme
-set background=light
-
-# Set statusline last status
+# Set statusline last status and background
 set laststatus=2
+set background=dark
 
 # Highlight marked files in the same way search matches are
 hi! link netrwMarkFile Search
@@ -140,8 +138,8 @@ hi! link netrwMarkFile Search
 hi Normal cterm=NONE ctermbg=NONE
 hi CursorLine cterm=bold term=bold
 hi Statusline cterm=NONE ctermbg=grey ctermfg=black guibg=grey guifg=black
-hi StatuslineNC ctermfg=lightgray guifg=lightgray
-hi VertSplit cterm=NONE ctermfg=grey guifg=grey
+hi StatuslineNC ctermfg=darkgrey guifg=darkgrey
+hi VertSplit cterm=NONE ctermfg=darkgrey guifg=darkgrey
 
 # Remap switch region keys
 nnoremap <c-h> <c-w>h
@@ -198,6 +196,7 @@ hi SignColumn ctermbg=NONE guibg=NONE
 
 # Fzf config
 g:fzf_vim = {}
+g:fzf_vim.preview_window = []
 g:fzf_layout = { 'window': { 'width': 0.8, 'height': 0.8 } }
 
 # Fuzzy finding
