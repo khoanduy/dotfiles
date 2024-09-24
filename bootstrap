@@ -87,8 +87,9 @@ brew install pgcli mycli
 
 # Create some essential folders
 echo "[-] Creating essential folders [-]"
-mkdir ~/open-source
-mkdir ~/playground
+mkdir $HOME/vimsessions
+mkdir $HOME/open-source
+mkdir $HOME/playground
 
 # Change default shell
 # echo "[-] Change default shell to Zsh [-]"

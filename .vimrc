@@ -4,7 +4,7 @@ vim9script
 set nocompatible
 
 # Re-map leader key
-nnoremap <space> <nop>
+nnoremap <Space> <Nop>
 g:mapleader = ' '
 
 # Plugin definitions
@@ -30,9 +30,9 @@ Plug 'vimwiki/vimwiki'
 call plug#end()
 
 # Encoding
-set encoding=utf-8
-set fileencoding=utf-8
-set termencoding=utf-8
+set encoding=UTF-8
+set fileencoding=UTF-8
+set termencoding=UTF-8
 
 # Enable type file detection
 filetype on
@@ -142,28 +142,28 @@ hi StatuslineNC ctermfg=darkgrey guifg=darkgrey
 hi VertSplit cterm=NONE ctermfg=darkgrey guifg=darkgrey
 
 # Remap switch region keys
-nnoremap <c-h> <c-w>h
-nnoremap <c-j> <c-w>j
-nnoremap <c-k> <c-w>k
-nnoremap <c-l> <c-w>l
+nnoremap <C-h> <C-w>h
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
 
 # Remap switch region keys within terminal
-tnoremap <c-h> <c-\><c-n><c-w>h
-tnoremap <c-j> <c-\><c-n><c-w>j
-tnoremap <c-k> <c-\><c-n><c-w>k
-tnoremap <c-l> <c-\><c-n><c-w>l
+tnoremap <C-h> <C-\><C-n><C-w>h
+tnoremap <C-j> <C-\><C-n><C-w>j
+tnoremap <C-k> <C-\><C-n><C-w>k
+tnoremap <C-l> <C-\><C-n><C-w>l
 
 # Re-size split windows using arrow keys
-nnoremap <silent> <up> :resize -2<cr>
-nnoremap <silent> <down> :resize +2<cr>
-nnoremap <silent> <left> :vertical resize +2<cr>
-nnoremap <silent> <right> :vertical resize -2<cr>
+nnoremap <silent> <up> :resize -2<CR>
+nnoremap <silent> <down> :resize +2<CR>
+nnoremap <silent> <left> :vertical resize +2<CR>
+nnoremap <silent> <right> :vertical resize -2<CR>
 
 # Search current marked text
-vnoremap // y/\V<c-r>=escape(@",'/\')<cr><cr>
+vnoremap // y/\V<C-r>=escape(@",'/\')<CR><CR>
 
 # Print current file path
-nnoremap <leader>I :echo @%<cr>
+nnoremap <leader>I :echo @%<CR>
 
 # Copy marked text/paste to/from global register
 vnoremap <leader>y "+y
@@ -171,7 +171,7 @@ nnoremap <leader>p "+p
 vnoremap <leader>p "+p
 
 # Open netrw at current dir
-nnoremap - :Explore<cr>
+nnoremap - :Explore<CR>
 
 # Maven run current test, only apply to Java files
 def RunMavenTest(): void
@@ -188,7 +188,15 @@ def RunMavenTest(): void
   execute('silent !mvn test -pl :' ..
     module .. ' -Dtest=' .. test_class .. ' -DskipTests=false')
 enddef
-autocmd FileType java nnoremap <leader>T <ScriptCmd>RunMavenTest()<cr>
+autocmd FileType java nnoremap <leader>T <ScriptCmd>RunMavenTest()<CR>
+
+# Vim session keymaps
+def MksCurrentRepo(): void
+  var name = join(split(tolower(getcwd()), '[/]'), '-')
+  execute('silent :mks! ' .. $HOME .. '/vimsessions' .. '/' .. name .. '.vim')
+enddef
+nnoremap <leader>s <ScriptCmd>MksCurrentRepo()<CR>
+nnoremap <leader>S :source $HOME/vimsessions/
 
 # Don't let GitGutter set sign backgrounds
 g:gitgutter_set_sign_backgrounds = 1
