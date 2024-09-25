@@ -192,7 +192,7 @@ autocmd FileType java nnoremap <leader>T <ScriptCmd>RunMavenTest()<CR>
 
 # Vim session keymaps
 def MksCurrentRepo(): void
-  var name = join(split(tolower(getcwd()), '[/]'), '-')
+  var name = join(split(tolower(getcwd()), '[/]')[2 : ], '-')
   execute('silent :mks! ' .. $HOME .. '/vimsessions' .. '/' .. name .. '.vim')
 enddef
 nnoremap <leader>s <ScriptCmd>MksCurrentRepo()<CR>
