@@ -36,6 +36,9 @@ Plug 'tpope/vim-vinegar'
 # :eyes: "/@/ctrl-r
 Plug 'junegunn/vim-peekaboo'
 
+# A Vim plugin that manages your tag files
+Plug 'ludovicchabant/vim-gutentags'
+
 # Check syntax in Vim asynchronously and fix files
 Plug 'dense-analysis/ale'
 
