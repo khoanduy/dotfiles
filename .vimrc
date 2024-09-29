@@ -7,6 +7,7 @@ set nocompatible
 nnoremap <Space> <Nop>
 g:mapleader = ' '
 
+# -----
 # Plugin definitions
 call plug#begin()
 
@@ -23,11 +24,27 @@ Plug 'airblade/vim-gitgutter'
 # A Git wrapper so awesome, it should be illegal
 Plug 'tpope/vim-fugitive'
 
+# comment stuff out
+Plug 'tpope/vim-commentary'
+
+# Delete/change/add parentheses/quotes/XML-tags/much more with ease
+Plug 'tpope/vim-surround'
+
+# Combine with netrw to create a delicious salad dressing
+Plug 'tpope/vim-vinegar'
+
+# :eyes: "/@/ctrl-r
+Plug 'junegunn/vim-peekaboo'
+
+# Check syntax in Vim asynchronously and fix files
+Plug 'dense-analysis/ale'
+
 # Personal Wiki for Vim
 Plug 'vimwiki/vimwiki'
 
 # End plugin definitions
 call plug#end()
+# -----
 
 # Encoding
 set encoding=UTF-8
@@ -40,6 +57,7 @@ filetype plugin on
 
 # Load an indent file for the detected file type.
 filetype indent on
+filetype plugin indent on
 
 # Turn syntax highlighting on.
 syntax enable
@@ -159,6 +177,9 @@ nnoremap <silent> <down> :resize +2<CR>
 nnoremap <silent> <left> :vertical resize +2<CR>
 nnoremap <silent> <right> :vertical resize -2<CR>
 
+# Remap insert mode escape key
+inoremap <silent> jk <ESC>
+
 # Search current marked text
 vnoremap // y/\V<C-r>=escape(@",'/\')<CR><CR>
 
@@ -170,8 +191,14 @@ vnoremap <leader>y "+y
 nnoremap <leader>p "+p
 vnoremap <leader>p "+p
 
-# Open netrw at current dir
-nnoremap - :Explore<CR>
+# -----
+# Vim session keymaps
+def MksCurrentRepo(): void
+  var name = join(split(tolower(getcwd()), '[/]')[2 : ], '-')
+  execute('silent :mks! ' .. $HOME .. '/vimsessions' .. '/' .. name .. '.vim')
+enddef
+nnoremap <leader>s <ScriptCmd>MksCurrentRepo()<CR>
+nnoremap <leader>S :source $HOME/vimsessions/
 
 # Maven run current test, only apply to Java files
 def RunMavenTest(): void
@@ -190,14 +217,6 @@ def RunMavenTest(): void
 enddef
 autocmd FileType java nnoremap <leader>T <ScriptCmd>RunMavenTest()<CR>
 
-# Vim session keymaps
-def MksCurrentRepo(): void
-  var name = join(split(tolower(getcwd()), '[/]')[2 : ], '-')
-  execute('silent :mks! ' .. $HOME .. '/vimsessions' .. '/' .. name .. '.vim')
-enddef
-nnoremap <leader>s <ScriptCmd>MksCurrentRepo()<CR>
-nnoremap <leader>S :source $HOME/vimsessions/
-
 # Don't let GitGutter set sign backgrounds
 g:gitgutter_set_sign_backgrounds = 1
 hi SignColumn ctermbg=NONE guibg=NONE
@@ -213,9 +232,24 @@ nnoremap <leader>F :GFiles<CR>
 nnoremap <leader>b :Buffers<CR>
 nnoremap <leader>/ :Rg<CR>
 
+# Diable ALE's LSP functionality
+g:ale_disable_lsp = 1
+g:ale_virtualtext_cursor = 'disabled'
+
+# Custom ALE sign symbol
+g:ale_sign_error = '✖'
+g:ale_sign_info = '●'
+g:ale_sign_warning = '▲'
+
+# Custom ALE sign color
+hi ALEErrorSign ctermfg=red guifg=red
+hi ALEInfoSign ctermfg=blue guifg=blue
+hi ALEWarningSign ctermfg=yellow guifg=yellow
+
 # User Markdown for vimwiki
 g:vimwiki_list = [{'path': '~/vimwiki/', 'syntax': 'markdown', 'ext': 'md'}]
 g:vimwiki_global_ext = 0
 g:vimwiki_ext2syntax = {}
+# -----
 
 defcompile
