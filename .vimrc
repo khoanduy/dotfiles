@@ -21,6 +21,10 @@ call plug#begin()
 # List your plugins here
 # Make sure you use single quotes
 
+# A command-line fuzzy finder
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+
 # A Vim plugin which shows git diff markers in the sign column
 Plug 'airblade/vim-gitgutter'
 
@@ -228,6 +232,17 @@ autocmd FileType java nnoremap <leader>T <ScriptCmd>RunMavenTest()<CR>
 # Don't let GitGutter set sign backgrounds
 g:gitgutter_set_sign_backgrounds = 1
 hi SignColumn ctermbg=NONE guibg=NONE
+
+# Fzf config
+g:fzf_vim = {}
+g:fzf_vim.preview_window = []
+g:fzf_layout = { 'window': { 'width': 0.8, 'height': 0.8 } }
+
+# Fuzzy finding
+nnoremap <leader>f :Files<CR>
+nnoremap <leader>F :GFiles<CR>
+nnoremap <leader>b :Buffers<CR>
+nnoremap <leader>/ :Rg<CR>
 
 # Diable ALE's LSP functionality
 g:ale_disable_lsp = 1
