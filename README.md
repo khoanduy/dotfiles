@@ -29,7 +29,14 @@ Finally, launch Vim (ignore all errors) and install all plugins using `:PlugInst
 
 
 ## Additional Notes
-If you are using `ctags`, it's very useful if you put the `tags` in `.gitignore_global` and specify the file in global `.gitconfig`
+If you are using `ctags`, it's very useful if you put the `ctags` related files in `.gitignore_global` 
+```
+tags
+tags.lock
+tags.temp
+```
+
+and specify it in global `.gitconfig`
 ```
 [core]
   excludesfile = $HOME/.gitignore_global
