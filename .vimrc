@@ -1,5 +1,12 @@
 vim9script
 
+# NOTES
+# Search and Replace:
+# - :grep pattern (:set grepprg=rg\ --vimgrep\ --no-ignore to include ignored files)
+# - :cw
+# - :cdo %s/text/replacement/gc
+# - :cfdo update
+
 # Disable compatibility with vi which can cause unexpected issues.
 set nocompatible
 
@@ -13,10 +20,6 @@ call plug#begin()
 
 # List your plugins here
 # Make sure you use single quotes
-
-# A command-line fuzzy finder
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'
 
 # A Vim plugin which shows git diff markers in the sign column
 Plug 'airblade/vim-gitgutter'
@@ -50,9 +53,9 @@ call plug#end()
 # -----
 
 # Encoding
-set encoding=UTF-8
-set fileencoding=UTF-8
-set termencoding=UTF-8
+set encoding=utf-8
+set fileencoding=utf-8
+set termencoding=utf-8
 
 # Enable type file detection
 filetype on
@@ -163,31 +166,33 @@ hi StatuslineNC ctermfg=lightgrey guifg=lightgrey
 hi VertSplit cterm=NONE ctermfg=grey guifg=grey
 
 # Remap switch region keys
-nnoremap <C-h> <C-w>h
-nnoremap <C-j> <C-w>j
-nnoremap <C-k> <C-w>k
-nnoremap <C-l> <C-w>l
+nnoremap <c-h> <c-w>h
+nnoremap <c-j> <c-w>j
+nnoremap <c-k> <c-w>k
+nnoremap <c-l> <c-w>l
 
 # Remap switch region keys within terminal
-tnoremap <C-h> <C-\><C-n><C-w>h
-tnoremap <C-j> <C-\><C-n><C-w>j
-tnoremap <C-k> <C-\><C-n><C-w>k
-tnoremap <C-l> <C-\><C-n><C-w>l
+tnoremap <c-h> <c-\><c-n><c-w>h
+tnoremap <c-j> <c-\><c-n><c-w>j
+tnoremap <c-k> <c-\><c-n><c-w>k
+tnoremap <c-l> <c-\><c-n><c-w>l
 
 # Re-size split windows using arrow keys
-nnoremap <silent> <up> :resize -2<CR>
-nnoremap <silent> <down> :resize +2<CR>
-nnoremap <silent> <left> :vertical resize +2<CR>
-nnoremap <silent> <right> :vertical resize -2<CR>
+nnoremap <silent> <up> :resize -2<cr>
+nnoremap <silent> <down> :resize +2<cr>
+nnoremap <silent> <left> :vertical resize +2<cr>
+nnoremap <silent> <right> :vertical resize -2<cr>
 
-# Remap insert mode escape key
-inoremap <silent> jk <ESC>
+# Add mapping for auto closing
+inoremap " ""<left>
+inoremap ' ''<left>
+inoremap ( ()<left>
+inoremap [ []<left>
+inoremap { {}<left>
+inoremap {<cr> {<cr>}<esc>O
 
 # Search current marked text
-vnoremap // y/\V<C-r>=escape(@",'/\')<CR><CR>
-
-# Print current file path
-nnoremap <leader>I :echo @%<CR>
+vnoremap // y/\V<c-r>=escape(@",'/\')<cr><cr>
 
 # Copy marked text/paste to/from global register
 vnoremap <leader>y "+y
@@ -223,17 +228,6 @@ autocmd FileType java nnoremap <leader>T <ScriptCmd>RunMavenTest()<CR>
 # Don't let GitGutter set sign backgrounds
 g:gitgutter_set_sign_backgrounds = 1
 hi SignColumn ctermbg=NONE guibg=NONE
-
-# Fzf config
-g:fzf_vim = {}
-g:fzf_vim.preview_window = []
-g:fzf_layout = { 'window': { 'width': 0.8, 'height': 0.8 } }
-
-# Fuzzy finding
-nnoremap <leader>f :Files<CR>
-nnoremap <leader>F :GFiles<CR>
-nnoremap <leader>b :Buffers<CR>
-nnoremap <leader>/ :Rg<CR>
 
 # Diable ALE's LSP functionality
 g:ale_disable_lsp = 1
