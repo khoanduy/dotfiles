@@ -2,50 +2,8 @@
 set nocompatible
 
 " Re-map leader key
-nnoremap <Space> <Nop>
+nnoremap <space> <nop>
 let g:mapleader=' '
-
-" ----- "
-" Plugin definitions
-call plug#begin()
-
-" List your plugins here
-" Make sure you use single quotes
-
-" A command-line fuzzy finder
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'
-
-" A Vim plugin which shows git diff markers in the sign column
-Plug 'airblade/vim-gitgutter'
-
-" A Git wrapper so awesome, it should be illegal
-Plug 'tpope/vim-fugitive'
-
-" comment stuff out
-Plug 'tpope/vim-commentary'
-
-" Delete/change/add parentheses/quotes/XML-tags/much more with ease
-Plug 'tpope/vim-surround'
-
-" Combine with netrw to create a delicious salad dressing
-Plug 'tpope/vim-vinegar'
-
-" :eyes: "/@/ctrl-r
-Plug 'junegunn/vim-peekaboo'
-
-" A Vim plugin that manages your tag files
-Plug 'ludovicchabant/vim-gutentags'
-
-" Check syntax in Vim asynchronously and fix files
-Plug 'dense-analysis/ale'
-
-" Personal Wiki for Vim
-Plug 'vimwiki/vimwiki'
-
-" End plugin definitions
-call plug#end()
-" ----- "
 
 " Encoding
 set encoding=utf-8
@@ -84,7 +42,6 @@ set formatoptions=tcqj
 
 " Program to use for the :grep command
 set grepprg=rg\ --vimgrep\ --hidden
-set path+=**
 
 " Set default indentation
 set expandtab
@@ -137,10 +94,11 @@ set ttimeoutlen=50
 
 " Enable auto completion menu after pressing TAB.
 set wildmode=full
-set wildignore=*.o,*~,*.a,*.so,*.pyc,*.swp,.git/,*.class,*/target/*,.idea/
-set wildignore+=*/Library/*,*/.git/*,*/.hg/*,*/.svn/*,*/node_modules/*,*/.DS_Store
+set wildcharm=<c-z>
 set wildoptions=pum,tagfile
 set wildmenu
+set wildignore=*.o,*~,*.a,*.so,*.pyc,*.swp,.git/,*.class,*/target/*,.idea/
+set wildignore+=*/Library/*,*/.git/*,*/.hg/*,*/.svn/*,*/node_modules/*,*/.DS_Store
 
 " Set the commands to save in history default number is 20.
 set history=10000
@@ -186,6 +144,9 @@ inoremap [ []<left>
 inoremap { {}<left>
 inoremap {<cr> {<cr>}<esc>O
 
+" Open netrw at current dir
+nnoremap - :Explore<cr>
+
 " Search current marked text
 vnoremap // y/\V<c-r>=escape(@",'/\')<cr><cr>
 
@@ -194,7 +155,6 @@ vnoremap <leader>y "+y
 nnoremap <leader>p "+p
 vnoremap <leader>p "+p
 
-" ----- "
 " Vim session keymaps
 function! s:mks_cur_repo()
   let name = join(split(tolower(getcwd()), '[/]')[2:], '-')
@@ -202,7 +162,7 @@ function! s:mks_cur_repo()
   execute(':mks! ' . $HOME . '/vimsessions' . '/' . name . '.vim')
 endfunction
 nnoremap <leader>s :call <sid>mks_cur_repo()<cr>
-nnoremap <leader>S :source $HOME/vimsessions/
+nnoremap <leader>S :source $HOME/vimsessions/*.vim<c-z>
 
 " Maven run current test, only apply to Java files
 function! s:run_maven_test()
@@ -220,43 +180,22 @@ function! s:run_maven_test()
 endfunction
 autocmd FileType java nnoremap <leader>T :call <sid>run_maven_test()<cr>
 
-" Don't let GitGutter set sign backgrounds
-let g:gitgutter_set_sign_backgrounds=1
-hi SignColumn ctermbg=NONE guibg=NONE
-
-" Fzf config
-let g:fzf_vim={}
-let g:fzf_vim.preview_window=[]
-let g:fzf_layout={ 'window': { 'width': 0.8, 'height': 0.8 } }
-
-" Grep includes ignored files
-command! -bang -nargs=* RG call fzf#vim#grep2
-  \ ("rg --column --line-number --no-heading --color=always --no-ignore -- ",
-  \ <q-args>, 1, <bang>0)
+" Open the quickfix window whenever a quickfix command is executed
+autocmd QuickFixCmdPost [^l]* cwindow
 
 " Fuzzy finding
-nnoremap <leader>f :GFiles<cr>
-nnoremap <leader>F :Files<cr>
-nnoremap <leader>b :Buffers<cr>
-nnoremap <leader>g :Rg<cr>
-nnoremap <leader>G :RG<cr>
+nnoremap <leader>f :find **/*
+nnoremap <leader>b :buffer *<c-z>
+nnoremap <leader>g :grep ''<left>
+nnoremap <leader>G :set grepprg=<c-z>
 
-" Diable ALE's LSP functionality
-let g:ale_disable_lsp=1
-let g:ale_virtualtext_cursor='disabled'
+" Java lint
+autocmd FileType java setlocal makeprg=javac\ %
+autocmd FileType java compiler javac
 
-" Custom ALE sign symbol
-let g:ale_sign_error='✖'
-let g:ale_sign_info='●'
-let g:ale_sign_warning='▲'
+" Python lint
+autocmd FileType python setlocal makeprg=pylint\ --output-format=parseable
+autocmd FileType python compiler pylint
 
-" Custom ALE sign color
-hi ALEErrorSign ctermfg=red guifg=red
-hi ALEInfoSign ctermfg=blue guifg=blue
-hi ALEWarningSign ctermfg=yellow guifg=yellow
-
-" User Markdown for vimwiki
-let g:vimwiki_list=[{'path': '~/vimwiki/', 'syntax': 'markdown', 'ext': 'md'}]
-let g:vimwiki_global_ext=0
-let g:vimwiki_ext2syntax={}
-" ----- "
+" Linting
+" autocmd BufWritePost *.java,*.py silent make! <afile> | silent redraw!
