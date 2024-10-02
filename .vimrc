@@ -11,28 +11,6 @@ call plug#begin()
 " List your plugins here
 " Make sure you use single quotes
 
-" A command-line fuzzy finder
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'
-
-" A Vim plugin which shows git diff markers in the sign column
-Plug 'airblade/vim-gitgutter'
-
-" A Git wrapper so awesome, it should be illegal
-Plug 'tpope/vim-fugitive'
-
-" comment stuff out
-Plug 'tpope/vim-commentary'
-
-" Delete/change/add parentheses/quotes/XML-tags/much more with ease
-Plug 'tpope/vim-surround'
-
-" Combine with netrw to create a delicious salad dressing
-Plug 'tpope/vim-vinegar'
-
-" :eyes: "/@/ctrl-r
-Plug 'junegunn/vim-peekaboo'
-
 " A Vim plugin that manages your tag files
 Plug 'ludovicchabant/vim-gutentags'
 
@@ -78,7 +56,7 @@ set complete=.,w,b,u,t
 set formatoptions=tcqj
 
 " Program to use for the :grep command
-set grepprg=rg\ --vimgrep\ --hidden 
+set grepprg=rg\ --vimgrep\ --smart-case\ --hidden 
 set path+=**
 
 " Set default indentation
@@ -234,22 +212,13 @@ autocmd FileType java nnoremap <leader>T :call <sid>run_maven_test()<cr>
 " Open the quickfix window whenever a quickfix command is executed
 autocmd QuickFixCmdPost [^l]* cwindow
 
-" Don't let GitGutter set sign backgrounds
-let g:gitgutter_set_sign_backgrounds=1
-hi SignColumn ctermbg=NONE guibg=NONE
-
-" Fzf config
-let g:fzf_vim={}
-let g:fzf_vim.preview_window=[]
-let g:fzf_layout={ 'window': { 'width': 0.8, 'height': 0.8 } }
-
 " Fuzzy finding
-nnoremap <leader>f :Files<cr>
-nnoremap <leader>F :GFiles<cr>
-nnoremap <leader>e :e %:h<c-z><c-z>
-nnoremap <leader>b :Buffers<cr>
-nnoremap <leader>g :Rg<cr>
-nnoremap <leader>G :grep ''<left>
+nnoremap <leader>f :find *
+nnoremap <leader>F :e %:h<c-z><c-z>
+nnoremap <leader>b :buffer <c-z>
+nnoremap <leader>g :grep ''<left>
+vnoremap <leader>g y:grep '<c-r>"'<cr><cr>
+nnoremap <leader>G :set grepprg=<c-z>
 
 " Diable ALE's LSP functionality
 let g:ale_disable_lsp=1
