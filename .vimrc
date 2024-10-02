@@ -185,6 +185,19 @@ inoremap {<cr> {<cr>}<esc>O
 " Open netrw at current dir
 nnoremap - :Explore<cr>
 
+" netrw keymap
+function! s:netrw_keymaps()
+  nnoremap <buffer> <leader>q :Rexplore<cr>
+endfunction
+
+augroup netrw_mapping
+  autocmd!
+  autocmd Filetype netrw call <sid>netrw_keymaps()
+augroup END
+
+" Generate tag
+nnoremap <leader>t :!ctags -R .<cr>
+
 " Search current marked text
 vnoremap // y/\V<c-r>=escape(@",'/\')<cr><cr>
 
@@ -230,17 +243,13 @@ let g:fzf_vim={}
 let g:fzf_vim.preview_window=[]
 let g:fzf_layout={ 'window': { 'width': 0.8, 'height': 0.8 } }
 
-" Grep includes ignored files
-command! -bang -nargs=* RG call fzf#vim#grep2
-  \ ("rg --column --line-number --no-heading --color=always --no-ignore -- ",
-  \ <q-args>, 1, <bang>0)
-
 " Fuzzy finding
-nnoremap <leader>f :GFiles<cr>
-nnoremap <leader>F :Files<cr>
+nnoremap <leader>f :Files<cr>
+nnoremap <leader>F :GFiles<cr>
+nnoremap <leader>e :e %:h<c-z><c-z>
 nnoremap <leader>b :Buffers<cr>
 nnoremap <leader>g :Rg<cr>
-nnoremap <leader>G :RG<cr>
+nnoremap <leader>G :grep ''<left>
 
 " Diable ALE's LSP functionality
 let g:ale_disable_lsp=1
