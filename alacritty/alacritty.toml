@@ -48,31 +48,33 @@ y = 5
 x = 0
 y = 0
 
-# Thanks to Alabaster
+# Thanks to Base16
 [colors.primary]
-background = "#f7f7f7"
-foreground = "#434343"
+background = '#181818'
+foreground = '#d8d8d8'
 
 [colors.cursor]
-text = "#f7f7f7"
-cursor = "#434343"
+text = '#181818'
+cursor = '#d8d8d8'
 
+# Normal colors
 [colors.normal]
-black = "#000000"
-red = "#aa3731"
-green = "#448c27"
-yellow = "#cb9000"
-blue = "#325cc0"
-magenta = "#7a3e9d"
-cyan = "#0083b2"
-white = "#bbbbbb"
+black= '#181818'
+red = '#ab4642'
+green = '#a1b56c'
+yellow = '#f7ca88'
+blue = '#7cafc2'
+magenta = '#ba8baf'
+cyan = '#86c1b9'
+white = '#d8d8d8'
 
+# Bright colors
 [colors.bright]
-black = "#777777"
-red = "#f05050"
-green = "#60cb00"
-yellow = "#ffbc5d"
-blue = "#007acc"
-magenta = "#e64ce6"
-cyan = "#00aacb"
-white = "#ffffff"
+black = '#585858'
+red = '#ab4642'
+green = '#a1b56c'
+yellow = '#f7ca88'
+blue = '#7cafc2'
+magenta = '#ba8baf'
+cyan = '#86c1b9'
+white = '#f8f8f8'
