@@ -239,7 +239,7 @@ nnoremap <leader>f :GFiles<cr>
 nnoremap <leader>F :Files<cr>
 nnoremap <leader>b :Buffers<cr>
 nnoremap <leader>g :Rg<cr>
-vnoremap <leader>g y:grep '<c-r>"'<cr><cr>
+vnoremap <leader>g y:Rg <c-r>"<cr>
 nnoremap <leader>G :grep ''<left>
 
 " Diable ALE's LSP functionality
