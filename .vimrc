@@ -229,6 +229,11 @@ autocmd QuickFixCmdPost [^l]* cwindow
 let g:gitgutter_set_sign_backgrounds=1
 hi SignColumn ctermbg=NONE guibg=NONE
 
+" Fzf config
+let g:fzf_vim={}
+let g:fzf_vim.preview_window=[]
+let g:fzf_layout={ 'window': { 'width': 0.8, 'height': 0.8 } }
+
 " Fuzzy finding
 nnoremap <leader>f :GFiles<cr>
 nnoremap <leader>F :Files<cr>
