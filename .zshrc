@@ -44,3 +44,6 @@ source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 export PYENV_ROOT="$HOME/.pyenv"
 command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
+
+# Aliases
+alias pdb="pgcli -U postgres -h 0.0.0.0 -p 5432 -d instaclustr"
