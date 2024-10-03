@@ -11,6 +11,10 @@ call plug#begin()
 " List your plugins here
 " Make sure you use single quotes
 
+" A command-line fuzzy finder
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+
 " A Vim plugin which shows git diff markers in the sign column
 Plug 'airblade/vim-gitgutter'
 
@@ -226,12 +230,12 @@ let g:gitgutter_set_sign_backgrounds=1
 hi SignColumn ctermbg=NONE guibg=NONE
 
 " Fuzzy finding
-nnoremap <leader>f :find *
-nnoremap <leader>F :e %:h<c-z><c-z>
-nnoremap <leader>b :buffer <c-z>
-nnoremap <leader>g :grep ''<left>
+nnoremap <leader>f :GFiles<cr>
+nnoremap <leader>F :Files<cr>
+nnoremap <leader>b :Buffers<cr>
+nnoremap <leader>g :Rg<cr>
 vnoremap <leader>g y:grep '<c-r>"'<cr><cr>
-nnoremap <leader>G :set grepprg=<c-z>
+nnoremap <leader>G :grep ''<left>
 
 " Diable ALE's LSP functionality
 let g:ale_disable_lsp=1
