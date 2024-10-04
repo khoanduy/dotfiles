@@ -11,18 +11,8 @@ call plug#begin()
 " List your plugins here
 " Make sure you use single quotes
 
-" A command-line fuzzy finder
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'
-
-" A Vim plugin which shows git diff markers in the sign column
-Plug 'airblade/vim-gitgutter'
-
 " A Git wrapper so awesome, it should be illegal
 Plug 'tpope/vim-fugitive'
-
-" :eyes: "/@/ctrl-r
-Plug 'junegunn/vim-peekaboo'
 
 " A Vim plugin that manages your tag files
 Plug 'ludovicchabant/vim-gutentags'
@@ -70,7 +60,7 @@ set formatoptions=tcqj
 
 " Program to use for the :grep command
 set grepprg=rg\ --vimgrep\ --smart-case\ --hidden
-set path+=**
+" set path+=**
 
 " Set default indentation
 set expandtab
@@ -229,18 +219,13 @@ autocmd QuickFixCmdPost [^l]* cwindow
 let g:gitgutter_set_sign_backgrounds=1
 hi SignColumn ctermbg=NONE guibg=NONE
 
-" Fzf config
-let g:fzf_vim={}
-let g:fzf_vim.preview_window=[]
-let g:fzf_layout={ 'window': { 'width': 0.8, 'height': 0.8 } }
-
 " Fuzzy finding
-nnoremap <leader>f :GFiles<cr>
-nnoremap <leader>F :Files<cr>
-nnoremap <leader>b :Buffers<cr>
-nnoremap <leader>g :Rg<cr>
-vnoremap <leader>g y:Rg <c-r>"<cr>
-nnoremap <leader>G :grep ''<left>
+nnoremap <leader>f :find **/*
+nnoremap <leader>F :find **/*<c-z><s-tab>
+nnoremap <leader>b :buffer <c-z>
+nnoremap <leader>g :grep ''<left>
+vnoremap <leader>g y:grep '<c-r>"'<cr><cr>
+nnoremap <leader>G :set grepprg=<c-z>
 
 " Diable ALE's LSP functionality
 let g:ale_disable_lsp=1
