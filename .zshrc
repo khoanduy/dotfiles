@@ -46,4 +46,4 @@ command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
 
 # Aliases
-alias pdb="pgcli -U postgres -h 0.0.0.0 -p 5432 -d instaclustr"
+alias pdb="docker exec -it db-postgres-1 psql -U postgres -h 0.0.0.0 -p 5432 -d instaclustr"

@@ -32,9 +32,9 @@ export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
 
 . "$HOME/.cargo/env"
 
-export JDK11="$HOME/.sdkman/candidates/java/11.0.22-amzn"
-export JDK17="$HOME/.sdkman/candidates/java/17.0.10-amzn"
-export JDK21="$HOME/.sdkman/candidates/java/21.0.2-amzn"
+export JDK11="$HOME/.sdkman/candidates/java/11.0.24-amzn"
+export JDK17="$HOME/.sdkman/candidates/java/17.0.12-amzn"
+export JDK21="$HOME/.sdkman/candidates/java/21.0.4-amzn"
 
 export JAVA_HOME=$JDK11
 

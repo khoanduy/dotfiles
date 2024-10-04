@@ -82,10 +82,6 @@ curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
 echo "[-] Installing Alacritty [-]"
 brew install alacritty
 
-# Install DB CLI client for PostgreSQL and MySQL
-echo "[-] Installing DB CLI clients [-]"
-brew install pgcli mycli
-
 # Create some essential folders
 echo "[-] Creating essential folders [-]"
 mkdir $HOME/vimsessions

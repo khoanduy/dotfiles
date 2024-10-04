@@ -29,21 +29,16 @@ Finally, launch Vim (ignore all errors) and install all plugins using `:PlugInst
 
 
 ## Additional Notes
-If you are using `ctags`, it's very useful if you put the `ctags` related files in `.gitignore_global` 
+If you are using `ctags`, it's very useful if you put the `ctags` related files in `~/.gitignore` 
 ```
 tags
 tags.lock
 tags.temp
 ```
 
-and specify it in global `.gitconfig`
-```
-[core]
-  excludesfile = $HOME/.gitignore_global
-```
-So you don't have to duel with git commit anymore
+and specify it in global `.gitconfig` using `git config --global core.excludesFile '~/.gitignore'`, so you don't have to duel with git commit anymore
 
 
 ## References
-[tmux](https://github.com/tmux/tmux)\
-[vim](https://www.vim.org)
+[vim](https://www.vim.org)\
+[tmux](https://github.com/tmux/tmux)
