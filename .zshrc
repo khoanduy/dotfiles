@@ -47,3 +47,9 @@ eval "$(pyenv init -)"
 
 # Aliases
 alias pdb="docker exec -it db-postgres-1 psql -U postgres -h 0.0.0.0 -p 5432 -d instaclustr"
+
+alias rs1="tmux new-session -d -s provisioning; tmux send-keys -t provisioning:0 $CHORES/provisioning/start Enter"
+alias ts1="tmux send-keys -t provisioning:0 $CHORES/provisioning/stop Enter; tmux send-keys -t provisioning:0 'tmux kill-session' Enter"
+
+alias rs2="tmux new-session -d -s monitoring; tmux send-keys -t monitoring:0 $CHORES/monitoring/start Enter"
+alias ts2="tmux send-keys -t monitoring:0 $CHORES/monitoring/stop Enter; tmux send-keys -t monitoring:0 'tmux kill-session' Enter"

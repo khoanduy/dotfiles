@@ -11,8 +11,21 @@ call plug#begin()
 " List your plugins here
 " Make sure you use single quotes
 
+" A command-line fuzzy finder
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+
+" :eyes: "/@/ctrl-r
+Plug 'junegunn/vim-peekaboo'
+
 " A Git wrapper so awesome, it should be illegal
 Plug 'tpope/vim-fugitive'
+
+" Delete/change/add parentheses/quotes/XML-tags/much more with ease
+Plug 'tpope/vim-surround'
+
+" A Vim plugin which shows git diff markers in the sign column
+Plug 'airblade/vim-gitgutter'
 
 " A Vim plugin that manages your tag files
 Plug 'ludovicchabant/vim-gutentags'
@@ -41,6 +54,7 @@ syntax enable
 
 " Add numbers to each line on the left-hand side.
 set number
+set relativenumber
 set ruler
 set hidden
 
@@ -60,7 +74,6 @@ set formatoptions=tcqj
 
 " Program to use for the :grep command
 set grepprg=rg\ --vimgrep\ --smart-case\ --hidden
-" set path+=**
 
 " Set default indentation
 set expandtab
@@ -115,6 +128,8 @@ set ttimeoutlen=50
 set wildmode=full
 set wildcharm=<c-z>
 set wildoptions=pum,tagfile
+
+" wildmenu settings
 set wildmenu
 set wildignore=*.o,*~,*.a,*.so,*.pyc,*.swp,.git/,*.class,*/target/*,.idea/
 set wildignore+=*/Library/*,*/.git/*,*/.hg/*,*/.svn/*,*/node_modules/*,*/.DS_Store
@@ -125,17 +140,23 @@ set ttyfast
 
 " Set statusline last status and background
 set laststatus=2
-set background=light
+set background=dark
 
 " Highlight marked files in the same way search matches are
 hi! link netrwMarkFile Search
 
 " Set basic highlight groups
 hi Normal cterm=NONE ctermbg=NONE
-hi CursorLine cterm=bold term=bold
-hi Statusline cterm=NONE ctermbg=grey ctermfg=black guibg=grey guifg=black
-hi StatuslineNC ctermfg=lightgrey guifg=lightgrey
-hi VertSplit cterm=NONE ctermfg=grey guifg=grey
+hi CursorLine cterm=bold
+hi Statusline cterm=NONE ctermbg=grey ctermfg=black
+hi StatuslineNC ctermfg=darkgrey
+hi VertSplit cterm=NONE ctermfg=grey
+
+" Pmenu highlight
+hi Pmenu ctermbg=grey
+hi PmenuSel cterm=bold ctermbg=lightgrey ctermfg=black
+hi PmenuSbar ctermbg=grey
+hi PmenuThumb ctermbg=lightgrey
 
 " Remap switch region keys
 nnoremap <c-h> <c-w>h
@@ -155,14 +176,6 @@ nnoremap <silent> <down> :resize +2<cr>
 nnoremap <silent> <left> :vertical resize +2<cr>
 nnoremap <silent> <right> :vertical resize -2<cr>
 
-" Add mapping for auto closing
-inoremap " ""<left>
-inoremap ' ''<left>
-inoremap ( ()<left>
-inoremap [ []<left>
-inoremap { {}<left>
-inoremap {<cr> {<cr>}<esc>O
-
 " Open netrw at current dir
 nnoremap - :Explore<cr>
 
@@ -175,9 +188,6 @@ augroup netrw_mapping
   autocmd!
   autocmd Filetype netrw call <sid>netrw_keymaps()
 augroup END
-
-" Generate tag
-nnoremap <leader>t :!ctags -R .<cr>
 
 " Search current marked text
 vnoremap // y/\V<c-r>=escape(@",'/\')<cr><cr>
@@ -193,7 +203,8 @@ function! s:mks_cur_repo()
   echo name
   execute(':mks! ' . $HOME . '/vimsessions' . '/' . name . '.vim')
 endfunction
-nnoremap <leader>s :call <sid>mks_cur_repo()<cr>
+autocmd! BufLeave <buffer> call <sid>mks_cur_repo()
+autocmd! VimLeave * call <sid>mks_cur_repo()
 nnoremap <leader>S :source $HOME/vimsessions/*.vim<c-z>
 
 " Maven run current test, only apply to Java files
@@ -219,12 +230,19 @@ autocmd QuickFixCmdPost [^l]* cwindow
 let g:gitgutter_set_sign_backgrounds=1
 hi SignColumn ctermbg=NONE guibg=NONE
 
+" Fzf config
+let g:fzf_vim={}
+let g:fzf_vim.preview_window=[]
+let g:fzf_layout={ 'window': { 'width': 0.8, 'height': 0.8 } }
+
 " Fuzzy finding
-nnoremap <leader>f :find **/*
-nnoremap <leader>F :find **/*<c-z><s-tab>
+nnoremap <leader>f :Files<cr>
+nnoremap <leader>e :find **/*
+nnoremap <leader>F :GFiles<cr>
 nnoremap <leader>b :buffer <c-z>
+nnoremap <leader>/ :Rg<cr>
+vnoremap <leader>/ y:Rg <c-r>"<cr>
 nnoremap <leader>g :grep ''<left>
-vnoremap <leader>g y:grep '<c-r>"'<cr><cr>
 nnoremap <leader>G :set grepprg=<c-z>
 
 " Diable ALE's LSP functionality
