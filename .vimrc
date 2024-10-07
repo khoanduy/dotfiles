@@ -140,22 +140,22 @@ set ttyfast
 
 " Set statusline last status and background
 set laststatus=2
-set background=dark
+set background=light
 
 " Highlight marked files in the same way search matches are
 hi! link netrwMarkFile Search
 
 " Set basic highlight groups
 hi Normal cterm=NONE ctermbg=NONE
-hi CursorLine cterm=bold
+hi CursorLine cterm=bold term=bold
 hi Statusline cterm=NONE ctermbg=grey ctermfg=black
-hi StatuslineNC ctermfg=darkgrey
-hi VertSplit cterm=NONE ctermfg=grey
+hi StatuslineNC ctermfg=lightgrey
+hi VertSplit cterm=NONE ctermfg=grey guifg=grey
 
 " Pmenu highlight
-hi Pmenu ctermbg=grey
+hi Pmenu ctermbg=lightmagenta ctermfg=black
 hi PmenuSel cterm=bold ctermbg=lightgrey ctermfg=black
-hi PmenuSbar ctermbg=grey
+hi PmenuSbar ctermbg=lightmagenta
 hi PmenuThumb ctermbg=lightgrey
 
 " Remap switch region keys
