@@ -21,14 +21,11 @@ Plug 'junegunn/vim-peekaboo'
 " A Git wrapper so awesome, it should be illegal
 Plug 'tpope/vim-fugitive'
 
-" Delete/change/add parentheses/quotes/XML-tags/much more with ease
-Plug 'tpope/vim-surround'
-
 " A Vim plugin which shows git diff markers in the sign column
 Plug 'airblade/vim-gitgutter'
 
-" A Vim plugin that manages your tag files
-Plug 'ludovicchabant/vim-gutentags'
+" The undo history visualizer for VIM
+Plug 'mbbill/undotree'
 
 " Check syntax in Vim asynchronously and fix files
 Plug 'dense-analysis/ale'
@@ -74,6 +71,9 @@ set formatoptions=tcqj
 
 " Program to use for the :grep command
 set grepprg=rg\ --vimgrep\ --smart-case\ --hidden
+
+" tags lookup
+set tags=./tags;,tags;
 
 " Set default indentation
 set expandtab
@@ -207,6 +207,9 @@ autocmd! BufLeave <buffer> call <sid>mks_cur_repo()
 autocmd! VimLeave * call <sid>mks_cur_repo()
 nnoremap <leader>S :source $HOME/vimsessions/*.vim<c-z>
 
+" Create tags file
+nnoremap <silent> <leader>t :!ctags -R .<cr>
+
 " Maven run current test, only apply to Java files
 function! s:run_maven_test()
   let dirs = split(@%, '[/]')
@@ -229,6 +232,9 @@ autocmd QuickFixCmdPost [^l]* cwindow
 " Don't let GitGutter set sign backgrounds
 let g:gitgutter_set_sign_backgrounds=1
 hi SignColumn ctermbg=NONE guibg=NONE
+
+" Toggle Undotree
+nnoremap <leader>u :UndotreeToggle<cr>
 
 " Fzf config
 let g:fzf_vim={}
