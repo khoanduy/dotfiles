@@ -9,7 +9,7 @@ These are my personal configuration files, which could be changed as I develop m
 ## Installation
 Clone repository to your local device and `cd` into it:
 ```shell
-$ git clone https://github.com/khoaint/dotfiles.git
+$ git clone https://github.com/khoaft/dotfiles.git
 $ cd dotfiles
 ```
 
