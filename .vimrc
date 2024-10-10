@@ -30,6 +30,9 @@ Plug 'tpope/vim-commentary'
 " repeat.vim: enable repeating supported plugin maps with '.'
 Plug 'tpope/vim-repeat'
 
+" vinegar.vim: Combine with netrw to create a delicious salad dressing
+Plug 'tpope/vim-vinegar'
+
 " A Vim plugin which shows git diff markers in the sign column
 Plug 'airblade/vim-gitgutter'
 
@@ -284,6 +287,15 @@ hi ALEInfoSign ctermfg=blue guifg=blue
 hi ALEWarningSign ctermfg=yellow guifg=yellow
 
 " ----- Languages config -----
+" Java specific settings
+augroup java_config
+  autocmd!
+  autocmd Filetype java set expandtab
+  autocmd Filetype java set shiftwidth=4
+  autocmd Filetype java set tabstop=4
+  autocmd Filetype java set softtabstop=4
+augroup END
+
 " Go specific settings
 augroup go_config
   autocmd!
