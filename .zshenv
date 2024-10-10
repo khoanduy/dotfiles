@@ -33,9 +33,6 @@ export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
  --color=info:#448c27,prompt:#7a3e9d,pointer:#aa3731
  --color=marker:#cb9000,spinner:#e64ce6,header:#f05050'
 
-# Cargo env
-. "$HOME/.cargo/env"
-
 # Setting fd as the default source for fzf
 export FZF_DEFAULT_COMMAND='fd --type f --strip-cwd-prefix'
 

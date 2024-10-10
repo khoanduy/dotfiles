@@ -30,13 +30,6 @@ brew install curl wget git coreutils watch ncdu jq fd
 echo "[-] Installing Source Code Pro Font [-]"
 brew install --cask font-sauce-code-pro-nerd-font
 
-# Ensure Rust installation
-if ! hash rustc &> /dev/null; then
-  echo "[-] Installing Rust [-]"
-  sh -c "$(curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y)"
-  sh -c "$(source $HOME/.cargo/env)"
-fi
-
 # Backup dotfiles
 function backup() {
   local current_date=$(date +%s)
