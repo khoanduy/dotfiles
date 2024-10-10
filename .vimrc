@@ -1,12 +1,11 @@
 " Disable compatibility with vi which can cause unexpected issues.
 set nocompatible
 
-
 " Re-map leader key
 nnoremap <space> <nop>
 let g:mapleader=' '
 
-" Plugin definitions
+" ----- Plugin definitions -----
 call plug#begin()
 
 " List your plugins here
@@ -40,9 +39,10 @@ Plug 'mbbill/undotree'
 " Check syntax in Vim asynchronously and fix files
 Plug 'dense-analysis/ale'
 
-" End plugin definitions
+" ----- End plugin definitions -----
 call plug#end()
 
+" ----- General settings -----
 " Encoding
 set encoding=utf-8
 set fileencoding=utf-8
@@ -152,6 +152,7 @@ set ttyfast
 set laststatus=2
 set background=light
 
+" ----- Highlights -----
 " Highlight marked files in the same way search matches are
 hi! link netrwMarkFile Search
 
@@ -168,6 +169,7 @@ hi PmenuSel ctermbg=darkgrey ctermfg=white
 hi PmenuSbar ctermbg=lightmagenta
 hi PmenuThumb ctermbg=lightgrey
 
+" ----- Keymaps -----
 " Remap switch region keys
 nnoremap <c-h> <c-w>h
 nnoremap <c-j> <c-w>j
@@ -224,15 +226,6 @@ nnoremap <leader>S :source $HOME/vimsessions/*.vim<c-z>
 " Create tags file
 nnoremap <silent> <leader>t :!ctags -R .<cr>
 
-" Go indentation
-augroup go_indentation
-  autocmd!
-  autocmd Filetype go set noexpandtab
-  autocmd Filetype go set shiftwidth=4
-  autocmd Filetype go set tabstop=4
-  autocmd Filetype go set softtabstop=4
-augroup END
-
 " Maven run current test, only apply to Java files
 function! s:run_maven_test()
   let dirs = split(@%, '[/]')
@@ -259,6 +252,7 @@ hi SignColumn ctermbg=NONE guibg=NONE
 " Toggle Undotree
 nnoremap <leader>u :UndotreeToggle<cr>
 
+" ----- Plugins config -----
 " Fzf config
 let g:fzf_vim={}
 let g:fzf_vim.preview_window=[]
@@ -275,7 +269,8 @@ nnoremap <leader>g :grep ''<left>
 nnoremap <leader>G :set grepprg=<c-z>
 
 " Enable ALE completion
-let g:ale_completion_enabled=1
+let g:ale_disable_lsp=1
+let g:ale_completion_enabled=0
 let g:ale_virtualtext_cursor='disabled'
 
 " Custom ALE sign symbol
@@ -283,15 +278,22 @@ let g:ale_sign_error='✖'
 let g:ale_sign_info='●'
 let g:ale_sign_warning='▲'
 
-" ALE keymaps
-augroup lsp_mapping
-  autocmd!
-  autocmd Filetype go nnoremap gd :ALEGoToDefinition<cr>
-  autocmd Filetype go nnoremap gi :ALEGoToImplementation<cr>
-  autocmd Filetype go nnoremap gy :ALEGoToTypeDefinition<cr>
-augroup END
-
 " Custom ALE sign color
 hi ALEErrorSign ctermfg=red guifg=red
 hi ALEInfoSign ctermfg=blue guifg=blue
 hi ALEWarningSign ctermfg=yellow guifg=yellow
+
+" ----- Languages config -----
+" Go specific settings
+augroup go_config
+  autocmd!
+  autocmd Filetype go let g:ale_disable_lsp=0
+  autocmd Filetype go let g:ale_completion_enabled=1
+  autocmd Filetype go set noexpandtab
+  autocmd Filetype go set shiftwidth=4
+  autocmd Filetype go set tabstop=4
+  autocmd Filetype go set softtabstop=4
+  autocmd Filetype go nnoremap gd :ALEGoToDefinition<cr>
+  autocmd Filetype go nnoremap gi :ALEGoToImplementation<cr>
+  autocmd Filetype go nnoremap gy :ALEGoToTypeDefinition<cr>
+augroup END
