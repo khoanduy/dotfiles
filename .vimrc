@@ -285,27 +285,3 @@ let g:ale_sign_warning='▲'
 hi ALEErrorSign ctermfg=red guifg=red
 hi ALEInfoSign ctermfg=blue guifg=blue
 hi ALEWarningSign ctermfg=yellow guifg=yellow
-
-" ----- Languages config -----
-" Java specific settings
-augroup java_config
-  autocmd!
-  autocmd Filetype java set expandtab
-  autocmd Filetype java set shiftwidth=4
-  autocmd Filetype java set tabstop=4
-  autocmd Filetype java set softtabstop=4
-augroup END
-
-" Go specific settings
-augroup go_config
-  autocmd!
-  autocmd Filetype go let g:ale_disable_lsp=0
-  autocmd Filetype go let g:ale_completion_enabled=1
-  autocmd Filetype go set noexpandtab
-  autocmd Filetype go set shiftwidth=4
-  autocmd Filetype go set tabstop=4
-  autocmd Filetype go set softtabstop=4
-  autocmd Filetype go nnoremap gd :ALEGoToDefinition<cr>
-  autocmd Filetype go nnoremap gi :ALEGoToImplementation<cr>
-  autocmd Filetype go nnoremap gy :ALEGoToTypeDefinition<cr>
-augroup END

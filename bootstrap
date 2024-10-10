@@ -50,6 +50,9 @@ function linking() {
   ln -s $(pwd)/.tmux.conf $HOME/.tmux.conf
   ln -s $(pwd)/.vimrc $HOME/.vimrc
 
+  mkdir -p $HOME/.vim/after
+  ln -s $(pwd)/ftplugin $HOME/.vim/after/ftplugin
+
   mkdir -p ${XDG_CONFIG_HOME:=$HOME/.config}
   ln -s $(pwd)/alacritty $XDG_CONFIG_HOME/alacritty
 }
@@ -63,7 +66,7 @@ brew install lazygit httpie
 
 # Download git-prompt.sh script
 echo "[-] Downloading git-prompt.sh script [-]"
-mkdir -p ~/.zsh/plugins/git/
+mkdir -p $HOME/.zsh/plugins/git/
 curl https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh -o ~/.zsh/plugins/git/git-prompt.sh
 
 # Download Vim plugin manager
