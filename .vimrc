@@ -1,6 +1,7 @@
 " Disable compatibility with vi which can cause unexpected issues.
 set nocompatible
 
+
 " Re-map leader key
 nnoremap <space> <nop>
 let g:mapleader=' '
@@ -20,6 +21,15 @@ Plug 'junegunn/vim-peekaboo'
 
 " A Git wrapper so awesome, it should be illegal
 Plug 'tpope/vim-fugitive'
+
+" surround.vim: Delete/change/add parentheses/quotes/XML-tags/much more with ease
+Plug 'tpope/vim-surround'
+
+" commentary.vim: comment stuff out
+Plug 'tpope/vim-commentary'
+
+" repeat.vim: enable repeating supported plugin maps with '.'
+Plug 'tpope/vim-repeat'
 
 " A Vim plugin which shows git diff markers in the sign column
 Plug 'airblade/vim-gitgutter'
@@ -154,7 +164,7 @@ hi VertSplit cterm=NONE ctermfg=grey guifg=grey
 
 " Pmenu highlight
 hi Pmenu ctermbg=lightmagenta ctermfg=black
-hi PmenuSel cterm=bold ctermbg=lightgrey ctermfg=black
+hi PmenuSel ctermbg=darkgrey ctermfg=white
 hi PmenuSbar ctermbg=lightmagenta
 hi PmenuThumb ctermbg=lightgrey
 
@@ -199,6 +209,10 @@ vnoremap <leader>p "+p
 
 " Vim session keymaps
 function! s:mks_cur_repo()
+  if &ft == 'fugitive' || &ft == ''
+    return
+  endif
+
   let name = join(split(tolower(getcwd()), '[/]')[2:], '-')
   echo name
   execute(':mks! ' . $HOME . '/vimsessions' . '/' . name . '.vim')
@@ -209,6 +223,15 @@ nnoremap <leader>S :source $HOME/vimsessions/*.vim<c-z>
 
 " Create tags file
 nnoremap <silent> <leader>t :!ctags -R .<cr>
+
+" Go indentation
+augroup go_indentation
+  autocmd!
+  autocmd Filetype go set noexpandtab
+  autocmd Filetype go set shiftwidth=4
+  autocmd Filetype go set tabstop=4
+  autocmd Filetype go set softtabstop=4
+augroup END
 
 " Maven run current test, only apply to Java files
 function! s:run_maven_test()
@@ -251,14 +274,22 @@ vnoremap <leader>/ y:Rg <c-r>"<cr>
 nnoremap <leader>g :grep ''<left>
 nnoremap <leader>G :set grepprg=<c-z>
 
-" Diable ALE's LSP functionality
-let g:ale_disable_lsp=1
+" Enable ALE completion
+let g:ale_completion_enabled=1
 let g:ale_virtualtext_cursor='disabled'
 
 " Custom ALE sign symbol
 let g:ale_sign_error='✖'
 let g:ale_sign_info='●'
 let g:ale_sign_warning='▲'
+
+" ALE keymaps
+augroup lsp_mapping
+  autocmd!
+  autocmd Filetype go nnoremap gd :ALEGoToDefinition<cr>
+  autocmd Filetype go nnoremap gi :ALEGoToImplementation<cr>
+  autocmd Filetype go nnoremap gy :ALEGoToTypeDefinition<cr>
+augroup END
 
 " Custom ALE sign color
 hi ALEErrorSign ctermfg=red guifg=red
