@@ -5,4 +5,4 @@ setlocal tabstop=4
 setlocal softtabstop=4
 
 " Linting
-setlocal makeprg=javac
+setlocal makeprg=pylint\ --output-format=parseable

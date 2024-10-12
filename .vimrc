@@ -40,7 +40,7 @@ Plug 'airblade/vim-gitgutter'
 Plug 'mbbill/undotree'
 
 " Check syntax in Vim asynchronously and fix files
-Plug 'dense-analysis/ale'
+" Plug 'dense-analysis/ale'
 
 " ----- End plugin definitions -----
 call plug#end()
@@ -212,6 +212,12 @@ vnoremap <leader>y "+y
 nnoremap <leader>p "+p
 vnoremap <leader>p "+p
 
+" Dir/File keymaps
+nnoremap <leader>d :!mkdir -p %:h<c-z>
+nnoremap <leader>c :!cp %<c-z> %:h<c-z>
+nnoremap <leader>C :!cp -rp %:h<c-z> %:h<c-z>
+nnoremap <leader>m :!mv %<c-z> %:h<c-z>
+
 " Vim session keymaps
 function! s:mks_cur_repo()
   if &ft == 'fugitive' || &ft == ''
@@ -227,23 +233,11 @@ autocmd! VimLeave * call <sid>mks_cur_repo()
 nnoremap <leader>S :source $HOME/vimsessions/*.vim<c-z>
 
 " Create tags file
-nnoremap <silent> <leader>t :!ctags -R .<cr>
-
-" Maven run current test, only apply to Java files
-function! s:run_maven_test()
-  let dirs = split(@%, '[/]')
-
-  if index(dirs, 'test') < 0
-    echo 'Not a test file!'
-    return
-  endif
-
-  let module = dirs[0] != 'src' ? dirs[0] : ''
-  let test_class = join(dirs[4:], '.')[:-6]
-
-  execute('!mvn test -pl :' . module . ' -Dtest=' . test_class . ' -DskipTests=false')
+function! s:gen_tags() 
+  execute('!tmux new-window -n "ctags" -d "tmux setw -t ctags remain-on-exit off; ctags -R '
+    \ . getcwd() . '"')
 endfunction
-autocmd FileType java nnoremap <leader>T :call <sid>run_maven_test()<cr>
+nnoremap <silent> <leader>t :call <sid>gen_tags()<cr> | silent redraw!
 
 " Open the quickfix window whenever a quickfix command is executed
 autocmd QuickFixCmdPost [^l]* cwindow
@@ -251,9 +245,6 @@ autocmd QuickFixCmdPost [^l]* cwindow
 " Don't let GitGutter set sign backgrounds
 let g:gitgutter_set_sign_backgrounds=1
 hi SignColumn ctermbg=NONE guibg=NONE
-
-" Toggle Undotree
-nnoremap <leader>u :UndotreeToggle<cr>
 
 " ----- Plugins config -----
 " Fzf config
@@ -263,12 +254,14 @@ let g:fzf_layout={ 'window': { 'width': 0.8, 'height': 0.8 } }
 
 " Fuzzy finding
 nnoremap <leader>f :Files<cr>
-nnoremap <leader>e :find **/*
+nnoremap <silent> <leader>e :find **/*
 nnoremap <leader>F :GFiles<cr>
-nnoremap <leader>b :buffer <c-z>
+nnoremap <leader>b :Buffers<cr>
+vnoremap <leader>b "1y:Buffers <c-r>1<cr>
 nnoremap <leader>/ :Rg<cr>
-vnoremap <leader>/ y:Rg <c-r>"<cr>
-nnoremap <leader>g :grep ''<left>
+vnoremap <leader>/ "5y:Rg <c-r>5<cr>
+vnoremap <leader>s :Rg <c-r>"<cr>
+nnoremap <silent> <leader>g :grep ''<left>
 nnoremap <leader>G :set grepprg=<c-z>
 
 " Enable ALE completion
@@ -285,3 +278,42 @@ let g:ale_sign_warning='▲'
 hi ALEErrorSign ctermfg=red guifg=red
 hi ALEInfoSign ctermfg=blue guifg=blue
 hi ALEWarningSign ctermfg=yellow guifg=yellow
+
+" Toggle Undotree
+nnoremap <leader>u :UndotreeToggle<cr>
+
+" ----- Language specific config -----
+" Maven run current test, only apply to Java files
+function! s:run_maven_test()
+  let dirs = split(@%, '[/]')
+
+  if index(dirs, 'test') < 0
+    echo 'Not a test file!'
+    return
+  endif
+
+  let module = dirs[0] != 'src' ? dirs[0] : ''
+  let test_class = join(dirs[4:], '.')[:-6]
+
+  execute('!tmux new-window -n "' . dirs[-1] . '" -d "mvn test -pl :'
+    \ . module . ' -Dtest=' . test_class . ' -DskipTests=false"')
+endfunction
+autocmd FileType java nnoremap <leader>T :call <sid>run_maven_test()<cr> | silent redraw!
+
+" Java linting
+function! s:java_lint()
+  if executable('fd') == 1
+    let out = system('fd --no-ignore --type d target ' . getcwd())
+  else
+    let out = system('find ' . getcwd() . ' -type d -name target')
+  endif
+
+  let out = substitute(out, '\n$', '', '')
+  let classpath = join(split(out, '\n'), '/*:')
+
+  execute('make! -cp "' . classpath .'/*" %')
+endfunction
+autocmd FileType java nnoremap <silent> <leader>L :call <sid>java_lint()<cr> | silent redraw!
+
+" Trigger linting on buffer save
+autocmd FileType python nnoremap <silent> <leader>L :make! %<cr> | silent redraw!
