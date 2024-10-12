@@ -50,9 +50,6 @@ function linking() {
   ln -s $(pwd)/.tmux.conf $HOME/.tmux.conf
   ln -s $(pwd)/.vimrc $HOME/.vimrc
 
-  mkdir -p $HOME/.vim/after
-  ln -s $(pwd)/ftplugin $HOME/.vim/after/ftplugin
-
   mkdir -p ${XDG_CONFIG_HOME:=$HOME/.config}
   ln -s $(pwd)/alacritty $XDG_CONFIG_HOME/alacritty
 }

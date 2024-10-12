@@ -27,20 +27,11 @@ Plug 'tpope/vim-surround'
 " commentary.vim: comment stuff out
 Plug 'tpope/vim-commentary'
 
-" repeat.vim: enable repeating supported plugin maps with '.'
-Plug 'tpope/vim-repeat'
-
 " vinegar.vim: Combine with netrw to create a delicious salad dressing
 Plug 'tpope/vim-vinegar'
 
-" A Vim plugin which shows git diff markers in the sign column
-Plug 'airblade/vim-gitgutter'
-
 " The undo history visualizer for VIM
 Plug 'mbbill/undotree'
-
-" Check syntax in Vim asynchronously and fix files
-" Plug 'dense-analysis/ale'
 
 " ----- End plugin definitions -----
 call plug#end()
@@ -144,8 +135,10 @@ set wildoptions=pum,tagfile
 
 " wildmenu settings
 set wildmenu
-set wildignore=*.o,*~,*.a,*.so,*.pyc,*.swp,.git/,*.class,*/target/*,.idea/
-set wildignore+=*/Library/*,*/.git/*,*/.hg/*,*/.svn/*,*/node_modules/*,*/.DS_Store
+set wildignore=*.o,*~,*.a,*.so,*.pyc,*.swp
+set wildignore+=.git/,*.class,*/target/*,.idea/
+set wildignore+=*/Library/*,*/.git/*,*/.hg/*
+set wildignore+=*/.svn/*,*/node_modules/*,*/.DS_Store
 
 " Set the commands to save in history default number is 20.
 set history=10000
@@ -187,8 +180,8 @@ tnoremap <c-l> <c-\><c-n><c-w>l
 
 " Re-size split windows using arrow keys
 nnoremap <silent> <up> :resize -2<cr>
-nnoremap <silent> <down> :resize +2<cr>
 nnoremap <silent> <left> :vertical resize +2<cr>
+nnoremap <silent> <down> :resize +2<cr>
 nnoremap <silent> <right> :vertical resize -2<cr>
 
 " Open netrw at current dir
@@ -196,13 +189,17 @@ nnoremap - :Explore<cr>
 
 " netrw keymap
 function! s:netrw_keymaps()
-  nnoremap <buffer> <leader>q :Rexplore<cr>
+  nnoremap <buffer> x :Rexplore<cr>
 endfunction
 
 augroup netrw_mapping
   autocmd!
-  autocmd Filetype netrw call <sid>netrw_keymaps()
+  autocmd FileType netrw call <sid>netrw_keymaps()
 augroup END
+
+" Close help and quickfix
+autocmd FileType help nnoremap <silent> <buffer> x :q<cr>
+autocmd FileType qf nnoremap <silent> <buffer> x :q<cr>
 
 " Search current marked text
 vnoremap // y/\V<c-r>=escape(@",'/\')<cr><cr>
@@ -237,14 +234,95 @@ function! s:gen_tags()
   execute('!tmux new-window -n "ctags" -d "tmux setw -t ctags remain-on-exit off; ctags -R '
     \ . getcwd() . '"')
 endfunction
-nnoremap <silent> <leader>t :call <sid>gen_tags()<cr> | silent redraw!
+nnoremap <silent> <leader>t :call <sid>gen_tags()<cr><cr>
 
 " Open the quickfix window whenever a quickfix command is executed
-autocmd QuickFixCmdPost [^l]* cwindow
+autocmd! QuickFixCmdPost [^l]* cwindow
 
 " Don't let GitGutter set sign backgrounds
 let g:gitgutter_set_sign_backgrounds=1
 hi SignColumn ctermbg=NONE guibg=NONE
+
+" ----- Language specific config -----
+" Maven run current test buffer
+function! s:run_maven_test()
+  let dirs = split(@%, '[/]')
+
+  if index(dirs, 'test') < 0
+    echo 'Not a test file!'
+    return
+  endif
+
+  let module = dirs[0] != 'src' ? dirs[0] : ''
+  let test_class = join(dirs[4:], '.')[:-6]
+
+  execute('!tmux new-window -n "' . dirs[-1] . '" -d "mvn test -pl :'
+    \ . module . ' -Dtest=' . test_class . ' -DskipTests=false"')
+endfunction
+autocmd FileType java nnoremap <leader>T :call <sid>run_maven_test()<cr><cr>
+
+" Java linting
+function! s:java_lint()
+  if executable('fd') != 1
+    let paths = system('fd --no-ignore --type d target ' . getcwd())
+    let delim = '*:'
+    let trailing = '*'
+  else
+    let paths = system('find ' . getcwd() . ' -type d -name target')
+    let delim = '/*:'
+    let trailing = '/*'
+  endif
+
+  let paths = substitute(paths, '\n$', '', '')
+  let classpath = join(split(paths, '\n'), delim)
+
+  execute('make! -cp "' . classpath . trailing .'" %')
+endfunction
+
+" Java config group
+augroup java_config
+  autocmd!
+
+  " Indentation
+  autocmd FileType java setlocal expandtab
+  autocmd FileType java setlocal shiftwidth=4
+  autocmd FileType java setlocal tabstop=4
+  autocmd FileType java setlocal softtabstop=4
+
+  " Linting
+  autocmd FileType java setlocal makeprg=javac
+  autocmd FileType java nnoremap <silent> L :call <sid>java_lint()<cr><cr>
+augroup END
+
+" Python config group
+augroup python_config
+  autocmd!
+
+  " Indentation
+  autocmd FileType python setlocal expandtab
+  autocmd FileType python setlocal shiftwidth=4
+  autocmd FileType python setlocal tabstop=4
+  autocmd FileType python setlocal softtabstop=4
+
+  " Linting
+  autocmd FileType python setlocal makeprg=pylint\ --output-format=parseable
+  autocmd FileType python nnoremap <silent> L :make! %<cr><cr>
+augroup END
+
+" Go config group
+augroup go_config
+  autocmd!
+
+  " Indentation
+  autocmd FileType go setlocal noexpandtab
+  autocmd FileType go setlocal shiftwidth=4
+  autocmd FileType go setlocal tabstop=4
+  autocmd FileType go setlocal softtabstop=4
+
+  " Linting
+  autocmd FileType go setlocal makeprg=go
+  autocmd FileType go nnoremap <silent> L :make! %<cr><cr>
+augroup END
 
 " ----- Plugins config -----
 " Fzf config
@@ -264,56 +342,5 @@ vnoremap <leader>s :Rg <c-r>"<cr>
 nnoremap <silent> <leader>g :grep ''<left>
 nnoremap <leader>G :set grepprg=<c-z>
 
-" Enable ALE completion
-let g:ale_disable_lsp=1
-let g:ale_completion_enabled=0
-let g:ale_virtualtext_cursor='disabled'
-
-" Custom ALE sign symbol
-let g:ale_sign_error='✖'
-let g:ale_sign_info='●'
-let g:ale_sign_warning='▲'
-
-" Custom ALE sign color
-hi ALEErrorSign ctermfg=red guifg=red
-hi ALEInfoSign ctermfg=blue guifg=blue
-hi ALEWarningSign ctermfg=yellow guifg=yellow
-
 " Toggle Undotree
 nnoremap <leader>u :UndotreeToggle<cr>
-
-" ----- Language specific config -----
-" Maven run current test, only apply to Java files
-function! s:run_maven_test()
-  let dirs = split(@%, '[/]')
-
-  if index(dirs, 'test') < 0
-    echo 'Not a test file!'
-    return
-  endif
-
-  let module = dirs[0] != 'src' ? dirs[0] : ''
-  let test_class = join(dirs[4:], '.')[:-6]
-
-  execute('!tmux new-window -n "' . dirs[-1] . '" -d "mvn test -pl :'
-    \ . module . ' -Dtest=' . test_class . ' -DskipTests=false"')
-endfunction
-autocmd FileType java nnoremap <leader>T :call <sid>run_maven_test()<cr> | silent redraw!
-
-" Java linting
-function! s:java_lint()
-  if executable('fd') == 1
-    let out = system('fd --no-ignore --type d target ' . getcwd())
-  else
-    let out = system('find ' . getcwd() . ' -type d -name target')
-  endif
-
-  let out = substitute(out, '\n$', '', '')
-  let classpath = join(split(out, '\n'), '/*:')
-
-  execute('make! -cp "' . classpath .'/*" %')
-endfunction
-autocmd FileType java nnoremap <silent> <leader>L :call <sid>java_lint()<cr> | silent redraw!
-
-" Trigger linting on buffer save
-autocmd FileType python nnoremap <silent> <leader>L :make! %<cr> | silent redraw!
