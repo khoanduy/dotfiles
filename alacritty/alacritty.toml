@@ -48,31 +48,27 @@ y = 5
 x = 0
 y = 0
 
-# Thanks to Alabaster
+# Thanks to Zenburn
 [colors.primary]
-background = "#f7f7f7"
-foreground = "#434343"
-
-[colors.cursor]
-text = "#f7f7f7"
-cursor = "#434343"
+background = '#3a3a3a'
+foreground = '#dcdccc'
 
 [colors.normal]
-black = "#000000"
-red = "#aa3731"
-green = "#448c27"
-yellow = "#cb9000"
-blue = "#325cc0"
-magenta = "#7a3e9d"
-cyan = "#0083b2"
-white = "#bbbbbb"
+black = '#1e2320'
+red = '#d78787'
+green = '#60b48a'
+yellow = '#dfaf8f'
+blue = '#506070'
+magenta = '#dc8cc3'
+cyan = '#8cd0d3'
+white = '#dcdccc'
 
 [colors.bright]
-black = "#777777"
-red = "#f05050"
-green = "#60cb00"
-yellow = "#ffbc5d"
-blue = "#007acc"
-magenta = "#e64ce6"
-cyan = "#00aacb"
-white = "#ffffff"
+black = '#709080'
+red = '#dca3a3'
+green = '#c3bf9f'
+yellow = '#f0dfaf'
+blue = '#94bff3'
+magenta = '#ec93d3'
+cyan = '#93e0e3'
+white = '#ffffff'

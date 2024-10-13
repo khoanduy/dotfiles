@@ -146,7 +146,7 @@ set ttyfast
 
 " Set statusline last status and background
 set laststatus=2
-set background=light
+set background=dark
 
 " ----- Highlights -----
 " Highlight marked files in the same way search matches are
@@ -156,14 +156,14 @@ hi! link netrwMarkFile Search
 hi Normal cterm=NONE ctermbg=NONE
 hi CursorLine cterm=bold term=bold
 hi Statusline cterm=NONE ctermbg=grey ctermfg=black
-hi StatuslineNC ctermfg=lightgrey
-hi VertSplit cterm=NONE ctermfg=grey guifg=grey
+hi StatuslineNC ctermfg=darkgrey
+hi VertSplit cterm=NONE ctermfg=grey
 
 " Pmenu highlight
-hi Pmenu ctermbg=lightmagenta ctermfg=black
+hi Pmenu ctermbg=grey ctermfg=black
 hi PmenuSel ctermbg=darkgrey ctermfg=white
-hi PmenuSbar ctermbg=lightmagenta
-hi PmenuThumb ctermbg=lightgrey
+hi PmenuSbar ctermbg=grey
+hi PmenuThumb ctermbg=grey
 
 " ----- Keymaps -----
 " Remap switch region keys
@@ -183,6 +183,10 @@ nnoremap <silent> <up> :resize -2<cr>
 nnoremap <silent> <left> :vertical resize +2<cr>
 nnoremap <silent> <down> :resize +2<cr>
 nnoremap <silent> <right> :vertical resize -2<cr>
+
+" Dismiss highlight and insert esc
+nnoremap <silent> H :noh<cr>
+inoremap <silent> jk <esc>
 
 " Open netrw at current dir
 nnoremap - :Explore<cr>
@@ -290,6 +294,7 @@ augroup java_config
   autocmd FileType java setlocal softtabstop=4
 
   " Linting
+  autocmd FileType java compiler javac
   autocmd FileType java setlocal makeprg=javac
   autocmd FileType java nnoremap <silent> L :call <sid>java_lint()<cr><cr>
 augroup END
@@ -305,6 +310,7 @@ augroup python_config
   autocmd FileType python setlocal softtabstop=4
 
   " Linting
+  autocmd FileType python compiler pylint
   autocmd FileType python setlocal makeprg=pylint\ --output-format=parseable
   autocmd FileType python nnoremap <silent> L :make! %<cr><cr>
 augroup END
@@ -320,6 +326,7 @@ augroup go_config
   autocmd FileType go setlocal softtabstop=4
 
   " Linting
+  autocmd FileType go compiler go
   autocmd FileType go setlocal makeprg=go
   autocmd FileType go nnoremap <silent> L :make! %<cr><cr>
 augroup END

@@ -24,14 +24,14 @@ export CHORES="$HOME/chores"
 
 # Use 256 color term
 export TERM=xterm-256color
-export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=#bcbcbc'
+export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=#797d7f'
 
 # Fzf options
 export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
- --color=fg:#434343,bg:-1,hl:#325cc0,gutter:-1
- --color=fg+:#434343,bg+:-1,hl+:#007acc,gutter:-1
- --color=info:#448c27,prompt:#7a3e9d,pointer:#aa3731
- --color=marker:#cb9000,spinner:#e64ce6,header:#f05050'
+ --color=fg:#dcdccc,bg:-1,hl:#c3bf9f,gutter:-1
+ --color=fg+:#dcdccc,bg+:-1,hl+:#dc8cc3,gutter:-1
+ --color=info:#94bff3,prompt:#f0dfaf,pointer:#d78787
+ --color=marker:#dca3a3,spinner:#60b48a,header:#506070'
 
 # Setting fd as the default source for fzf
 export FZF_DEFAULT_COMMAND='fd --type f --strip-cwd-prefix'
