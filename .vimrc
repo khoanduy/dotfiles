@@ -166,11 +166,17 @@ hi PmenuSbar ctermbg=grey
 hi PmenuThumb ctermbg=grey
 
 " ----- Keymaps -----
+" Remap switch region keys
+nnoremap <c-h> <c-w>h
+nnoremap <c-j> <c-w>j
+nnoremap <c-k> <c-w>k
+nnoremap <c-l> <c-w>l
+
 " Remap switch region keys within terminal
-tnoremap <c-w>h <c-\><c-n><c-w>h
-tnoremap <c-w>j <c-\><c-n><c-w>j
-tnoremap <c-w>k <c-\><c-n><c-w>k
-tnoremap <c-w>l <c-\><c-n><c-w>l
+tnoremap <c-h> <c-\><c-n><c-w>h
+tnoremap <c-j> <c-\><c-n><c-w>j
+tnoremap <c-k> <c-\><c-n><c-w>k
+tnoremap <c-l> <c-\><c-n><c-w>l
 
 " Re-size split windows using arrow keys
 nnoremap <silent> <up> :resize -2<cr>
@@ -187,16 +193,16 @@ vnoremap <silent> J :m '>+1<cr>gv=gv
 vnoremap <silent> K :m '<-2<cr>gv=gv
 
 " Navigate through quickfix list
-nnoremap <silent> <c-j> :cnext<cr>zz
-nnoremap <silent> <c-k> :cprev<cr>zz
-nnoremap <silent> Q :cclose<cr>
+nnoremap <silent> ]q :cnext<cr>zz
+nnoremap <silent> [q :cprev<cr>zz
+nnoremap <silent> <c-q> :cclose<cr>
 
 " Open netrw at current dir
 nnoremap - :Explore<cr>
 
 " netrw keymap
 function! s:netrw_keymaps()
-  nnoremap <buffer> Q :Rexplore<cr>
+  nnoremap <buffer> x :Rexplore<cr>
 endfunction
 
 augroup netrw_mapping
@@ -205,8 +211,8 @@ augroup netrw_mapping
 augroup END
 
 " Close help and quickfix
-autocmd FileType help nnoremap <silent> <buffer> Q :q<cr>
-autocmd FileType fugitive nnoremap <silent> <buffer> Q :q<cr>
+autocmd FileType help nnoremap <silent> <buffer> x :q<cr>
+autocmd FileType fugitive nnoremap <silent> <buffer> x :q<cr>
 
 " Search current marked text
 vnoremap // y/\V<c-r>=escape(@",'/\')<cr><cr>
@@ -253,7 +259,14 @@ function! s:gen_tags()
   execute('!tmux new-window -n "ctags" -d "tmux setw -t ctags remain-on-exit off; ctags -R '
     \ . getcwd() . '"')
 endfunction
-nnoremap <silent> <leader>t :call <sid>gen_tags()<cr><cr>
+nnoremap <silent> T :call <sid>gen_tags()<cr><cr>
+
+" Run command in a separate tmux window
+function! s:run_cmd_in_tmux_within_cwd(cmd) 
+  execute('!tmux new-window -n "' . a:cmd . '" -d "cd '
+    \ . getcwd() . '; ' . a:cmd . '"')
+endfunction
+nnoremap X :call <sid>run_cmd_in_tmux_within_cwd("")<left><left>
 
 " Open the quickfix window whenever a quickfix command is executed
 autocmd! QuickFixCmdPost [^l]* cwindow
@@ -278,7 +291,15 @@ function! s:run_maven_test()
   execute('!tmux new-window -n "' . dirs[-1] . '" -d "mvn test -pl :'
     \ . module . ' -Dtest=' . test_class . ' -DskipTests=false"')
 endfunction
-autocmd FileType java nnoremap <leader>T :call <sid>run_maven_test()<cr><cr>
+autocmd FileType java nnoremap <silent> gt :call <sid>run_maven_test()<cr><cr>
+
+" Remove maven test window above
+function! s:rm_mvn_test_win()
+  let name = split(@%, '[/]')[-1]
+  execute("!tmux kill-window -t $(tmux list-windows | grep '"
+    \ . name . "' | awk -F: '{print $1}')")
+endfunction
+autocmd FileType java nnoremap <silent> gT :call <sid>rm_mvn_test_win()<cr><cr>
 
 " Java linting
 function! s:java_lint()
@@ -311,7 +332,7 @@ augroup java_config
   " Linting
   autocmd FileType java compiler javac
   autocmd FileType java setlocal makeprg=javac
-  autocmd FileType java nnoremap <silent> L :call <sid>java_lint()<cr> | redraw!
+  autocmd FileType java nnoremap <silent> gl :call <sid>java_lint()<cr> | redraw!
 augroup END
 
 " Python config group
@@ -327,7 +348,7 @@ augroup python_config
   " Linting
   autocmd FileType python compiler pylint
   autocmd FileType python setlocal makeprg=pylint\ --output-format=parseable
-  autocmd FileType python nnoremap <silent> L :make! %<cr> | redraw!
+  autocmd FileType python nnoremap <silent> gl :make! %<cr> | redraw!
 augroup END
 
 " Go config group
@@ -343,10 +364,13 @@ augroup go_config
   " Linting
   autocmd FileType go compiler go
   autocmd FileType go setlocal makeprg=go
-  autocmd FileType go nnoremap <silent> L :make! %<cr> | redraw!
+  autocmd FileType go nnoremap <silent> gl :make! %<cr> | redraw!
 augroup END
 
 " ----- Plugins config -----
+" Fugitive
+nnoremap <silent> gs :G<cr>
+
 " Fzf config
 let g:fzf_vim={}
 let g:fzf_vim.preview_window=[]
