@@ -166,17 +166,11 @@ hi PmenuSbar ctermbg=grey
 hi PmenuThumb ctermbg=grey
 
 " ----- Keymaps -----
-" Remap switch region keys
-nnoremap <c-h> <c-w>h
-nnoremap <c-j> <c-w>j
-nnoremap <c-k> <c-w>k
-nnoremap <c-l> <c-w>l
-
 " Remap switch region keys within terminal
-tnoremap <c-h> <c-\><c-n><c-w>h
-tnoremap <c-j> <c-\><c-n><c-w>j
-tnoremap <c-k> <c-\><c-n><c-w>k
-tnoremap <c-l> <c-\><c-n><c-w>l
+tnoremap <c-w>h <c-\><c-n><c-w>h
+tnoremap <c-w>j <c-\><c-n><c-w>j
+tnoremap <c-w>k <c-\><c-n><c-w>k
+tnoremap <c-w>l <c-\><c-n><c-w>l
 
 " Re-size split windows using arrow keys
 nnoremap <silent> <up> :resize -2<cr>
@@ -188,12 +182,21 @@ nnoremap <silent> <right> :vertical resize -2<cr>
 nnoremap <silent> H :noh<cr>
 inoremap <silent> jk <esc>
 
+" Move selected visual block by J and K
+vnoremap <silent> J :m '>+1<cr>gv=gv
+vnoremap <silent> K :m '<-2<cr>gv=gv
+
+" Navigate through quickfix list
+nnoremap <silent> <c-j> :cnext<cr>zz
+nnoremap <silent> <c-k> :cprev<cr>zz
+nnoremap <silent> Q :cclose<cr>
+
 " Open netrw at current dir
 nnoremap - :Explore<cr>
 
 " netrw keymap
 function! s:netrw_keymaps()
-  nnoremap <buffer> x :Rexplore<cr>
+  nnoremap <buffer> Q :Rexplore<cr>
 endfunction
 
 augroup netrw_mapping
@@ -202,16 +205,24 @@ augroup netrw_mapping
 augroup END
 
 " Close help and quickfix
-autocmd FileType help nnoremap <silent> <buffer> x :q<cr>
-autocmd FileType qf nnoremap <silent> <buffer> x :q<cr>
+autocmd FileType help nnoremap <silent> <buffer> Q :q<cr>
+autocmd FileType fugitive nnoremap <silent> <buffer> Q :q<cr>
 
 " Search current marked text
 vnoremap // y/\V<c-r>=escape(@",'/\')<cr><cr>
 
 " Copy marked text/paste to/from global register
+nnoremap <leader>Y "+Y
 vnoremap <leader>y "+y
 nnoremap <leader>p "+p
 vnoremap <leader>p "+p
+
+" Native fuzzy find
+nnoremap <leader>e :find **/*
+nnoremap <leader>/ :grep ''<left>
+vnoremap <leader>/ "5y:silent grep '<c-r>5'<cr><cr>
+nnoremap <leader>s :grep '<c-r>+'<cr><cr>
+nnoremap <leader>G :set grepprg=<c-z>
 
 " Dir/File keymaps
 nnoremap <leader>d :!mkdir -p %:h<c-z>
@@ -339,15 +350,11 @@ let g:fzf_layout={ 'window': { 'width': 0.8, 'height': 0.8 } }
 
 " Fuzzy finding
 nnoremap <leader>f :Files<cr>
-nnoremap <silent> <leader>e :find **/*
 nnoremap <leader>F :GFiles<cr>
 nnoremap <leader>b :Buffers<cr>
 vnoremap <leader>b "1y:Buffers <c-r>1<cr>
-nnoremap <leader>/ :Rg<cr>
-vnoremap <leader>/ "5y:Rg <c-r>5<cr>
-vnoremap <leader>s :Rg <c-r>"<cr>
-nnoremap <silent> <leader>g :grep ''<left>
-nnoremap <leader>G :set grepprg=<c-z>
+nnoremap <leader>g :Rg<cr>
+vnoremap <leader>g :Rg <c-r>"<cr>
 
 " Toggle Undotree
 nnoremap <leader>u :UndotreeToggle<cr>
