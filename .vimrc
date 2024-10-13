@@ -220,8 +220,8 @@ vnoremap <leader>p "+p
 " Native fuzzy find
 nnoremap <leader>e :find **/*
 nnoremap <leader>/ :grep ''<left>
-vnoremap <leader>/ "5y:silent grep '<c-r>5'<cr><cr>
-nnoremap <leader>s :grep '<c-r>+'<cr><cr>
+vnoremap <silent> <leader>/ "5y:grep! '<c-r>5'<cr> | redraw!
+nnoremap <silent> <leader>s :grep! '<c-r>+'<cr> | redraw!
 nnoremap <leader>G :set grepprg=<c-z>
 
 " Dir/File keymaps
@@ -307,7 +307,7 @@ augroup java_config
   " Linting
   autocmd FileType java compiler javac
   autocmd FileType java setlocal makeprg=javac
-  autocmd FileType java nnoremap <silent> L :call <sid>java_lint()<cr><cr>
+  autocmd FileType java nnoremap <silent> L :call <sid>java_lint()<cr> | redraw!
 augroup END
 
 " Python config group
@@ -323,7 +323,7 @@ augroup python_config
   " Linting
   autocmd FileType python compiler pylint
   autocmd FileType python setlocal makeprg=pylint\ --output-format=parseable
-  autocmd FileType python nnoremap <silent> L :make! %<cr><cr>
+  autocmd FileType python nnoremap <silent> L :make! %<cr> | redraw!
 augroup END
 
 " Go config group
@@ -339,7 +339,7 @@ augroup go_config
   " Linting
   autocmd FileType go compiler go
   autocmd FileType go setlocal makeprg=go
-  autocmd FileType go nnoremap <silent> L :make! %<cr><cr>
+  autocmd FileType go nnoremap <silent> L :make! %<cr> | redraw!
 augroup END
 
 " ----- Plugins config -----
