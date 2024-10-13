@@ -199,6 +199,7 @@ nnoremap <silent> <c-q> :cclose<cr>
 
 " Open netrw at current dir
 nnoremap - :Explore<cr>
+let g:netrw_keepdir=0
 
 " netrw keymap
 function! s:netrw_keymaps()
@@ -226,8 +227,8 @@ vnoremap <leader>p "+p
 " Native fuzzy find
 nnoremap <leader>e :find **/*
 nnoremap <leader>/ :grep ''<left>
-vnoremap <silent> <leader>/ "5y:grep! '<c-r>5'<cr> | redraw!
-nnoremap <silent> <leader>s :grep! '<c-r>+'<cr> | redraw!
+vnoremap <silent> <leader>/ "5y:grep! '<c-r>5'<cr><cr>
+nnoremap <silent> <leader>s :grep! '<c-r>+'<cr><cr>
 nnoremap <leader>G :set grepprg=<c-z>
 
 " Dir/File keymaps
@@ -257,16 +258,16 @@ nnoremap <leader>S :source $HOME/vimsessions/*.vim<c-z>
 " Create tags file
 function! s:gen_tags() 
   execute('!tmux new-window -n "ctags" -d "tmux setw -t ctags remain-on-exit off; ctags -R '
-    \ . getcwd() . '"')
+   \ . getcwd() . '"')
 endfunction
-nnoremap <silent> T :call <sid>gen_tags()<cr><cr>
+nnoremap <silent> <leader>T :call <sid>gen_tags()<cr><cr>
 
 " Run command in a separate tmux window
 function! s:run_cmd_in_tmux_within_cwd(cmd) 
   execute('!tmux new-window -n "' . a:cmd . '" -d "cd '
-    \ . getcwd() . '; ' . a:cmd . '"')
+   \ . getcwd() . '; ' . a:cmd . '"')
 endfunction
-nnoremap X :call <sid>run_cmd_in_tmux_within_cwd("")<left><left>
+nnoremap <leader>x :call <sid>run_cmd_in_tmux_within_cwd("")<left><left>
 
 " Open the quickfix window whenever a quickfix command is executed
 autocmd! QuickFixCmdPost [^l]* cwindow
@@ -276,47 +277,49 @@ let g:gitgutter_set_sign_backgrounds=1
 hi SignColumn ctermbg=NONE guibg=NONE
 
 " ----- Language specific config -----
+" Get current Java module
+function! s:get_java_module()
+  let path = substitute(expand('%:p'), getcwd() . '/', '', '')
+  let dirs = split(path, '[/]')
+  let mpos = index(dirs, 'src')
+
+  let name = join(dirs[:mpos - 1], '/')
+  let module = split(system("sed -n 's/<artifactId>\\(.*\\)<\\/artifactId>/\\1/p' "
+    \ . name . "/pom.xml | head -" . mpos), '\n')[-1]
+
+  let module = substitute(module, '\s\+$', '', '')
+  let module = substitute(module, '^\s\+', '', '')
+
+  return module
+endfunction
+
 " Maven run current test buffer
 function! s:run_maven_test()
-  let dirs = split(@%, '[/]')
+  let path = substitute(expand('%:p'), getcwd() . '/', '', '')
+  let dirs = split(path, '[/]')
 
   if index(dirs, 'test') < 0
-    echo 'Not a test file!'
     return
   endif
 
-  let module = dirs[0] != 'src' ? dirs[0] : ''
-  let test_class = join(dirs[4:], '.')[:-6]
+  let tpos = index(dirs, 'test') + 2
+  let test_class = join(dirs[tpos:], '.')[:-6]
+  let module = s:get_java_module()
 
   execute('!tmux new-window -n "' . dirs[-1] . '" -d "mvn test -pl :'
-    \ . module . ' -Dtest=' . test_class . ' -DskipTests=false"')
+   \ . module . ' -Dtest=' . test_class . ' -DskipTests=false"')
 endfunction
 autocmd FileType java nnoremap <silent> gt :call <sid>run_maven_test()<cr><cr>
 
 " Remove maven test window above
-function! s:rm_mvn_test_win()
-  let name = split(@%, '[/]')[-1]
-  execute("!tmux kill-window -t $(tmux list-windows | grep '"
-    \ . name . "' | awk -F: '{print $1}')")
-endfunction
-autocmd FileType java nnoremap <silent> gT :call <sid>rm_mvn_test_win()<cr><cr>
+autocmd FileType java nnoremap <silent> gT :call
+ \ system("tmux kill-window -t $(tmux list-windows \| grep '"
+ \ . expand('%:t') . "' \| awk -F: '{print $1}')")<cr>
 
 " Java linting
-function! s:java_lint()
-  if executable('fd') != 1
-    let paths = system('fd --no-ignore --type d target ' . getcwd())
-    let delim = '*:'
-    let trailing = '*'
-  else
-    let paths = system('find ' . getcwd() . ' -type d -name target')
-    let delim = '/*:'
-    let trailing = '/*'
-  endif
-
-  let paths = substitute(paths, '\n$', '', '')
-  let classpath = join(split(paths, '\n'), delim)
-
-  execute('make! -cp "' . classpath . trailing .'" %')
+function! s:lint_java()
+  let module = s:get_java_module()
+  execute('make! -pl :' . module)
 endfunction
 
 " Java config group
@@ -329,10 +332,11 @@ augroup java_config
   autocmd FileType java setlocal tabstop=4
   autocmd FileType java setlocal softtabstop=4
 
-  " Linting
+  " Maven Linting
   autocmd FileType java compiler javac
-  autocmd FileType java setlocal makeprg=javac
-  autocmd FileType java nnoremap <silent> gl :call <sid>java_lint()<cr> | redraw!
+  autocmd FileType java setlocal errorformat=[ERROR]\ %f:[%l\\,%v]\ %m
+  autocmd FileType java setlocal makeprg=mvn\ compile
+  autocmd FileType java nnoremap <silent> gl :call <sid>lint_java()<cr>
 augroup END
 
 " Python config group
@@ -348,7 +352,7 @@ augroup python_config
   " Linting
   autocmd FileType python compiler pylint
   autocmd FileType python setlocal makeprg=pylint\ --output-format=parseable
-  autocmd FileType python nnoremap <silent> gl :make! %<cr> | redraw!
+  autocmd FileType python nnoremap <silent> gl :make! %<cr>
 augroup END
 
 " Go config group
@@ -364,7 +368,7 @@ augroup go_config
   " Linting
   autocmd FileType go compiler go
   autocmd FileType go setlocal makeprg=go
-  autocmd FileType go nnoremap <silent> gl :make! %<cr> | redraw!
+  autocmd FileType go nnoremap <silent> gl :make! %<cr>
 augroup END
 
 " ----- Plugins config -----
