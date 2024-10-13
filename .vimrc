@@ -354,7 +354,7 @@ nnoremap <leader>F :GFiles<cr>
 nnoremap <leader>b :Buffers<cr>
 vnoremap <leader>b "1y:Buffers <c-r>1<cr>
 nnoremap <leader>g :Rg<cr>
-vnoremap <leader>g :Rg <c-r>"<cr>
+vnoremap <leader>g "2y:Rg <c-r>2<cr>
 
 " Toggle Undotree
 nnoremap <leader>u :UndotreeToggle<cr>
