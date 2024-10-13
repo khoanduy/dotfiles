@@ -230,6 +230,10 @@ nnoremap <leader>c :!cp %<c-z> %:h<c-z>
 nnoremap <leader>C :!cp -rp %:h<c-z> %:h<c-z>
 nnoremap <leader>m :!mv %<c-z> %:h<c-z>
 
+" Search and replace
+nnoremap <leader>r :%s/<c-r><c-w>//g<left><left>
+vnoremap <leader>r "6y<esc>:%s/<c-r>6//g<left><left>
+
 " Vim session keymaps
 function! s:mks_cur_repo()
   if &ft == 'fugitive' || &ft == ''
