@@ -9,7 +9,7 @@ root=$JAVA_MODS_ROOT
 
 # Get args
 module=$1
-path="${2:=""}"  # must include trailing / in the path if specified
+path=${2:-""}  # must include trailing / in the path if specified
 
 echo "Preparing $module ..."
 cd $root
