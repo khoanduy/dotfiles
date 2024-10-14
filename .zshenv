@@ -19,9 +19,6 @@ HISTFILE=$HOME/.zhistory
 SAVEHIST=10000
 HISTSIZE=10000
 
-# Scripts directory
-export CHORES="$HOME/chores"
-
 # Use 256 color term
 export TERM=xterm-256color
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=#797d7f'
@@ -36,12 +33,19 @@ export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
 # Setting fd as the default source for fzf
 export FZF_DEFAULT_COMMAND='fd --type f --strip-cwd-prefix'
 
+# Scripts directory
+export CHORES="$HOME/chores"
+export PATH="$HOME/bin:$PATH"
+
+# pyenv
+export PYENV_ROOT="$HOME/.pyenv"
+command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
+
 # JDK paths
 export JDK11="$HOME/.sdkman/candidates/java/11.0.24-amzn"
 export JDK17="$HOME/.sdkman/candidates/java/17.0.12-amzn"
 export JDK21="$HOME/.sdkman/candidates/java/21.0.4-amzn"
-
-export JAVA_HOME=$JDK11
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"

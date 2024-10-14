@@ -5,7 +5,7 @@
 jdk=$JAVA_HOME
 
 # * REMEMBER to set this environment variable
-root=$MULTI_MODULES_ROOT
+root=$JAVA_MODS_ROOT
 
 # Get args
 module=$1

@@ -180,9 +180,9 @@ tnoremap <c-l> <c-\><c-n><c-w>l
 
 " Re-size split windows using arrow keys
 nnoremap <silent> <up> :resize -2<cr>
-nnoremap <silent> <left> :vertical resize +2<cr>
+nnoremap <silent> <right> :vertical resize +2<cr>
 nnoremap <silent> <down> :resize +2<cr>
-nnoremap <silent> <right> :vertical resize -2<cr>
+nnoremap <silent> <left> :vertical resize -2<cr>
 
 " Dismiss highlight and insert esc
 nnoremap <silent> H :noh<cr>
@@ -196,6 +196,9 @@ vnoremap <silent> K :m '<-2<cr>gv=gv
 nnoremap <silent> ]q :cnext<cr>zz
 nnoremap <silent> [q :cprev<cr>zz
 nnoremap <silent> <c-q> :cclose<cr>
+
+" Delete buffer
+nnoremap <silent> <leader>q :bd<cr>
 
 " Open netrw at current dir
 nnoremap - :Explore<cr>
@@ -212,8 +215,8 @@ augroup netrw_mapping
 augroup END
 
 " Close help and quickfix
-autocmd FileType help nnoremap <silent> <buffer> x :q<cr>
-autocmd FileType fugitive nnoremap <silent> <buffer> x :q<cr>
+autocmd FileType help,fugitive,fugitiveblame
+\ nnoremap <silent> <buffer> x :q<cr>
 
 " Search current marked text
 vnoremap // y/\V<c-r>=escape(@",'/\')<cr><cr>
@@ -222,6 +225,7 @@ vnoremap // y/\V<c-r>=escape(@",'/\')<cr><cr>
 nnoremap <leader>Y "+Y
 vnoremap <leader>y "+y
 nnoremap <leader>p "+p
+nnoremap <leader>P "+P
 vnoremap <leader>p "+p
 
 " Native fuzzy find
@@ -258,14 +262,14 @@ nnoremap <leader>S :source $HOME/vimsessions/*.vim<c-z>
 " Create tags file
 function! s:gen_tags() 
   execute('!tmux new-window -n "ctags" -d "tmux setw -t ctags remain-on-exit off; ctags -R '
-   \ . getcwd() . '"')
+  \ . getcwd() . '"')
 endfunction
 nnoremap <silent> <leader>T :call <sid>gen_tags()<cr><cr>
 
 " Run command in a separate tmux window
 function! s:run_cmd_in_tmux_within_cwd(cmd) 
   execute('!tmux new-window -n "' . a:cmd . '" -d "cd '
-   \ . getcwd() . '; ' . a:cmd . '"')
+  \ . getcwd() . '; ' . a:cmd . '"')
 endfunction
 nnoremap <leader>x :call <sid>run_cmd_in_tmux_within_cwd("")<left><left>
 
@@ -285,7 +289,7 @@ function! s:get_java_module()
 
   let name = join(dirs[:mpos - 1], '/')
   let module = split(system("sed -n 's/<artifactId>\\(.*\\)<\\/artifactId>/\\1/p' "
-    \ . name . "/pom.xml | head -" . mpos), '\n')[-1]
+  \ . name . "/pom.xml | head -" . mpos), '\n')[-1]
 
   let module = substitute(module, '\s\+$', '', '')
   let module = substitute(module, '^\s\+', '', '')
@@ -295,6 +299,11 @@ endfunction
 
 " Maven run current test buffer
 function! s:run_maven_test()
+  let pane = system("tmux list-windows \| grep '" . expand('%:t') . "' \| awk -F: '{print $1}'")
+  if pane > 0
+    return '!tmux respawn-window -t ' . pane
+  endif
+
   let path = substitute(expand('%:p'), getcwd() . '/', '', '')
   let dirs = split(path, '[/]')
 
@@ -306,15 +315,10 @@ function! s:run_maven_test()
   let test_class = join(dirs[tpos:], '.')[:-6]
   let module = s:get_java_module()
 
-  execute('!tmux new-window -n "' . dirs[-1] . '" -d "mvn test -pl :'
-   \ . module . ' -Dtest=' . test_class . ' -DskipTests=false"')
+  return '!tmux new-window -n "' . dirs[-1] . '" -d "mvn test -T 1C -pl :'
+  \ . module . ' -Dtest=' . test_class . ' -DskipTests=false -Dgroups=small,medium"'
 endfunction
-autocmd FileType java nnoremap <silent> gt :call <sid>run_maven_test()<cr><cr>
-
-" Remove maven test window above
-autocmd FileType java nnoremap <silent> gT :call
- \ system("tmux kill-window -t $(tmux list-windows \| grep '"
- \ . expand('%:t') . "' \| awk -F: '{print $1}')")<cr>
+autocmd FileType java nnoremap <expr> gt ':' . <sid>run_maven_test()
 
 " Java linting
 function! s:lint_java()
