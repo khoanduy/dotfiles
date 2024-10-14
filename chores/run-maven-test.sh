@@ -2,7 +2,6 @@
 #vim:ft=bash
 
 root=$JAVA_MODS_ROOT
-log_file=test-output-$(date +%s).log
 cd $root
 
 if [ -z ${1} ]; then
@@ -25,5 +24,8 @@ if [ -z ${2} ]; then
 fi
 
 test_name="com.instaclustr.$2"
-mvn test -Dtest=$test_name -pl $module_name -DskipTests=false -Dgroups=small,medium
+mvn test -T 1C -pl $module_name -DskipTests=false \
+  -Dic.configurationFile=$(pwd)/configuration.properties \
+  -Dlogback.configurationFile=$(pwd)/logback-dev.xml \
+  -Dgroups=small,medium -Dtest=$test_name 
 

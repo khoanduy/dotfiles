@@ -35,12 +35,7 @@ export FZF_DEFAULT_COMMAND='fd --type f --strip-cwd-prefix'
 
 # Scripts directory
 export CHORES="$HOME/chores"
-export PATH="$HOME/bin:$PATH"
-
-# pyenv
-export PYENV_ROOT="$HOME/.pyenv"
-command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init -)"
+export PATH="$HOME/chores:$PATH"
 
 # JDK paths
 export JDK11="$HOME/.sdkman/candidates/java/11.0.24-amzn"

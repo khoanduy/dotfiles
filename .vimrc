@@ -202,7 +202,6 @@ nnoremap <silent> <leader>q :bd<cr>
 
 " Open netrw at current dir
 nnoremap - :Explore<cr>
-let g:netrw_keepdir=0
 
 " netrw keymap
 function! s:netrw_keymaps()
@@ -316,14 +315,16 @@ function! s:run_maven_test()
   let module = s:get_java_module()
 
   return '!tmux new-window -n "' . dirs[-1] . '" -d "mvn test -T 1C -pl :'
-  \ . module . ' -Dtest=' . test_class . ' -DskipTests=false -Dgroups=small,medium"'
+  \ . module . ' -Dtest=' . test_class . ' -Dic.configurationFile='
+  \ . getcwd() . '/configuration.properties -Dlogback.configurationFile='
+  \ . getcwd() . '/logback-dev.xml -DskipTests=false -Dgroups=small,medium"'
 endfunction
 autocmd FileType java nnoremap <expr> gt ':' . <sid>run_maven_test()
 
 " Java linting
 function! s:lint_java()
   let module = s:get_java_module()
-  execute('make! -pl :' . module)
+  execute('make! -pl :' . module . ' -am')
 endfunction
 
 " Java config group

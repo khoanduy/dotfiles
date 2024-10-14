@@ -40,13 +40,18 @@ source $HOME/.profile
 # Activate autosuggestions
 source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 
+# pyenv
+export PYENV_ROOT="$HOME/.pyenv"
+command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
+
 # Aliases
 alias gs="git status"
 alias vg="vim -c ':G'"
 alias pdb="docker exec -it db-postgres-1 psql -U postgres -h 0.0.0.0 -p 5432 -d instaclustr"
 
-alias rs1="tmux new-session -d -s provisioning; tmux send-keys -t provisioning:0 $CHORES/provisioning/start Enter"
-alias ts1="tmux send-keys -t provisioning:0 $CHORES/provisioning/stop Enter; tmux send-keys -t provisioning:0 'tmux kill-session' Enter"
+alias rs1="tmux new-session -d -s provisioning; tmux send-keys -t provisioning:0 start-provisioning-services.sh Enter"
+alias ts1="tmux send-keys -t provisioning:0 stop-provisioning-services.sh Enter; tmux send-keys -t provisioning:0 'tmux kill-session' Enter"
 
-alias rs2="tmux new-session -d -s monitoring; tmux send-keys -t monitoring:0 $CHORES/monitoring/start Enter"
-alias ts2="tmux send-keys -t monitoring:0 $CHORES/monitoring/stop Enter; tmux send-keys -t monitoring:0 'tmux kill-session' Enter"
+alias rs2="tmux new-session -d -s monitoring; tmux send-keys -t monitoring:0 start-monitoring-services.sh Enter"
+alias ts2="tmux send-keys -t monitoring:0 stop-monitoring-services.sh Enter; tmux send-keys -t monitoring:0 'tmux kill-session' Enter"
