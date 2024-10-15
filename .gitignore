@@ -1,3 +1,6 @@
 .DS_Store
 tags
+tags.lock
+tags.temp
 /alacritty/alacritty
+/nvim/nvim

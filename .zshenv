@@ -31,7 +31,7 @@ export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
  --color=marker:#dca3a3,spinner:#60b48a,header:#506070'
 
 # Setting fd as the default source for fzf
-export FZF_DEFAULT_COMMAND='fd --type f --strip-cwd-prefix'
+export FZF_DEFAULT_COMMAND='fd --type f --strip-cwd-prefix --hidden'
 
 # Scripts directory
 export CHORES="$HOME/chores"
