@@ -33,6 +33,7 @@ vim.opt.grepprg = 'rg --vimgrep --smart-case --hidden'
 -- Load configuration files --
 require('khoa.config.lazy')
 require('khoa.config.keymaps')
+require('khoa.lsp')
 
 -- Highlights
 vim.cmd.highlight('Normal cterm=NONE guibg=NONE')

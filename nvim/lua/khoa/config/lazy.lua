@@ -24,12 +24,13 @@ end
 vim.g.mapleader = ' '
 
 lazy.setup({
-  -- Neovim file explorer: edit your filesystem like a buffer
   spec = {
     -- import your plugins
-    { import = 'plugins' },
+    { import = 'khoa.plugins' },
   },
-
+  -- Configure any other settings here. See the documentation for more details.
+  -- colorscheme that will be used when installing plugins.
+  install = { colorscheme = { 'default' } },
   -- automatically check for plugin updates
-  checker = { enabled = true },
+  checker = { enabled = false },
 })
