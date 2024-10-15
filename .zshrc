@@ -47,6 +47,8 @@ eval "$(pyenv init -)"
 
 # Aliases
 alias vim="nvim"
+alias lg="lazygit"
+
 alias gs="git status"
 alias vg="vim -c ':G'"
 alias pdb="docker exec -it db-postgres-1 psql -U postgres -h 0.0.0.0 -p 5432 -d instaclustr"

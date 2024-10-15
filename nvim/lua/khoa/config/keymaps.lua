@@ -1,12 +1,12 @@
 local nrs = { noremap = true, silent = true }
-local nrns = { noremap = true, silent = false }
+local nr = { noremap = true, silent = false }
 
 -- local funcs = require("utils.funcs")
 -- Remap swith region keys
-vim.keymap.set("n", "<C-h>", "<C-w>h", nrns)
-vim.keymap.set("n", "<C-j>", "<C-w>j", nrns)
-vim.keymap.set("n", "<C-k>", "<C-w>k", nrns)
-vim.keymap.set("n", "<C-l>", "<C-w>l", nrns)
+vim.keymap.set("n", "<C-h>", "<C-w>h", nr)
+vim.keymap.set("n", "<C-j>", "<C-w>j", nr)
+vim.keymap.set("n", "<C-k>", "<C-w>k", nr)
+vim.keymap.set("n", "<C-l>", "<C-w>l", nr)
 
 -- Remap swith region keys within terminal
 vim.keymap.set("t", "<C-h>", "<C-\\><C-n><C-w>h", nrs)
@@ -42,5 +42,16 @@ vim.keymap.set("n", "<leader>p", '"+p', nrs)
 vim.keymap.set("n", "<leader>P", '"+P', nrs)
 vim.keymap.set("v", "<leader>p", '"+p', nrs)
 
--- Grep current select text
-vim.keymap.set("v", "<leader>/", 'y:grep <c-r>"<CR>', nrs)
+-- Native fuzzy find
+vim.keymap.set("n", "<leader>/", ":grep ''<left>", nr)
+vim.keymap.set("v", "<leader>/", '"5y:grep! \'<C-r>5\'<CR><CR>', nrs)
+vim.keymap.set("n", "<leader>G", ":set grepprg=<C-z>", nr)
+
+-- Dir/file modification
+vim.keymap.set("n", "<leader>cp", ":!cp %<C-z> %:h<C-z>", nr)
+vim.keymap.set("n", "<leader>Cp", ":!cp -rp %:h<C-z> %:h<C-z>", nr)
+vim.keymap.set("n", "<leader>mv", ":!mv %<C-z> %:h<C-z>", nr)
+
+-- Search and replace
+vim.keymap.set("n", "<leader>r", ":%s/<C-r><C-w>//g<left><left>", nr)
+vim.keymap.set("v", "<leader>r", '"6y<ESC>:%s/<C-r>6//g<left><left>', nr)
