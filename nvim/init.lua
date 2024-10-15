@@ -7,7 +7,7 @@ vim.opt.fileencoding = "utf-8"
 
 -- Background
 vim.opt.background = "dark"
-vim.opt.wildcharm = "<C-z>"
+vim.cmd.colorscheme "default"
 
 -- No temporary files
 vim.opt.swapfile = false
@@ -37,8 +37,8 @@ require("khoa.config.keymaps")
 require("khoa.lsp")
 
 -- Highlights
-vim.cmd.highlight("Normal cterm=NONE guibg=NONE")
+-- vim.cmd.highlight("Normal cterm=NONE guibg=NONE")
 vim.cmd.highlight("CursorLine cterm=bold term=bold")
 vim.cmd.highlight("Statusline cterm=NONE guibg=darkgrey guifg=black")
 vim.cmd.highlight("StatuslineNC guibg=grey guifg=black")
-vim.cmd.highlight("VertSplit cterm=NONE guifg=grey")
+vim.cmd.highlight("VertSplit cterm=NONE guifg=darkgrey")

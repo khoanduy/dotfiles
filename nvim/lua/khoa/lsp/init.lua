@@ -2,15 +2,7 @@
 local lspconfig = require("lspconfig")
 local servers = { "jdtls", "pyright", "gopls", "ts_ls", }
 
-require("mason").setup({
-  ui = {
-    icons = {
-      server_installed = "✔",
-      server_pending = "◔",
-      server_uninstalled = "✖"
-    }
-  },
-})
+require("mason").setup({})
 
 require("mason-lspconfig").setup {
   ensure_installed = servers,

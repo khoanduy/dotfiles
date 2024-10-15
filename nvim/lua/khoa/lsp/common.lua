@@ -8,7 +8,6 @@ function M.make_conf()
       vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
       -- Mappings.
       -- See `:help vim.lsp.*` for documentation on any of the below functions
-      vim.keymap.set("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
 
       -- Go to keymaps
       vim.keymap.set("n", "gd", function() vim.lsp.buf.definition() end, { desc = "Go to definition", buffer = bufnr })
@@ -25,7 +24,7 @@ function M.make_conf()
       vim.keymap.set("v", "gf", function() vim.lsp.buf.format() end, { desc = "Re-format current buffer", buffer = bufnr })
 
       -- LSP info
-      vim.keymap.set("n", "<leader>K", function() vim.lsp.buf.hover() end, { desc = "Hover current line", buffer = bufnr })
+      vim.keymap.set("n", "K", function() vim.lsp.buf.hover() end, { desc = "Hover current line", buffer = bufnr })
       vim.keymap.set("n", "<leader>h", function() vim.lsp.buf.signature_help() end, { desc = "Show signature help", buffer = bufnr })
     end,
     capabilities = capabilities,
