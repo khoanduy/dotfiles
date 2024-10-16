@@ -1,14 +1,15 @@
 local M = {}
 
-function get_java_module()
+function M.get_java_module()
   local path = vim.fn.expand('%:p')
   local cwd = vim.fn.getcwd()
   path = path:gsub(cwd .. "/", "")
+
   local dirs = vim.split(path, '/')
   local mpos = vim.fn.index(dirs, 'src')
 
   local name = table.concat(vim.list_slice(dirs, 1, mpos - 1), '/')
-  local sed_command = string.format("sed -n 's/<artifactId>\(.*\)<\/artifactId>/\1/p' %s/pom.xml | head -%d", name, mpos)
+  local sed_command = string.format("sed -n 's/<artifactId>(.*)<\\/artifactId>/\1/p' %s/pom.xml | head -%d", name, mpos)
   local module = vim.fn.system(sed_command)
   local module_lines = vim.split(module, '\n')
   module = module_lines[#module_lines]

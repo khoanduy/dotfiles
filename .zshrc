@@ -47,10 +47,8 @@ eval "$(pyenv init -)"
 
 # Aliases
 alias vim="nvim"
-alias lg="lazygit"
-
 alias gs="git status"
-alias vg="vim -c ':G'"
+alias vg="nvim -c ':G'"
 alias pdb="docker exec -it db-postgres-1 psql -U postgres -h 0.0.0.0 -p 5432 -d instaclustr"
 
 alias rs1="tmux new-session -d -s provisioning; tmux send-keys -t provisioning:0 start-provisioning-services.sh Enter"
