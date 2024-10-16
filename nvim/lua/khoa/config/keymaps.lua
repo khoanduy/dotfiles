@@ -1,7 +1,9 @@
 local nrs = { noremap = true, silent = true }
 local nr = { noremap = true, silent = false }
 
--- local funcs = require("utils.funcs")
+-- Load utils functions
+local java_utils = require("khoa.utils.java")
+
 -- Remap swith region keys
 vim.keymap.set("n", "<C-h>", "<C-w>h", nr)
 vim.keymap.set("n", "<C-j>", "<C-w>j", nr)
@@ -55,3 +57,11 @@ vim.keymap.set("n", "<leader>mv", ":!mv %<C-z> %:h<C-z>", nr)
 -- Search and replace
 vim.keymap.set("n", "<leader>r", ":%s/<C-r><C-w>//g<left><left>", nr)
 vim.keymap.set("v", "<leader>r", '"6y<ESC>:%s/<C-r>6//g<left><left>', nr)
+
+-- Run Maven test
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "java",
+  callback = function(args)
+    vim.keymap.set("n", "gt", function() java_utils.run_maven_test() end, { buffer = args.buf })
+  end
+})
