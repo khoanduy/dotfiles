@@ -49,11 +49,6 @@ vim.keymap.set("n", "<leader>/", ":grep ''<left>", nr)
 vim.keymap.set("v", "<leader>/", '"5y:grep! \'<C-r>5\'<CR><CR>', nrs)
 vim.keymap.set("n", "<leader>G", ":set grepprg=<C-z>", nr)
 
--- Dir/file modification
-vim.keymap.set("n", "<leader>cp", ":!cp %<C-z> %:h<C-z>", nr)
-vim.keymap.set("n", "<leader>Cp", ":!cp -rp %:h<C-z> %:h<C-z>", nr)
-vim.keymap.set("n", "<leader>mv", ":!mv %<C-z> %:h<C-z>", nr)
-
 -- Search and replace
 vim.keymap.set("n", "<leader>r", ":%s/<C-r><C-w>//g<left><left>", nr)
 vim.keymap.set("v", "<leader>r", '"6y<ESC>:%s/<C-r>6//g<left><left>', nr)
@@ -63,5 +58,13 @@ vim.api.nvim_create_autocmd("FileType", {
   pattern = "java",
   callback = function(args)
     vim.keymap.set("n", "gt", function() java_utils.run_maven_test() end, { buffer = args.buf })
+  end
+})
+
+-- Quick exit some filetypes
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "help,fugitive,fugitiveblame",
+  callback = function(args)
+    vim.keymap.set("n", "q", ":q<CR>", { buffer = args.buf })
   end
 })

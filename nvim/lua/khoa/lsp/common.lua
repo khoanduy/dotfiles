@@ -24,7 +24,7 @@ function M.make_conf()
       vim.keymap.set("v", "gf", function() vim.lsp.buf.format() end, { desc = "Re-format current buffer", buffer = bufnr })
 
       -- LSP info
-      vim.keymap.set("n", "K", function() vim.lsp.buf.hover() end, { desc = "Hover current line", buffer = bufnr })
+      vim.keymap.set("n", "<leader>k", function() vim.lsp.buf.hover() end, { desc = "Hover current line", buffer = bufnr })
       vim.keymap.set("n", "<leader>h", function() vim.lsp.buf.signature_help() end, { desc = "Show signature help", buffer = bufnr })
     end,
     capabilities = capabilities,

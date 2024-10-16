@@ -9,7 +9,7 @@ require("mason-lspconfig").setup {
   automatic_installation = true,
 }
 
-vim.keymap.set("n", "<leader>k", vim.diagnostic.open_float, { desc = "Open diagnostic float" })
+vim.keymap.set("n", "K", vim.diagnostic.open_float, { desc = "Open diagnostic float" })
 vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { desc = "Prev diagnostic" })
 vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { desc = "Next diagnostic" })
 
@@ -27,33 +27,44 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] =
   vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
     underline = true,
     virtual_text = {
-      prefix = "●",
+      prefix = " ■",
       spacing = 2,
     },
     update_in_insert = false,
     severity_sort = true,
   })
 
-vim.fn.sign_define("DiagnosticSignError", {
-  text = "✖",
-  texthl = "DiagnosticSignError",
-  numhl = "DiagnosticSignError",
+vim.diagnostic.config({
+  signs = {
+    text = {
+      [vim.diagnostic.severity.ERROR] = '✖',
+      [vim.diagnostic.severity.WARN] = '▲',
+      [vim.diagnostic.severity.INFO] = '●',
+      [vim.diagnostic.severity.HINT] = '✱',
+    }
+  }
 })
 
-vim.fn.sign_define("DiagnosticSignWarning", {
-  text = "▲",
-  texthl = "DiagnosticSignWarning",
-  numhl = "DiagnosticSignWarning",
-})
-
-vim.fn.sign_define("DiagnosticSignInformation", {
-  text = "●",
-  texthl = "DiagnosticSignInformation",
-  numhl = "DiagnosticSignInformation",
-})
-
-vim.fn.sign_define("DiagnosticSignHint", {
-  text = "✱",
-  texthl = "DiagnosticSignHint",
-  numhl = "DiagnosticSignHint",
-})
+-- vim.fn.sign_define("DiagnosticSignError", {
+--   text = "✖",
+--   texthl = "DiagnosticSignError",
+--   numhl = "DiagnosticSignError",
+-- })
+--
+-- vim.fn.sign_define("DiagnosticSignWarning", {
+--   text = "▲",
+--   texthl = "DiagnosticSignWarning",
+--   numhl = "DiagnosticSignWarning",
+-- })
+--
+-- vim.fn.sign_define("DiagnosticSignInformation", {
+--   text = "●",
+--   texthl = "DiagnosticSignInformation",
+--   numhl = "DiagnosticSignInformation",
+-- })
+--
+-- vim.fn.sign_define("DiagnosticSignHint", {
+--   text = "✱",
+--   texthl = "DiagnosticSignHint",
+--   numhl = "DiagnosticSignHint",
+-- })

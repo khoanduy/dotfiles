@@ -51,16 +51,16 @@ local config = {
       configuration = {
         runtimes = {
           {
-            name = "JavaSE-11",
-            path = os.getenv("JDK11"),
-          },
-          {
             name = "JavaSE-17",
             path = os.getenv("JDK17"),
           },
           {
             name = "JavaSE-21",
             path = os.getenv("JDK21"),
+          },
+          {
+            name = "JavaSE-11",
+            path = os.getenv("JDK11"),
           },
         },
       },
