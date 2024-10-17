@@ -48,6 +48,9 @@ autocmd! QuickFixCmdPost [^l]* cwindow
 " Quick exit some filetypes
 autocmd! FileType help,fugitive,fugitiveblame nnoremap <silent> <buffer> q :q<cr>
 
+" Fugitive
+nnoremap <silent> <leader>G :G<cr>
+
 " Run maven test
 autocmd! FileType java nnoremap gt :lua require('khoa.utils.java').run_maven_test('')<left><left>
 

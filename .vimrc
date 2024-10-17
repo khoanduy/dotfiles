@@ -97,10 +97,6 @@ set wildcharm=<c-z>
 
 " wildmenu settings
 set wildmenu
-set wildignore=*.o,*~,*.a,*.so,*.pyc,*.swp
-set wildignore+=.git/,*.class,*/target/*,.idea/
-set wildignore+=*/Library/*,*/.git/*,*/.hg/*
-set wildignore+=*/.svn/*,*/node_modules/*,*/.DS_Store
 
 " Set the commands to save in history default number is 20.
 set history=10000
@@ -181,13 +177,6 @@ nnoremap <leader>p "+p
 nnoremap <leader>P "+P
 vnoremap <leader>p "+p
 
-" Native fuzzy find
-nnoremap <leader>f :find **/*
-nnoremap <leader>/ :grep ''<left>
-vnoremap <silent> <leader>/ "5y:grep! '<c-r>5'<cr><cr>
-nnoremap <silent> <leader>s :grep! '<c-r>+'<cr><cr>
-nnoremap <leader>G :set grepprg=<c-z>
-
 " Dir/File keymaps
 nnoremap <leader>d :!mkdir -p %:h<c-z>
 nnoremap <leader>c :!cp %<c-z> %:h<c-z>
@@ -197,13 +186,6 @@ nnoremap <leader>m :!mv %<c-z> %:h<c-z>
 " Search and replace
 nnoremap <leader>r :%s/<c-r><c-w>//g<left><left>
 vnoremap <leader>r "6y<esc>:%s/<c-r>6//g<left><left>
-
-" Run command in a separate tmux window
-function! s:run_cmd_in_tmux_within_cwd(cmd) 
-  execute('!tmux new-window -n "' . a:cmd . '" -d "cd '
-  \ . getcwd() . '; ' . a:cmd . '"')
-endfunction
-nnoremap <leader>x :call <sid>run_cmd_in_tmux_within_cwd("")<left><left>
 
 " Open the quickfix window whenever a quickfix command is executed
 autocmd! QuickFixCmdPost [^l]* cwindow
