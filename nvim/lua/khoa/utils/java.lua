@@ -25,12 +25,17 @@ function M.get_java_module(path)
   return lines[#lines]
 end
 
-function M.run_maven_test()
+function M.run_maven_test(args)
   local file_name = vim.fn.expand("%:t")
   local pane = vim.fn.system(string.format("tmux list-windows | grep '%s' | awk -F: '{print $1}'", file_name))
 
   if tostring(pane) ~= "" then
-    vim.fn.system(string.format("tmux respawn-window -t %s", pane))
+    vim.api.nvim_command(string.format("!tmux respawn-window -t %s", pane))
+    return
+  end
+
+  if args == nil then
+    vim.api.nvim_command('echo "Please specify \'\' if you don\'t want to use extra args"')
     return
   end
 
@@ -59,11 +64,10 @@ function M.run_maven_test()
   local module = M.get_java_module(path)
 
   local command = string.format(
-    'tmux new-window -n "%s" -d "mvn test -T 1C -pl :%s -Dtest=%s -Dic.configurationFile=%s/configuration.properties -Dlogback.configurationFile=%s/logback-dev.xml -DskipTests=false -Dgroups=small,medium"',
-    dirs[#dirs], module, test_class, cwd, cwd)
+    '!tmux new-window -n "%s" -d "mvn test -T 1C %s -pl :%s -Dtest=%s -Dic.configurationFile=%s/configuration.properties -Dlogback.configurationFile=%s/logback-dev.xml -DskipTests=false -Dgroups=small,medium"',
+    dirs[#dirs], tostring(args), module, test_class, cwd, cwd)
 
-  print(command)
-  vim.fn.system(command)
+  vim.api.nvim_command(command)
 end
 
 return M

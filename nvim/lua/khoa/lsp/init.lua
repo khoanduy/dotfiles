@@ -9,7 +9,7 @@ require("mason-lspconfig").setup {
   automatic_installation = true,
 }
 
-vim.keymap.set("n", "K", vim.diagnostic.open_float, { desc = "Open diagnostic float" })
+vim.keymap.set("n", "<leader>k", vim.diagnostic.open_float, { desc = "Open diagnostic float" })
 vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { desc = "Prev diagnostic" })
 vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { desc = "Next diagnostic" })
 
@@ -44,27 +44,3 @@ vim.diagnostic.config({
     }
   }
 })
-
--- vim.fn.sign_define("DiagnosticSignError", {
---   text = "✖",
---   texthl = "DiagnosticSignError",
---   numhl = "DiagnosticSignError",
--- })
---
--- vim.fn.sign_define("DiagnosticSignWarning", {
---   text = "▲",
---   texthl = "DiagnosticSignWarning",
---   numhl = "DiagnosticSignWarning",
--- })
---
--- vim.fn.sign_define("DiagnosticSignInformation", {
---   text = "●",
---   texthl = "DiagnosticSignInformation",
---   numhl = "DiagnosticSignInformation",
--- })
---
--- vim.fn.sign_define("DiagnosticSignHint", {
---   text = "✱",
---   texthl = "DiagnosticSignHint",
---   numhl = "DiagnosticSignHint",
--- })
