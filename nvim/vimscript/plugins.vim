@@ -21,18 +21,10 @@ Plug 'stevearc/oil.nvim'
 Plug 'folke/tokyonight.nvim'
 
 " LSP support
+Plug 'neovim/nvim-lspconfig'
 Plug 'williamboman/mason.nvim'
 Plug 'williamboman/mason-lspconfig.nvim'
-Plug 'neovim/nvim-lspconfig'
 Plug 'mfussenegger/nvim-jdtls'
-
-" Autocompletion
-Plug 'hrsh7th/nvim-cmp'
-Plug 'hrsh7th/cmp-nvim-lsp'
-Plug 'saadparwaiz1/cmp_luasnip'
-
-" Snippets
-Plug 'L3MON4D3/LuaSnip'
 
 " ----- End plugin definitions -----
 call plug#end()

@@ -21,30 +21,35 @@ local config = {
     "--add-opens", "java.base/java.util=ALL-UNNAMED",
     "--add-opens", "java.base/java.lang=ALL-UNNAMED",
     "-jar", vim.fn.glob(jdtls .. "/plugins/org.eclipse.equinox.launcher_*.jar"),
-    "-configuration", jdtls .. "/config_mac",
+    "-configuration", jdtls .. "/config_mac_arm",
     "-data", workspace_folder,
   },
-  root_dir = require("jdtls.setup").find_root({ "pom.xml", ".git", "mvnw", "gradlew" }),
+  -- root_dir = vim.fs.root(0, {"pom.xml", ".git", "mvnw", "gradlew"}),
+  root_dir = vim.fn.getcwd(),
   settings = {
     java = {
-      autobuild = { enabled = false },
-      maxConcurrentBuilds = 8,
-      signatureHelp = { enabled = true },
-      saveActions = {
-        organizeImports = false,
+      references = {
+        includeDecompiledSources = true,
       },
+      eclipse = {
+        downloadSources = true,
+      },
+      maven = {
+        downloadSources = true,
+      },
+      signatureHelp = { enabled = true },
       sources = {
         organizeImports = {
-          starThreshold = 9999;
-          staticStarThreshold = 9999;
+          starThreshold = 9999,
+          staticStarThreshold = 9999,
         },
       },
       codeGeneration = {
         toString = {
-          template = "${object.className}{${member.name()}=${member.value}, ${otherMembers}}"
-        },
-        hashCodeEquals = {
-          useJava7Objects = true,
+          template = "${object.className}{${member.name()}=${member.value}, ${otherMembers}}",
+          -- flags = {
+          -- 	allow_incremental_sync = true,
+          -- },
         },
         useBlocks = true,
       },
@@ -58,16 +63,14 @@ local config = {
             name = "JavaSE-21",
             path = os.getenv("JDK21"),
           },
-          {
-            name = "JavaSE-11",
-            path = os.getenv("JDK11"),
-          },
         },
       },
-    },
+    }
   },
-  on_attach = require("khoa/lsp/common").make_conf().on_attach,
-  capabilities = require("cmp_nvim_lsp").default_capabilities()
+  init_options = {
+    bundles = { }
+  },
+  on_attach = require("khoa.lsp.common").make_config().on_attach,
 }
 
 -- This starts a new client & server,

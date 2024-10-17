@@ -1,26 +1,26 @@
--- LSP config --
+-- LSP config
 local lspconfig = require("lspconfig")
-local servers = { "jdtls", "pyright", "gopls", "ts_ls", }
+local servers = { "jdtls", "pyright", "gopls", "ts_ls" }
 
+-- Mason
 require("mason").setup({})
-
 require("mason-lspconfig").setup {
   ensure_installed = servers,
   automatic_installation = true,
 }
 
+-- Diagnostic
 vim.keymap.set("n", "<leader>k", vim.diagnostic.open_float, { desc = "Open diagnostic float" })
 vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { desc = "Prev diagnostic" })
 vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { desc = "Next diagnostic" })
 
--- LSP servers" default config
-local config = require("khoa.lsp.common").make_conf()
+-- LSP servers default config
+local config = require("khoa.lsp.common").make_config()
 for _, lsp in ipairs(servers) do
-  lspconfig[lsp].setup(config)
+  if lsp ~= "jdtls" then
+    lspconfig[lsp].setup(config)
+  end -- For Java, use nvim-jdtls instead
 end
-
--- nvim-cmp setup
-require("cmp").setup(require("khoa.lsp.common").nvim_cmp_conf())
 
 -- Diagnostic sign symbols
 vim.lsp.handlers["textDocument/publishDiagnostics"] =
