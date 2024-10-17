@@ -34,6 +34,7 @@ function M.make_conf()
   }
   return default
 end
+
 function M.nvim_cmp_conf()
   local luasnip = require("luasnip")
   local cmp = require("cmp")
