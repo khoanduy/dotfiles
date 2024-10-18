@@ -34,7 +34,13 @@ lua require('oil').setup()
 nnoremap <silent> - :Oil<cr>
 
 " Colorscheme
-colorscheme tokyonight-storm
+lua require('khoa.plugins.colorscheme')
+colorscheme tokyonight-night
+
+" Disable some background
+hi! Statusline ctermbg=NONE guibg=NONE
+hi! StatuslineNC ctermbg=NONE guibg=NONE
+hi! Pmenu ctermbg=NONE guibg=NONE
 
 " Treesitter
 lua require('khoa.plugins.treesitter')
@@ -59,3 +65,9 @@ hi! TelescopePromptBorder ctermbg=NONE guibg=NONE
 hi! TelescopePromptTitle ctermbg=NONE guibg=NONE
 hi! TelescopeBorder ctermbg=NONE guibg=NONE
 hi! TelescopeTitle ctermbg=NONE guibg=NONE
+
+" Diagnostic highlights
+" hi! DiagnosticVirtualTextError ctermbg=NONE guibg=NONE
+" hi! DiagnosticVirtualTextHint ctermbg=NONE guibg=NONE
+" hi! DiagnosticVirtualTextInfo ctermbg=NONE guibg=NONE
+" hi! DiagnosticVirtualTextWarn ctermbg=NONE guibg=NONE
