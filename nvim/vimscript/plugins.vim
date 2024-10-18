@@ -50,8 +50,8 @@ nnoremap <leader>s :lua require('telescope.builtin').find_files({ no_ignore = tr
 nnoremap <leader>b :lua require('telescope.builtin').buffers()<cr>
 nnoremap <leader>o :lua require('telescope.builtin').resume()<cr>
 nnoremap <leader>g :lua require('telescope.builtin').live_grep()<cr>
-vnoremap <leader>g "1y:lua require('telescope.builtin').live_grep({ search = '<c-r>1' })<cr>
-nnoremap <leader>/ :lua require('telescope.builtin').live_grep({ search = '<c-r>"' })
+vnoremap <leader>g "1y:lua require('telescope.builtin').grep_string({ search = '<c-r>1' })<cr>
+nnoremap <leader>/ :lua require('telescope.builtin').grep_string({ search = '<c-r>"' })
 
 " Telescope highlights
 hi! TelescopeNormal ctermbg=NONE guibg=NONE
