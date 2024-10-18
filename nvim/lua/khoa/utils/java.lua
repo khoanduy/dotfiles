@@ -25,12 +25,12 @@ function M.get_java_module(path)
   return lines[#lines]
 end
 
-function M.run_maven_test(args)
+function M.run_maven_test(args, method)
   local file_name = vim.fn.expand("%:t")
   local pane = vim.fn.system(string.format("tmux list-windows | grep '%s' | awk -F: '{print $1}'", file_name))
 
-  if tostring(pane) ~= "" then
-    vim.api.nvim_command(string.format("!tmux respawn-window -t %s", pane))
+  if pane ~= "" then
+    vim.api.nvim_command("!tmux respawn-window -t " .. pane)
     return
   end
 
@@ -59,13 +59,18 @@ function M.run_maven_test(args)
     return
   end
 
+  local module = M.get_java_module(path)
   local test_class = table.concat(dirs, ".")
   test_class = test_class:sub(1, -6)
-  local module = M.get_java_module(path)
 
-  local command = string.format(
-    '!tmux new-window -n "%s" -d "mvn test -T 1C %s -pl :%s -Dtest=%s -Dic.configurationFile=%s/configuration.properties -Dlogback.configurationFile=%s/logback-dev.xml -DskipTests=false -Dgroups=small,medium"',
-    dirs[#dirs], tostring(args), module, test_class, cwd, cwd)
+  if method ~= nil and method ~= "" then
+    test_class = string.format("%s\\#%s", test_class, method:gsub("%s+", ""))
+  end
+
+  local command = '!tmux new-window -n "' .. dirs[#dirs] .. '" -d "mvn test ' ..
+    tostring(args) .. ' -pl :' .. module .. ' -Dtest=' .. test_class .. ' -Dic.configurationFile=' ..
+    cwd .. '/configuration.properties -Dlogback.configurationFile=' .. cwd .. '/logback-dev.xml' ..
+    ' -DskipTests=false -Dgroups=small,medium"'
 
   vim.api.nvim_command(command)
 end

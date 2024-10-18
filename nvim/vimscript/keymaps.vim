@@ -52,5 +52,9 @@ autocmd! FileType help,fugitive,fugitiveblame nnoremap <silent> <buffer> q :q<cr
 nnoremap <silent> <leader>G :G<cr>
 
 " Run maven test
-autocmd! FileType java nnoremap gt :lua require('khoa.utils.java').run_maven_test('')<left><left>
+augroup java_config
+  autocmd!
+  autocmd FileType java nnoremap gt :lua require('khoa.utils.java').run_maven_test('-T 1C')<left><left>
+  autocmd FileType java vnoremap gt "2y:lua require('khoa.utils.java').run_maven_test('-T 1C', '<c-r>2')
+augroup END
 
