@@ -28,7 +28,7 @@ brew install curl wget git coreutils watch ncdu jq fd
 
 # Install font
 echo "[-] Installing Source Code Pro Font [-]"
-brew install --cask font-sauce-code-pro-nerd-font
+brew install --cask font-jetbrains-mono-nerd-font
 
 # Backup dotfiles
 function backup() {
