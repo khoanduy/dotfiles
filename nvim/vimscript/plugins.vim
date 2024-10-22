@@ -14,6 +14,9 @@ Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 " A Git wrapper so awesome, it should be illegal
 Plug 'tpope/vim-fugitive'
 
+" The undo history visualizer for Vim
+Plug 'mbbill/undotree'
+
 " Neovim file explorer: edit your filesystem like a buffer
 Plug 'stevearc/oil.nvim'
 
@@ -30,8 +33,16 @@ Plug 'mfussenegger/nvim-jdtls'
 call plug#end()
 
 " Oil nvim
-lua require('oil').setup()
-nnoremap <silent> - :Oil<cr>
+lua require('khoa.plugins.oil')
+" Oil keymaps
+augroup oil_config
+  autocmd!
+  nnoremap <silent> - :Oil<cr>
+  autocmd FileType oil nnoremap <silent> <buffer> <c-h> <c-w>h
+  autocmd FileType oil nnoremap <silent> <buffer> <c-j> <c-w>j
+  autocmd FileType oil nnoremap <silent> <buffer> <c-k> <c-w>k
+  autocmd FileType oil nnoremap <silent> <buffer> <c-l> <c-w>l
+augroup END
 
 " Colorscheme
 lua require('khoa.plugins.colorscheme')

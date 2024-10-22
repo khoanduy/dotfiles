@@ -27,6 +27,11 @@ vnoremap <silent> K :m '<-2<cr>gv=gv
 " Navigate through quickfix list
 nnoremap <silent> ]q :cnext<cr>zz
 nnoremap <silent> [q :cprev<cr>zz
+nnoremap <silent> <leader>xq :cclose<cr>
+
+" Close stuff
+nnoremap <silent> <leader>xx :bd<cr>
+nnoremap <silent> <leader>xX :bd!<cr>
 
 " Search current marked text
 vnoremap // y/\V<c-r>=escape(@",'/\')<cr><cr>
@@ -45,11 +50,11 @@ vnoremap <leader>r "5y<esc>:%s/<c-r>5//g<left><left>
 " Open the quickfix window whenever a quickfix command is executed
 autocmd! QuickFixCmdPost [^l]* cwindow
 
+" Undotree toggle
+nnoremap <silent> <leader>u :UndotreeToggle<cr>
+
 " Quick exit some filetypes
 autocmd! FileType help,fugitive,fugitiveblame nnoremap <silent> <buffer> q :q<cr>
-
-" Fugitive
-nnoremap <silent> <leader>G :G<cr>
 
 " Run maven test
 augroup java_config
