@@ -20,6 +20,13 @@ nnoremap <silent> <left> :vertical resize -2<cr>
 nnoremap <silent> H :noh<cr>
 inoremap <silent> jk <esc>
 
+" Pairs insert keymaps
+inoremap <silent> ( ()<left>
+inoremap <silent> [ []<left>
+inoremap <silent> { {}<left>
+inoremap <silent> " ""<left>
+inoremap <silent> ' ''<left>
+
 " Move selected visual block by J and K
 vnoremap <silent> J :m '>+1<cr>gv=gv
 vnoremap <silent> K :m '<-2<cr>gv=gv

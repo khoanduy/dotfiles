@@ -14,6 +14,9 @@ Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 " A Git wrapper so awesome, it should be illegal
 Plug 'tpope/vim-fugitive'
 
+" Delete/change/add parentheses/quotes/XML-tags/much more with ease
+Plug 'tpope/vim-surround'
+
 " The undo history visualizer for Vim
 Plug 'mbbill/undotree'
 
