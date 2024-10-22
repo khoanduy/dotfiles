@@ -27,7 +27,7 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] =
   vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
     underline = true,
     virtual_text = {
-      prefix = "■",
+      prefix = "◍",
       spacing = 2,
     },
     update_in_insert = false,
@@ -40,7 +40,7 @@ vim.diagnostic.config({
       [vim.diagnostic.severity.ERROR] = '✖',
       [vim.diagnostic.severity.WARN] = '▲',
       [vim.diagnostic.severity.INFO] = '●',
-      [vim.diagnostic.severity.HINT] = '✱',
+      [vim.diagnostic.severity.HINT] = '■',
     }
   }
 })
