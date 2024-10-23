@@ -11,8 +11,8 @@ Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.8' }
 " Nvim Treesitter configurations and abstraction layer
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
-" A Git wrapper so awesome, it should be illegal
-Plug 'tpope/vim-fugitive'
+" Git integration for buffers
+Plug 'lewis6991/gitsigns.nvim'
 
 " Delete/change/add parentheses/quotes/XML-tags/much more with ease
 Plug 'tpope/vim-surround'
@@ -56,6 +56,21 @@ hi! Statusline ctermbg=NONE guibg=NONE
 hi! StatuslineNC ctermbg=NONE guibg=NONE
 hi! Pmenu ctermbg=NONE guibg=NONE
 
+" Gitsigns
+lua require('khoa.plugins.gitsigns')
+" Oil keymaps
+augroup gitsigns_config
+  autocmd!
+  nnoremap <silent> ]h :Gitsigns next_hunk<cr>
+  nnoremap <silent> [h :Gitsigns prev_hunk<cr>
+  nnoremap <silent> <leader>hp :Gitsigns preview_hunk<cr>
+  nnoremap <silent> <leader>hr :Gitsigns reset_hunk<cr>
+  nnoremap <silent> <leader>hs :Gitsigns stage_hunk<cr>
+  nnoremap <silent> <leader>hu :Gitsigns undo_stage_hunk<cr>
+  nnoremap <silent> <leader>hS :Gitsigns stage_buffer<cr>
+  nnoremap <silent> <leader>hR :Gitsigns reset_buffer<cr>
+augroup END
+
 " Treesitter
 lua require('khoa.plugins.treesitter')
 
@@ -69,9 +84,8 @@ nnoremap <leader>F :lua require('telescope.builtin').git_files()<cr>
 nnoremap <leader>s :lua require('telescope.builtin').find_files({ no_ignore = true, hidden = true, search_file = '<c-r>"' })
 nnoremap <leader>b :lua require('telescope.builtin').buffers()<cr>
 nnoremap <leader>o :lua require('telescope.builtin').resume()<cr>
-nnoremap <leader>g :lua require('telescope.builtin').live_grep()<cr>
-vnoremap <leader>g "1y:lua require('telescope.builtin').grep_string({ search = '<c-r>1' })<cr>
-nnoremap <leader>/ :lua require('telescope.builtin').grep_string({ search = '<c-r>"' })
+nnoremap <leader>/ :lua require('telescope.builtin').live_grep()<cr>
+vnoremap <leader>/ "1y:lua require('telescope.builtin').grep_string({ search = '<c-r>1' })<cr>
 
 " Telescope highlights
 hi! TelescopeNormal ctermbg=NONE guibg=NONE
@@ -79,9 +93,3 @@ hi! TelescopePromptBorder ctermbg=NONE guibg=NONE
 hi! TelescopePromptTitle ctermbg=NONE guibg=NONE
 hi! TelescopeBorder ctermbg=NONE guibg=NONE
 hi! TelescopeTitle ctermbg=NONE guibg=NONE
-
-" Diagnostic highlights
-" hi! DiagnosticVirtualTextError ctermbg=NONE guibg=NONE
-" hi! DiagnosticVirtualTextHint ctermbg=NONE guibg=NONE
-" hi! DiagnosticVirtualTextInfo ctermbg=NONE guibg=NONE
-" hi! DiagnosticVirtualTextWarn ctermbg=NONE guibg=NONE

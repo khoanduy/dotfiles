@@ -8,7 +8,6 @@ setopt SHARE_HISTORY
 setopt HIST_EXPIRE_DUPS_FIRST
 setopt EXTENDED_HISTORY
 setopt NO_BEEP
-
 # Use emacs keybinding
 bindkey -e
 
@@ -47,8 +46,21 @@ eval "$(pyenv init -)"
 
 # Aliases
 alias vim="nvim"
-alias gs="git status"
 alias vg="nvim -c ':G'"
+
+alias gs="git status"
+alias ga="git add ."
+alias gA="git restore --staged"
+alias gc="git commit -m"
+alias gb="git branch --all"
+alias gB="git branch --all | grep"
+alias gC="git checkout"
+alias gf="git fetch"
+alias gp="git pull"
+alias gP="git push"
+alias gr="git reset --hard"
+alias gR="git clean --force"
+
 alias pdb="docker exec -it db-postgres-1 psql -U postgres -h 0.0.0.0 -p 5432 -d instaclustr"
 
 alias rs1="tmux new-session -d -s provisioning; tmux send-keys -t provisioning:0 start-provisioning-services.sh Enter"

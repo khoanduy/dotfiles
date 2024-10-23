@@ -34,11 +34,6 @@ vnoremap <silent> K :m '<-2<cr>gv=gv
 " Navigate through quickfix list
 nnoremap <silent> ]q :cnext<cr>zz
 nnoremap <silent> [q :cprev<cr>zz
-nnoremap <silent> <leader>xq :cclose<cr>
-
-" Close stuff
-nnoremap <silent> <leader>xx :bd<cr>
-nnoremap <silent> <leader>xX :bd!<cr>
 
 " Search current marked text
 vnoremap // y/\V<c-r>=escape(@",'/\')<cr><cr>
@@ -61,7 +56,7 @@ autocmd! QuickFixCmdPost [^l]* cwindow
 nnoremap <silent> <leader>u :UndotreeToggle<cr>
 
 " Quick exit some filetypes
-autocmd! FileType help,fugitive,fugitiveblame nnoremap <silent> <buffer> q :q<cr>
+autocmd! FileType help,qf,gitsign-blame nnoremap <silent> <buffer> q :q<cr>
 
 " Run maven test
 augroup java_config
