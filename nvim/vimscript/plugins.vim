@@ -11,8 +11,11 @@ Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.8' }
 " Nvim Treesitter configurations and abstraction layer
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
-" Git integration for buffers
-Plug 'lewis6991/gitsigns.nvim'
+" A Git wrapper so awesome, it should be illegal
+Plug 'tpope/vim-fugitive'
+
+" A Vim plugin which shows git diff markers in the sign column and stages/previews/undoes hunks and partial hunks
+Plug 'airblade/vim-gitgutter'
 
 " Delete/change/add parentheses/quotes/XML-tags/much more with ease
 Plug 'tpope/vim-surround'
@@ -56,19 +59,14 @@ hi! Statusline ctermbg=NONE guibg=NONE
 hi! StatuslineNC ctermbg=NONE guibg=NONE
 hi! Pmenu ctermbg=NONE guibg=NONE
 
-" Gitsigns
-lua require('khoa.plugins.gitsigns')
-" Oil keymaps
-augroup gitsigns_config
+" Gitgutter keymaps
+augroup gitgutter_config
   autocmd!
-  nnoremap <silent> ]h :Gitsigns next_hunk<cr>
-  nnoremap <silent> [h :Gitsigns prev_hunk<cr>
-  nnoremap <silent> <leader>hp :Gitsigns preview_hunk<cr>
-  nnoremap <silent> <leader>hr :Gitsigns reset_hunk<cr>
-  nnoremap <silent> <leader>hs :Gitsigns stage_hunk<cr>
-  nnoremap <silent> <leader>hu :Gitsigns undo_stage_hunk<cr>
-  nnoremap <silent> <leader>hS :Gitsigns stage_buffer<cr>
-  nnoremap <silent> <leader>hR :Gitsigns reset_buffer<cr>
+  nnoremap <silent> ]h :GitGutterNextHunk<cr>
+  nnoremap <silent> [h :GitGutterPrevHunk<cr>
+  nnoremap <silent> <leader>hp :GitGutterPreviewHunk<cr>
+  nnoremap <silent> <leader>hs :GitGutterToggle<cr>
+  nnoremap <silent> <leader>hu :GitGutterUndoHunk<cr>
 augroup END
 
 " Treesitter

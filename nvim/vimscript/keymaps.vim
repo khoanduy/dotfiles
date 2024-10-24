@@ -56,7 +56,7 @@ autocmd! QuickFixCmdPost [^l]* cwindow
 nnoremap <silent> <leader>u :UndotreeToggle<cr>
 
 " Quick exit some filetypes
-autocmd! FileType help,qf,gitsign-blame nnoremap <silent> <buffer> q :q<cr>
+autocmd! FileType help,qf,fugitive,fugitiveblame nnoremap <silent> <buffer> q :q<cr>
 
 " Run maven test
 augroup java_config
