@@ -98,6 +98,9 @@ set wildcharm=<c-z>
 " wildmenu settings
 set wildmenu
 
+" Program to use for the :grep command
+set grepprg=rg\ --vimgrep\ --smart-case\ --hidden
+
 " Set the commands to save in history default number is 20.
 set history=10000
 set ttyfast
@@ -121,7 +124,7 @@ hi VertSplit cterm=NONE ctermfg=grey
 hi Pmenu ctermbg=grey ctermfg=black
 hi PmenuSel ctermbg=darkgrey ctermfg=white
 hi PmenuSbar ctermbg=grey
-hi PmenuThumb ctermbg=grey
+hi PmenuThumb ctermbg=darkgrey
 
 " ----- Keymaps -----
 " Remap switch region keys
@@ -157,15 +160,9 @@ nnoremap <silent> [q :cprev<cr>zz
 " Open netrw at current dir
 nnoremap - :Explore<cr>
 
-" netrw keymap
-function! s:netrw_keymaps()
-  nnoremap <buffer> x :Rexplore<cr>
-endfunction
-
-augroup netrw_mapping
-  autocmd!
-  autocmd FileType netrw call <sid>netrw_keymaps()
-augroup END
+" Quick exit some filetypes
+autocmd! FileType help,qf nnoremap <silent> <buffer> x :q<cr>
+autocmd! FileType netrw nnoremap <silent> <buffer> x :Rexplore<cr>
 
 " Search current marked text
 vnoremap // y/\V<c-r>=escape(@",'/\')<cr><cr>
@@ -183,10 +180,19 @@ nnoremap <leader>c :!cp %<c-z> %:h<c-z>
 nnoremap <leader>C :!cp -rp %:h<c-z> %:h<c-z>
 nnoremap <leader>m :!mv %<c-z> %:h<c-z>
 
+" Fuzzy find
+nnoremap <leader>f :find **/*
+vnoremap <leader>f "0y:find **/<c-r>0*<c-z>
+nnoremap <leader>F :e <c-z>
+nnoremap <leader>b :b <c-z>
+nnoremap <leader>g :grep ''<left>
+vnoremap <leader>g "9y:grep '<c-r>9'<left>
+nnoremap <leader>G :set grepprg=<c-z>
+nnoremap <leader>s :grep '<c-r>+'<left>
+
 " Search and replace
 nnoremap <leader>r :%s/<c-r><c-w>//g<left><left>
-vnoremap <leader>r "6y<esc>:%s/<c-r>6//g<left><left>
+vnoremap <leader>r "5y<esc>:%s/<c-r>5//g<left><left>
 
 " Open the quickfix window whenever a quickfix command is executed
 autocmd! QuickFixCmdPost [^l]* cwindow
-

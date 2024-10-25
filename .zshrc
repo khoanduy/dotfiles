@@ -45,9 +45,6 @@ command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
 
 # Aliases
-alias vim="nvim"
-alias vg="nvim -c ':G'"
-
 alias gs="git status"
 alias ga="git add ."
 alias gA="git restore --staged"

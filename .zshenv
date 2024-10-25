@@ -24,11 +24,11 @@ export TERM=xterm-256color
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=#626567'
 
 # Fzf options
-# export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
-#  --color=fg:#dcdccc,bg:-1,hl:#c3bf9f,gutter:-1
-#  --color=fg+:#dcdccc,bg+:-1,hl+:#dc8cc3,gutter:-1
-#  --color=info:#94bff3,prompt:#f0dfaf,pointer:#d78787
-#  --color=marker:#dca3a3,spinner:#60b48a,header:#506070'
+export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
+ --color=fg:#dcdccc,bg:-1,hl:#c3bf9f,gutter:-1
+ --color=fg+:#dcdccc,bg+:-1,hl+:#dc8cc3,gutter:-1
+ --color=info:#94bff3,prompt:#f0dfaf,pointer:#d78787
+ --color=marker:#dca3a3,spinner:#60b48a,header:#506070'
 
 # Setting fd as the default source for fzf
 export FZF_DEFAULT_COMMAND='fd --type f --strip-cwd-prefix --hidden'

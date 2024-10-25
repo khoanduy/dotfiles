@@ -59,17 +59,19 @@ function M.run_maven_test(args, method)
     return
   end
 
+  local win_name = dirs[#dirs]
   local module = M.get_java_module(path)
   local test_class = table.concat(dirs, ".")
   test_class = test_class:sub(1, -6)
 
   if method ~= nil and method ~= "" then
-    test_class = string.format("%s\\#%s", test_class, method:gsub("%s+", ""))
+    local func = method:gsub("%s+", "")
+    test_class = string.format("%s\\#%s", test_class, func)
+    win_name = string.format("%s-%s", win_name, func)
   end
 
-  local command = '!tmux new-window -n "' .. dirs[#dirs] .. '" -d "mvn test ' ..
-    tostring(args) .. ' -pl :' .. module .. ' -Dtest=' .. test_class .. ' -Dic.configurationFile=' ..
-    cwd .. '/configuration.properties -Dlogback.configurationFile=' .. cwd .. '/logback-dev.xml' ..
+  local command = '!tmux new-window -n "' .. win_name .. '" -d "mvn test ' ..
+    tostring(args) .. ' -pl :' .. module .. ' -Dtest=' .. test_class .. 
     ' -DskipTests=false -Dgroups=small,medium"'
 
   vim.api.nvim_command(command)
