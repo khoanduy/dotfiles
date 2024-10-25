@@ -32,7 +32,7 @@ blink_interval = 650
 [window]
 decorations = "buttonless"
 dynamic_padding = true
-opacity = 0.95
+opacity = 0.8
 blur = true
 option_as_alt = "both"
 
@@ -48,31 +48,36 @@ y = 5
 x = 0
 y = 0
 
-# Thanks to Tokyonight
+# Thanks to Moonfly
 [colors.primary]
-background = '#1a1b26'
-foreground = '#a9b1d6'
+background = "#080808"
+bright_foreground = "#eeeeee"
+foreground = "#bdbdbd"
+
+[colors.selection]
+background = "#b2ceee"
+text = "#080808"
 
 [colors.cursor]
-text = '#1d1f21'
-cursor = '#ffffff'
+cursor = "#8e8e8e"
+text = "#080808"
 
 [colors.normal]
-black = '#32344a'
-red = '#f7768e'
-green = '#9ece6a'
-yellow = '#e0af68'
-blue = '#7aa2f7'
-magenta = '#ad8ee6'
-cyan = '#449dab'
-white = '#787c99'
+black = "#323437"
+blue = "#80a0ff"
+cyan = "#79dac8"
+green = "#8cc85f"
+magenta = "#cf87e8"
+red = "#ff5454"
+white = "#c6c6c6"
+yellow = "#e3c78a"
 
 [colors.bright]
-black = '#444b6a'
-red = '#ff7a93'
-green = '#b9f27c'
-yellow = '#ff9e64'
-blue = '#7da6ff'
-magenta = '#bb9af7'
-cyan = '#0db9d7'
-white = '#acb0d0'
+black = "#949494"
+blue = "#74b2ff"
+cyan = "#85dc85"
+green = "#36c692"
+magenta = "#ae81ff"
+red = "#ff5189"
+white = "#e4e4e4"
+yellow = "#c6c684"
