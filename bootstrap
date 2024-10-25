@@ -50,6 +50,7 @@ function linking() {
   ln -s $(pwd)/.gitignore ~/.gitignore
   ln -s $(pwd)/.fdignore ~/.fdignore
   ln -s $(pwd)/.vimrc ~/.vimrc
+  ln -s $(pwd)/.ideavimrc ~/.ideavimrc
 
   mkdir -p ${XDG_CONFIG_HOME:=~/.config}
   ln -s $(pwd)/alacritty $XDG_CONFIG_HOME/alacritty

@@ -1,0 +1,41 @@
+" .ideavimrc is a configuration file for IdeaVim plugin. It uses
+"   the same commands as the original .vimrc configuration.
+" You can find a list of commands here: https://jb.gg/h38q75
+" Find more examples here: https://jb.gg/share-ideavimrc
+
+" Source your .vimrc
+source ~/.vimrc
+
+" --- Enable IdeaVim plugins https://jb.gg/ideavim-plugins
+set surround
+set multiple-cursors
+set commentary
+
+set ideajoin
+set ideastatusicon=gray
+
+" -- Map IDE actions to IdeaVim -- https://jb.gg/abva4t
+nnoremap <leader>g :action FindInPath<CR>
+vnoremap <leader>g :action FindInPath<CR>
+
+nnoremap <silent> gf :action ReformatCode<CR>
+vnoremap <silent> gf :action ReformatCode<CR>
+
+nnoremap gu :action FindUsages<CR>
+vnoremap gu :action FindUsages<CR>
+
+nnoremap gd :action GotoDeclaration<CR>
+nnoremap gi :action GotoImplementation<CR>
+
+nnoremap <leader>f :action GotoFile<CR>
+vnoremap <leader>f :action GotoFile<CR>
+
+nnoremap <leader>F :action GotoClass<CR>
+vnoremap <leader>F :action GotoClass<CR>
+
+nnoremap <leader>g :action SearchEverywhere<CR>
+vnoremap <leader>g :action SearchEverywhere<CR>
+
+nnoremap <leader>b :action RecentFiles<CR>
+
+nnoremap <leader>T :action RunClass<CR>
