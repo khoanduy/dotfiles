@@ -26,8 +26,8 @@ Plug 'mbbill/undotree'
 " Neovim file explorer: edit your filesystem like a buffer
 Plug 'stevearc/oil.nvim'
 
-" A dark charcoal theme for modern Neovim & classic Vim
-Plug 'bluz71/vim-moonfly-colors', { 'as': 'moonfly' }
+" One dark and light colorscheme
+Plug 'navarasu/onedark.nvim'
 
 " LSP support
 Plug 'neovim/nvim-lspconfig'
@@ -51,10 +51,8 @@ augroup oil_config
 augroup END
 
 " Colorscheme
-let g:moonflyTransparent=v:true
-let g:moonflyItalics=v:false
-let g:moonflyWinSeparator=2
-colorscheme moonfly
+let g:onedark_config = { 'style': 'warmer' }
+colorscheme onedark
 
 " Disable some background
 hi! Statusline ctermbg=NONE guibg=NONE
