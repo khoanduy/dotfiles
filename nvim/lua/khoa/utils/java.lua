@@ -1,9 +1,9 @@
 local M = {}
 
-function M.get_java_module(path)
+function M.get_java_module(file_path)
   local dirs = {}
   local mpos = 0
-  for dir in string.gmatch(path, "([^".. "/" .."]+)") do
+  for dir in string.gmatch(file_path, "([^".. "/" .."]+)") do
     if (dir == 'src') then
       break
     else
@@ -39,13 +39,13 @@ function M.run_maven_test(args, method)
     return
   end
 
-  local path = vim.fn.expand("%:p")
+  local file_path = vim.fn.expand("%:p")
   local cwd = vim.fn.getcwd()
-  path = path:gsub(cwd .. "/", "")
+  file_path = file_path:gsub(cwd .. "/", "")
 
   local dirs = {}
   local is_test_file = false
-  for dir in string.gmatch(path, "([^".. "/" .."]+)") do
+  for dir in string.gmatch(file_path, "([^".. "/" .."]+)") do
     if is_test_file and dir ~= 'java' then
       table.insert(dirs, dir)
     end
@@ -60,7 +60,7 @@ function M.run_maven_test(args, method)
   end
 
   local win_name = dirs[#dirs]
-  local module = M.get_java_module(path)
+  local module = M.get_java_module(file_path)
   local test_class = table.concat(dirs, ".")
   test_class = test_class:sub(1, -6)
 
