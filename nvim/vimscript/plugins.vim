@@ -54,11 +54,6 @@ augroup END
 let g:onedark_config = { 'style': 'warmer' }
 colorscheme onedark
 
-" Disable some background
-hi! Statusline ctermbg=NONE guibg=NONE
-hi! StatuslineNC ctermbg=NONE guibg=NONE
-hi! Pmenu ctermbg=NONE guibg=NONE
-
 " Gitgutter keymaps
 augroup gitgutter_config
   autocmd!
@@ -79,15 +74,16 @@ lua require('khoa.plugins.telescope')
 nnoremap <leader>f :lua require('telescope.builtin').find_files()<cr>
 vnoremap <leader>f "0y:lua require('telescope.builtin').find_files({ search_file = '<c-r>0' })<cr>
 nnoremap <leader>F :lua require('telescope.builtin').git_files()<cr>
-nnoremap <leader>s :lua require('telescope.builtin').find_files({ no_ignore = true, hidden = true, search_file = '<c-r>"' })
+nnoremap <leader>s :lua require('telescope.builtin').find_files({ no_ignore = true, hidden = true })
+nnoremap <leader>S :lua require('telescope.builtin').find_files({ no_ignore = true, hidden = true, search_file = '<c-r>+' })<cr>
 nnoremap <leader>b :lua require('telescope.builtin').buffers()<cr>
 nnoremap <leader>o :lua require('telescope.builtin').resume()<cr>
-nnoremap <leader>/ :lua require('telescope.builtin').live_grep()<cr>
-vnoremap <leader>/ "1y:lua require('telescope.builtin').grep_string({ search = '<c-r>1' })<cr>
+nnoremap <leader>g :lua require('telescope.builtin').live_grep()<cr>
+vnoremap <leader>g "0y:lua require('telescope.builtin').grep_string({ search = '<c-r>0' })<cr>
 
 " Telescope highlights
-hi! TelescopeNormal ctermbg=NONE guibg=NONE
-hi! TelescopePromptBorder ctermbg=NONE guibg=NONE
-hi! TelescopePromptTitle ctermbg=NONE guibg=NONE
-hi! TelescopeBorder ctermbg=NONE guibg=NONE
-hi! TelescopeTitle ctermbg=NONE guibg=NONE
+highlight! TelescopeNormal ctermbg=NONE guibg=NONE
+highlight! TelescopePromptBorder ctermbg=NONE guibg=NONE
+highlight! TelescopePromptTitle ctermbg=NONE guibg=NONE
+highlight! TelescopeBorder ctermbg=NONE guibg=NONE
+highlight! TelescopeTitle ctermbg=NONE guibg=NONE

@@ -41,6 +41,10 @@ set completeopt-=preview
 " Program to use for the :grep command
 set grepprg=rg\ --vimgrep\ --smart-case\ --hidden
 
+" Disable netrw
+let g:loaded_netrwPlugin=1
+let g:loaded_netrw=1
+
 " Re-map leader key
 let g:mapleader=' '
 

@@ -16,16 +16,8 @@ nnoremap <silent> <right> :vertical resize +2<cr>
 nnoremap <silent> <down> :resize +2<cr>
 nnoremap <silent> <left> :vertical resize -2<cr>
 
-" Dismiss highlight and insert esc
+" Dismiss highlight
 nnoremap <silent> H :noh<cr>
-inoremap <silent> jk <esc>
-
-" Pairs insert keymaps
-inoremap <silent> ( ()<left>
-inoremap <silent> [ []<left>
-inoremap <silent> { {}<left>
-inoremap <silent> " ""<left>
-inoremap <silent> ' ''<left>
 
 " Move selected visual block by J and K
 vnoremap <silent> J :m '>+1<cr>gv=gv
@@ -56,12 +48,12 @@ autocmd! QuickFixCmdPost [^l]* cwindow
 nnoremap <silent> <leader>u :UndotreeToggle<cr>
 
 " Quick exit some filetypes
-autocmd! FileType help,qf,fugitive,fugitiveblame nnoremap <silent> <buffer> q :q<cr>
+autocmd! FileType help,qf,fugitive,fugitiveblame,undotree nnoremap <silent> <buffer> q :q<cr>
 
 " Run maven test
 augroup java_config
   autocmd!
   autocmd FileType java nnoremap gt :lua require('khoa.utils.java').run_maven_test('-T 1C')<left><left>
-  autocmd FileType java vnoremap gt "2y:lua require('khoa.utils.java').run_maven_test('-T 1C', '<c-r>2')
+  autocmd FileType java vnoremap gt "1y:lua require('khoa.utils.java').run_maven_test('-T 1C', '<c-r>1')
 augroup END
 
