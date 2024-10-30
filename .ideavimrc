@@ -39,5 +39,4 @@ vnoremap <leader>g :action SearchEverywhere<CR>
 nnoremap <leader>b :action Switcher<CR>
 nnoremap <leader>B :action SwitcherAndRecentFiles<CR>
 
-nnoremap <leader>T :action RunClass<CR>
 nnoremap <leader>k :action ShowHoverInfo<CR>

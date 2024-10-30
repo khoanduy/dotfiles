@@ -16,8 +16,9 @@ nnoremap <silent> <right> :vertical resize +2<cr>
 nnoremap <silent> <down> :resize +2<cr>
 nnoremap <silent> <left> :vertical resize -2<cr>
 
-" Dismiss highlight
+" Dismiss highlight and insert mode
 nnoremap <silent> H :noh<cr>
+inoremap <silent> jk <esc>
 
 " Move selected visual block by J and K
 vnoremap <silent> J :m '>+1<cr>gv=gv

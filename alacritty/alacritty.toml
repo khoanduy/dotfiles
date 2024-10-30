@@ -48,29 +48,31 @@ y = 5
 x = 0
 y = 0
 
-# Thanks to Moonfly
+# Thanks to Alabaster
 [colors.primary]
-background = '#232326'
-foreground = '#a7aab0'
+background = '#f7f7f7'
+foreground = '#434343'
 
-# Normal colors
+[colors.cursor]
+text = '#f7f7f7'
+cursor = '#434343'
+
 [colors.normal]
-black   = '#1e2127'
-red     = '#e06c75'
-green   = '#98c379'
-yellow  = '#d19a66'
-blue    = '#61afef'
-magenta = '#c678dd'
-cyan    = '#56b6c2'
-white   = '#abb2bf'
+black = '#000000'
+red = '#aa3731'
+green = '#448c27'
+yellow = '#cb9000'
+blue = '#325cc0'
+magenta = '#7a3e9d'
+cyan = '#0083b2'
+white = '#bbbbbb'
 
-# Bright colors
 [colors.bright]
-black   = '#5c6370'
-red     = '#e06c75'
-green   = '#98c379'
-yellow  = '#d19a66'
-blue    = '#61afef'
-magenta = '#c678dd'
-cyan    = '#56b6c2'
-white   = '#ffffff'
+black = '#777777'
+red = '#f05050'
+green = '#60cb00'
+yellow = '#ffbc5d'
+blue = '#007acc'
+magenta = '#e64ce6'
+cyan = '#00aacb'
+white = '#ffffff'

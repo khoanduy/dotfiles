@@ -9,7 +9,7 @@ Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.8' }
 
 " Nvim Treesitter configurations and abstraction layer
-Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+" Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
 " A Git wrapper so awesome, it should be illegal
 Plug 'tpope/vim-fugitive'
@@ -27,7 +27,7 @@ Plug 'mbbill/undotree'
 Plug 'stevearc/oil.nvim'
 
 " One dark and light colorscheme
-Plug 'navarasu/onedark.nvim'
+Plug 'p00f/alabaster.nvim'
 
 " LSP support
 Plug 'neovim/nvim-lspconfig'
@@ -51,9 +51,12 @@ augroup oil_config
 augroup END
 
 " Colorscheme
-let g:onedark_config = { 'style': 'warmer' }
-colorscheme onedark
+set background=light
+set notermguicolors
+colorscheme vim
 
+" Gitgutter option
+let g:gitgutter_set_sign_backgrounds=1
 " Gitgutter keymaps
 augroup gitgutter_config
   autocmd!
@@ -65,7 +68,7 @@ augroup gitgutter_config
 augroup END
 
 " Treesitter
-lua require('khoa.plugins.treesitter')
+" lua require('khoa.plugins.treesitter')
 
 " Telescope
 lua require('khoa.plugins.telescope')
@@ -81,9 +84,17 @@ nnoremap <leader>o :lua require('telescope.builtin').resume()<cr>
 nnoremap <leader>g :lua require('telescope.builtin').live_grep()<cr>
 vnoremap <leader>g "0y:lua require('telescope.builtin').grep_string({ search = '<c-r>0' })<cr>
 
+" Set basic highlight groups
+highlight! Normal cterm=NONE ctermbg=NONE
+highlight! CursorLine cterm=bold term=bold
+highlight! Statusline cterm=NONE ctermbg=grey ctermfg=black
+highlight! StatuslineNC ctermfg=lightgrey ctermbg=black
+highlight! VertSplit cterm=NONE ctermfg=grey
+highlight! SignColumn ctermbg=NONE
+
 " Telescope highlights
-highlight! TelescopeNormal ctermbg=NONE guibg=NONE
-highlight! TelescopePromptBorder ctermbg=NONE guibg=NONE
-highlight! TelescopePromptTitle ctermbg=NONE guibg=NONE
-highlight! TelescopeBorder ctermbg=NONE guibg=NONE
-highlight! TelescopeTitle ctermbg=NONE guibg=NONE
+highlight! TelescopeNormal ctermbg=NONE
+highlight! TelescopePromptBorder ctermbg=NONE
+highlight! TelescopePromptTitle ctermbg=NONE
+highlight! TelescopeBorder ctermbg=NONE
+highlight! TelescopeTitle ctermbg=NONE

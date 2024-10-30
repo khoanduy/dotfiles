@@ -21,7 +21,6 @@ HISTSIZE=10000
 
 # Use 256 color term
 export TERM=xterm-256color
-export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=#626567'
 
 # Scripts directory
 export CHORES="$HOME/chores"
