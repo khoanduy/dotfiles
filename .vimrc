@@ -96,6 +96,8 @@ set wildmode=full
 set wildcharm=<c-z>
 
 " wildmenu settings
+set wildignore=*.o,*~,*.a,*.so,*.pyc,*.swp,.git/,*.class,*/target/*,.idea/
+set wildignore+=*/Library/*,*/.git/*,*/.hg/*,*/.svn/*,*/node_modules/*,*/.DS_Store
 set wildmenu
 
 " Program to use for the :grep command
@@ -107,7 +109,7 @@ set ttyfast
 
 " Set statusline last status and background
 set laststatus=2
-set background=light
+set background=dark
 
 " ----- Highlights -----
 " Highlight marked files in the same way search matches are
@@ -117,7 +119,7 @@ hi! link netrwMarkFile Search
 highlight! Normal cterm=NONE ctermbg=NONE
 highlight! CursorLine cterm=bold term=bold
 highlight! Statusline cterm=NONE ctermbg=grey ctermfg=black
-highlight! StatuslineNC ctermfg=lightgrey ctermbg=black
+highlight! StatuslineNC ctermfg=darkgrey ctermbg=black
 highlight! VertSplit cterm=NONE ctermfg=grey
 highlight! SignColumn ctermbg=NONE
 

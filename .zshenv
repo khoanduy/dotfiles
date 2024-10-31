@@ -11,8 +11,8 @@ export LC_ALL=en_US.UTF-8
 export LC_CTYPE=en_US.UTF-8
 
 # Default editor
-export EDITOR="nvim"
-export VISUAL="nvim"
+export EDITOR="vim"
+export VISUAL="vim"
 
 # Zsh history
 HISTFILE=$HOME/.zhistory

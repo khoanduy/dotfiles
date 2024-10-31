@@ -22,7 +22,7 @@ family = "JetBrainsMono Nerd Font"
 style = "Regular"
 
 [scrolling]
-history = 20000
+history = 100000
 multiplier = 2
 
 [cursor]
