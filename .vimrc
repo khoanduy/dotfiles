@@ -162,7 +162,7 @@ autocmd! FileType help,qf nnoremap <silent> <buffer> x :q<cr>
 autocmd! FileType netrw nnoremap <silent> <buffer> x :Rexplore<cr>
 
 " Search current marked text
-vnoremap // y/\V<c-r>=escape(@",'/\')<cr><cr>
+vnoremap // y/\V<c-r>=escape(@",'/\')
 
 " Copy marked text/paste to/from global register
 nnoremap <leader>Y "+Y
