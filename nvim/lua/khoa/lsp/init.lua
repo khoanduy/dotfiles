@@ -1,6 +1,6 @@
 -- LSP config
 local lspconfig = require("lspconfig")
-local servers = { "jdtls", "pyright", "gopls", "ts_ls" }
+local servers = { "zls", "jdtls", "pyright", "gopls", "ts_ls" }
 
 -- Mason
 require("mason").setup({})
@@ -40,7 +40,7 @@ vim.diagnostic.config({
       [vim.diagnostic.severity.ERROR] = '✖',
       [vim.diagnostic.severity.WARN] = '▲',
       [vim.diagnostic.severity.INFO] = '●',
-      [vim.diagnostic.severity.HINT] = '■',
+      [vim.diagnostic.severity.HINT] = '◆',
     }
   }
 })
