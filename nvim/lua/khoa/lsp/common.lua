@@ -1,6 +1,7 @@
 local M = {}
 
 function M.make_config()
+  local capabilities = require("cmp_nvim_lsp").default_capabilities()
   local default = {
     on_attach = function(_, bufnr)
       -- Enable completion triggered
@@ -26,11 +27,55 @@ function M.make_config()
       vim.keymap.set("n", "K", function() vim.lsp.buf.hover() end, { desc = "Hover current line", buffer = bufnr })
       vim.keymap.set("n", "<leader>h", function() vim.lsp.buf.signature_help() end, { desc = "Show signature help", buffer = bufnr })
     end,
+    capabilities = capabilities,
     root_dir = function()
       return vim.fn.getcwd()
     end,
   }
   return default
+end
+
+function M.nvim_cmp_config()
+  local luasnip = require("luasnip")
+  local cmp = require("cmp")
+  return {
+    snippet = {
+      expand = function(args)
+        luasnip.lsp_expand(args.body)
+      end,
+    },
+    mapping = cmp.mapping.preset.insert({
+      ["<c-d>"] = cmp.mapping.scroll_docs(-5),
+      ["<c-u>"] = cmp.mapping.scroll_docs(5),
+      ["<c-space>"] = cmp.mapping.complete(),
+      ["<tab>"] = cmp.mapping.confirm {
+        behavior = cmp.ConfirmBehavior.Replace,
+        select = true,
+      },
+      ["<c-n>"] = cmp.mapping(function(fallback)
+        if cmp.visible() then
+          cmp.select_next_item()
+        elseif luasnip.expand_or_jumpable() then
+          luasnip.expand_or_jump()
+        else
+          fallback()
+        end
+      end, { "i", "s" }),
+      ["<c-p>"] = cmp.mapping(function(fallback)
+        if cmp.visible() then
+          cmp.select_prev_item()
+        elseif luasnip.jumpable(-1) then
+          luasnip.jump(-1)
+        else
+          fallback()
+        end
+      end, { "i", "s" }),
+    }),
+    sources = {
+      { name = "nvim_lsp" },
+      { name = "luasnip" },
+    },
+  }
 end
 
 return M

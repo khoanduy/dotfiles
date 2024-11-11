@@ -9,7 +9,7 @@ Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.8' }
 
 " Nvim Treesitter configurations and abstraction layer
-" Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
 " A Git wrapper so awesome, it should be illegal
 Plug 'tpope/vim-fugitive'
@@ -29,11 +29,21 @@ Plug 'stevearc/oil.nvim'
 " One dark and light colorscheme
 Plug 'p00f/alabaster.nvim'
 
+Plug 'windwp/nvim-autopairs'
+
 " LSP support
 Plug 'neovim/nvim-lspconfig'
 Plug 'williamboman/mason.nvim'
 Plug 'williamboman/mason-lspconfig.nvim'
 Plug 'mfussenegger/nvim-jdtls'
+
+" Autocompletion
+Plug 'hrsh7th/nvim-cmp'
+Plug 'hrsh7th/cmp-nvim-lsp'
+Plug 'saadparwaiz1/cmp_luasnip'
+
+" Snippets
+Plug 'L3MON4D3/LuaSnip'
 
 " ----- End plugin definitions -----
 call plug#end()
@@ -68,7 +78,7 @@ augroup gitgutter_config
 augroup END
 
 " Treesitter
-" lua require('khoa.plugins.treesitter')
+lua require('khoa.plugins.treesitter')
 
 " Telescope
 lua require('khoa.plugins.telescope')
@@ -98,3 +108,6 @@ highlight! TelescopePromptBorder ctermbg=NONE
 highlight! TelescopePromptTitle ctermbg=NONE
 highlight! TelescopeBorder ctermbg=NONE
 highlight! TelescopeTitle ctermbg=NONE
+
+" Autopairs setup
+lua require("nvim-autopairs").setup {}

@@ -71,6 +71,7 @@ local config = {
     bundles = { }
   },
   on_attach = require("khoa.lsp.common").make_config().on_attach,
+  capabilities = require("cmp_nvim_lsp").default_capabilities()
 }
 
 -- This starts a new client & server,

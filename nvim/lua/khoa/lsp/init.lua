@@ -22,6 +22,9 @@ for _, lsp in ipairs(servers) do
   end -- For Java, use nvim-jdtls instead
 end
 
+-- nvim-cmp setup
+require("cmp").setup(require("khoa.lsp.common").nvim_cmp_config())
+
 -- Diagnostic sign symbols
 vim.lsp.handlers["textDocument/publishDiagnostics"] =
   vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
