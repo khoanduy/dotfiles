@@ -48,31 +48,31 @@ y = 5
 x = 0
 y = 0
 
-# Thanks to Alabaster
+# Thanks to Dracular+
 [colors.primary]
-background = '#f7f7f7'
-foreground = '#434343'
+background = '#212121'
+foreground = '#f8f8f2'
 
 [colors.cursor]
-text = '#f7f7f7'
-cursor = '#434343'
+text = '#0e1415'
+cursor = '#eceff4'
 
 [colors.normal]
-black = '#000000'
-red = '#aa3731'
-green = '#448c27'
-yellow = '#cb9000'
-blue = '#325cc0'
-magenta = '#7a3e9d'
-cyan = '#0083b2'
-white = '#bbbbbb'
+black = '#21222c'
+red = '#ff5555'
+green = '#50fa7b'
+yellow = '#ffcb6b'
+blue = '#82aaff'
+magenta = '#c792ea'
+cyan = '#8be9fd'
+white = '#f8f9f2'
 
 [colors.bright]
-black = '#777777'
-red = '#f05050'
-green = '#60cb00'
-yellow = '#ffbc5d'
-blue = '#007acc'
-magenta = '#e64ce6'
-cyan = '#00aacb'
-white = '#ffffff'
+black = '#545454'
+red = '#ff6e6e'
+green = '#69ff94'
+yellow = '#ffcb6b'
+blue = '#d6acff'
+magenta = '#ff92df'
+cyan = '#a4ffff'
+white = '#f8f8f2'

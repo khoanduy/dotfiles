@@ -9,7 +9,7 @@ Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.8' }
 
 " Nvim Treesitter configurations and abstraction layer
-Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+" Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
 " A Git wrapper so awesome, it should be illegal
 Plug 'tpope/vim-fugitive'
@@ -26,9 +26,7 @@ Plug 'mbbill/undotree'
 " Neovim file explorer: edit your filesystem like a buffer
 Plug 'stevearc/oil.nvim'
 
-" One dark and light colorscheme
-Plug 'p00f/alabaster.nvim'
-
+" autopairs for neovim written in lua
 Plug 'windwp/nvim-autopairs'
 
 " LSP support
@@ -61,7 +59,7 @@ augroup oil_config
 augroup END
 
 " Colorscheme
-set background=light
+set background=dark
 set notermguicolors
 colorscheme vim
 
@@ -78,7 +76,7 @@ augroup gitgutter_config
 augroup END
 
 " Treesitter
-lua require('khoa.plugins.treesitter')
+" lua require('khoa.plugins.treesitter')
 
 " Telescope
 lua require('khoa.plugins.telescope')
@@ -98,16 +96,9 @@ vnoremap <leader>g "0y:lua require('telescope.builtin').grep_string({ search = '
 highlight! Normal cterm=NONE ctermbg=NONE
 highlight! CursorLine cterm=bold term=bold
 highlight! Statusline cterm=NONE ctermbg=grey ctermfg=black
-highlight! StatuslineNC ctermfg=lightgrey ctermbg=black
+highlight! StatuslineNC ctermfg=darkgrey ctermbg=black
 highlight! VertSplit cterm=NONE ctermfg=grey
 highlight! SignColumn ctermbg=NONE
-
-" Telescope highlights
-highlight! TelescopeNormal ctermbg=NONE
-highlight! TelescopePromptBorder ctermbg=NONE
-highlight! TelescopePromptTitle ctermbg=NONE
-highlight! TelescopeBorder ctermbg=NONE
-highlight! TelescopeTitle ctermbg=NONE
 
 " Autopairs setup
 lua require("nvim-autopairs").setup {}
