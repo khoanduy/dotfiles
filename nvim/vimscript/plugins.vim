@@ -9,25 +9,28 @@ Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.8' }
 
 " Nvim Treesitter configurations and abstraction layer
-" Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }
 
-" A Git wrapper so awesome, it should be illegal
-Plug 'tpope/vim-fugitive'
-
-" A Vim plugin which shows git diff markers in the sign column and stages/previews/undoes hunks and partial hunks
-Plug 'airblade/vim-gitgutter'
-
-" Delete/change/add parentheses/quotes/XML-tags/much more with ease
-Plug 'tpope/vim-surround'
-
-" The undo history visualizer for Vim
-Plug 'mbbill/undotree'
+" Soho vibes for Neovim
+Plug 'rose-pine/neovim', { 'as': 'rose-pine' }
 
 " Neovim file explorer: edit your filesystem like a buffer
 Plug 'stevearc/oil.nvim'
 
 " autopairs for neovim written in lua
 Plug 'windwp/nvim-autopairs'
+
+" A Git wrapper so awesome, it should be illegal
+Plug 'tpope/vim-fugitive'
+
+" Delete/change/add parentheses/quotes/XML-tags/much more with ease
+Plug 'tpope/vim-surround'
+
+" Git integration for buffers
+Plug 'lewis6991/gitsigns.nvim'
+
+" The undo history visualizer for Vim
+Plug 'mbbill/undotree'
 
 " LSP support
 Plug 'neovim/nvim-lspconfig'
@@ -46,7 +49,7 @@ Plug 'L3MON4D3/LuaSnip'
 " ----- End plugin definitions -----
 call plug#end()
 
-" Oil nvim
+" Oil setup
 lua require('khoa.plugins.oil')
 " Oil keymaps
 augroup oil_config
@@ -60,23 +63,23 @@ augroup END
 
 " Colorscheme
 set background=dark
-set notermguicolors
-colorscheme vim
+colorscheme rose-pine
 
-" Gitgutter option
-let g:gitgutter_set_sign_backgrounds=1
-" Gitgutter keymaps
-augroup gitgutter_config
+" GitSigns setup
+lua require('gitsigns').setup({ numhl = true })
+" GitSigns keymap
+augroup gitsigns_config
   autocmd!
-  nnoremap <silent> ]h :GitGutterNextHunk<cr>
-  nnoremap <silent> [h :GitGutterPrevHunk<cr>
-  nnoremap <silent> <leader>hp :GitGutterPreviewHunk<cr>
-  nnoremap <silent> <leader>hs :GitGutterToggle<cr>
-  nnoremap <silent> <leader>hu :GitGutterUndoHunk<cr>
+  nnoremap <silent> ]h :Gitsigns next_hunk<cr>
+  nnoremap <silent> [h :Gitsigns prev_hunk<cr>
+  nnoremap <silent> <leader>hp :Gitsigns preview_hunk_inline<cr>
+  nnoremap <silent> <leader>hs :Gitsigns stage_hunk<cr>
+  nnoremap <silent> <leader>hS :Gitsigns undo_stage_hunk<cr>
+  nnoremap <silent> <leader>hu :Gitsigns reset_hunk<cr>
 augroup END
 
 " Treesitter
-" lua require('khoa.plugins.treesitter')
+lua require('khoa.plugins.treesitter')
 
 " Telescope
 lua require('khoa.plugins.telescope')
@@ -91,14 +94,6 @@ nnoremap <leader>b :lua require('telescope.builtin').buffers()<cr>
 nnoremap <leader>o :lua require('telescope.builtin').resume()<cr>
 nnoremap <leader>g :lua require('telescope.builtin').live_grep()<cr>
 vnoremap <leader>g "0y:lua require('telescope.builtin').grep_string({ search = '<c-r>0' })<cr>
-
-" Set basic highlight groups
-highlight! Normal cterm=NONE ctermbg=NONE
-highlight! CursorLine cterm=bold term=bold
-highlight! Statusline cterm=NONE ctermbg=grey ctermfg=black
-highlight! StatuslineNC ctermfg=darkgrey ctermbg=black
-highlight! VertSplit cterm=NONE ctermfg=grey
-highlight! SignColumn ctermbg=NONE
 
 " Autopairs setup
 lua require("nvim-autopairs").setup {}

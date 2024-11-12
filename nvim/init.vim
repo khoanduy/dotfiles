@@ -1,4 +1,6 @@
 " ----- General settings -----
+lua vim.loader.enable()
+
 " Add numbers to each line on the left-hand side.
 set number
 set relativenumber
@@ -55,3 +57,11 @@ let g:mapleader=' '
 source $XDG_CONFIG_HOME/nvim/vimscript/plugins.vim
 source $XDG_CONFIG_HOME/nvim/vimscript/keymaps.vim
 lua require("khoa.lsp")
+
+" Set basic highlight groups
+highlight! Normal cterm=NONE ctermbg=NONE
+highlight! CursorLine cterm=bold term=bold
+highlight! Statusline cterm=NONE ctermbg=grey ctermfg=black
+highlight! StatuslineNC ctermfg=darkgrey ctermbg=black
+highlight! VertSplit cterm=NONE ctermfg=grey
+highlight! SignColumn ctermbg=NONE
