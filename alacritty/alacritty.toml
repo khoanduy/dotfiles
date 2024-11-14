@@ -48,43 +48,31 @@ y = 5
 x = 0
 y = 0
 
-# Thanks to Rose Pine
+# Thanks to Alabaster
 [colors.primary]
-background = '#191724'
-foreground = '#e0def4'
+background = '#F7F7F7'
+foreground = '#434343'
 
 [colors.cursor]
-text = '#e0def4'
-cursor = '#524f67'
-
-[colors.vi_mode_cursor]
-text = '#e0def4'
-cursor = '#524f67'
-
-[colors.selection]
-text = '#e0def4'
-background = '#403d52'
+text = '#F7F7F7'
+cursor = '#434343'
 
 [colors.normal]
-black = '#26233a'
-red = '#eb6f92'
-green = '#31748f'
-yellow = '#f6c177'
-blue = '#9ccfd8'
-magenta = '#c4a7e7'
-cyan = '#ebbcba'
-white = '#e0def4'
+black = '#000000'
+red = '#AA3731'
+green = '#448C27'
+yellow = '#CB9000'
+blue = '#325CC0'
+magenta = '#7A3E9D'
+cyan = '#0083B2'
+white = '#BBBBBB'
 
 [colors.bright]
-black = '#6e6a86'
-red = '#eb6f92'
-green = '#31748f'
-yellow = '#f6c177'
-blue = '#9ccfd8'
-magenta = '#c4a7e7'
-cyan = '#ebbcba'
-white = '#e0def4'
-
-[colors.hints]
-start = {foreground = '#908caa', background = '#1f1d2e' }
-end = { foreground = '#6e6a86', background = '#1f1d2e' }
+black = '#777777'
+red = '#F05050'
+green = '#60CB00'
+yellow = '#FFBC5D'
+blue = '#007ACC'
+magenta = '#E64CE6'
+cyan = '#00AACB'
+white = '#FFFFFF'

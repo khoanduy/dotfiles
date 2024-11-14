@@ -11,9 +11,6 @@ Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.8' }
 " Nvim Treesitter configurations and abstraction layer
 Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }
 
-" Soho vibes for Neovim
-Plug 'rose-pine/neovim', { 'as': 'rose-pine' }
-
 " Neovim file explorer: edit your filesystem like a buffer
 Plug 'stevearc/oil.nvim'
 
@@ -62,8 +59,9 @@ augroup oil_config
 augroup END
 
 " Colorscheme
-set background=dark
-colorscheme rose-pine
+set background=light
+set notermguicolors
+colorscheme vim
 
 " GitSigns setup
 lua require('gitsigns').setup({ numhl = true })
