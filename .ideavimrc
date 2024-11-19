@@ -58,3 +58,7 @@ nnoremap - :action SelectInProjectView<CR>
 
 " Hide all windows
 nnoremap X :action HideAllWindows<CR>
+
+" Diagnostics navigation
+nnoremap ]d :action GotoNextError<CR>
+nnoremap [d :action GotoPreviousError<CR>
