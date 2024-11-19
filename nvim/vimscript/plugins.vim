@@ -43,6 +43,9 @@ Plug 'saadparwaiz1/cmp_luasnip'
 " Snippets
 Plug 'L3MON4D3/LuaSnip'
 
+" Neovim plugin for GitHub Copilot
+Plug 'github/copilot.vim'
+
 " ----- End plugin definitions -----
 call plug#end()
 
