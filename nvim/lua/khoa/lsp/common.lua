@@ -1,7 +1,6 @@
 local M = {}
 
 function M.make_config()
-  local capabilities = require("cmp_nvim_lsp").default_capabilities()
   local default = {
     on_attach = function(_, bufnr)
       -- Enable completion triggered
@@ -27,7 +26,7 @@ function M.make_config()
       vim.keymap.set("n", "K", function() vim.lsp.buf.hover() end, { desc = "Hover current line", buffer = bufnr })
       vim.keymap.set("n", "<leader>h", function() vim.lsp.buf.signature_help() end, { desc = "Show signature help", buffer = bufnr })
     end,
-    capabilities = capabilities,
+    capabilities = require("cmp_nvim_lsp").default_capabilities(),
     root_dir = function()
       return vim.fn.getcwd()
     end,

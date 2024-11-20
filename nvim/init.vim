@@ -62,6 +62,6 @@ lua require("khoa.lsp")
 highlight! Normal cterm=NONE ctermbg=NONE
 highlight! CursorLine cterm=bold term=bold
 highlight! Statusline cterm=NONE ctermbg=grey ctermfg=black
-highlight! StatuslineNC ctermfg=lightgrey ctermbg=black
+highlight! StatuslineNC ctermfg=darkgrey ctermbg=black
 highlight! VertSplit cterm=NONE ctermfg=grey
 highlight! SignColumn ctermbg=NONE

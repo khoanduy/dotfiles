@@ -23,7 +23,7 @@ for _, lsp in ipairs(servers) do
 end
 
 -- nvim-cmp setup
-require("cmp").setup(require("khoa.lsp.common").nvim_cmp_config())
+-- require("cmp").setup(require("khoa.lsp.common").nvim_cmp_config())
 
 -- Diagnostic sign symbols
 vim.lsp.handlers["textDocument/publishDiagnostics"] =

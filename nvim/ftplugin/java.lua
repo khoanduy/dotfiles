@@ -8,6 +8,7 @@ vim.opt_local.shiftwidth = 4
 vim.opt_local.softtabstop = 4
 vim.opt_local.shiftround = true
 
+local common_config = require("khoa.lsp.common").make_config()
 local config = {
   cmd = {
     os.getenv("JDK17") .. "/bin/java",
@@ -47,14 +48,15 @@ local config = {
       codeGeneration = {
         toString = {
           template = "${object.className}{${member.name()}=${member.value}, ${otherMembers}}",
-          -- flags = {
-          -- 	allow_incremental_sync = true,
-          -- },
         },
         useBlocks = true,
       },
       configuration = {
         runtimes = {
+          {
+            name = "JavaSE-11",
+            path = os.getenv("JDK11"),
+          },
           {
             name = "JavaSE-17",
             path = os.getenv("JDK17"),
@@ -70,8 +72,8 @@ local config = {
   init_options = {
     bundles = { }
   },
-  on_attach = require("khoa.lsp.common").make_config().on_attach,
-  capabilities = require("cmp_nvim_lsp").default_capabilities()
+  on_attach = common_config.on_attach,
+  capabilities = common_config.capabilities,
 }
 
 -- This starts a new client & server,

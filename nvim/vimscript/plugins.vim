@@ -62,7 +62,7 @@ augroup oil_config
 augroup END
 
 " Colorscheme
-set background=light
+set background=dark
 set notermguicolors
 colorscheme vim
 
