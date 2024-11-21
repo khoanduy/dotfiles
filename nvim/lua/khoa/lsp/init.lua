@@ -1,6 +1,6 @@
 -- LSP config
 local lspconfig = require("lspconfig")
-local servers = { "zls", "jdtls", "pyright", "gopls", "ts_ls" }
+local servers = { "rust_analyzer", "jdtls", "pyright", "gopls", "lua_ls", "ts_ls" }
 
 -- Mason
 require("mason").setup({})
@@ -23,7 +23,7 @@ for _, lsp in ipairs(servers) do
 end
 
 -- nvim-cmp setup
--- require("cmp").setup(require("khoa.lsp.common").nvim_cmp_config())
+require("cmp").setup(require("khoa.lsp.common").nvim_cmp_config())
 
 -- Diagnostic sign symbols
 vim.lsp.handlers["textDocument/publishDiagnostics"] =

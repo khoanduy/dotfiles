@@ -37,9 +37,6 @@ set showmatch
 " The cursor is kept in the same column
 set nostartofline
 
-" Custom fillchars
-set fillchars=vert:\|
-
 " Get rid of scratch buffer
 set completeopt-=preview
 
@@ -62,6 +59,6 @@ lua require("khoa.lsp")
 highlight! Normal cterm=NONE ctermbg=NONE
 highlight! CursorLine cterm=bold term=bold
 highlight! Statusline cterm=NONE ctermbg=grey ctermfg=black
-highlight! StatuslineNC ctermfg=darkgrey ctermbg=black
+highlight! StatuslineNC ctermfg=lightgrey ctermbg=darkgrey
 highlight! VertSplit cterm=NONE ctermfg=grey
 highlight! SignColumn ctermbg=NONE

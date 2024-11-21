@@ -62,7 +62,7 @@ augroup oil_config
 augroup END
 
 " Colorscheme
-set background=dark
+set background=light
 set notermguicolors
 colorscheme vim
 
@@ -86,14 +86,14 @@ lua require('khoa.plugins.treesitter')
 lua require('khoa.plugins.telescope')
 
 " Telescope keymaps
-nnoremap <leader>f :lua require('telescope.builtin').find_files()<cr>
+nnoremap <leader>f <cmd>lua require('telescope.builtin').find_files()<cr>
 vnoremap <leader>f "0y:lua require('telescope.builtin').find_files({ search_file = '<c-r>0' })<cr>
-nnoremap <leader>F :lua require('telescope.builtin').git_files()<cr>
-nnoremap <leader>s :lua require('telescope.builtin').find_files({ no_ignore = true, hidden = true })
-nnoremap <leader>S :lua require('telescope.builtin').find_files({ no_ignore = true, hidden = true, search_file = '<c-r>+' })<cr>
-nnoremap <leader>b :lua require('telescope.builtin').buffers()<cr>
-nnoremap <leader>o :lua require('telescope.builtin').resume()<cr>
-nnoremap <leader>g :lua require('telescope.builtin').live_grep()<cr>
+nnoremap <leader>F <cmd>lua require('telescope.builtin').git_files()<cr>
+nnoremap <leader>s <cmd>lua require('telescope.builtin').find_files({ no_ignore = true, hidden = true })
+nnoremap <leader>S <cmd>lua require('telescope.builtin').find_files({ no_ignore = true, hidden = true, search_file = '<c-r>+' })<cr>
+nnoremap <leader>b <cmd>lua require('telescope.builtin').buffers()<cr>
+nnoremap <leader>o <cmd>lua require('telescope.builtin').resume()<cr>
+nnoremap <leader>g <cmd>lua require('telescope.builtin').live_grep()<cr>
 vnoremap <leader>g "0y:lua require('telescope.builtin').grep_string({ search = '<c-r>0' })<cr>
 
 " Autopairs setup

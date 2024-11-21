@@ -47,6 +47,9 @@ autocmd! QuickFixCmdPost [^l]* cwindow
 " Undotree toggle
 nnoremap <silent> <leader>u :UndotreeToggle<cr>
 
+let g:copilot_no_tab_map = v:true
+inoremap <silent><script><expr> <c-e> copilot#Accept('\<cr>')
+
 " Quick exit some filetypes
 autocmd! FileType help,qf,fugitive,fugitiveblame,undotree nnoremap <silent> <buffer> q :q<cr>
 
