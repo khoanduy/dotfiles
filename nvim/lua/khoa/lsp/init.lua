@@ -1,6 +1,6 @@
 -- LSP config
 local lspconfig = require("lspconfig")
-local servers = { "rust_analyzer", "jdtls", "pyright", "gopls", "lua_ls", "ts_ls" }
+local servers = { "gopls", "pyright", "zls", "lua_ls", "ts_ls" }
 
 -- Mason
 require("mason").setup({})
@@ -17,9 +17,7 @@ vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { desc = "Next diagnostic" }
 -- LSP servers default config
 local config = require("khoa.lsp.common").make_config()
 for _, lsp in ipairs(servers) do
-  if lsp ~= "jdtls" then
-    lspconfig[lsp].setup(config)
-  end -- For Java, use nvim-jdtls instead
+  lspconfig[lsp].setup(config)
 end
 
 -- nvim-cmp setup
