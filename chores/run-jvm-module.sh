@@ -5,7 +5,7 @@
 jdk=$JAVA_HOME
 
 # * REMEMBER to set this environment variable
-root=$JAVA_MODS_ROOT
+root=$REPOS
 
 # Get args
 module=$1

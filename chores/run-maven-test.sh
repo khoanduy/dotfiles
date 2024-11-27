@@ -1,7 +1,7 @@
 #!/bin/bash
 #vim:ft=bash
 
-root=$JAVA_MODS_ROOT
+root=$REPOS
 cd $root
 
 if [ -z ${1} ]; then

@@ -81,8 +81,7 @@ brew install alacritty
 echo "[-] Creating essential folders [-]"
 mkdir ~/.vimsess
 mkdir ~/chores
-mkdir ~/open-source
-mkdir ~/playground
+mkdir ~/repos
 
 # Change default shell
 # echo "[-] Change default shell to Zsh [-]"

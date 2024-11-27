@@ -26,6 +26,9 @@ export TERM=xterm-256color
 export CHORES="$HOME/chores"
 export PATH="$HOME/chores:$PATH"
 
+# Repositories
+export REPOS="$HOME/repos"
+
 # Fzf options
 export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
  --color=fg:#434343,bg:-1,hl:#325cc0,gutter:-1
