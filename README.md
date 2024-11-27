@@ -31,6 +31,7 @@ Finally, launch Vim (ignore all errors) and install all plugins using `:PlugInst
 ## Additional Notes
 If you are using `ctags`, it's very useful if you put the `ctags` related files in `~/.gitignore` 
 ```
+.DS_Store
 tags
 tags.lock
 tags.temp

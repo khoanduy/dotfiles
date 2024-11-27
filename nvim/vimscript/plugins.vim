@@ -4,18 +4,15 @@ call plug#begin()
 " List your plugins here
 " Make sure you use single quotes
 
-" Find, Filter, Preview, Pick. All lua, all the time.
-Plug 'nvim-lua/plenary.nvim'
-Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.8' }
+" A command-line fuzzy finder
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
 
 " Nvim Treesitter configurations and abstraction layer
 Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }
 
 " Neovim file explorer: edit your filesystem like a buffer
 Plug 'stevearc/oil.nvim'
-
-" autopairs for neovim written in lua
-Plug 'windwp/nvim-autopairs'
 
 " A Git wrapper so awesome, it should be illegal
 Plug 'tpope/vim-fugitive'
@@ -25,6 +22,9 @@ Plug 'tpope/vim-surround'
 
 " Git integration for buffers
 Plug 'lewis6991/gitsigns.nvim'
+
+" autopairs for neovim written in lua
+Plug 'windwp/nvim-autopairs'
 
 " The undo history visualizer for Vim
 Plug 'mbbill/undotree'
@@ -54,11 +54,11 @@ lua require('khoa.plugins.oil')
 " Oil keymaps
 augroup oil_config
   autocmd!
-  nnoremap <silent> - :Oil<cr>
-  autocmd FileType oil nnoremap <silent> <buffer> <c-h> <c-w>h
-  autocmd FileType oil nnoremap <silent> <buffer> <c-j> <c-w>j
-  autocmd FileType oil nnoremap <silent> <buffer> <c-k> <c-w>k
-  autocmd FileType oil nnoremap <silent> <buffer> <c-l> <c-w>l
+  nnoremap <silent> - :Oil<CR>
+  autocmd FileType oil nnoremap <silent> <buffer> <C-h> <C-w>h
+  autocmd FileType oil nnoremap <silent> <buffer> <C-j> <C-w>j
+  autocmd FileType oil nnoremap <silent> <buffer> <C-k> <C-w>k
+  autocmd FileType oil nnoremap <silent> <buffer> <C-l> <C-w>l
 augroup END
 
 " Colorscheme
@@ -71,30 +71,36 @@ lua require('gitsigns').setup({ numhl = true })
 " GitSigns keymap
 augroup gitsigns_config
   autocmd!
-  nnoremap <silent> ]h :Gitsigns next_hunk<cr>
-  nnoremap <silent> [h :Gitsigns prev_hunk<cr>
-  nnoremap <silent> <leader>hp :Gitsigns preview_hunk_inline<cr>
-  nnoremap <silent> <leader>hs :Gitsigns stage_hunk<cr>
-  nnoremap <silent> <leader>hS :Gitsigns undo_stage_hunk<cr>
-  nnoremap <silent> <leader>hu :Gitsigns reset_hunk<cr>
+  nnoremap <silent> ]h :Gitsigns next_hunk<CR>
+  nnoremap <silent> [h :Gitsigns prev_hunk<CR>
+  nnoremap <silent> <leader>hp :Gitsigns preview_hunk_inline<CR>
+  nnoremap <silent> <leader>hs :Gitsigns stage_hunk<CR>
+  nnoremap <silent> <leader>hS :Gitsigns undo_stage_hunk<CR>
+  nnoremap <silent> <leader>hu :Gitsigns reset_hunk<CR>
 augroup END
 
 " Treesitter
 lua require('khoa.plugins.treesitter')
 
-" Telescope
-lua require('khoa.plugins.telescope')
+" Fzf settings
+let g:fzf_vim = {}
+let g:fzf_vim.preview_window = ['right:35%']
+let g:fzf_layout = { 'down': '41%' }
+" Fuzzy finder keymaps
+nnoremap <leader>f :Files<CR>
+nnoremap <leader>F :GFiles<CR>
+nnoremap <leader>b :Buffers<CR>
+nnoremap <leader>g :Rg<CR>
+" Fuzzy finder extended keymaps
+vnoremap <leader>f "0y":Files <C-r>0<CR>
+vnoremap <leader>g "0y:Rg <C-r>0<CR>
 
-" Telescope keymaps
-nnoremap <leader>f <cmd>lua require('telescope.builtin').find_files()<cr>
-vnoremap <leader>f "0y:lua require('telescope.builtin').find_files({ search_file = '<c-r>0' })<cr>
-nnoremap <leader>F <cmd>lua require('telescope.builtin').git_files()<cr>
-nnoremap <leader>s <cmd>lua require('telescope.builtin').find_files({ no_ignore = true, hidden = true })
-nnoremap <leader>S <cmd>lua require('telescope.builtin').find_files({ no_ignore = true, hidden = true, search_file = '<c-r>+' })<cr>
-nnoremap <leader>b <cmd>lua require('telescope.builtin').buffers()<cr>
-nnoremap <leader>o <cmd>lua require('telescope.builtin').resume()<cr>
-nnoremap <leader>g <cmd>lua require('telescope.builtin').live_grep()<cr>
-vnoremap <leader>g "0y:lua require('telescope.builtin').grep_string({ search = '<c-r>0' })<cr>
+" Undotree toggle keymap
+nnoremap <silent> <leader>u :UndotreeToggle<CR>
+
+" Copilot settings
+let g:copilot_no_tab_map = v:true
+inoremap <silent><script><expr> <C-e> copilot#Accept('\<CR>')
 
 " Autopairs setup
 lua require("nvim-autopairs").setup {}

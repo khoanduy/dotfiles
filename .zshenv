@@ -11,8 +11,8 @@ export LC_ALL=en_US.UTF-8
 export LC_CTYPE=en_US.UTF-8
 
 # Default editor
-export EDITOR="vim"
-export VISUAL="vim"
+export EDITOR="nvim"
+export VISUAL="nvim"
 
 # Zsh history
 HISTFILE=$HOME/.zhistory
@@ -25,6 +25,16 @@ export TERM=xterm-256color
 # Scripts directory
 export CHORES="$HOME/chores"
 export PATH="$HOME/chores:$PATH"
+
+# Fzf options
+export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
+ --color=fg:#434343,bg:-1,hl:#325cc0,gutter:-1
+ --color=fg+:#434343,bg+:-1,hl+:#007acc,gutter:-1
+ --color=info:#448c27,prompt:#7a3e9d,pointer:#aa3731
+ --color=marker:#cb9000,spinner:#e64ce6,header:#f05050'
+
+# Setting fd as the default source for fzf
+export FZF_DEFAULT_COMMAND='fd --type f --strip-cwd-prefix --hidden'
 
 # JDK paths
 export JDK11="$HOME/.sdkman/candidates/java/11.0.24-amzn"

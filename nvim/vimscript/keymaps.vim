@@ -1,34 +1,34 @@
 " Remap switch region keys
-nnoremap <c-h> <c-w>h
-nnoremap <c-j> <c-w>j
-nnoremap <c-k> <c-w>k
-nnoremap <c-l> <c-w>l
+nnoremap <C-h> <C-w>h
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
 
 " Remap switch region keys within terminal
-tnoremap <c-h> <c-\><c-n><c-w>h
-tnoremap <c-j> <c-\><c-n><c-w>j
-tnoremap <c-k> <c-\><c-n><c-w>k
-tnoremap <c-l> <c-\><c-n><c-w>l
+tnoremap <C-j> <C-\><C-n><C-w>j
+tnoremap <C-k> <C-\><C-n><C-w>k
+tnoremap <C-h> <C-\><C-n><C-w>h
+tnoremap <C-l> <C-\><C-n><C-w>l
 
 " Re-size split windows using arrow keys
-nnoremap <silent> <up> :resize -2<cr>
-nnoremap <silent> <right> :vertical resize +2<cr>
-nnoremap <silent> <down> :resize +2<cr>
-nnoremap <silent> <left> :vertical resize -2<cr>
+nnoremap <silent> <Up> :resize -2<CR>
+nnoremap <silent> <Right> :vertical resize +2<CR>
+nnoremap <silent> <Down> :resize +2<CR>
+nnoremap <silent> <Left> :vertical resize -2<CR>
 
 " Dismiss highlight
-nnoremap <silent> H :noh<cr>
+nnoremap <silent> H :noh<CR>
 
 " Move selected visual block by J and K
-vnoremap <silent> J :m '>+1<cr>gv=gv
-vnoremap <silent> K :m '<-2<cr>gv=gv
+vnoremap <silent> J :m '>+1<CR>gv=gv
+vnoremap <silent> K :m '<-2<CR>gv=gv
 
 " Navigate through quickfix list
-nnoremap <silent> ]q :cnext<cr>zz
-nnoremap <silent> [q :cprev<cr>zz
+nnoremap <silent> ]q :cnext<CR>zz
+nnoremap <silent> [q :cprev<CR>zz
 
 " Search current marked text
-vnoremap // y/\V<c-r>=escape(@",'/\')<cr><cr>
+vnoremap // y/\V<C-r>=escape(@",'/\')<CR><CR>
 
 " Copy marked text/paste to/from global register
 nnoremap <leader>Y "+Y
@@ -38,20 +38,14 @@ nnoremap <leader>P "+P
 vnoremap <leader>p "+p
 
 " Search and replace
-nnoremap <leader>r :%s/<c-r><c-w>//g<left><left>
-vnoremap <leader>r "5y<esc>:%s/<c-r>5//g<left><left>
+nnoremap <leader>r :%s/<C-r><C-w>//g<Left><Left>
+vnoremap <leader>r "5y<Esc>:%s/<C-r>5//g<Left><Left>
 
 " Open the quickfix window whenever a quickfix command is executed
 autocmd! QuickFixCmdPost [^l]* cwindow
 
-" Undotree toggle
-nnoremap <silent> <leader>u :UndotreeToggle<cr>
-
-let g:copilot_no_tab_map = v:true
-inoremap <silent><script><expr> <c-e> copilot#Accept('\<cr>')
-
 " Quick exit some filetypes
-autocmd! FileType help,qf,fugitive,fugitiveblame,undotree nnoremap <silent> <buffer> q :q<cr>
+autocmd! FileType help,qf,fugitive,fugitiveblame,undotree nnoremap <silent> <buffer> q :q<CR>
 
 " Run maven test
 augroup java_config

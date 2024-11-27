@@ -60,8 +60,8 @@ linking
 
 # Install some extended packages
 echo "[-] Installing extended packages [-]"
-brew install tmux neovim zsh-autosuggestions parallel universal-ctags ripgrep pyenv
-brew install lazygit httpie
+brew install tmux neovim zsh-autosuggestions parallel ripgrep fzf
+brew install httpie pyenv universal-ctags
 
 # Download git-prompt.sh script
 echo "[-] Downloading git-prompt.sh script [-]"
