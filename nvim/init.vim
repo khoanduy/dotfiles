@@ -43,6 +43,11 @@ set completeopt-=preview
 " Program to use for the :grep command
 set grepprg=rg\ --vimgrep\ --smart-case\ --hidden
 
+" Set include path for C/C++ development on MacOS
+set path+=/Library/Developer/CommandLineTools/usr/include
+set path+=/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include
+set path+=/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1
+
 " Disable netrw
 let g:loaded_netrwPlugin=1
 let g:loaded_netrw=1

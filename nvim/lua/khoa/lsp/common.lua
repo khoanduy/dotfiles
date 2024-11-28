@@ -19,8 +19,8 @@ function M.make_config()
       vim.keymap.set("n", "<leader>a", function() vim.lsp.buf.code_action() end, { desc = "LSP code action", buffer = bufnr })
       vim.keymap.set("v", "<leader>a", function() vim.lsp.buf.code_action() end, { desc = "LSP code action", buffer = bufnr })
       vim.keymap.set("n", "<leader>R", function() vim.lsp.buf.rename() end, { desc = "Rename symbols", buffer = bufnr })
-      vim.keymap.set("n", "gf", function() vim.lsp.buf.format() end, { desc = "Re-format current buffer", buffer = bufnr })
-      vim.keymap.set("v", "gf", function() vim.lsp.buf.format() end, { desc = "Re-format current buffer", buffer = bufnr })
+      vim.keymap.set("n", "<leader>l", function() vim.lsp.buf.format() end, { desc = "Re-format current buffer", buffer = bufnr })
+      vim.keymap.set("v", "<leader>l", function() vim.lsp.buf.format() end, { desc = "Re-format current buffer", buffer = bufnr })
 
       -- LSP info
       vim.keymap.set("n", "K", function() vim.lsp.buf.hover() end, { desc = "Hover current line", buffer = bufnr })

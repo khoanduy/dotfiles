@@ -46,29 +46,29 @@ y = 0
 
 # Colorscheme
 [colors.primary]
-background = '#f7f7f7'
-foreground = '#434343'
+background = "0x151515"
+foreground = "0xdedede"
 
 [colors.cursor]
-text = '#f7f7f7'
-cursor = '#434343'
+text = "0xffffff"
+cursor = "0xffa460"
 
 [colors.normal]
-black = '#000000'
-red = '#aa3731'
-green = '#448c27'
-yellow = '#cb9000'
-blue = '#325cc0'
-magenta = '#7a3e9d'
-cyan = '#0083b2'
-white = '#bbbbbb'
+black = "0x929292"
+red = "0xe27373"
+green = "0x94b979"
+yellow = "0xffba7b"
+blue = "0x97bedc"
+magenta = "0xe1c0fa"
+cyan = "0x00988e"
+white = "0xdedede"
 
 [colors.bright]
-black = '#777777'
-red = '#f05050'
-green = '#60cb00'
-yellow = '#ffbc5d'
-blue = '#007acc'
-magenta = '#e64ce6'
-cyan = '#00aacb'
-white = '#ffffff'
+black = "0xbdbdbd"
+red = "0xffa1a1"
+green = "0xbddeab"
+yellow = "0xffdca0"
+blue = "0xb1d8f6"
+magenta = "0xfbdaff"
+cyan = "0x1ab2a8"
+white = "0xffffff"

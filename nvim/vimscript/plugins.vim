@@ -8,6 +8,10 @@ call plug#begin()
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 
+" A port of jellybeans colorscheme for neovim
+Plug 'rktjmp/lush.nvim'
+Plug 'metalelf0/jellybeans-nvim'
+
 " Nvim Treesitter configurations and abstraction layer
 Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }
 
@@ -62,9 +66,8 @@ augroup oil_config
 augroup END
 
 " Colorscheme
-set background=light
-set notermguicolors
-colorscheme vim
+set background=dark
+colorscheme jellybeans-nvim
 
 " GitSigns setup
 lua require('gitsigns').setup({ numhl = true })
