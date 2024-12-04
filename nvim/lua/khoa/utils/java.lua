@@ -21,7 +21,7 @@ function M.get_java_module(file_path)
     local trimmed = line:gsub("%s+", "")
     table.insert(lines, trimmed)
   end
-  
+
   return lines[#lines]
 end
 
@@ -71,8 +71,9 @@ function M.run_maven_test(args, method)
   end
 
   local command = '!tmux new-window -n "' .. win_name .. '" -d "mvn test ' ..
-    tostring(args) .. ' -pl :' .. module .. ' -Dtest=' .. test_class .. 
-    ' -DskipTests=false -Dgroups=small,medium"'
+    tostring(args) .. ' -pl :' .. module .. ' -Dtest=' .. test_class ..
+    ' -DskipTests=false -Dgroups=small,medium"; tmux set-window-option -t ' ..
+    win_name .. ' remain-on-exit on'
 
   vim.api.nvim_command(command)
 end

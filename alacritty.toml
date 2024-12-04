@@ -44,31 +44,31 @@ y = 5
 x = 0
 y = 0
 
-# Colorscheme
+# Thanks to Base16 Default Dark
 [colors.primary]
-background = "0x151515"
-foreground = "0xdedede"
+background = '#141414'
+foreground = '#d8d8d8'
 
 [colors.cursor]
-text = "0xffffff"
-cursor = "0xffa460"
+text = '#141414'
+cursor = '#d8d8d8'
 
 [colors.normal]
-black = "0x929292"
-red = "0xe27373"
-green = "0x94b979"
-yellow = "0xffba7b"
-blue = "0x97bedc"
-magenta = "0xe1c0fa"
-cyan = "0x00988e"
-white = "0xdedede"
+black = '#141414'
+red = '#ab4642'
+green = '#a1b56c'
+yellow = '#f7ca88'
+blue = '#7cafc2'
+magenta = '#ba8baf'
+cyan = '#86c1b9'
+white = '#d8d8d8'
 
 [colors.bright]
-black = "0xbdbdbd"
-red = "0xffa1a1"
-green = "0xbddeab"
-yellow = "0xffdca0"
-blue = "0xb1d8f6"
-magenta = "0xfbdaff"
-cyan = "0x1ab2a8"
-white = "0xffffff"
+black = '#585858'
+red = '#ab4642'
+green = '#a1b56c'
+yellow = '#f7ca88'
+blue = '#7cafc2'
+magenta = '#ba8baf'
+cyan = '#86c1b9'
+white = '#f8f8f8'

@@ -1,6 +1,6 @@
 -- LSP config
 local lspconfig = require("lspconfig")
-local servers = { "gopls", "pyright", "zls", "lua_ls", "ts_ls" }
+local servers = { "clangd", "gopls", "pyright", "lua_ls", "ts_ls" }
 
 -- Mason
 require("mason").setup({})
