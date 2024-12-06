@@ -2,7 +2,12 @@
 #vim:ft=bash
 
 # Fuzzy find the project directory
-dir=$(fd -t d -d 3 . ~/repos | fzf --tmux 80%)
+dir=$(fd -t d -d 3 . $REPOS | fzf --tmux 80%)
+
+# If the directory is empty, exit
+if [ -z "${dir}" ]; then
+  exit 0
+fi
 
 # Set the name to the directory name
 name=$(basename $dir)
