@@ -105,6 +105,7 @@ vnoremap <leader>g "0y:Rg <C-r>0<CR>
 nnoremap <silent> <leader>u :UndotreeToggle<CR>
 
 " Copilot settings
+let g:copilot_enabled = 0
 let g:copilot_no_tab_map = v:true
 inoremap <silent><script><expr> <C-e> copilot#Accept('\<CR>')
 
