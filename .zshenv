@@ -30,11 +30,11 @@ export PATH="$HOME/chores:$PATH"
 export REPOS="$HOME/repos"
 
 # Fzf options
-export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
- --color=fg:#dedede,bg:-1,hl:#97bedc,gutter:-1
- --color=fg+:#dedede,bg+:-1,hl+:#b1d8f6,gutter:-1
- --color=info:#94b979,prompt:#e1c0fa,pointer:#e27373
- --color=marker:#ffba7b,spinner:#fbdaff,header:#ffa1a1'
+export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS' 
+ --color=fg:#c0caf5,bg:-1,hl:#bb9af7,gutter:-1
+ --color=fg+:#c0caf5,bg+:-1,hl+:#7dcfff,gutter:-1
+ --color=info:#7aa2f7,prompt:#7dcfff,pointer:#7dcfff 
+ --color=marker:#9ece6a,spinner:#9ece6a,header:#9ece6a'
 
 # Setting fd as the default source for fzf
 export FZF_DEFAULT_COMMAND='fd --type f --strip-cwd-prefix --hidden'

@@ -8,9 +8,8 @@ call plug#begin()
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 
-" A port of jellybeans colorscheme for neovim
-Plug 'rktjmp/lush.nvim'
-Plug 'metalelf0/jellybeans-nvim'
+" A clean, dark Neovim theme written in Lua, with support for lsp, treesitter and lots of plugins.
+Plug 'folke/tokyonight.nvim'
 
 " Nvim Treesitter configurations and abstraction layer
 Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }
@@ -67,7 +66,7 @@ augroup END
 
 " Colorscheme
 set background=dark
-colorscheme jellybeans-nvim
+colorscheme tokyonight-night
 
 " GitSigns setup
 lua require('gitsigns').setup({ numhl = true })
@@ -89,6 +88,10 @@ lua require('khoa.plugins.treesitter')
 let g:fzf_vim = {}
 let g:fzf_vim.preview_window = ['right:35%']
 let g:fzf_layout = { 'down': '41%' }
+" Fzf highlight groups
+highlight! fzf1 guifg=grey ctermfg=grey guibg=NONE ctermbg=NONE
+highlight! fzf2 guifg=grey ctermfg=grey guibg=NONE ctermbg=NONE
+highlight! fzf3 guifg=grey ctermfg=grey guibg=NONE ctermbg=NONE
 " Fuzzy finder keymaps
 nnoremap <leader>f :Files<CR>
 nnoremap <leader>F :GFiles<CR>
