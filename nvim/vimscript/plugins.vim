@@ -32,6 +32,14 @@ Plug 'windwp/nvim-autopairs'
 " The undo history visualizer for Vim
 Plug 'mbbill/undotree'
 
+" Personal Wiki for Vim
+Plug 'vimwiki/vimwiki'
+
+" Modern database interface for Vim
+Plug 'tpope/vim-dadbod'
+Plug 'kristijanhusak/vim-dadbod-ui'
+Plug 'kristijanhusak/vim-dadbod-completion'
+
 " LSP support
 Plug 'neovim/nvim-lspconfig'
 Plug 'williamboman/mason.nvim'
@@ -104,10 +112,20 @@ vnoremap <leader>g "0y:Rg <C-r>0<CR>
 " Undotree toggle keymap
 nnoremap <silent> <leader>u :UndotreeToggle<CR>
 
+" Vimwiki setup
+let g:vimwiki_global_ext = 0
+let g:vimwiki_list = [{'path': '~/vimwiki/',
+ \ 'syntax': 'markdown', 'ext': 'md'}]
+" Vimwiki keymap
+nnoremap <leader>wk :VimwikiIndex<CR>
+
+" Autopairs setup
+lua require("nvim-autopairs").setup {}
+
+" Dadbod UI keymap
+nnoremap <leader>db :DBUIToggle<CR>
+
 " Copilot settings
 let g:copilot_enabled = 0
 let g:copilot_no_tab_map = v:true
 inoremap <silent><script><expr> <C-e> copilot#Accept('\<CR>')
-
-" Autopairs setup
-lua require("nvim-autopairs").setup {}
