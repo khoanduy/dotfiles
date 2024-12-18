@@ -8,17 +8,21 @@ call plug#begin()
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 
-" A clean, dark Neovim theme written in Lua, with support for lsp, treesitter and lots of plugins.
-Plug 'folke/tokyonight.nvim'
-
 " Nvim Treesitter configurations and abstraction layer
 Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }
+Plug 'nvim-treesitter/nvim-treesitter-textobjects'
+
+" The missing motion for Vim
+Plug 'justinmk/vim-sneak'
 
 " Neovim file explorer: edit your filesystem like a buffer
 Plug 'stevearc/oil.nvim'
 
 " A Git wrapper so awesome, it should be illegal
 Plug 'tpope/vim-fugitive'
+
+" enable repeating supported plugin maps with "."
+Plug 'tpope/vim-repeat'
 
 " Delete/change/add parentheses/quotes/XML-tags/much more with ease
 Plug 'tpope/vim-surround'
@@ -54,6 +58,9 @@ Plug 'saadparwaiz1/cmp_luasnip'
 " Snippets
 Plug 'L3MON4D3/LuaSnip'
 
+" A clean, dark Neovim theme written in Lua, with support for lsp, treesitter and lots of plugins.
+Plug 'folke/tokyonight.nvim'
+
 " Neovim plugin for GitHub Copilot
 Plug 'github/copilot.vim'
 
@@ -63,7 +70,7 @@ call plug#end()
 " Oil setup
 lua require('khoa.plugins.oil')
 " Oil keymaps
-augroup oil_config
+augroup oil_keymaps
   autocmd!
   nnoremap <silent> - :Oil<CR>
   autocmd FileType oil nnoremap <silent> <buffer> <C-h> <C-w>h
@@ -74,12 +81,13 @@ augroup END
 
 " Colorscheme
 set background=dark
-colorscheme tokyonight-night
+lua require("tokyonight").setup({ style = "night" })
+colorscheme tokyonight
 
 " GitSigns setup
 lua require('gitsigns').setup({ numhl = true })
-" GitSigns keymap
-augroup gitsigns_config
+" GitSigns keymaps
+augroup gitsigns_keymaps
   autocmd!
   nnoremap <silent> ]h :Gitsigns next_hunk<CR>
   nnoremap <silent> [h :Gitsigns prev_hunk<CR>
@@ -101,13 +109,17 @@ highlight! fzf1 guifg=grey ctermfg=grey guibg=NONE ctermbg=NONE
 highlight! fzf2 guifg=grey ctermfg=grey guibg=NONE ctermbg=NONE
 highlight! fzf3 guifg=grey ctermfg=grey guibg=NONE ctermbg=NONE
 " Fuzzy finder keymaps
-nnoremap <leader>f :Files<CR>
-nnoremap <leader>F :GFiles<CR>
-nnoremap <leader>b :Buffers<CR>
-nnoremap <leader>g :Rg<CR>
-" Fuzzy finder extended keymaps
-vnoremap <leader>f "0y":Files <C-r>0<CR>
-vnoremap <leader>g "0y:Rg <C-r>0<CR>
+augroup fzf_keymaps
+  autocmd!
+  nnoremap <leader>f :Files<CR>
+  nnoremap <leader>F :GFiles<CR>
+  nnoremap <leader>b :Buffers<CR>
+  nnoremap <leader>j :Jumps<CR>
+  nnoremap <leader>m :Marks<CR>
+  nnoremap <leader>g :Rg<CR>
+  vnoremap <leader>f "0y":Files <C-r>0<CR>
+  vnoremap <leader>g "0y:Rg <C-r>0<CR>
+augroup END
 
 " Undotree toggle keymap
 nnoremap <silent> <leader>u :UndotreeToggle<CR>
@@ -121,6 +133,15 @@ nnoremap <leader>wk :VimwikiIndex<CR>
 
 " Autopairs setup
 lua require("nvim-autopairs").setup {}
+
+" Vim-sneak label
+let g:sneak#label = 1
+" Vim-sneak keymaps
+augroup vim_sneak_keymaps
+  autocmd!
+  map f <Plug>Sneak_s
+  map F <Plug>Sneak_S
+augroup END
 
 " Dadbod UI keymap
 nnoremap <leader>db :DBUIToggle<CR>
