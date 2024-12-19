@@ -22,10 +22,5 @@ return {
       { "<leader>f", '"0y:Files <C-r>0<CR>', desc = "Find Files match selected text", mode = "v" },
       { "<leader>g", '"0y:Rg <C-r>0<CR>', desc = "Grep selected text", mode = "v" },
     })
-
-    -- Highlight groups
-    vim.api.nvim_set_hl(0, "fzf1", { fg = "grey", bg = "NONE" })
-    vim.api.nvim_set_hl(0, "fzf2", { fg = "grey", bg = "NONE" })
-    vim.api.nvim_set_hl(0, "fzf3", { fg = "grey", bg = "NONE" })
   end
 }

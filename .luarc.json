@@ -1,0 +1,9 @@
+{
+    "diagnostics.globals": [
+        "globals",
+        "read_globals",
+        "ignore",
+        "cache",
+        "vim"
+    ]
+}
