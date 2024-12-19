@@ -28,8 +28,8 @@ blink_interval = 650
 [window]
 decorations = "buttonless"
 dynamic_padding = true
-opacity = 0.91
-blur = true
+opacity = 1
+blur = false
 option_as_alt = "both"
 
 [window.dimensions]

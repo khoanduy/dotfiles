@@ -2,10 +2,6 @@
 These are my personal configuration files, which could be changed as I develop my environment on macOS.
 
 
-## Showcase
-![image](./screenshots/vim-screenshot.png)
-
-
 ## Installation
 Clone repository to your local device and `cd` into it:
 ```shell
