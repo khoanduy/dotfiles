@@ -20,14 +20,8 @@ Plug 'stevearc/oil.nvim'
 " Git integration for buffers
 Plug 'lewis6991/gitsigns.nvim'
 
-" The missing motion for Vim
-Plug 'justinmk/vim-sneak'
-
 " A Git wrapper so awesome, it should be illegal
 Plug 'tpope/vim-fugitive'
-
-" enable repeating supported plugin maps with "."
-Plug 'tpope/vim-repeat'
 
 " Delete/change/add parentheses/quotes/XML-tags/much more with ease
 Plug 'tpope/vim-surround'
@@ -115,15 +109,6 @@ nnoremap <silent> <leader>u :UndotreeToggle<CR>
 " Vimwiki options
 let g:vimwiki_global_ext = 0
 let g:vimwiki_list = [{'path': '~/vimwiki/', 'syntax': 'markdown', 'ext': 'md'}]
-
-" Vim-sneak options
-let g:sneak#label = 1
-" Vim-sneak keymaps
-augroup vim_sneak_keymaps
-  autocmd!
-  map f <Plug>Sneak_s
-  map F <Plug>Sneak_S
-augroup END
 
 " Dadbod UI keymap
 nnoremap <leader>db :DBUIToggle<CR>
