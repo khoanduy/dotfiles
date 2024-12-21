@@ -1,6 +1,6 @@
 " Add numbers to each line on the left-hand side.
 set number
-set laststatus=3
+set relativenumber
 
 " Set default indentation
 set expandtab

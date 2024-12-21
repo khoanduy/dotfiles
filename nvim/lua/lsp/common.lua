@@ -35,36 +35,26 @@ function M.make_config()
 end
 
 function M.nvim_cmp_config()
-  local luasnip = require("luasnip")
   local cmp = require("cmp")
   return {
-    snippet = {
-      expand = function(args)
-        luasnip.lsp_expand(args.body)
-      end,
-    },
     mapping = cmp.mapping.preset.insert({
-      ["<c-d>"] = cmp.mapping.scroll_docs(-5),
-      ["<c-u>"] = cmp.mapping.scroll_docs(5),
-      ["<c-space>"] = cmp.mapping.complete(),
+      ["<C-d>"] = cmp.mapping.scroll_docs(-5),
+      ["<C-u>"] = cmp.mapping.scroll_docs(5),
+      ["<C-space>"] = cmp.mapping.complete(),
       ["<tab>"] = cmp.mapping.confirm {
         behavior = cmp.ConfirmBehavior.Replace,
         select = true,
       },
-      ["<c-n>"] = cmp.mapping(function(fallback)
+      ["<C-n>"] = cmp.mapping(function(fallback)
         if cmp.visible() then
           cmp.select_next_item()
-        elseif luasnip.expand_or_jumpable() then
-          luasnip.expand_or_jump()
         else
           fallback()
         end
       end, { "i", "s" }),
-      ["<c-p>"] = cmp.mapping(function(fallback)
+      ["<C-p>"] = cmp.mapping(function(fallback)
         if cmp.visible() then
           cmp.select_prev_item()
-        elseif luasnip.jumpable(-1) then
-          luasnip.jump(-1)
         else
           fallback()
         end

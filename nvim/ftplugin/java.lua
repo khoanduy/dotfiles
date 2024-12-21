@@ -8,7 +8,7 @@ vim.opt_local.shiftwidth = 4
 vim.opt_local.softtabstop = 4
 vim.opt_local.shiftround = true
 
-local common_config = require("khoa.lsp.common").make_config()
+local common_config = require("lsp.common").make_config()
 local config = {
   cmd = {
     os.getenv("JDK17") .. "/bin/java",
@@ -17,7 +17,7 @@ local config = {
     "-Declipse.product=org.eclipse.jdt.ls.core.product",
     "-Dlog.protocol=true",
     "-Dlog.level=ALL",
-    "-Xmx6g",
+    "-Xmx4g",
     "--add-modules=ALL-SYSTEM",
     "--add-opens", "java.base/java.util=ALL-UNNAMED",
     "--add-opens", "java.base/java.lang=ALL-UNNAMED",

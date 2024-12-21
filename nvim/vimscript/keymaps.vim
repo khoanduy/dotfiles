@@ -23,6 +23,10 @@ nnoremap <silent> H :noh<CR>
 vnoremap <silent> J :m '>+1<CR>gv=gv
 vnoremap <silent> K :m '<-2<CR>gv=gv
 
+" Remap scroll
+nnoremap <C-d> <C-d>zz
+nnoremap <C-u> <C-u>zz
+
 " Navigate through quickfix list
 nnoremap <silent> ]q :cnext<CR>zz
 nnoremap <silent> [q :cprev<CR>zz
@@ -50,7 +54,6 @@ autocmd! FileType help,qf,fugitive,fugitiveblame,undotree nnoremap <silent> <buf
 " Run maven test
 augroup java_config
   autocmd!
-  autocmd FileType java nnoremap gt :lua require('khoa.utils.java').run_maven_test('-T 1C')<left><left>
-  autocmd FileType java vnoremap gt "1y:lua require('khoa.utils.java').run_maven_test('-T 1C', '<c-r>1')
+  autocmd FileType java nnoremap gt :lua require('utils.java').run_maven_test('-T 1C')<left><left>
+  autocmd FileType java vnoremap gt "1y:lua require('utils.java').run_maven_test('-T 1C', '<c-r>1')
 augroup END
-
