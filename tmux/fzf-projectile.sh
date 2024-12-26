@@ -17,7 +17,7 @@ sess=$(tmux list-sessions | grep $name | awk -F: '{print $1}')
 
 # If the session doesn't exist, create it
 if [ -z "${sess}" ]; then
-  tmux new-session -d -s $name -c $dir; tmux send-keys -t $name:0 "nvim ." Enter
+  tmux new-session -d -s $name -c $dir; tmux send-keys -t $name:0 "vim ." Enter
 fi
 
 # Anyway switch to it
