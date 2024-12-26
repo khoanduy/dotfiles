@@ -34,8 +34,7 @@ set showmatch
 " The cursor is kept in the same column
 set nostartofline
 
-" Dark and get rid of scratch buffer
-set background=dark
+" Get rid of scratch buffer
 set completeopt-=preview
 
 " Program to use for the :grep command

@@ -11,9 +11,6 @@ Plug 'junegunn/fzf.vim'
 " Nvim Treesitter configurations and abstraction layer
 Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }
 
-" A clean, dark Neovim theme written in Lua, with support for lsp, treesitter and lots of plugins.
-Plug 'folke/tokyonight.nvim'
-
 " Neovim file explorer: edit your filesystem like a buffer
 Plug 'stevearc/oil.nvim'
 
@@ -28,9 +25,6 @@ Plug 'tpope/vim-surround'
 
 " The undo history visualizer for Vim
 Plug 'mbbill/undotree'
-
-" Personal Wiki for Vim
-Plug 'vimwiki/vimwiki'
 
 " Modern database interface for Vim
 Plug 'tpope/vim-dadbod'
@@ -54,9 +48,9 @@ Plug 'github/copilot.vim'
 call plug#end()
 
 " Colorscheme
-set background=dark
-lua require("tokyonight").setup({ style = "night" })
-colorscheme tokyonight
+set background=light
+set notermguicolors
+colorscheme vim
 
 " Treesitter
 lua require('plugins.treesitter')
@@ -105,10 +99,6 @@ augroup END
 
 " Undotree toggle keymap
 nnoremap <silent> <leader>u :UndotreeToggle<CR>
-
-" Vimwiki options
-let g:vimwiki_global_ext = 0
-let g:vimwiki_list = [{'path': '~/vimwiki/', 'syntax': 'markdown', 'ext': 'md'}]
 
 " Dadbod UI keymap
 nnoremap <leader>db :DBUIToggle<CR>
