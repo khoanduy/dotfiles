@@ -63,8 +63,6 @@ alias gP="git push"
 alias gr="git reset --hard"
 alias gR="git clean --force"
 
-alias pdb="docker exec -it db-postgres-1 psql -U postgres -h 0.0.0.0 -p 5432 -d instaclustr"
-
 alias rs1="tmux new-session -d -s provisioning; tmux send-keys -t provisioning:0 start-provisioning-services.sh Enter"
 alias ts1="tmux send-keys -t provisioning:0 stop-provisioning-services.sh Enter; tmux send-keys -t provisioning:0 'tmux kill-session' Enter"
 

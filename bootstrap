@@ -49,7 +49,6 @@ function linking() {
   ln -s $(pwd)/.tmux.conf ~/.tmux.conf
   ln -s $(pwd)/.gitignore ~/.gitignore
   ln -s $(pwd)/.vimrc ~/.vimrc
-  ln -s $(pwd)/.aerospace.toml ~/.aerospace.toml
   ln -s $(pwd)/.fdignore ~/.fdignore
   ln -s $(pwd)/.ideavimrc ~/.ideavimrc
 
@@ -73,10 +72,6 @@ curl https://raw.githubusercontent.com/git/git/master/contrib/completion/git-pro
 echo "[-] Downloading vim-plug [-]"
 sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
        https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
-
-# Install tiling window manager for macOS
-echo "[-] Installing Aerospace [-]"
-brew install --cask nikitabobko/tap/aerospace
 
 # Install default terminal emulator
 echo "[-] Installing Alacritty [-]"
