@@ -11,8 +11,8 @@ export LC_ALL=en_US.UTF-8
 export LC_CTYPE=en_US.UTF-8
 
 # Default editor
-export EDITOR="vim"
-export VISUAL="vim"
+export EDITOR="nvim"
+export VISUAL="nvim"
 
 # Zsh history
 HISTFILE=$HOME/.zhistory
@@ -31,10 +31,10 @@ export REPOS="$HOME/repos"
 
 # Fzf options
 export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS' 
- --color=fg:#434343,bg:-1,hl:#325cc0,gutter:-1
- --color=fg+:#434343,bg+:-1,hl+:#007acc,gutter:-1
- --color=info:#448c27,prompt:#7a3e9d,pointer:#aa3731
- --color=marker:#cb9000,spinner:#e64ce6,header:#f05050'
+ --color=fg:#eef1f8,bg:-1,hl:#a6dbff,gutter:-1
+ --color=fg+:#eef1f8,bg+:-1,hl+:#8cf8f7,gutter:-1
+ --color=info:#b3f6c0,prompt:#ffcaff,pointer:#ffc0b9
+ --color=marker:#fce094,spinner:#fce094,header:#ffc0b9'
 
 # Setting fd as the default source for fzf
 export FZF_DEFAULT_COMMAND='fd --type f --strip-cwd-prefix --hidden'

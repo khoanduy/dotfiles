@@ -34,8 +34,8 @@ nnoremap <leader>B :action SwitcherAndRecentFiles<CR>
 vnoremap // y/<c-r>"<CR>
 
 " Code styles
-nnoremap <silent> gf :action ReformatCode<CR>
-vnoremap <silent> gf :action ReformatCode<CR>
+nnoremap <silent> <leader>l :action ReformatCode<CR>
+vnoremap <silent> <leader>l :action ReformatCode<CR>
 
 " Jump around
 nnoremap gd :action GotoDeclaration<CR>

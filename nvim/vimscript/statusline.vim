@@ -1,5 +1,5 @@
-" Global status
-set laststatus=3
+" Non-global statusline
+set laststatus=2
 
 " Statusline
 set statusline=

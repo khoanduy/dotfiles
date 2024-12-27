@@ -46,8 +46,9 @@ eval "$(pyenv init -)"
 
 # Aliases
 alias a="tmux a"
-alias vo="vim ."
-alias vg="vim -c ':G'"
+alias v="nvim"
+alias vo="nvim ."
+alias vg="nvim -c ':G'"
 
 alias gs="git status"
 alias ga="git add ."
@@ -57,13 +58,7 @@ alias gb="git branch --all"
 alias gB="git branch --all | grep"
 alias gC="git checkout"
 alias gf="git fetch"
-alias gp="git pull"
+alias gp="git pull --rebase"
 alias gP="git push"
 alias gr="git reset --hard"
 alias gR="git clean --force"
-
-alias rs1="tmux new-session -d -s provisioning; tmux send-keys -t provisioning:0 start-provisioning-services.sh Enter"
-alias ts1="tmux send-keys -t provisioning:0 stop-provisioning-services.sh Enter; tmux send-keys -t provisioning:0 'tmux kill-session' Enter"
-
-alias rs2="tmux new-session -d -s monitoring; tmux send-keys -t monitoring:0 start-monitoring-services.sh Enter"
-alias ts2="tmux send-keys -t monitoring:0 stop-monitoring-services.sh Enter; tmux send-keys -t monitoring:0 'tmux kill-session' Enter"

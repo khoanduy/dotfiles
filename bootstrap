@@ -46,7 +46,7 @@ backup
 function linking() {
   ln -s $(pwd)/.zshrc ~/.zshrc
   ln -s $(pwd)/.zshenv ~/.zshenv
-  ln -s $(pwd)/.tmux.conf ~/.tmux.conf
+  # ln -s $(pwd)/.tmux.conf ~/.tmux.conf
   ln -s $(pwd)/.gitignore ~/.gitignore
   ln -s $(pwd)/.vimrc ~/.vimrc
   ln -s $(pwd)/.fdignore ~/.fdignore
@@ -54,6 +54,7 @@ function linking() {
 
   mkdir -p ${XDG_CONFIG_HOME:=~/.config}
   ln -s $(pwd)/nvim $XDG_CONFIG_HOME/nvim
+  ln -s $(pwd)/ghostty $XDG_CONFIG_HOME/ghostty
 }
 echo "[-] Linking dotfiles [-]"
 linking
@@ -70,12 +71,12 @@ curl https://raw.githubusercontent.com/git/git/master/contrib/completion/git-pro
 
 # Download Vim plugin manager
 echo "[-] Downloading vim-plug [-]"
-curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
-    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
+       https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 
 # Install default terminal emulator
-echo "[-] Installing Alacritty [-]"
-brew install alacritty
+echo "[-] Installing Ghostty [-]"
+brew install ghostty
 
 # Create some essential folders
 echo "[-] Creating essential folders [-]"
