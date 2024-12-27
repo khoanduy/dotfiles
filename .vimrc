@@ -94,6 +94,9 @@ set ttimeoutlen=50
 " Enable auto completion menu after pressing TAB.
 set wildmode=full
 set wildcharm=<c-z>
+if has('mac')
+  set wildoptions=pum,tagfile
+endif
 
 " wildmenu settings
 set wildignore=*.o,*~,*.a,*.so,*.pyc,*.swp,.git/,*.class,*/target/*,*/build/*,.idea/

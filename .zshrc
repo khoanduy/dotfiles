@@ -46,9 +46,9 @@ eval "$(pyenv init -)"
 
 # Aliases
 alias a="tmux a"
-alias v="nvim"
-alias vo="nvim ."
-alias vg="nvim -c ':G'"
+alias v="vim"
+alias vo="vim ."
+alias vg="vim -c ':G'"
 
 alias gs="git status"
 alias ga="git add ."
