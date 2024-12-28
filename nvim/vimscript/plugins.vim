@@ -48,8 +48,8 @@ Plug 'github/copilot.vim'
 call plug#end()
 
 " Colorscheme
-set background=dark
-colorscheme default
+set background=light
+colorscheme wildcharm
 
 " Treesitter
 lua require('plugins.treesitter')

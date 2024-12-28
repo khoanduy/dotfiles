@@ -113,7 +113,7 @@ set history=10000
 set ttyfast
 
 " Set statusline last status and background
-set background=dark
+set background=light
 set notermguicolors
 set laststatus=2
 
@@ -124,8 +124,8 @@ hi! link netrwMarkFile Search
 " Set basic highlight groups
 highlight! Normal cterm=NONE ctermbg=NONE
 highlight! CursorLine cterm=bold
-highlight! Statusline cterm=NONE ctermbg=grey ctermfg=black
-highlight! StatuslineNC cterm=NONE ctermbg=darkgrey ctermfg=black
+highlight! Statusline cterm=NONE ctermbg=grey
+highlight! StatuslineNC cterm=NONE ctermbg=darkgrey ctermfg=grey
 highlight! VertSplit cterm=NONE ctermfg=grey
 
 " ----- Keymaps -----

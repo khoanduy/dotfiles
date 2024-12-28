@@ -45,10 +45,9 @@ command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
 
 # Aliases
-alias a="tmux a"
-alias v="vim"
-alias vo="vim ."
-alias vg="vim -c ':G'"
+alias v="nvim"
+alias vo="nvim ."
+alias vg="nvim -c ':G'"
 
 alias gs="git status"
 alias ga="git add ."
