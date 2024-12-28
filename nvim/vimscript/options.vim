@@ -34,6 +34,9 @@ set showmatch
 " The cursor is kept in the same column
 set nostartofline
 
+" Set the vertical split character
+" set fillchars+=vert:\|
+
 " Get rid of scratch buffer
 set completeopt-=preview
 

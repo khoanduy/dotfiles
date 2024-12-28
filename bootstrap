@@ -79,7 +79,6 @@ brew install ghostty
 
 # Create some essential folders
 echo "[-] Creating essential folders [-]"
-mkdir ~/.vimsess
 mkdir ~/chores
 mkdir ~/repos
 

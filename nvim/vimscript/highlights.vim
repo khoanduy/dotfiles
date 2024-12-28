@@ -3,7 +3,7 @@ highlight! Normal cterm=NONE ctermbg=NONE
 highlight! CursorLine cterm=bold
 highlight! Statusline cterm=NONE ctermbg=grey ctermfg=black
 highlight! StatuslineNC cterm=NONE ctermbg=darkgrey ctermfg=black
-highlight! VertSplit cterm=NONE ctermfg=grey
+highlight! VertSplit cterm=NONE term=NONE ctermbg=NONE ctermfg=grey guibg=NONE guifg=grey
 highlight! SignColumn ctermbg=NONE
 
 " Fzf highlight groups
