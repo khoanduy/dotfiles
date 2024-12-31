@@ -113,7 +113,7 @@ set history=10000
 set ttyfast
 
 " Set statusline last status and background
-set background=light
+set background=dark
 set notermguicolors
 set laststatus=2
 
