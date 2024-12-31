@@ -11,6 +11,9 @@ cursor-style = block
 cursor-style-blink = true
 selection-invert-fg-bg = true
 mouse-hide-while-typing = true
+adjust-cursor-thickness = 3
+adjust-underline-thickness = 2
+adjust-strikethrough-thickness = 2
 
 # Window
 window-padding-x = 5,5

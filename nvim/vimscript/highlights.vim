@@ -7,6 +7,6 @@ highlight! VertSplit cterm=NONE term=NONE ctermbg=NONE ctermfg=grey guibg=NONE g
 highlight! SignColumn ctermbg=NONE
 
 " Fzf highlight groups
-highlight! fzf1 ctermfg=grey ctermbg=NONE
-highlight! fzf2 ctermfg=grey ctermbg=NONE
-highlight! fzf3 ctermfg=grey ctermbg=NONE
+highlight! fzf1 ctermfg=grey ctermbg=NONE guifg=grey guibg=NONE
+highlight! fzf2 ctermfg=grey ctermbg=NONE guifg=grey guibg=NONE
+highlight! fzf3 ctermfg=grey ctermbg=NONE guifg=grey guibg=NONE

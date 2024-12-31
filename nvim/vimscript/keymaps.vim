@@ -49,7 +49,7 @@ vnoremap <leader>r "5y<Esc>:%s/<C-r>5//g<Left><Left>
 autocmd! QuickFixCmdPost [^l]* cwindow
 
 " Quick exit some filetypes
-autocmd! FileType help,qf,fugitive,fugitiveblame,undotree,dbout nnoremap <silent> <buffer> q :q<CR>
+autocmd! FileType help,qf,diff,fugitive,fugitiveblame,undotree,dbout nnoremap <silent> <buffer> q :q<CR>
 
 " Run maven test
 augroup java_config
