@@ -19,7 +19,7 @@ filetype plugin on
 filetype indent on
 filetype plugin indent on
 
-if has("nvim")
+if has('unix')
   " ----- Plugin definitions -----
   call plug#begin()
 
@@ -30,17 +30,11 @@ if has("nvim")
   Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
   Plug 'junegunn/fzf.vim'
 
-  " Nvim Treesitter configurations and abstraction layer
-  Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }
-
-  " Neovim file explorer: edit your filesystem like a buffer
-  Plug 'stevearc/oil.nvim'
-
-  " A Git wrapper so awesome, it should be illegal
+  " fugitive.vim: A Git wrapper so awesome, it should be illegal
   Plug 'tpope/vim-fugitive'
 
-  " Git integration for buffers
-  Plug 'lewis6991/gitsigns.nvim'
+  " A Vim plugin which shows git diff markers in the sign column
+  Plug 'airblade/vim-gitgutter'
 
   " Modern database interface for Vim
   Plug 'tpope/vim-dadbod'
@@ -211,7 +205,7 @@ nnoremap <silent> [q :cprev<cr>zz
 nmap - :Explore<cr>
 
 " Quick exit some filetypes
-autocmd! FileType help,qf nnoremap <silent> <buffer> q :q<CR>
+autocmd! FileType help,qf,diff,fugitive,fugitiveblame,dbout nnoremap <silent> <buffer> q :q<CR>
 autocmd! FileType netrw nnoremap <silent> <buffer> x :Rexplore<cr>
 
 " Search current marked text
@@ -241,112 +235,34 @@ vnoremap <leader>r "5y<esc>:%s/<c-r>5//g<left><left>
 " Open the quickfix window whenever a quickfix command is executed
 autocmd! QuickFixCmdPost [^l]* cwindow
 
-if has("nvim")
-  " Disable netrw
-  let g:loaded_netrwPlugin=1
-  let g:loaded_netrw=1
-
-  " Quick exit some filetypes
-  autocmd! FileType diff,fugitive,fugitiveblame,dbout nnoremap <silent> <buffer> q :q<CR>
-
+if has('unix')
   " Fzf options
   let g:fzf_vim = {}
   let g:fzf_vim.preview_window = ['right:35%']
   let g:fzf_layout = { 'down': '41%' }
-  " Fzf keymaps
-  augroup fzf_keymaps
-    autocmd!
-    nnoremap <leader>f :Files<CR>
-    nnoremap <leader>F :GFiles<CR>
-    nnoremap <leader>b :Buffers<CR>
-    nnoremap <leader>j :Jumps<CR>
-    nnoremap <leader>m :Marks<CR>
-    nnoremap <leader>g :Rg<CR>
-    vnoremap <leader>f "0y":Files <C-r>0<CR>
-    vnoremap <leader>g "0y:Rg <C-r>0<CR>
-  augroup END
+  " " Fzf keymaps
+  " augroup fzf_keymaps
+  "   autocmd!
+  "   nnoremap <leader>f :Files<CR>
+  "   nnoremap <leader>F :GFiles<CR>
+  "   nnoremap <leader>b :Buffers<CR>
+  "   nnoremap <leader>j :Jumps<CR>
+  "   nnoremap <leader>m :Marks<CR>
+  "   nnoremap <leader>g :Rg<CR>
+  "   vnoremap <leader>f "0y":Files <C-r>0<CR>
+  "   vnoremap <leader>g "0y:Rg <C-r>0<CR>
+  " augroup END
   " Fzf highlight groups
   highlight! fzf1 ctermfg=grey ctermbg=NONE
   highlight! fzf2 ctermfg=grey ctermbg=NONE
   highlight! fzf3 ctermfg=grey ctermbg=NONE
 
-  " GitSigns options
-  lua require('gitsigns').setup({ numhl = true })
-  " GitSigns keymaps
-  augroup gitsigns_keymaps
+  " gitgutter keymaps
+  augroup gitgutter_keymaps
     autocmd!
-    nnoremap <silent> ]h :Gitsigns next_hunk<CR>
-    nnoremap <silent> [h :Gitsigns prev_hunk<CR>
-    nnoremap <silent> <leader>hp :Gitsigns preview_hunk_inline<CR>
-    nnoremap <silent> <leader>hs :Gitsigns stage_hunk<CR>
-    nnoremap <silent> <leader>hS :Gitsigns undo_stage_hunk<CR>
-    nnoremap <silent> <leader>hu :Gitsigns reset_hunk<CR>
+    nmap ]h <Plug>(GitGutterNextHunk)
+    nmap [h <Plug>(GitGutterPrevHunk)
   augroup END
-
-  " Oil options
-lua << EOF
-require("oil").setup({
-  view_options = {
-    -- Show files and directories that start with "."
-    show_hidden = true,
-    -- Sort file names in a more intuitive order for humans. Is less performant,
-    -- so you may want to set to false if you work with large directories.
-    natural_order = false,
-  },
-})
-EOF
-  " Oil keymaps
-  augroup oil_keymaps
-    autocmd!
-    nnoremap <silent> - :Oil<CR>
-    autocmd FileType oil nnoremap <silent> <buffer> <C-h> <C-w>h
-    autocmd FileType oil nnoremap <silent> <buffer> <C-j> <C-w>j
-    autocmd FileType oil nnoremap <silent> <buffer> <C-k> <C-w>k
-    autocmd FileType oil nnoremap <silent> <buffer> <C-l> <C-w>l
-  augroup END
-
-  " Treesitter
-lua << EOF
-require'nvim-treesitter.configs'.setup {
-  -- A list of parser names, or "all" (the listed parsers MUST always be installed)
-  ensure_installed = { "c", "cpp", "java", "python", "javascript", "json", "html", "css", "proto", "dockerfile",
-      "toml", "yaml", "go", "sql", "lua", "vim", "vimdoc", "query", "markdown", "markdown_inline" },
-
-  -- Install parsers synchronously (only applied to `ensure_installed`)
-  sync_install = false,
-
-  -- Automatically install missing parsers when entering buffer
-  -- Recommendation: set to false if you don't have `tree-sitter` CLI installed locally
-  auto_install = true,
-
-  -- List of parsers to ignore installing (or "all")
-  -- ignore_install = { "javascript" },
-
-  highlight = {
-    enable = true,
-
-    -- NOTE: these are the names of the parsers and not the filetype. (for example if you want to
-    -- disable highlighting for the `tex` filetype, you need to include `latex` in this list as this is
-    -- the name of the parser)
-    -- list of language that will be disabled
-    -- disable = { "c", "rust" },
-    -- Or use a function for more flexibility, e.g. to disable slow treesitter highlight for large files
-    -- disable = function(lang, buf)
-    --     local max_filesize = 100 * 1024 -- 100 KB
-    --     local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
-    --     if ok and stats and stats.size > max_filesize then
-    --         return true
-    --     end
-    -- end,
-
-    -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
-    -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
-    -- Using this option may slow down your editor, and you may see some duplicate highlights.
-    -- Instead of true it can also be a list of languages
-    additional_vim_regex_highlighting = false,
-  },
-}
-EOF
 
   " Dadbod UI keymap
   nnoremap <leader>db :DBUIToggle<CR>
