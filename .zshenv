@@ -30,11 +30,6 @@ export PATH="$HOME/chores:$PATH"
 export REPOS="$HOME/repos"
 
 # Fzf options
-# export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS' 
-#  --color=fg:#000000,bg:-1,hl:#003f73,gutter:-1
-#  --color=fg+:#000000,bg+:-1,hl+:#0058a1,gutter:-1
-#  --color=info:#355d61,prompt:#9c2191,pointer:#ad1805
-#  --color=marker:#78492a,spinner:#703daa,header:#441ea1'
 export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS' 
  --color=fg:#eef1f8,bg:-1,hl:#a6dbff,gutter:-1
  --color=fg+:#eef1f8,bg+:-1,hl+:#8cf8f7,gutter:-1
@@ -43,11 +38,6 @@ export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
 
 # Setting fd as the default source for fzf
 export FZF_DEFAULT_COMMAND='fd --type f --strip-cwd-prefix --hidden'
-
-# JDK paths
-export JDK11="$HOME/.sdkman/candidates/java/11.0.24-amzn"
-export JDK17="$HOME/.sdkman/candidates/java/17.0.12-amzn"
-export JDK21="$HOME/.sdkman/candidates/java/21.0.4-amzn"
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"

@@ -37,7 +37,6 @@ function backup() {
   mkdir ~/$backup_dir
   mv ~/.zshrc ~/$backup_dir/.zshrc
   mv ~/.zshenv ~/$backup_dir/.zshenv
-  mv ~/.tmux.conf ~/$backup_dir/.tmux.conf
 }
 echo "[-] Backing up dotfiles [-]"
 backup
@@ -52,7 +51,7 @@ function linking() {
   ln -s $(pwd)/.ideavimrc ~/.ideavimrc
 
   mkdir -p ${XDG_CONFIG_HOME:=~/.config}
-  ln -s $(pwd)/nvim $XDG_CONFIG_HOME/nvim
+  ln -s $(pwd)/.vimrc $XDG_CONFIG_HOME/nvim/init.vim
   ln -s $(pwd)/ghostty $XDG_CONFIG_HOME/ghostty
 }
 echo "[-] Linking dotfiles [-]"
@@ -60,7 +59,7 @@ linking
 
 # Install some extended packages
 echo "[-] Installing extended packages [-]"
-brew install tmux neovim zsh-autosuggestions parallel ripgrep fzf
+brew install zsh-autosuggestions parallel ripgrep fzf
 brew install httpie pyenv universal-ctags
 
 # Download git-prompt.sh script
