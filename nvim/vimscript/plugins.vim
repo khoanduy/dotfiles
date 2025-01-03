@@ -41,6 +41,9 @@ Plug 'mfussenegger/nvim-jdtls'
 Plug 'hrsh7th/nvim-cmp'
 Plug 'hrsh7th/cmp-nvim-lsp'
 
+" autopairs for neovim written in lua
+Plug 'windwp/nvim-autopairs'
+
 " Neovim plugin for GitHub Copilot
 Plug 'github/copilot.vim'
 
@@ -49,7 +52,7 @@ call plug#end()
 
 " Colorscheme
 set background=dark
-colorscheme default
+colorscheme wildcharm
 
 " Treesitter
 lua require('plugins.treesitter')
@@ -101,6 +104,9 @@ nnoremap <silent> <leader>u :UndotreeToggle<CR>
 
 " Dadbod UI keymap
 nnoremap <leader>db :DBUIToggle<CR>
+
+" Autopairs
+lua require("nvim-autopairs").setup{}
 
 " Copilot settings
 let g:copilot_enabled = 0

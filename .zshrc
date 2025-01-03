@@ -48,6 +48,7 @@ eval "$(pyenv init -)"
 alias v="nvim"
 alias vo="nvim ."
 alias vg="nvim -c ':G'"
+alias vg="nvim -c ':DBUIToggle'"
 
 alias gs="git status"
 alias ga="git add ."
@@ -61,3 +62,5 @@ alias gp="git pull --rebase"
 alias gP="git push"
 alias gr="git reset --hard"
 alias gR="git clean --force"
+
+alias dp="docker ps"

@@ -124,7 +124,7 @@ hi! link netrwMarkFile Search
 " Set basic highlight groups
 highlight! Normal cterm=NONE ctermbg=NONE
 highlight! CursorLine cterm=bold
-highlight! Statusline cterm=NONE ctermbg=grey
+highlight! Statusline cterm=NONE ctermbg=grey ctermfg=black
 highlight! StatuslineNC cterm=NONE ctermbg=darkgrey ctermfg=grey
 highlight! VertSplit cterm=NONE ctermfg=grey
 

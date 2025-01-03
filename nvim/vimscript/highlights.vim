@@ -1,5 +1,5 @@
 " Basic highlight groups
-highlight! Normal cterm=NONE ctermbg=NONE
+highlight! Normal cterm=NONE ctermbg=NONE term=NONE guibg=NONE
 highlight! CursorLine cterm=bold
 highlight! Statusline cterm=NONE ctermbg=grey ctermfg=black
 highlight! StatuslineNC cterm=NONE ctermbg=darkgrey ctermfg=black
