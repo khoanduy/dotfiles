@@ -7,7 +7,7 @@ case $(uname -s) in
     Linux)
         sudo apt-get update && sudo apt-get upgrade -y
         sudo apt-get install -y git bash tmux vim-gtk3 tree ncdu htop wl-clipboard universal-ctags
-        sudo apt-get install -y ripgrep jq fwupd fonts-cascadia-code
+        sudo apt-get install -y curl ripgrep jq fwupd fonts-cascadia-code
 
         echo '> configuring fingerprint unlock'
         sudo apt-get install -y fprintd libpam-fprintd
@@ -67,6 +67,9 @@ git config --global core.editor vim
 git config --global diff.tool vimdiff
 git config --global merge.tool vimdiff
 git config --global mergetool.keepBackup false
+
+echo '> installing git prompt'
+curl -fsSL https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh -o ~/.git-prompt.sh
 
 [ "${SHELL##*/}" = bash ] && { echo '* default shell is already bash'; exit 0; }
 bash_path=$(command -v bash || true)

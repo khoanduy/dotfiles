@@ -30,7 +30,20 @@ if [[ -f /usr/share/bash-completion/bash_completion ]]; then
 elif [[ -s /opt/homebrew/etc/profile.d/bash_completion.sh ]]; then
     . /opt/homebrew/etc/profile.d/bash_completion.sh
 fi
-PS1='\u@\h:\[\e[36m\]\W\[\e[0m\]\$ '
+
+# git branch and status in prompt
+if [[ -f ~/.git-prompt.sh ]]; then
+    . ~/.git-prompt.sh
+    GIT_PS1_SHOWDIRTYSTATE=1
+    GIT_PS1_SHOWSTASHSTATE=1
+    GIT_PS1_SHOWUNTRACKEDFILES=1
+    GIT_PS1_SHOWUPSTREAM="auto"
+    GIT_PS1_SHOWCONFLICTSTATE="yes"
+    GIT_PS1_SHOWCOLORHINTS=1
+    PS1='\u@\h:\[\e[1;35m\]\W\[\e[0m\]$(__git_ps1 " (%s)")\$ '
+else
+    PS1='\u@\h:\[\e[1;35m\]\W\[\e[0m\]\$ '
+fi
 
 export EDITOR=vim
 export VISUAL=vim
