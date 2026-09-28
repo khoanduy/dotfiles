@@ -18,7 +18,7 @@ func! s:findfiles(cmdarg, _cmdcomp) abort
 	return empty(a:cmdarg) ? l:out : matchfuzzy(l:out, a:cmdarg)
 endfunc
 set findfunc=s:findfiles
-nmap <leader>f :find 
+nmap <Space>f :find 
 
 " extend vim grep abilities with ripgrep
 set grepprg=grep\ -HIrn\ $*
@@ -26,21 +26,21 @@ if executable('rg')
 	set grepprg=rg\ --vimgrep\ --hidden\ -n\ $*
 	set grepformat^=%f:%l:%c:%m
 endif " use [--no-ignore] for wildcard
-nmap <leader>g :grep! -i ''<Left>
-vmap <leader>g "0y:grep! '<C-r>0'<Left>
+nmap <Space>g :grep! -i ''<Left>
+vmap <Space>g "0y:grep! '<C-r>0'<Left>
 
 " browse buffers/files
-nmap <leader>e <Cmd>ls t<CR>:buffer 
+nmap <Space>o <Cmd>ls t<CR>:buffer 
 nmap - <Cmd>Explore<CR>
 au FileType netrw nmap <buffer> <C-c> <Cmd>Rex<CR>
 
 " yank/paste to/from system clipboard
 " all motions work the same as normal [y]
-nmap <leader>y "+y
-xmap <leader>y "+y
-nmap <leader>p "+p
-xmap <leader>p "+p
-nmap <leader>P "+P
+nmap <Space>y "+y
+xmap <Space>y "+y
+nmap <Space>p "+p
+xmap <Space>p "+p
+nmap <Space>P "+P
 
 " open the quickfix window whenever a qf command is executed
 au QuickFixCmdPost [^l]* cwindow
@@ -48,10 +48,10 @@ au FileType vim setl ts=8 noet
 nmap <C-l> <Cmd>noh<Bar>dif!<Bar>redr!<CR>
 
 " load useful optional packs
+packadd! editorconfig
 packadd comment
 packadd hlyank
 let g:hlyank_duration = 128
-packadd! editorconfig
 
 " background tags generation
 func! s:gentags() abort
