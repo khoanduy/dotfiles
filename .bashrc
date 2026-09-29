@@ -39,10 +39,9 @@ if [[ -f ~/.git-prompt.sh ]]; then
     GIT_PS1_SHOWUNTRACKEDFILES=1
     GIT_PS1_SHOWUPSTREAM="auto"
     GIT_PS1_SHOWCONFLICTSTATE="yes"
-    GIT_PS1_SHOWCOLORHINTS=1
-    PS1='\u@\h:\[\e[1;35m\]\W\[\e[0m\]$(__git_ps1 " (%s)")\$ '
+    PS1='\u@\h:\[\e[1;36m\]\W\[\e[0m\]$(__git_ps1 " (%s)")\$ '
 else
-    PS1='\u@\h:\[\e[1;35m\]\W\[\e[0m\]\$ '
+    PS1='\u@\h:\[\e[1;36m\]\W\[\e[0m\]\$ '
 fi
 
 export EDITOR=vim
