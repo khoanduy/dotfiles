@@ -6,22 +6,15 @@ echo '> installing essential packages'
 case $(uname -s) in
     Linux)
         sudo apt-get update && sudo apt-get upgrade -y
-        sudo apt-get install -y git bash tmux vim-gtk3 tree ncdu htop wl-clipboard universal-ctags
-        sudo apt-get install -y curl ripgrep jq fwupd fonts-cascadia-code
-
-        echo '> configuring fingerprint unlock'
-        sudo apt-get install -y fprintd libpam-fprintd
-        sudo pam-auth-update --enable fprintd
+        sudo apt-get install -y git bash tmux vim-gtk3 tree ncdu htop wl-clipboard
+        sudo apt-get install -y universal-ctags curl ripgrep jq fwupd
 
         echo '> configuring preferred gnome options'
         gsettings set org.gnome.shell.app-switcher current-workspace-only true
         gsettings set org.gnome.mutter workspaces-only-on-primary true
-        gsettings set org.gnome.desktop.peripherals.touchpad tap-and-drag false
         gsettings set org.gnome.mutter dynamic-workspaces false
+        gsettings set org.gnome.desktop.peripherals.touchpad tap-and-drag false
         gsettings set org.gnome.desktop.wm.preferences num-workspaces 5
-
-        echo '> disabling background file indexing'
-        systemctl --user mask localsearch-3.service localsearch-control-3.service localsearch-writeback-3.service
         ;;
     Darwin)
         xcode-select -p >/dev/null 2>&1 || {
@@ -34,7 +27,7 @@ case $(uname -s) in
             eval "$(/opt/homebrew/bin/brew shellenv)"
         }
         brew update
-        brew install git bash tmux tree ncdu htop universal-ctags ripgrep jq bash-completion@2 font-cascadia-mono
+        brew install git bash tmux tree ncdu htop universal-ctags ripgrep jq bash-completion@2
         ;;
     *)  echo '! unsupported os: only linux and mac' >&2; exit 1 ;;
 esac
