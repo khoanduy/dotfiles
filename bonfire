@@ -9,12 +9,14 @@ case $(uname -s) in
         sudo apt-get install -y git bash tmux vim-gtk3 tree ncdu htop wl-clipboard
         sudo apt-get install -y universal-ctags curl ripgrep jq fwupd
 
-        echo '> configuring preferred gnome options'
-        gsettings set org.gnome.shell.app-switcher current-workspace-only true
-        gsettings set org.gnome.mutter workspaces-only-on-primary true
-        gsettings set org.gnome.mutter dynamic-workspaces false
-        gsettings set org.gnome.desktop.peripherals.touchpad tap-and-drag false
-        gsettings set org.gnome.desktop.wm.preferences num-workspaces 5
+        if command -v gsettings >/dev/null 2>&1; then
+            echo '> configuring preferred gnome options'
+            gsettings set org.gnome.shell.app-switcher current-workspace-only true
+            gsettings set org.gnome.mutter workspaces-only-on-primary true
+            gsettings set org.gnome.mutter dynamic-workspaces false
+            gsettings set org.gnome.desktop.peripherals.touchpad tap-and-drag false
+            gsettings set org.gnome.desktop.wm.preferences num-workspaces 5
+        fi
         ;;
     Darwin)
         xcode-select -p >/dev/null 2>&1 || {
