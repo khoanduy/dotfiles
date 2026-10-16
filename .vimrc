@@ -1,5 +1,5 @@
 set nocp enc=utf-8 noml noswf nobk title hid re=2 ar
-set autoindent showmatch sb spr ts=4 sw=0 et
+set wcm=<C-z> autoindent showmatch sb spr ts=4 sw=0 et
 set incsearch hlsearch ignorecase smartcase smarttab
 set lcs=tab:>\ ,trail:-,nbsp:+ list wop=pum,tagfile,fuzzy
 let &showbreak = '+++ '
@@ -19,6 +19,7 @@ func! s:findfiles(cmdarg, _cmdcomp) abort
 endfunc
 set findfunc=s:findfiles
 nmap <Space>f :find 
+nmap <Space>F :find <C-r><C-w><C-z>
 
 " extend vim grep abilities with ripgrep
 set grepprg=grep\ -HIrn\ $*
@@ -27,6 +28,7 @@ if executable('rg')
 	set grepformat^=%f:%l:%c:%m
 endif " use [--no-ignore] for wildcard
 nmap <Space>g :grep! -i ''<Left>
+nmap <Space>G :grep! '<C-r><C-w>'
 vmap <Space>g "0y:grep! '<C-r>0'<Left>
 
 " browse buffers/files
