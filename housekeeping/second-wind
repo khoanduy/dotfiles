@@ -1,0 +1,26 @@
+#!/bin/sh
+# intel gpu video decode, restricted codecs, flathub, no telemetry or file indexing.
+# ubuntu only, safe to rerun.
+set -eu
+
+grep -qs '^ID=ubuntu$' /etc/os-release || { echo '! not ubuntu, nothing to do' >&2; exit 1; }
+
+sudo apt-get update
+
+echo '> installing gpu video decode, restricted codecs, flatpak'
+sudo apt-get install -y ubuntu-restricted-extras intel-media-va-driver-non-free vainfo intel-gpu-tools
+
+echo '> removing crash reporting, telemetry and unused services'
+sudo apt-get purge -y kdump-tools whoopsie apport ubuntu-insights ubuntu-report cloud-init
+if sudo grep -qs 'crashkernel=' /boot/grub/grub.cfg; then
+    echo '> dropping crashkernel from the kernel command line'
+    sudo update-grub
+fi
+
+echo '> adding the flathub remote'
+sudo apt-get install -y flatpak
+sudo flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
+
+echo '> disabling background file indexing'
+systemctl --user mask --now localsearch-3.service localsearch-control-3.service localsearch-writeback-3.service
+# vim: ft=sh

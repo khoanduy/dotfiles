@@ -9,8 +9,9 @@ case $(uname -s) in
         sudo apt-get install -y git bash tmux vim-gtk3 tree ncdu htop wl-clipboard
         sudo apt-get install -y universal-ctags curl ripgrep jq fwupd
 
-        if command -v gsettings >/dev/null 2>&1; then
+        if gsettings list-schemas 2>/dev/null | grep -qx org.gnome.shell; then
             echo '> configuring preferred gnome options'
+            gsettings set org.gnome.shell.extensions.dash-to-dock hot-keys false || true
             gsettings set org.gnome.shell.app-switcher current-workspace-only true
             gsettings set org.gnome.mutter workspaces-only-on-primary true
             gsettings set org.gnome.mutter dynamic-workspaces false
