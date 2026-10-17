@@ -14,8 +14,8 @@ pcrs=$(printf '%s' "${1:-4+7+8+9}" | tr , +)
 [ -s /etc/crypttab ] || { echo '! /etc/crypttab is empty, nothing to enroll' >&2; exit 1; }
 command -v dracut >/dev/null 2>&1 || { echo '! dracut not installed' >&2; exit 1; }
 
-echo '> installing tpm2-tools'
-sudo apt-get install -y tpm2-tools
+echo '> installing tpm2-tools and systemd-cryptsetup'
+sudo apt-get install -y tpm2-tools systemd-cryptsetup
 
 enrolled=
 # one crypttab line per pass, split on whitespace; _ swallows keyfile and options:
