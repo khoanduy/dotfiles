@@ -6,8 +6,7 @@ echo '> installing essential packages'
 case $(uname -s) in
     Linux)
         sudo apt-get update && sudo apt-get upgrade -y
-        sudo apt-get install -y git bash tmux vim-gtk3 tree ncdu htop wl-clipboard
-        sudo apt-get install -y universal-ctags curl ripgrep jq fwupd
+        sudo apt-get install -y git curl bash tmux neovim tree ncdu htop wl-clipboard ripgrep jq
 
         if gsettings list-schemas 2>/dev/null | grep -qx org.gnome.shell; then
             echo '> configuring preferred gnome options'
@@ -30,14 +29,14 @@ case $(uname -s) in
             eval "$(/opt/homebrew/bin/brew shellenv)"
         }
         brew update
-        brew install git bash tmux tree ncdu htop universal-ctags ripgrep jq bash-completion@2
+        brew install git bash tmux neovim tree ncdu htop ripgrep jq bash-completion@2
         ;;
     *)  echo '! unsupported os: only linux and mac' >&2; exit 1 ;;
 esac
 
 echo '> linking dotfiles'
 mkdir -p ~/.config ~/work ~/lab ~/.claude/skills
-ln -sfn "$(pwd)/.vimrc" ~/.vimrc
+ln -sfn "$(pwd)/nvim" ~/.config/nvim
 ln -sfn "$(pwd)/.tmux.conf" ~/.tmux.conf
 ln -sfn "$(pwd)/.gitignore" ~/.gitignore
 ln -sfn "$(pwd)/.psqlrc" ~/.psqlrc
@@ -59,9 +58,9 @@ git config --global core.excludesFile ~/.gitignore
 git config --global user.name 'Khoa Nguyen'
 git config --global push.autoSetupRemote true
 git config --global pull.rebase true
-git config --global core.editor vim
-git config --global diff.tool vimdiff
-git config --global merge.tool vimdiff
+git config --global core.editor nvim
+git config --global diff.tool nvimdiff
+git config --global merge.tool nvimdiff
 git config --global mergetool.keepBackup false
 
 echo '> installing git prompt'
