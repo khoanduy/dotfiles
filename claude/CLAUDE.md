@@ -27,7 +27,7 @@ For these:
 `<planning>`
 Escalate to Plan Mode with `EnterPlanMode` before writing code when the work is multi-file or multi-step, turns on a real trade-off decision (see `decisions`), or has a plan that will outlive a single context window. Scope growing past the original ask mid-task is the same trigger, arriving late. A one-line fix or single-file change needs none of this.
 
-Entering plan mode - or planning work of that size outside it - loads the `are-we-done-yet` skill first; it owns the plan file structure.
+Entering plan mode - or planning work of that size outside it - loads the `are-we-done-yet` skill first; it owns the design discussion, the plan file structure, and test-first execution.
 `</planning>`
 
 `<investigate_before_answering>`
