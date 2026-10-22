@@ -1,7 +1,6 @@
 vim.diagnostic.config{virtual_text=true, underline=true}
 vim.lsp.config('*', {
     on_attach = function(client, bufnr)
-        vim.lsp.semantic_tokens.enable(true)
         vim.lsp.completion.enable(true, client.id, bufnr, {autotrigger=true})
         vim.lsp.inlay_hint.enable(true)
 
@@ -44,14 +43,13 @@ vim.lsp.config('pyright', {
 })
 
 -- js/ts
-vim.lsp.config('tsserver', {
-    cmd = {'typescript-language-server', '--stdio'},
+vim.lsp.config('tsgo', {
+    cmd = {'tsc', '--lsp', '--stdio'},
     filetypes = {'javascript', 'typescript'},
     root_markers = {'tsconfig.json', 'jsconfig.json', 'package.json', '.git'},
-    init_options = {hostInfo='neovim'},
 })
 
-vim.lsp.enable{'clangd', 'pyright', 'tsserver'}
+vim.lsp.enable{'clangd', 'pyright', 'tsgo'}
 
 -- java
 local java_home = os.getenv'JDTLS_JDK'
