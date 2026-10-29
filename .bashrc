@@ -25,10 +25,12 @@ export HISTFILESIZE=100000
 export HISTSIZE=100000
 export HISTCONTROL=ignoreboth:erasedups
 
-if [[ -f /usr/share/bash-completion/bash_completion ]]; then
-    . /usr/share/bash-completion/bash_completion
-elif [[ -s /opt/homebrew/etc/profile.d/bash_completion.sh ]]; then
-    . /opt/homebrew/etc/profile.d/bash_completion.sh
+if [[ -z $BASH_COMPLETION_VERSINFO ]]; then
+    if [[ -f /usr/share/bash-completion/bash_completion ]]; then
+        . /usr/share/bash-completion/bash_completion
+    elif [[ -s /opt/homebrew/etc/profile.d/bash_completion.sh ]]; then
+        . /opt/homebrew/etc/profile.d/bash_completion.sh
+    fi
 fi
 
 # git branch and status in prompt
@@ -39,9 +41,9 @@ if [[ -f ~/.git-prompt.sh ]]; then
     GIT_PS1_SHOWUNTRACKEDFILES=1
     GIT_PS1_SHOWUPSTREAM="auto"
     GIT_PS1_SHOWCONFLICTSTATE="yes"
-    PS1='\u@\h:\[\e[1;36m\]\W\[\e[0m\]$(__git_ps1 " (%s)")\$ '
+    PS1='\u@\h:\[\e[1m\]\W\[\e[0m\]$(__git_ps1 " (%s)")\$ '
 else
-    PS1='\u@\h:\[\e[1;36m\]\W\[\e[0m\]\$ '
+    PS1='\u@\h:\[\e[1m\]\W\[\e[0m\]\$ '
 fi
 
 export EDITOR=nvim
