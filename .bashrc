@@ -46,8 +46,8 @@ else
     PS1='\u@\h:\[\e[1m\]\W\[\e[0m\]\$ '
 fi
 
-export EDITOR=nvim
-export VISUAL=nvim
+export EDITOR=vim
+export VISUAL=vim
 
 # don't uncomment, just notes for running java debug
 # export JDK_JAVA_OPTIONS='-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=localhost:5005'
