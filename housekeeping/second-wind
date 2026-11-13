@@ -1,0 +1,35 @@
+#!/bin/sh
+# intel gpu video decode, restricted codecs, firmware updates, flathub, no telemetry,
+# and fingerprint auth for sudo, lightdm and the xfce lock screen.
+# ubuntu/xubuntu only, safe to rerun.
+set -eu
+
+grep -qs '^ID=ubuntu$' /etc/os-release || { echo '! not ubuntu, nothing to do' >&2; exit 1; }
+
+sudo apt-get update
+
+echo '> installing gpu video decode, restricted codecs, firmware updater'
+sudo apt-get install -y ubuntu-restricted-extras intel-media-va-driver-non-free vainfo intel-gpu-tools fwupd
+
+echo '> removing crash reporting, telemetry and unused services'
+sudo apt-get purge -y kdump-tools whoopsie apport ubuntu-insights ubuntu-report cloud-init
+if sudo grep -qs 'crashkernel=' /boot/grub/grub.cfg; then
+    echo '> dropping crashkernel from the kernel command line'
+    sudo update-grub
+fi
+
+echo '> adding the flathub remote'
+sudo apt-get install -y flatpak
+sudo flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
+
+# sudo, lightdm and xfce4-screensaver all include common-auth, which pam-auth-update rewrites
+echo '> enabling fingerprint auth for sudo, lightdm and the xfce lock screen'
+sudo apt-get install -y fprintd libpam-fprintd
+sudo pam-auth-update --enable fprintd
+if fprintd-list "$USER" 2>/dev/null | grep -q ' - #'; then
+    echo '* fingerprint already enrolled'
+else
+    echo '> enrolling a finger, touch the sensor when asked'
+    fprintd-enroll </dev/tty || echo '! enroll failed or no reader found, rerun or run fprintd-enroll' >&2
+fi
+# vim: ft=sh
