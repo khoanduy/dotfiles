@@ -1,7 +1,6 @@
 #!/bin/sh
 # intel gpu video decode, restricted codecs, firmware updates, flathub, no telemetry,
-# and fingerprint auth for sudo, lightdm and the xfce lock screen.
-# ubuntu/xubuntu only, safe to rerun.
+# and fingerprint auth for sudo, safe to rerun.
 set -eu
 
 grep -qs '^ID=ubuntu$' /etc/os-release || { echo '! not ubuntu, nothing to do' >&2; exit 1; }
@@ -22,8 +21,7 @@ echo '> adding the flathub remote'
 sudo apt-get install -y flatpak
 sudo flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
 
-# sudo, lightdm and xfce4-screensaver all include common-auth, which pam-auth-update rewrites
-echo '> enabling fingerprint auth for sudo, lightdm and the xfce lock screen'
+echo '> enabling fingerprint auth for sudo'
 sudo apt-get install -y fprintd libpam-fprintd
 sudo pam-auth-update --enable fprintd
 if fprintd-list "$USER" 2>/dev/null | grep -q ' - #'; then
