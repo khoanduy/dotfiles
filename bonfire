@@ -7,7 +7,7 @@ case $(uname -s) in
     Linux)
         sudo apt-get update && sudo apt-get upgrade -y
         sudo apt-get install -y git bash curl vim-gtk3 neovim tree ncdu ripgrep htop
-        sudo apt-get install -y universal-ctags jq xclip fonts-jetbrains-mono
+        sudo apt-get install -y universal-ctags jq wl-clipboard fonts-jetbrains-mono
         ;;
     Darwin)
         xcode-select -p >/dev/null 2>&1 || {
