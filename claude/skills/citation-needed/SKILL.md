@@ -19,8 +19,7 @@ and neither is another model's summary of one.
 4. A reputable third-party write-up.
 5. A blog or forum post. Last, and never load-bearing on its own.
 
-Documentation hosts move: `docs.claude.com/en/docs/claude-code/*` now redirects to
-`code.claude.com/docs/en/*`. Follow the redirect and cite the URL actually read.
+Documentation hosts move: follow redirects and cite the URL actually read.
 
 ## Confidence
 
