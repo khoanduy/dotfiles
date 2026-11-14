@@ -5,9 +5,9 @@ set -eu
 echo '> installing essential packages'
 case $(uname -s) in
     Linux)
-        sudo apt-get update && sudo apt-get upgrade -y
-        sudo apt-get install -y git bash curl vim-gtk3 neovim tree ncdu ripgrep htop
-        sudo apt-get install -y universal-ctags jq wl-clipboard fonts-jetbrains-mono
+        sudo dnf upgrade -y && sudo dnf install -y git bash curl vim-X11 neovim tree ncdu
+        sudo dnf install -y ripgrep htop ctags jq wl-clipboard jetbrains-mono-nl-fonts
+        sudo alternatives --install /usr/bin/vim vim /usr/bin/vimx 55
         ;;
     Darwin)
         xcode-select -p >/dev/null 2>&1 || {
@@ -19,8 +19,7 @@ case $(uname -s) in
             /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
             eval "$(/opt/homebrew/bin/brew shellenv)"
         }
-        brew update
-        brew install git bash neovim tree ncdu ripgrep htop
+        brew update && brew install git bash neovim tree ncdu ripgrep htop
         brew install universal-ctags jq bash-completion@2 font-jetbrains-mono
         ;;
     *)  echo '! unsupported os: only linux and mac' >&2; exit 1 ;;

@@ -1,12 +1,12 @@
 #!/bin/sh
 # enroll luks devices in /etc/crypttab into the tpm2 with systemd-cryptenroll.
-# ubuntu with dracut only, safe to rerun.
+# fedora only, safe to rerun.
 #
 # usage: housekeeping/skill-issue [pcr_ids]
 #   pcr_ids   tpm2 pcr list to seal against (default: 4+7+8+9)
 set -eu
 
-grep -qs '^ID=ubuntu$' /etc/os-release || { echo '! not ubuntu, nothing to do' >&2; exit 1; }
+grep -qs '^ID=fedora$' /etc/os-release || { echo '! not fedora, nothing to do' >&2; exit 1; }
 
 pcrs=$(printf '%s' "${1:-4+7+8+9}" | tr , +)
 
@@ -14,8 +14,14 @@ pcrs=$(printf '%s' "${1:-4+7+8+9}" | tr , +)
 [ -s /etc/crypttab ] || { echo '! /etc/crypttab is empty, nothing to enroll' >&2; exit 1; }
 command -v dracut >/dev/null 2>&1 || { echo '! dracut not installed' >&2; exit 1; }
 
-echo '> installing tpm2-tools and systemd-cryptsetup'
-sudo apt-get install -y tpm2-tools systemd-cryptsetup
+echo '> installing tpm2-tools and tpm2-tss'
+sudo dnf install -y tpm2-tools tpm2-tss
+
+cur=$(mktemp)
+tmp=$(mktemp)
+trap 'rm -f "$cur" "$tmp"' EXIT
+# crypttab is root-only on fedora, so work from a copy
+sudo cat /etc/crypttab > "$cur"
 
 enrolled=
 # one crypttab line per pass, split on whitespace; _ swallows keyfile and options:
@@ -34,13 +40,10 @@ while read -r name src _; do
     # stdin is crypttab here, so prompt for the passphrase on the terminal
     sudo systemd-cryptenroll --wipe-slot=tpm2 --tpm2-device=auto --tpm2-pcrs="$pcrs" "$dev" </dev/tty
     enrolled="$enrolled $name"
-done </etc/crypttab
+done <"$cur"
 
 [ -n "$enrolled" ] || { echo '* no luks devices enrolled'; exit 0; }
 
-tmp=$(mktemp)
-old=$(mktemp)
-trap 'rm -f "$tmp" "$old"' EXIT
 # add tpm2-device=auto to the options (4th field) of enrolled entries; others pass through.
 # names is " a b " so index() matches whole names only.
 #   dm_crypt-0  UUID=aaaa  none  luks   ->  dm_crypt-0 UUID=aaaa none luks,tpm2-device=auto
@@ -53,19 +56,18 @@ awk -v names="$enrolled " '
         opts = NF < 4 ? "tpm2-device=auto" : $4 ",tpm2-device=auto"
         $4 = opts
         print
-    }' /etc/crypttab > "$tmp"
+    }' "$cur" > "$tmp"
 
-if cmp -s "$tmp" /etc/crypttab; then
+if cmp -s "$tmp" "$cur"; then
     echo '* crypttab already up to date'
     exit 0
 fi
 
 echo '> adding tpm2-device=auto to crypttab and rebuilding the initramfs'
 [ -e /etc/crypttab.bak ] || sudo cp /etc/crypttab /etc/crypttab.bak
-cp /etc/crypttab "$old"
 sudo cp "$tmp" /etc/crypttab
 sudo dracut -f --regenerate-all || {
-    sudo cp "$old" /etc/crypttab
+    sudo cp "$cur" /etc/crypttab
     echo '! dracut failed, crypttab restored' >&2
     exit 1
 }

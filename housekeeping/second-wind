@@ -1,33 +1,62 @@
 #!/bin/sh
-# intel gpu video decode, restricted codecs, firmware updates, flathub, no telemetry,
-# and fingerprint auth for sudo, safe to rerun.
+# rpm fusion codecs and intel gpu video decode, firmware updates, flathub,
+# fingerprint auth for sudo and the kde lock screen, and vietnamese input with fcitx5.
+# fedora only, safe to rerun.
 set -eu
 
-grep -qs '^ID=ubuntu$' /etc/os-release || { echo '! not ubuntu, nothing to do' >&2; exit 1; }
+grep -qs '^ID=fedora$' /etc/os-release || { echo '! not fedora, nothing to do' >&2; exit 1; }
 
-sudo apt-get update
-
-echo '> installing gpu video decode, restricted codecs, firmware updater'
-sudo apt-get install -y ubuntu-restricted-extras intel-media-va-driver-non-free vainfo intel-gpu-tools fwupd
-
-echo '> removing crash reporting, telemetry and unused services'
-sudo apt-get purge -y kdump-tools whoopsie apport ubuntu-insights ubuntu-report cloud-init
-if sudo grep -qs 'crashkernel=' /boot/grub/grub.cfg; then
-    echo '> dropping crashkernel from the kernel command line'
-    sudo update-grub
+if rpm -q rpmfusion-free-release rpmfusion-nonfree-release >/dev/null 2>&1; then
+    echo '* rpm fusion already enabled'
+else
+    echo '> enabling rpm fusion free and nonfree'
+    fedora=$(rpm -E %fedora)
+    sudo dnf install -y \
+        "https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$fedora.noarch.rpm" \
+        "https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$fedora.noarch.rpm"
 fi
+sudo dnf config-manager setopt fedora-cisco-openh264.enabled=1
+
+echo '> installing restricted codecs'
+if rpm -q ffmpeg-free >/dev/null 2>&1; then
+    sudo dnf swap -y ffmpeg-free ffmpeg --allowerasing
+else
+    sudo dnf install -y ffmpeg
+fi
+# the group lists fedora's intel driver, which would undo the swap below
+sudo dnf install -y @multimedia --setopt=install_weak_deps=False \
+    --exclude=PackageKit-gstreamer-plugin --exclude=libva-intel-media-driver
+
+echo '> installing intel gpu video decode and firmware updater'
+# both ship iHD_drv_video.so, and the rpm fusion one does not obsolete fedora's
+if rpm -q libva-intel-media-driver >/dev/null 2>&1; then
+    sudo dnf swap -y libva-intel-media-driver intel-media-driver --allowerasing
+else
+    sudo dnf install -y intel-media-driver
+fi
+sudo dnf install -y libva-utils igt-gpu-tools fwupd
 
 echo '> adding the flathub remote'
-sudo apt-get install -y flatpak
+sudo dnf install -y flatpak
 sudo flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
 
-echo '> enabling fingerprint auth for sudo'
-sudo apt-get install -y fprintd libpam-fprintd
-sudo pam-auth-update --enable fprintd
+# kde-fingerprint and sudo both include fingerprint-auth/system-auth, which authselect owns
+echo '> enabling fingerprint auth for sudo and the lock screen'
+sudo dnf install -y fprintd fprintd-pam
+sudo authselect enable-feature with-fingerprint
 if fprintd-list "$USER" 2>/dev/null | grep -q ' - #'; then
     echo '* fingerprint already enrolled'
 else
     echo '> enrolling a finger, touch the sensor when asked'
     fprintd-enroll </dev/tty || echo '! enroll failed or no reader found, rerun or run fprintd-enroll' >&2
 fi
+
+# on plasma wayland kwin launches fcitx5 (system settings > virtual keyboard);
+# GTK_IM_MODULE and QT_IM_MODULE stay unset, only xwayland apps need XMODIFIERS
+echo '> installing fcitx5 with unikey for vietnamese input'
+sudo dnf install -y fcitx5 fcitx5-configtool fcitx5-unikey
+kwriteconfig6 --file kwinrc --group Wayland --key InputMethod /usr/share/applications/org.fcitx.Fcitx5.desktop
+mkdir -p ~/.config/environment.d
+echo 'XMODIFIERS=@im=fcitx' > ~/.config/environment.d/im.conf
+echo '* log out and back in, then in fcitx5-config-qt add "keyboard - vietnamese" and "unikey"'
 # vim: ft=sh
