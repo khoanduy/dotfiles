@@ -3,12 +3,12 @@
 # fedora only, safe to rerun.
 #
 # usage: housekeeping/skill-issue [pcr_ids]
-#   pcr_ids   tpm2 pcr list to seal against (default: 4+7+8+9)
+#   pcr_ids   tpm2 pcr list to seal against (default: 4+7)
 set -eu
 
 grep -qs '^ID=fedora$' /etc/os-release || { echo '! not fedora, nothing to do' >&2; exit 1; }
 
-pcrs=$(printf '%s' "${1:-4+7+8+9}" | tr , +)
+pcrs=$(printf '%s' "${1:-4+7}" | tr , +)
 
 [ -e /dev/tpmrm0 ] || { echo '! no /dev/tpmrm0, is there a tpm2 chip enabled in firmware?' >&2; exit 1; }
 [ -s /etc/crypttab ] || { echo '! /etc/crypttab is empty, nothing to enroll' >&2; exit 1; }
